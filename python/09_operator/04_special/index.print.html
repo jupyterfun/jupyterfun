@@ -11,19 +11,19 @@
     <link href="/python/09_operator/04_special/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/09_operator/04_special/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661054442" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054442" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661054442" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054442" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661054442" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054442" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661054442" rel="stylesheet">
-    <link href="/css/nucleus.css?1661054442" rel="stylesheet">
-    <link href="/css/fonts.css?1661054442" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054442" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661054442" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661054442" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661054442" rel="stylesheet">
-    <link href="/css/variant.css?1661054442" rel="stylesheet">
-    <link href="/css/print.css?1661054442" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661054442" rel="stylesheet">
-    <script src="/js/variant.js?1661054442"></script>
+    <link href="/css/fontawesome-all.min.css?1661076170" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076170" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661076170" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076170" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661076170" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076170" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661076170" rel="stylesheet">
+    <link href="/css/nucleus.css?1661076170" rel="stylesheet">
+    <link href="/css/fonts.css?1661076170" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076170" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661076170" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661076170" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661076170" rel="stylesheet">
+    <link href="/css/variant.css?1661076170" rel="stylesheet">
+    <link href="/css/print.css?1661076170" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661076170" rel="stylesheet">
+    <script src="/js/variant.js?1661076170"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -39,7 +39,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661054442" defer></script>
+    <script src="/js/jquery.min.js?1661076170" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/09_operator/04_special/">
     <div id="body" class="default-animation">
@@ -84,7 +84,7 @@
 </span></span></code></pre></div><pre><code>a-b-c
 </code></pre>
 <ul>
-<li><code>+</code>，<code>+=</code>，<code>*</code>，<code>*=</code> 可用来对序列类型进行拼接，重复拼接或拼接并赋值（range 类型除外）。由于列表是可变对象，<code>+=</code> 和 <code>*=</code> 在操作列表时，是用来更新列表。具体详见 <a href="../03_list/04_list_operator">列表操作符</a>。</li>
+<li><code>+</code>，<code>+=</code>，<code>*</code>，<code>*=</code> 可用来对序列类型进行拼接，重复拼接或拼接并赋值（range 类型除外）。由于列表是可变对象，<code>+=</code> 和 <code>*=</code> 在操作列表时，是用来更新列表。具体详见 <a href="/python/03_list/04_list_operator/">列表操作符</a>。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#39;d-&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;abc&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>
 </span></span></code></pre></div><pre><code>'d-abcabc'
@@ -96,13 +96,13 @@
 </code></pre>
 <ul>
 <li>
-<p>操作符 <code>**</code>，<code>|</code> 和 <code>|=</code> 可以用来操作字典。具体详见 <a href="../07_dictionary/14_operator">字典操作符</a>。</p>
+<p>操作符 <code>**</code>，<code>|</code> 和 <code>|=</code> 可以用来操作字典。具体详见 <a href="/python/07_dictionary/14_operator/">字典操作符</a>。</p>
 </li>
 <li>
 <p>操作符 <code>&gt;</code>，<code>&lt;</code>，<code>&gt;=</code>，<code>&lt;=</code> 可对集合进行子集或超集比较；<code>|</code>，<code>&amp;</code>，<code>-</code>，<code>^</code> 可求集合的并集，交集，差集，对称差集；<code>|=</code>，<code>&amp;=</code>，<code>-=</code>，<code>^=</code> 可用来更新集合。具体详见集合知识点。</p>
 </li>
 <li>
-<p>操作符 <code>%</code> 可以用来格式化字符串，而在<strong>格式化迷你语言</strong>中，定义了非常多的有特殊意义操作符。具体详见 <a href="../02_string/25_str.format">str.format 格式化</a> 和 <a href="../02_string/28_string_operators">字符串操作符</a>。</p>
+<p>操作符 <code>%</code> 可以用来格式化字符串，而在<strong>格式化迷你语言</strong>中，定义了非常多的有特殊意义操作符。具体详见 <a href="">str.format 格式化</a> 和 <a href="/python/02_string/28_string_operators/">字符串操作符</a>。</p>
 </li>
 </ul>
 
@@ -127,12 +127,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1661054442" defer></script>
-        <script src="/js/lunr.min.js?1661054442" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661054442" defer></script>
-        <script src="/js/lunr.multi.min.js?1661054442" defer></script>
-        <script src="/js/lunr.en.min.js?1661054442" defer></script>
-        <script src="/js/search.js?1661054442" defer></script>
+        <script src="/js/auto-complete.js?1661076170" defer></script>
+        <script src="/js/lunr.min.js?1661076170" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661076170" defer></script>
+        <script src="/js/lunr.multi.min.js?1661076170" defer></script>
+        <script src="/js/lunr.en.min.js?1661076170" defer></script>
+        <script src="/js/search.js?1661076170" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -436,9 +436,9 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661054442" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661054442" defer></script>
-    <script src="/js/featherlight.min.js?1661054442" defer></script>
+    <script src="/js/clipboard.min.js?1661076170" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661076170" defer></script>
+    <script src="/js/featherlight.min.js?1661076170" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -468,7 +468,7 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661054442" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661076170" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -477,6 +477,6 @@
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661054442" defer></script>
+    <script src="/js/theme.js?1661076170" defer></script>
   </body>
 </html>

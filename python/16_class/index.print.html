@@ -11,19 +11,19 @@
     <link href="/python/16_class/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/16_class/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661054444" rel="stylesheet">
-    <link href="/css/nucleus.css?1661054444" rel="stylesheet">
-    <link href="/css/fonts.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661054444" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661054444" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661054444" rel="stylesheet">
-    <link href="/css/variant.css?1661054444" rel="stylesheet">
-    <link href="/css/print.css?1661054444" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661054444" rel="stylesheet">
-    <script src="/js/variant.js?1661054444"></script>
+    <link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661076171" rel="stylesheet">
+    <link href="/css/nucleus.css?1661076171" rel="stylesheet">
+    <link href="/css/fonts.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661076171" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661076171" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661076171" rel="stylesheet">
+    <link href="/css/variant.css?1661076171" rel="stylesheet">
+    <link href="/css/print.css?1661076171" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661076171" rel="stylesheet">
+    <script src="/js/variant.js?1661076171"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -39,7 +39,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661054444" defer></script>
+    <script src="/js/jquery.min.js?1661076171" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/16_class/">
     <div id="body" class="default-animation">
@@ -133,7 +133,7 @@
 <h1>类定义</h1>
 
 <p>类是用来创建用户定义对象的模板，是抽象的对象（类对象）。例如我们说鱼类，指的就是一类抽象的对象，而具体到武昌鱼，鲈鱼，鲫鱼…… 就是具体的对象。</p>
-<p>定义了一个类，就可以用这个模块来创建它的具体对象（实例）。类定义的详细语法规则见 <a href="../10_statement/13_class">class 定义类</a>。</p>
+<p>定义了一个类，就可以用这个模块来创建它的具体对象（实例）。类定义的详细语法规则见 <a href="/python/10_statement/13_class/">class 定义类</a>。</p>
 <p>创建一个类，需要继承另一个类。新创建的类是子类，继承的类是基类。如不指定，创建类默认继承自所有类的基类 object。</p>
 <p>下面是一个没有任何自定义属性的简单类：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
@@ -608,7 +608,7 @@ NameError: name 'c' is not defined
 </span></span><span style="display:flex;"><span>f()
 </span></span></code></pre></div><pre><code>0 2
 </code></pre>
-<p>改变变量作用域，详见 <a href="../10_statement/19_global">global 语句</a> 和 <a href="../10_statement/20_nonlocal">nonlocal 语句</a>。</p>
+<p>改变变量作用域，详见 <a href="/python/10_statement/19_global/">global 语句</a> 和 <a href="/python/10_statement/20_nonlocal/">nonlocal 语句</a>。</p>
 <p>类变量和实例变量：</p>
 <ul>
 <li>在类中定义，仅在类层级修改的变量为类变量，实例也可访问类变量；</li>
@@ -833,7 +833,7 @@ list.append = append(self, object, /)
 </span></span><span style="display:flex;"><span>a
 </span></span></code></pre></div><pre><code>[1]
 </code></pre>
-<p>类方法（第一个参数通常命名为 cls）则无论是类或是实例调用，方法都将获取类对象作为其第一个参数。类方法定义详见 <a href="../11_built-in_function/10_classmethod">classmethod 封装函数为类方法</a>。</p>
+<p>类方法（第一个参数通常命名为 cls）则无论是类或是实例调用，方法都将获取类对象作为其第一个参数。类方法定义详见 <a href="/python/11_built-in_function/10_classmethod/">classmethod 封装函数为类方法</a>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(cls,x):
@@ -846,7 +846,7 @@ list.append = append(self, object, /)
 &lt;class '__main__.A'&gt; 类方法
 &lt;class '__main__.A'&gt; 类方法
 </code></pre>
-<p>静态方法则不会接收隐式的第一个参数。调用它需要正常传递参数。静态方法详见 <a href="../11_built-in_function/58_staticmethod">staticmethod 封装函数为静态方法</a>。</p>
+<p>静态方法则不会接收隐式的第一个参数。调用它需要正常传递参数。静态方法详见 <a href="/python/11_built-in_function/58_staticmethod/">staticmethod 封装函数为静态方法</a>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@staticmethod</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">in_print</span>(value):
@@ -972,7 +972,7 @@ x=0,调用结束
 
 <p>作用域定义了一个代码块中名称的可见性。如果代码块中定义了一个局部变量，则其作用域包含该代码块。如果定义发生于函数代码块中，则其作用域会扩展到该函数所包含的任何代码块，除非有某个被包含代码块引入了对该名称的不同绑定。</p>
 <p>当一个名称在代码块中被使用时，会由包含它的最近作用域来解析。对一个代码块可见的所有这种作用域的集合称为该代码块的环境。</p>
-<p>一个作用域是一个 <a href="../16_class/09_namespace">命名空间</a> 可直接访问的 Python 程序的文本区域。这里的 “可直接访问” 意味着对名称的非限定引用（限定引用指点号表达式例如 math.pi）会尝试在命名空间中查找名称。</p>
+<p>一个作用域是一个 <a href="/python/16_class/09_namespace/">命名空间</a> 可直接访问的 Python 程序的文本区域。这里的 “可直接访问” 意味着对名称的非限定引用（限定引用指点号表达式例如 math.pi）会尝试在命名空间中查找名称。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 全局变量作用域为当前模块</span>
 </span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;全局变量&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
@@ -1642,12 +1642,12 @@ AttributeError: 'B' object has no attribute 'a'
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1661054444" defer></script>
-        <script src="/js/lunr.min.js?1661054444" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661054444" defer></script>
-        <script src="/js/lunr.multi.min.js?1661054444" defer></script>
-        <script src="/js/lunr.en.min.js?1661054444" defer></script>
-        <script src="/js/search.js?1661054444" defer></script>
+        <script src="/js/auto-complete.js?1661076171" defer></script>
+        <script src="/js/lunr.min.js?1661076171" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661076171" defer></script>
+        <script src="/js/lunr.multi.min.js?1661076171" defer></script>
+        <script src="/js/lunr.en.min.js?1661076171" defer></script>
+        <script src="/js/search.js?1661076171" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -1951,9 +1951,9 @@ AttributeError: 'B' object has no attribute 'a'
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661054444" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661054444" defer></script>
-    <script src="/js/featherlight.min.js?1661054444" defer></script>
+    <script src="/js/clipboard.min.js?1661076171" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661076171" defer></script>
+    <script src="/js/featherlight.min.js?1661076171" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1983,7 +1983,7 @@ AttributeError: 'B' object has no attribute 'a'
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661054444" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661076171" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1992,6 +1992,6 @@ AttributeError: 'B' object has no attribute 'a'
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661054444" defer></script>
+    <script src="/js/theme.js?1661076171" defer></script>
   </body>
 </html>

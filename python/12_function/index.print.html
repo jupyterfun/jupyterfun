@@ -11,19 +11,19 @@
     <link href="/python/12_function/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/12_function/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661054444" rel="stylesheet">
-    <link href="/css/nucleus.css?1661054444" rel="stylesheet">
-    <link href="/css/fonts.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661054444" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661054444" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661054444" rel="stylesheet">
-    <link href="/css/variant.css?1661054444" rel="stylesheet">
-    <link href="/css/print.css?1661054444" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661054444" rel="stylesheet">
-    <script src="/js/variant.js?1661054444"></script>
+    <link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661076171" rel="stylesheet">
+    <link href="/css/nucleus.css?1661076171" rel="stylesheet">
+    <link href="/css/fonts.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661076171" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661076171" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661076171" rel="stylesheet">
+    <link href="/css/variant.css?1661076171" rel="stylesheet">
+    <link href="/css/print.css?1661076171" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661076171" rel="stylesheet">
+    <script src="/js/variant.js?1661076171"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -39,7 +39,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661054444" defer></script>
+    <script src="/js/jquery.min.js?1661076171" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/12_function/">
     <div id="body" class="default-animation">
@@ -139,7 +139,7 @@ True
           <article class="default">
 <h1>函数定义</h1>
 
-<p>函数定义有两种方式，def 语句定义有名字的函数（详见 <a href="../10_statement/10_def">def 定义函数</a>），lambda 表达式定义匿名函数（详见 <a href="../12_function/08_lambda">lambda 函数</a>）。</p>
+<p>函数定义有两种方式，def 语句定义有名字的函数（详见 <a href="/python/10_statement/10_def/">def 定义函数</a>），lambda 表达式定义匿名函数（详见 <a href="/python/12_function/08_lambda/">lambda 函数</a>）。</p>
 <p>定义一个函数，即是创建了一个函数可执行代码的包装器，他将函数想要实现的功能包装起来。然后通过调用它来实现其功能。def 语句 详细介绍了定义函数的语法规则，下面看看如何将一个功能包装起来。</p>
 <p>例如下列函数，实现了将列表中的 字符串整数 以及 整数 相加求和的功能，以后只要遇到这种情况，都可以用它来求和：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sumpro([<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>])
@@ -193,7 +193,7 @@ True
           <article class="default">
 <h1>函数形参</h1>
 
-<p>形参是函数定义中指定的参数名称。指定某个参数的形式，决定了该形参在函数调用时，可以接受实参的方式。关于实参详见 <a href="../12_function/07_function_call">函数调用</a>。</p>
+<p>形参是函数定义中指定的参数名称。指定某个参数的形式，决定了该形参在函数调用时，可以接受实参的方式。关于实参详见 <a href="/python/12_function/07_function_call/">函数调用</a>。</p>
 <p>因而形参分为五种：</p>
 <ul>
 <li>位置或关键字：指定一个可以作为 位置参数 传入也可以作为 关键字参数 传入的实参。这是默认的形参类型，但有默认值的形参必须置于无默认值的形参之后。</li>
@@ -350,7 +350,7 @@ a=1,b=2,c={'d': 4, 'c': 3}
           <article class="default">
 <h1>函数返回值</h1>
 
-<p>函数返回值通过 <a href="../10_statement/11_return">return 语句</a> 来实现，调用函数时，返回 return 语句之后表达式的值，没有 return 语句或 return 语句之后为空的函数，调用函数默认返回 None。</p>
+<p>函数返回值通过 <a href="/python/10_statement/11_return/">return 语句</a> 来实现，调用函数时，返回 return 语句之后表达式的值，没有 return 语句或 return 语句之后为空的函数，调用函数默认返回 None。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>
@@ -390,7 +390,7 @@ a=1,b=2,c={'d': 4, 'c': 3}
 </span></span><span style="display:flex;"><span>sum_x, max_x, min_x
 </span></span></code></pre></div><pre><code>(10, 4, 1)
 </code></pre>
-<p>返回值可以是任何值。如果 return 之后的表达式中包含函数自身的调用，则该函数称为递归函数。详见 <a href="../12_function/05_recursion">递归函数</a>。</p>
+<p>返回值可以是任何值。如果 return 之后的表达式中包含函数自身的调用，则该函数称为递归函数。详见 <a href="/python/12_function/05_recursion/">递归函数</a>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 返回函数自身</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
 </span></span><span style="display:flex;"><span>    print(x)
@@ -511,7 +511,7 @@ flush: whether to forcibly flush the stream.
           <article class="default">
 <h1>函数调用</h1>
 
-<p>函数名之后带一个圆括号，圆括号内，根据形参的类型（详见<a href="../12_function/03_formal_parameter">函数形参</a>），给函数传递相应的实参，即可调用函数，执行函数体中的代码。</p>
+<p>函数名之后带一个圆括号，圆括号内，根据形参的类型（详见<a href="/python/12_function/03_formal_parameter/">函数形参</a>），给函数传递相应的实参，即可调用函数，执行函数体中的代码。</p>
 <p>函数调用传递的实参分为：<strong>位置参数</strong>和<strong>关键字参数</strong>。</p>
 <ul>
 <li>位置参数: 调用函数时，不带标识符（例如 name=）直接按形参位置传递给函数的参数。位置参数可使用 <code>*</code> 将可迭代对象的元素拆包传入函数，但元素个数不能多于可接收位置参数的形参个数，除非有接收多个位置参数的可变位置形参。</li>
@@ -654,7 +654,7 @@ NameError: name 'x' is not defined
           <article class="default">
 <h1>生成器函数</h1>
 
-<p>函数定义中使用了 <a href="../10_statement/12_yield">yield 语句</a>，该定义创建的函数是生成器函数。生成器函数通常也直接叫生成器。</p>
+<p>函数定义中使用了 <a href="/python/10_statement/12_yield/">yield 语句</a>，该定义创建的函数是生成器函数。生成器函数通常也直接叫生成器。</p>
 <p>当一个生成器函数被调用的时候，它返回一个迭代器，也称为生成器（全称是生成器迭代器，下面所说生成器均指生成器迭代器）。然后通过这个生成器来控制生成器函数的执行。</p>
 <p>生成器是一个迭代器，也是一个可迭代对象。但一个生成器生成的 “元素” 只能被使用一次，原因如下：</p>
 <ul>
@@ -776,12 +776,12 @@ StopIteration:
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1661054444" defer></script>
-        <script src="/js/lunr.min.js?1661054444" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661054444" defer></script>
-        <script src="/js/lunr.multi.min.js?1661054444" defer></script>
-        <script src="/js/lunr.en.min.js?1661054444" defer></script>
-        <script src="/js/search.js?1661054444" defer></script>
+        <script src="/js/auto-complete.js?1661076171" defer></script>
+        <script src="/js/lunr.min.js?1661076171" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661076171" defer></script>
+        <script src="/js/lunr.multi.min.js?1661076171" defer></script>
+        <script src="/js/lunr.en.min.js?1661076171" defer></script>
+        <script src="/js/search.js?1661076171" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -1085,9 +1085,9 @@ StopIteration:
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661054444" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661054444" defer></script>
-    <script src="/js/featherlight.min.js?1661054444" defer></script>
+    <script src="/js/clipboard.min.js?1661076171" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661076171" defer></script>
+    <script src="/js/featherlight.min.js?1661076171" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1117,7 +1117,7 @@ StopIteration:
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661054444" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661076171" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1126,6 +1126,6 @@ StopIteration:
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661054444" defer></script>
+    <script src="/js/theme.js?1661076171" defer></script>
   </body>
 </html>

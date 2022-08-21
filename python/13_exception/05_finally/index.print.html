@@ -11,19 +11,19 @@
     <link href="/python/13_exception/05_finally/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/13_exception/05_finally/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661054443" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054443" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661054443" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054443" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661054443" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054443" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661054443" rel="stylesheet">
-    <link href="/css/nucleus.css?1661054443" rel="stylesheet">
-    <link href="/css/fonts.css?1661054443" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054443" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661054443" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661054443" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661054443" rel="stylesheet">
-    <link href="/css/variant.css?1661054443" rel="stylesheet">
-    <link href="/css/print.css?1661054443" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661054443" rel="stylesheet">
-    <script src="/js/variant.js?1661054443"></script>
+    <link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661076171" rel="stylesheet">
+    <link href="/css/nucleus.css?1661076171" rel="stylesheet">
+    <link href="/css/fonts.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661076171" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661076171" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661076171" rel="stylesheet">
+    <link href="/css/variant.css?1661076171" rel="stylesheet">
+    <link href="/css/print.css?1661076171" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661076171" rel="stylesheet">
+    <script src="/js/variant.js?1661076171"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -39,7 +39,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661054443" defer></script>
+    <script src="/js/jquery.min.js?1661076171" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/13_exception/05_finally/">
     <div id="body" class="default-animation">
@@ -73,7 +73,7 @@
           <article class="default">
 <h1>finally 清理操作</h1>
 
-<p>try 语句有另一个可选子句 finally，用于定义必须在所有情况下执行的清理操作（详见 <a href="../10_statement/14_try">try 语句</a>）。</p>
+<p>try 语句有另一个可选子句 finally，用于定义必须在所有情况下执行的清理操作（详见 <a href="/python/10_statement/14_try/">try 语句</a>）。</p>
 <p>例如，在 finally 子句中关闭打开的文件：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_file</span>():
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
@@ -126,7 +126,7 @@ NameError                                 Traceback (most recent call last)
 NameError: name '执行清理操作' is not defined
 </code></pre>
 <p>某些对象（例如文件对象）定义了在不再需要该对象时，要执行的标准清理操作，无论使用该对象的操作是成功还是失败，清理操作都会被执行。此时使用 with 语句允许像文件这样的对象能够以一种确保它们得到及时和正确的清理的方式使用。</p>
-<p>with 语句相当于将引发异常情况下的清理操作放到了 except 子句中，正常情况下的清理操作放到了 finally 子句中。详情见 <a href="../10_statement/16_with">with 语句</a>。</p>
+<p>with 语句相当于将引发异常情况下的清理操作放到了 except 子句中，正常情况下的清理操作放到了 finally 子句中。详情见 <a href="/python/10_statement/16_with/">with 语句</a>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read_file</span>():
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;../11_built-in_function/test.txt&#39;</span>,
 </span></span><span style="display:flex;"><span>                encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf-8&#39;</span>) <span style="color:#66d9ef">as</span> f:
@@ -157,12 +157,12 @@ NameError: name '执行清理操作' is not defined
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1661054443" defer></script>
-        <script src="/js/lunr.min.js?1661054443" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661054443" defer></script>
-        <script src="/js/lunr.multi.min.js?1661054443" defer></script>
-        <script src="/js/lunr.en.min.js?1661054443" defer></script>
-        <script src="/js/search.js?1661054443" defer></script>
+        <script src="/js/auto-complete.js?1661076171" defer></script>
+        <script src="/js/lunr.min.js?1661076171" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661076171" defer></script>
+        <script src="/js/lunr.multi.min.js?1661076171" defer></script>
+        <script src="/js/lunr.en.min.js?1661076171" defer></script>
+        <script src="/js/search.js?1661076171" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -466,9 +466,9 @@ NameError: name '执行清理操作' is not defined
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661054443" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661054443" defer></script>
-    <script src="/js/featherlight.min.js?1661054443" defer></script>
+    <script src="/js/clipboard.min.js?1661076171" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661076171" defer></script>
+    <script src="/js/featherlight.min.js?1661076171" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -498,7 +498,7 @@ NameError: name '执行清理操作' is not defined
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661054443" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661076171" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -507,6 +507,6 @@ NameError: name '执行清理操作' is not defined
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661054443" defer></script>
+    <script src="/js/theme.js?1661076171" defer></script>
   </body>
 </html>

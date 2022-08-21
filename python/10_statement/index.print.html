@@ -11,19 +11,19 @@
     <link href="/python/10_statement/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/10_statement/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661054444" rel="stylesheet">
-    <link href="/css/nucleus.css?1661054444" rel="stylesheet">
-    <link href="/css/fonts.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054444" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661054444" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661054444" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661054444" rel="stylesheet">
-    <link href="/css/variant.css?1661054444" rel="stylesheet">
-    <link href="/css/print.css?1661054444" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661054444" rel="stylesheet">
-    <script src="/js/variant.js?1661054444"></script>
+    <link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661076171" rel="stylesheet">
+    <link href="/css/nucleus.css?1661076171" rel="stylesheet">
+    <link href="/css/fonts.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076171" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661076171" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661076171" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661076171" rel="stylesheet">
+    <link href="/css/variant.css?1661076171" rel="stylesheet">
+    <link href="/css/print.css?1661076171" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661076171" rel="stylesheet">
+    <script src="/js/variant.js?1661076171"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -39,7 +39,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661054444" defer></script>
+    <script src="/js/jquery.min.js?1661076171" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/10_statement/">
     <div id="body" class="default-animation">
@@ -165,7 +165,7 @@ True
 <h1>赋值语句</h1>
 
 <p>赋值语句用于将名称绑定或重新绑定到特定值，以及修改属性或可变对象的成员项。</p>
-<p>赋值语句使用赋值操作符和增强赋值操作符。详见 <a href="../09_operator/01_operator_summary">操作符概述</a>。</p>
+<p>赋值语句使用赋值操作符和增强赋值操作符。详见 <a href="">操作符概述</a>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将值 1 绑定到变量 a</span>
 </span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;a =&#39;</span>, a)
@@ -360,7 +360,7 @@ else: #可选子句
 else: # 可选子句
     suite
 </code></pre><p>对于简单语句可以写为一行，但不推荐。</p>
-<p>表达式 expression_list 被求值一次，它应该产生一个可迭代对象。系统将为 expression_list 的结果创建一个迭代器，然后每一项会按标准赋值规则（详见见 <a href="../10_statement/02_assignment">赋值语句</a>）被依次赋值给 target_list，每赋值一次执行一次语句下的代码。</p>
+<p>表达式 expression_list 被求值一次，它应该产生一个可迭代对象。系统将为 expression_list 的结果创建一个迭代器，然后每一项会按标准赋值规则（详见见 <a href="/python/10_statement/02_assignment/">赋值语句</a>）被依次赋值给 target_list，每赋值一次执行一次语句下的代码。</p>
 <p>当所有项被耗尽时，else 子句如果存在将会被执行，并终止循环。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):print(i)
 </span></span></code></pre></div><pre><code>0
@@ -718,7 +718,7 @@ def funcname(parameter_list) -&gt; expression:
 </span></span><span style="display:flex;"><span>f
 </span></span></code></pre></div><pre><code>&quot;&lt;class 'function'&gt;&quot;
 </code></pre>
-<p>函数形参 <code>parameter_list</code> 详见 <a href="../12_function/03_formal_parameter">函数形参</a>。</p>
+<p>函数形参 <code>parameter_list</code> 详见 <a href="/python/12_function/03_formal_parameter/">函数形参</a>。</p>
 <p>函数标注 <code>-&gt; expression</code> 可以是任何表达式，标注对提高代码的可读性非常有用，看标注而不需要看代码上下文就大概知道代码的使用。例如：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 标注函数的参数和返回值类型</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(arg:int) <span style="color:#f92672">-&gt;</span> list:
@@ -778,7 +778,7 @@ def funcname(parameter_list) -&gt; expression:
           <article class="default">
 <h1>yield</h1>
 
-<p>yield 语句，仅在定义 <a href="../12_function/09_generator">生成器函数</a> 时使用，并且仅被用于生成器函数的函数体内部。语法如下：</p>
+<p>yield 语句，仅在定义 <a href="/python/12_function/09_generator/">生成器函数</a> 时使用，并且仅被用于生成器函数的函数体内部。语法如下：</p>
 <pre tabindex="0"><code>yield from expression
 </code></pre><p><code>from</code> 和表达式 <code>expression</code> 是可选的，没有表达式默认是 None。</p>
 <p>yield 语句整体也是一个可被求值的表达式语句，初始值也是默认 None，可通过 send 方法设置 yield 表达式的值。</p>
@@ -867,7 +867,7 @@ class classname(argument_list):
 </span></span><span style="display:flex;"><span>B<span style="color:#f92672">.</span>__bases__
 </span></span></code></pre></div><pre><code>(int, __main__.A)
 </code></pre>
-<p>类也可以被装饰，就像装饰函数一样，装饰器表达式的求值规则与函数装饰器相同（详见 <a href="../10_statement/10_def">def 定义函数</a>）。结果随后会被绑定到类名称。</p>
+<p>类也可以被装饰，就像装饰函数一样，装饰器表达式的求值规则与函数装饰器相同（详见 <a href="/python/10_statement/10_def/">def 定义函数</a>）。结果随后会被绑定到类名称。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@str</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@type</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>: <span style="color:#66d9ef">pass</span>
@@ -1717,12 +1717,12 @@ SyntaxError: no binding for nonlocal 'a' found
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1661054444" defer></script>
-        <script src="/js/lunr.min.js?1661054444" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661054444" defer></script>
-        <script src="/js/lunr.multi.min.js?1661054444" defer></script>
-        <script src="/js/lunr.en.min.js?1661054444" defer></script>
-        <script src="/js/search.js?1661054444" defer></script>
+        <script src="/js/auto-complete.js?1661076171" defer></script>
+        <script src="/js/lunr.min.js?1661076171" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661076171" defer></script>
+        <script src="/js/lunr.multi.min.js?1661076171" defer></script>
+        <script src="/js/lunr.en.min.js?1661076171" defer></script>
+        <script src="/js/search.js?1661076171" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -2026,9 +2026,9 @@ SyntaxError: no binding for nonlocal 'a' found
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661054444" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661054444" defer></script>
-    <script src="/js/featherlight.min.js?1661054444" defer></script>
+    <script src="/js/clipboard.min.js?1661076171" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661076171" defer></script>
+    <script src="/js/featherlight.min.js?1661076171" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -2058,7 +2058,7 @@ SyntaxError: no binding for nonlocal 'a' found
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661054444" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661076171" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -2067,6 +2067,6 @@ SyntaxError: no binding for nonlocal 'a' found
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661054444" defer></script>
+    <script src="/js/theme.js?1661076171" defer></script>
   </body>
 </html>

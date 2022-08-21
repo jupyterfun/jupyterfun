@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python 语法基础知识详解和查询手册 on jupyter.fun</title>
+    <link>/python/</link>
+    <description>Recent content in Python 语法基础知识详解和查询手册 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数字类型概述</title>
+      <link>/python/01_numeric/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/</guid>
+      <description>数字类型属于内置类型。有三种不同的数字类型：整数，浮点数和复数。
+整数通常只有数字，浮点数有小数点，而复数有实部（省略则为 0）和虚部，虚部必须有 J 或 j。
+它们的类型分别是 int，float 和 complex。
+type(1), type(1.0), type(1j) (int, float, complex)它们虽然属于不同的类型，但 Python 完全支持其混合运算。
+而且布尔类型属于整数类型的子类型，布尔类型也可参与混合运算。
+True/3 + 1.5 - 1J (1.8333333333333333-1j)数字之间比较时，比较的是它们的精度决定的精确值：
+True == 1 == 1.0 True对于不同类型的数字，只要精确值相等，哈希值必定相等：
+hash(True) == hash(1) == hash(1.0) True因此作为集合的元素时，它们是一个元素；作为字典的键时，是同一个键。但这不是明智之举，因为浮点数存在精度问题：
+{True, 1, 1.0} {True}{True:1, 1:2, 1.0:3} {True: 3}1.00000000000000009 == 1 True整数，浮点数和复数的构造函数分别是：int()，float() 和 complex()。构造细节详见相应内置函数知识点。
+int(&amp;#39;1&amp;#39;), float(&amp;#39;1.0&amp;#39;), complex(&amp;#39;1&amp;#39;) (1, 1.0, (1+0j))关于各数字类型的特性和详细介绍见后面章节。
+jupyter附件 01_numeric.ipynb (4 KB) 02_int.ipynb (8 KB) 03_bool.</description>
+    </item>
+    <item>
+      <title>字符串概述</title>
+      <link>/python/02_string/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/02_string/</guid>
+      <description>字符串概述 Python 中处理文本数据使用 str 类型对象，也称为字符串。
+type(&amp;#39;abc&amp;#39;) str字符串是由 Unicode 码位构成的不可变序列。每个字符的 Unicode 码位可由内建函数 ord() 查看：
+ord(&amp;#39;a&amp;#39;), ord(&amp;#39;b&amp;#39;), ord(&amp;#39;c&amp;#39;) (97, 98, 99)内建函数 str() 可将其他类型对象转换为字符串：
+str(3.14) &#39;3.14&#39;字符串有多种不同写法：
+单引号标示 单引号标示法，如果字符串中有单引号，需要用 \&#39; 表示：
+&amp;#39;it\&amp;#39;s a book&amp;#39; &amp;quot;it&#39;s a book&amp;quot;双引号标示 双引号标示法，如果字符串中有双引号，需要用 \&amp;quot; 表示：
+&amp;#34;it&amp;#39;s a \&amp;#34;book\&amp;#34;&amp;#34; &#39;it\&#39;s a &amp;quot;book&amp;quot;&#39;三重引号标示 三重引号标示法，可以是三重单引号 &#39;&#39;&#39;，也可以是三重双引号 &amp;quot;&amp;quot;&amp;quot;，字符串中的单引号或双引号不受影响，但不能紧挨着：
+# 注意最后四个双引号中有一个空格 &amp;#39;&amp;#39;&amp;#39;it&amp;#39;s a book&amp;#39;&amp;#39;&amp;#39;, \ &amp;#34;&amp;#34;&amp;#34;it&amp;#39;s a &amp;#34;book&amp;#34; &amp;#34;&amp;#34;&amp;#34; (&amp;quot;it&#39;s a book&amp;quot;, &#39;it\&#39;s a &amp;quot;book&amp;quot; &#39;)三重引号标示的字符串可以换行，自动以 \n 表示：</description>
+    </item>
+    <item>
+      <title>列表</title>
+      <link>/python/03_list/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/</guid>
+      <description>列表对象 list 是高级数据结构的一种，通过方括号括起、逗号分隔的一组值得到。类型是 list。
+type([1,2,3]) list列表是可变序列，通常用于存放同类项目的集合。但没做限制，可以存放任意对象。
+[1,&amp;#39;a&amp;#39;,int] [1, &#39;a&#39;, int]列表是可变的，分别创建两个值相同的列表，一定是不同的对象；而同一个列表对象中的元素是可以改变的：
+a, b = [1,2], [1,2] a == b Trueid(a), id(b) (2004948061384, 2004947934152)a[0] = &amp;#39;a&amp;#39; a, id(a) ([&#39;a&#39;, 2], 2004948061384)列表创建方法有：直接用一对方括号表示；列表推导式；或使用内建函数 list()。
+[], [1,2] ([], [1, 2])[i for i in range(3)] [0, 1, 2]list(&amp;#39;abc&amp;#39;) [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]列表的所有切片都将得到一个新列表，这意味着以下切片操作会返回列表的一个浅拷贝:
+list_1 = [1,2,3] list_2 = list_1[:] id(list_1), id(list_2) (2004947038600, 2004948064968)然而，列表可以利用切片改变自身的内容，列表仍然是原来的列表：
+list_1[:] = &amp;#39;abc&amp;#39; list_1, id(list_1) ([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 2004947038600)jupyter附件 01_list.</description>
+    </item>
+    <item>
+      <title>元组概述</title>
+      <link>/python/04_tuple/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/04_tuple/</guid>
+      <description>元组是不可变序列，通常用一对小括号包围元素，元素之间逗号隔开。元组的元素可以是任何对象。元组类型是 tuple：
+type((1,2,[&amp;#39;1&amp;#39;,&amp;#39;2&amp;#39;])) tuple空元组用一对圆括号表示：
+() ()单元组后面必须有一个逗号:
+(1,) (1,)除了空元组，括号可以省略，因为决定生成元组的其实是逗号而不是圆括号，圆括号是可选的，但元组是更大的表达式的一部分或会产生语法歧义的情况，括号不能省略：
+1, (1,)1, 1+1, (&amp;#39;单元组&amp;#39;,) (1, 2, (&#39;单元组&#39;,))内置函数 tuple() 用来构造元组：
+tuple(), tuple(&amp;#39;123&amp;#39;) ((), (&#39;1&#39;, &#39;2&#39;, &#39;3&#39;))当元组中包含可变对象（例如列表）时，元组本身不可变（不能增、删、改元组本身的元素），但包含的可变对象仍然具有它的可变性质及其操作，此时的元组不能再作为集合的元素或字典的键：
+a = ([1,2],3,3) print(id(a)) del a[0][:] id(a), a 2207053762176(2207053762176, ([], 3, 3)){a} ---------------------------------------------------------------------------TypeError Traceback (most recent call last)&amp;lt;ipython-input-14-29dfa031a339&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 {a}TypeError: unhashable type: &#39;list&#39;jupyter附件 01_tuple.ipynb (4 KB) 02_tuple.count.ipynb (1 KB) 03_tuple.index.ipynb (3 KB) 04_operator.</description>
+    </item>
+    <item>
+      <title>序列类型概述</title>
+      <link>/python/05_sequence/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/05_sequence/</guid>
+      <description>序列类型有列表，元组，range，字符串，字节串等。之所以称为序列类型，因为它们中的元素是按顺序排列的，可以使用下标索引或切片取值。
+a = [1,2,3] b = 1,2,3 c = range(1,4) d = &amp;#39;123&amp;#39; e = b&amp;#39;123&amp;#39; a[0],b[0],c[0],d[0],e[0] (1, 1, 1, &#39;1&#39;, 49)chr(49) # 字节串索引取到的是 Unicode 码位值 &#39;1&#39;序列类型又分为可变和不可变两种，列表是可变序列类型，元组，range，字符串，字节串是不可变序列类型。不可变序列类型普遍实现而可变序列类型未实现的唯一操作就是对 hash() 内置函数的支持。
+这种支持允许不可变类型，例如元组被用作字典的键，以及存储在集合中。
+尝试对包含有不可哈希值的不可变序列进行哈希运算将会导致 TypeError。
+hash((1,2)), hash(&amp;#39;12&amp;#39;) (-3550055125485641917, -480100434937186025){(1,2), &amp;#39;12&amp;#39;} {(1, 2), &#39;12&#39;}{([1,2],3),4} ---------------------------------------------------------------------------TypeError Traceback (most recent call last)&amp;lt;ipython-input-10-b847264454c5&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 {([1,2],3),4}TypeError: unhashable type: &#39;list&#39;可变序列类型，可以就地进行元素的增、删、改，而不可变序列类型不可以，有时看起来像，但其实是创建了新对象：
+a, b = [1,2], (1,2) print(id(a),id(b)) a += [3] # 将元素 3 加入列表中，相当于 a.</description>
+    </item>
+    <item>
+      <title>集合概述</title>
+      <link>/python/06_set/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/06_set/</guid>
+      <description>集合是由具有唯一性的可哈希对象（一个对象的哈希值如果在其生命周期内绝不改变）组成的无序多项集。
+目前有两种内置集合类型，set 和 frozenset，前者是可变类型，后者是不可变类型。
+type({1}), type(frozenset()) (set, frozenset)因为一对花括号表示字典而非集合，所以创建空集合必须使用构造函数 set() 和 frozenset() 来表示。两个内置函数还可将可迭代对象转换为集合：
+type({}), set(), frozenset() (dict, set(), frozenset())set(&amp;#39;121&amp;#39;), frozenset(&amp;#39;112&amp;#39;) ({&#39;1&#39;, &#39;2&#39;}, frozenset({&#39;1&#39;, &#39;2&#39;}))构造 set 集合还可以直接使用一对花括号包含元素，元素之间用逗号隔开：
+{1,2,1} {1, 2}集合的元素必须是可哈希的，例如字符串，元组（不能包含不可哈希对象，例如元组里有列表）；也是唯一的，同时存在多个哈希值相等的元素，只保留一个。
+print(hash(False),hash(0)) 0 0{&amp;#39;12&amp;#39;, (1,2), False, 0} {(1, 2), &#39;12&#39;, False}set 类型集合是可变类型，没有哈希值，不可作为集合的元素或字典的键，而 frozenset 类型的集合可以：
+{frozenset([1,2])} {frozenset({1, 2})}两种类型集合可进行比较，并集，交集，差集，对称差集操作：
+{1,2} == frozenset({1,2}) True{1,2} | frozenset({1,2,3}) {1, 2, 3}frozenset({1,2,3}) ^ {1,2} frozenset({3})set 类型是可变的，还可进行元素增、删、改，等操作，而 frozenset 类型不可以：
+a = set() print(id(a)) # a 增加元素 1 a.</description>
+    </item>
+    <item>
+      <title>字典概述</title>
+      <link>/python/07_dictionary/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/07_dictionary/</guid>
+      <description>字典属于映射类型，将可哈希对象映射到任意对象，可哈希对象为字典的键，映射的对象为键对应的条目（值）。因此：
+键必须是可哈希且唯一的； 值可以是任意对象（此处 值 仅指键对应的条目）。 所以字典的键必须是可哈希对象，例如字符串，元组（不能包含不可哈希对象）；哈希值相等的对象作为字典的键会被当作一个键。
+{&amp;#39;1&amp;#39;:1, (1,2):2, 1:3, True:4} {&#39;1&#39;: 1, (1, 2): 2, 1: 4}字典是目前唯一的标准映射类型。其类型为 dict。空字典用一对花括号表示。
+type({}) dict字典可以通过花括号包含逗号分隔的 键值对 来创建，也可以用内置函数 dict() 来创建。
+{&amp;#39;a&amp;#39;:1, &amp;#39;b&amp;#39;:2} {&#39;a&#39;: 1, &#39;b&#39;: 2}dict(a=1,b=2) {&#39;a&#39;: 1, &#39;b&#39;: 2}dict(zip([&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;],(1,2))) {&#39;a&#39;: 1, &#39;b&#39;: 2}字典是可变对象，可以通过键，来获取对应的项，或更新、添加项。获取项时，键不存在则引发 KeyError。
+# 获取 d = {&amp;#39;a&amp;#39;:1} d[&amp;#39;a&amp;#39;] 1# 更新 d[&amp;#39;a&amp;#39;] = [1,2] d {&#39;a&#39;: [1, 2]}# 键不存在则添加项 d[&amp;#39;b&amp;#39;] = {1,2} d {&#39;a&#39;: [1, 2], &#39;b&#39;: {1, 2}}d[&amp;#39;c&amp;#39;] ---------------------------------------------------------------------------KeyError Traceback (most recent call last)&amp;lt;ipython-input-9-05ba6e0488c7&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 d[&#39;c&#39;]KeyError: &#39;c&#39;字典的元素（键值对）是按哈希值来存储的，没有序列类型的双向索引操作，但字典会保留元素插入时的顺序，更新不会改变插入顺序。而且使用 popitem 方法删除元素是按后进先出原则删除。</description>
+    </item>
+    <item>
+      <title>生成器表达式和推导式</title>
+      <link>/python/08_other_types/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/08_other_types/</guid>
+      <description>生成器表达式和列表推导式非常相似，区别就是将方括号换成了小括号。
+生成器表达式返回的是一个生成器迭代器 generator。表达式会产生一系列值，可使用内置函数 next() 逐一获取，或使用 for 循环遍历。
+生成器迭代器中的元素，仅供一次性使用，而且可以要多少取多少，它会记住你取了多少，取到了哪里。
+(i*i for i in range(3)) &amp;lt;generator object &amp;lt;genexpr&amp;gt; at 0x00000271080FBC00&amp;gt;g = (i*i for i in range(5)) type(g) generatornext(g), next(g) (0, 1)for i in g: print(i) 4916这种表达式被设计用于生成器将立即被外层函数所使用的情况。生成器表达式相比完整的生成器更紧凑但较不灵活，相比等效的列表推导式则更为节省内存。
+sum(i*i for i in range(5)) 30list(i*i for i in range(5)) [0, 1, 4, 9, 16]除了列表推导式和生成器表达式，集合和字典也可使用类似的推导式。
+{i*2 for i in &amp;#39;abac&amp;#39;} {&#39;aa&#39;, &#39;bb&#39;, &#39;cc&#39;}{i:j for i,j in zip(&amp;#39;abc&amp;#39;,(1,2,3))} {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}jupyter附件 01_none.</description>
+    </item>
+    <item>
+      <title>操作符概述</title>
+      <link>/python/09_operator/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/09_operator/</guid>
+      <description>操作符概述 操作符可分为运算符（operators）和分隔符（delimiters）。
+运算符有：
+数字运算符 +，-，*，**，/，//，%，详细用法见 数字运算。
+整数按位运算符 &amp;lt;&amp;lt;，&amp;gt;&amp;gt;，&amp;amp;，|，^，~，详细用法见 整数及其位运算。
+比较运算符 &amp;lt;，&amp;gt;，&amp;lt;=，&amp;gt;=，==，!=，in，not in，is，is not，详细用法见 比较运算符。
+布尔运算符 and，or，not，详细用法见 布尔值及布尔运算。
+赋值运算符 := Python 3.8 新增，将右边的表达式赋值给左边的变量， 同时返回表达式的值。
+(a := 1+1) 2运算符还分为一元运算符和二元运算符，一元运算符运算一个对象（操作数），二元运算符运算两个。一元运算符有 +（正数），-（负数），~（整数按位取反）和 not（布尔运算 非）。if ... else ... 有时称作三元运算符。
+-1, +2, ~3, not 4 (-1, 2, -4, False)1 + 2 - 3 * 4 # 二元运算符加、减和乘 -9True if 2 &amp;gt; 3 else False False分隔符有：
+(，)，[，]，{，}，,，:，.，;，=，+=，-=，*=，/=，//=，%=，&amp;amp;=，|=，^=，&amp;gt;&amp;gt;=，&amp;lt;&amp;lt;=，**=
+部分分隔符用法举例：
+圆括号绑定表达式，或元组显示，方括号用来对序列进行索引、切片取值或列表显示，花括号字典显示或集合显示
+3 * (1 + 2) * (1,) (1, 1, 1, 1, 1, 1, 1, 1, 1)[1,2,3,4][1:3] [2, 3]{&amp;#39;列表&amp;#39;:[], &amp;#39;集合&amp;#39;:{1,2,3}} {&#39;列表&#39;: [], &#39;集合&#39;: {1, 2, 3}}上述分隔符 = 为赋值操作符，之后的操作符为增强赋值操作符，将名称绑定（或重新绑定）到特定值，以及修改属性或可变对象的成员项。 详见 赋值语句。</description>
+    </item>
+    <item>
+      <title>表达式语句</title>
+      <link>/python/10_statement/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/</guid>
+      <description>语句分为简单语句和复合语句，简单语句由一个单独的逻辑行构成。多条简单语句可以存在于同一行内并以分号分隔。表达式语句属于简单语句。
+表达式语句用于计算和写入值（大多是在交互模式下），或者调用一个过程 (过程就是不返回有意义结果的函数。在 Python 中，过程的返回值为 None)。
+表达式语句会对指定的表达式进行求值。
+在交互模式下，它会通过内置的 repr() 函数转换为一个字符串，该结果字符串将以单独一行的形式写入标准输出（例外情况是如果结果为 None，则该过程调用不产生任何输出）。
+以下均是一个表达式语句（可包含多个表达式）：
+&amp;#39;python&amp;#39; &#39;python&#39;1 1(a := 1) # 3.8 新功能，赋值表达式 1a 1&amp;#39;a\n&amp;#39;,f&amp;#39;b{1}&amp;#39; # 两个表达式 (&#39;a\n&#39;, &#39;b1&#39;)1 + 2 * 3 / 5, True and False # 两个表达式 (2.2, False)lambda x: x**2 &amp;lt;function __main__.&amp;lt;lambda&amp;gt;(x)&amp;gt;0 if 2&amp;gt;3 else (1 if 5&amp;lt;6 else 2) 1[1,2,3] + [4] [1, 2, 3, 4][].append(1) # 返回 None [].</description>
+    </item>
+    <item>
+      <title>abs() 数字取绝对值</title>
+      <link>/python/11_built-in_function/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/</guid>
+      <description>内置函数 abs()，Python 官方文档描述如下：
+help(abs) Help on built-in function abs in module builtins:abs(x, /)Return the absolute value of the argument.返回一个数的绝对值，参数可以是整数、浮点数或任何实现了 __abs__() 的对象。如果参数是一 个复数，则返回它的模。
+abs(-1) 1abs(-3.14) 3.14abs(3+4j) 5.0jupyter附件 01_abs.ipynb (2 KB) 02_all.ipynb (2 KB) 03_any.ipynb (2 KB) 04_ascii.ipynb (3 KB) 05_bin.ipynb (1 KB) 06_bool.ipynb (12 KB) 07_bytes.ipynb (20 KB) 08_callable.ipynb (3 KB) 09_chr.ipynb (3 KB) 10_classmethod.ipynb (4 KB) 11_compile.ipynb (3 KB) 12_complex.ipynb (8 KB) 13_delattr.ipynb (2 KB) 14_dict.</description>
+    </item>
+    <item>
+      <title>函数概述</title>
+      <link>/python/12_function/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/12_function/</guid>
+      <description>函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。是可以向调用者返回某个值（至少是 None）的一组语句。
+函数使代码的组织模块化，提供了代码的利用率。例如 print() 函数实现打印功能，input() 函数实现输入功能，需要它们的地方，都可以使用。
+函数通过函数名称来使用它，传入零个或多个参数，并在函数体执行中被使用。
+# 函数 abs() 返回一个数的绝对值 a = abs(-3.14) a 3.14# print() 函数打印传入的参数值，返回 None n = print(&amp;#39;hello, world&amp;#39;) n is None hello, worldTrue按照上述定义，类也被称作函数（例如内置函数 int，list 等）。
+我们通常所说的函数，是指使用 def 语句和 lambda 表达式定义的函数。
+而在类内部定义，使用属性表示法来调用的函数，我们习惯称作方法。
+# int 类实例化返回整数对象 int(&amp;#39;1&amp;#39;) 1isinstance(1, int) True# list 类的方法 append 将一个对象加入列表中，返回值为 None a = [] b = list.append(a,&amp;#39;123&amp;#39;) a, b is None ([&#39;123&#39;], True)函数有内置函数和内置方法，用户也可以自定义函数和方法。定义了一个函数，即创建了一个函数对象，可以通过函数名和必要的参数调用它。
+def my_sum(lst): &amp;#39;将列表中的字符串数字转为数字求和&amp;#39; # 函数文档说明 rlt = sum(map(float,lst)) # 调用内置函数求值 return rlt # 返回结果 my_sum([&amp;#39;1&amp;#39;,&amp;#39;3.</description>
+    </item>
+    <item>
+      <title>错误和异常</title>
+      <link>/python/13_exception/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/13_exception/</guid>
+      <description>异常中断代码块的正常控制流程以便处理 错误 或 其他异常条件 。它是 Python 中的一类对象。一个异常表示一个或一类错误。
+异常会在错误被检测到的位置引发，它可以被 当前包围发生错误的代码块 或是 任何直接或间接调用发生错误的代码块的其他代码块 所处理。
+Python 解析器会在检测到代码运行错误的时候引发异常。也可以通过 raise 语句显式地引发异常。
+异常处理通过 try 语句 来指定。该语句的 finally 子句可被用来指定清理代码，它并不处理异常，而是无论之前的代码是否发生异常都会被执行。
+Python 的错误处理采用的是 “终止” 模型：异常处理器可以找出发生了什么问题，并在外层继续执行，但它不能修复错误的根源并重试失败的操作（除非通过从顶层重新进入出错的代码片段）。
+当一个异常完全未被处理时，解释器会终止程序的执行，或者返回交互模式。无论是哪种情况，它都会打印栈回溯信息，除非是当异常为 SystemExit 的时候。
+异常是通过类实例来标识的。except 子句必须引用实例的类或是其所属的基类。实例可通过处理器被接收，并可携带有关异常条件的附加信息。
+在 Python 中，所有异常必须为一个派生自 BaseException 的类的实例。
+内置异常类可以被子类化以定义新的异常。鼓励从 Exception 类或它的某个子类而不是从 BaseException 来派生新的异常。
+内置异常的类层级结构如下：
+BaseException+-- SystemExit+-- KeyboardInterrupt+-- GeneratorExit+-- Exception+-- StopIteration+-- StopAsyncIteration+-- ArithmeticError| +-- FloatingPointError| +-- OverflowError| +-- ZeroDivisionError+-- AssertionError+-- AttributeError+-- BufferError+-- EOFError+-- ImportError| +-- ModuleNotFoundError+-- LookupError| +-- IndexError| +-- KeyError+-- MemoryError+-- NameError| +-- UnboundLocalError+-- OSError| +-- BlockingIOError| +-- ChildProcessError| +-- ConnectionError| | +-- BrokenPipeError| | +-- ConnectionAbortedError| | +-- ConnectionRefusedError| | +-- ConnectionResetError| +-- FileExistsError| +-- FileNotFoundError| +-- InterruptedError| +-- IsADirectoryError| +-- NotADirectoryError| +-- PermissionError| +-- ProcessLookupError| +-- TimeoutError+-- ReferenceError+-- RuntimeError| +-- NotImplementedError| +-- RecursionError+-- SyntaxError| +-- IndentationError| +-- TabError+-- SystemError+-- TypeError+-- ValueError| +-- UnicodeError| +-- UnicodeDecodeError| +-- UnicodeEncodeError| +-- UnicodeTranslateError+-- Warning+-- DeprecationWarning+-- PendingDeprecationWarning+-- RuntimeWarning+-- SyntaxWarning+-- UserWarning+-- FutureWarning+-- ImportWarning+-- UnicodeWarning+-- BytesWarning+-- ResourceWarning jupyter附件 01_ex_summary.</description>
+    </item>
+    <item>
+      <title>文件对象概述</title>
+      <link>/python/14_file/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/14_file/</guid>
+      <description>文件对象是指对外提供面向文件 API 以使用下层资源的对象（带有 read() 或 write() 这样的方法），也被称作流或文件类对象。
+有三种类别的文件对象: 原始二进制文件, 缓冲二进制文件 以及 文本文件。三种类别下还有子类别，因创建方式的不同得到不同类别文件对象。它们的接口定义均在 io 模块中。创建文件对象的规范方式是使用 open() 函数。
+用户代码直接操作原始流的用法非常罕见。不过，可以通过在禁用缓冲的情况下以二进制模式打开文件来创建原始流：
+f = open(&amp;#34;test.txt&amp;#34;,&amp;#34;rb&amp;#34;, buffering=0) f &amp;lt;_io.FileIO name=&#39;test.txt&#39; mode=&#39;rb&#39; closefd=True&amp;gt;缓冲二进制流不执行编码、解码或换行转换。这种类型的流可以用于所有类型的非文本数据（例如图片，视频），并且还可以在需要手动控制文本数据的处理时使用。创建缓冲二进制流的最简单方法是使用 open()，并在模式中指定 &amp;lsquo;b&amp;rsquo;：
+f = open(&amp;#34;test.txt&amp;#34;,&amp;#34;rb&amp;#34;) f &amp;lt;_io.BufferedReader name=&#39;test.txt&#39;&amp;gt;文本流生成 str 对象。这意味着，无论何时后台存储是由字节组成的，数据的编码和解码都是透明的，并且可以选择转换特定于平台的换行符。创建文本流的最简单方法是使用 open()，可以选择指定编码：
+f = open(&amp;#34;test.txt&amp;#34;,encoding=&amp;#34;utf-8&amp;#34;) f &amp;lt;_io.TextIOWrapper name=&#39;test.txt&#39; mode=&#39;r&#39; encoding=&#39;utf-8&#39;&amp;gt;所有流对提供给它们的数据类型都很敏感。例如将 str 对象给二进制流的 write() 方法会引发 TypeError。
+f = open(&amp;#34;test.txt&amp;#34;,&amp;#34;ab&amp;#34;) f.write(&amp;#39;写入内容&amp;#39;) ---------------------------------------------------------------------------TypeError Traceback (most recent call last)&amp;lt;ipython-input-19-a9efd264aca2&amp;gt; in &amp;lt;module&amp;gt;1 f = open(&amp;quot;test.</description>
+    </item>
+    <item>
+      <title>模块概述</title>
+      <link>/python/15_module/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/15_module/</guid>
+      <description>模块是 Python 代码的一种组织单位，也是一种对象。各模块具有独立的命名空间，可包含任意 Python 对象。
+一个 .py 文件是一个模块；一个文件夹是一个模块（包）；文件夹（包）中还可以再有 .py 文件（子模块）和文件夹（子包）。例如 内置模块 random，和第三方包 pandas。
+文件夹中包含一个 __init__.py 文件的包是常规包；无 __init__.py 文件的是命名空间包，仅被用作子包的容器。
+模块无论是用 Python、C 还是别的语言实现均可。
+import random, pandas type(random), type(pandas) (module, module)所有包都是模块，但并非所有模块都是包。或者换句话说，包只是一种特殊的模块。
+可以使用属性 __packge__ 查看包名，如果只是模块不是包，该属性为空字符串。
+__name__ 属性是模块的名字。
+特别地，主模块（你正在运行代码的当前模块）的 __packge__ 属性总是 None；__name__ 属性总是 &#39;__main__&#39; （__main__ 是一个在解释器启动时直接初始化的特殊模块），这可以控制当前模块能够执行，而导入到其他模块不能被执行的代码，然后用来测试当前模块。
+random.__package__, pandas.__package__ (&#39;&#39;, &#39;pandas&#39;)print(__package__) Nonerandom.__name__, pandas.__name__ (&#39;random&#39;, &#39;pandas&#39;)__name__ &#39;__main__&#39;a = 3 + 2 - 5 def f(): print(a+1) print(a) if __name__ == &amp;#39;__main__&amp;#39;: # 以下代码导入其他模块不会执行 print(a == 0) 0True使用 import 语句将其他模块导入当前模块；使用属性表示法调用模块中的属性。</description>
+    </item>
+    <item>
+      <title>面向对象概述</title>
+      <link>/python/16_class/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/16_class/</guid>
+      <description>面向对象概述 面向对象是一种对现实世界理解和抽象的方法，是计算机编程技术发展到一定阶段后的产物。它把相关的数据和方法组织为一个整体来看待，从更高的层次来进行系统建模，更贴近事物的自然运行模式。
+例如生活中我们会遇到各种数字及其运算，于是计算机科学家们就把数字抽象出来，成为一类对象。它们有别于其他事物（例如文字，图像）的特征，有自己的一套运算、操作方法。
+Python 中的数字当然非常类似数学中的数字，但也受限于计算机中的数字表示方法。
+为了方便，又把数字这一类对象，基本分成了整数，浮点数，复数三类对象。这对应 Python 中的 int，float，comlex 三种数字类型，三种数字类型下具体的整数，浮点数，复数也是对象。它们有共同的特征和计算方法，也有各自特有的特征和方法。例如都可以进行加减乘除，只有整数有按位运算。
+整数中，0 和 1 的特殊性，又使得可以将整数类中再分出一类对象，布尔类型对象。布尔类型的对象，只有两个对象，True 和 False。
+从数字类对象，到三类数字对象，到布尔类对象，到具体的数字对象以及 True 和 False 对象，层层细分，最终是具体的一个个对象，它们都是对象。这也是为什么称 Python 一切皆对象的原因。
+类似地，对数据，因为要实现的目的不同，将装数据的 “容器” 分为字符串，列表，元组，集合，字典等类型的对象。
+函数抽象出函数对象，模块又抽象出模块对象…… 甚至连空都是对象（None）。
+具体的对象，称为实例，它归属于某个类。而所有的类，又都是 object 对象的子类。各种类（类型），又统一归为类型对象（type)。
+type(1), isinstance(1,int) # 1 是 int 类的实例 (int, True)issubclass(int,object) # int 类是 object 的子类 Truetype(int), isinstance(int,type) # int 是 type 的实例 (type, True)按照面向对象的思想，我们可以定义一个 “人” 类对象，然后很方便地给这个 “人” 加上现有的各种函数，类，以及模块的功能，造出更多更多有各种特异功能的 “人”。这是不是非常伟大的设计思想呢？
+jupyter附件 01_class_summary.ipynb (3 KB) 02_class_definition.ipynb (5 KB) 03_instance.ipynb (5 KB) 04_object.</description>
+    </item>
+  </channel>
+</rss>

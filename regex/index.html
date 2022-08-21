@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.101.0">
+    <meta name="generator" content="Relearn 5.2.1+tip">
+    <meta name="description" content="">
+    <meta name="author" content="吴明文">
+    <title>通俗易懂 Python 正则表达式 - jupyter.fun</title>
+    <link href="/regex/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun">
+    <link href="/regex/index.print.html" rel="alternate" type="text/html" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661054440" rel="stylesheet">
+    <link href="/css/nucleus.css?1661054440" rel="stylesheet">
+    <link href="/css/fonts.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661054440" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661054440" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661054440" rel="stylesheet">
+    <link href="/css/variant.css?1661054440" rel="stylesheet">
+    <link href="/css/print.css?1661054440" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1661054440"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'blue' ] );
+    </script>
+    <script src="/js/jquery.min.js?1661054440" defer></script>
+  </head>
+  <body class="mobile-support html" data-url="/regex/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-print-link">
+            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/regex/index.print.html">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='本章节目录 (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/"><span itemprop="name">主页</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/regex/" aria-disabled="true"><span itemprop="name">通俗易懂 Python 正则表达式</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-匹配规则">1, 匹配规则</a></li>
+    <li><a href="#2-常用规则定义符">2, 常用规则定义符</a>
+      <ul>
+        <li><a href="#201-定义类别匹配">2.01, 定义类别匹配</a></li>
+        <li><a href="#202-定义范围匹配">2.02, 定义范围匹配</a></li>
+        <li><a href="#203-定义边界匹配">2.03, 定义边界匹配</a></li>
+        <li><a href="#204-定义数量匹配">2.04, 定义数量匹配</a></li>
+        <li><a href="#205-或-匹配符-">2.05, <code>或</code> 匹配符 <code>|</code></a></li>
+        <li><a href="#206-定义组合匹配">2.06, 定义组合匹配</a></li>
+        <li><a href="#207-匹配规则修改标志">2.07, 匹配规则修改标志</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-匹配和处理方法">3, 匹配和处理方法</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1>通俗易懂 Python 正则表达式</h1>
+
+<p><a href="https://docs.python.org/zh-cn/3/library/re.html#flags">官方文档</a></p>
+<blockquote>
+<p>正则表达式, 也叫规则表达式, 是强大的文本字符串处理工具, 通常用来验证, 查找, 筛选, 提取, 替换那些符合某个规则的文本字符串，是实现文本高效处理的神器</p>
+</blockquote>
+<h2 id="1-匹配规则">1, 匹配规则</h2>
+<p>正则表达式的核心就是设计一个规则, 按照这个规则”按图索骥”, 去寻找符合这个规则的字符串, 并将它按需处理</p>
+<p>先以一个最简单的例子进行探索:</p>
+<p><code>re</code>: 正则表达式模块<br>
+<code>findall</code>: 模块的一个方法, 传入 正则表达式 和 要去匹配字符串 将匹配结果以列表形式返回, 没有匹配结果返回空列表<br>
+<code>\d</code>: 定义的规则, 表示匹配任意一个 0~9 的数字<br>
+<code>198\d年</code>: 匹配符合 <code>198某年</code> 的字符串</p>
+<p>然后按照规则去匹配字符串: <code>'1988年 2000年 2020年 1980年'</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 导入模块 re  </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 按规则 r&#39;198\d年&#39; 匹配, r 的作用在 python 基础部分已介绍  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;198\d年&#39;</span>, <span style="color:#e6db74">&#39;1988年 2000年 2020年 1980年&#39;</span>)  
+</span></span></code></pre></div><pre><code>['1988年', '1980年']
+</code></pre>
+<p><code>\d</code> 是其中一个规则定义符, 可以和其他字符组合成正则表达式, 它自身也是一个正则表达式</p>
+<p><code>d</code> 则是字母 d 本身，像 <code>\d</code> 这样的特殊规则定义符有许多，如 <code>.</code>，<code>*</code>，<code>+</code>，<code>\s</code>，<code>()</code>，<code>[]</code> 等等</p>
+<p>任意一个非特殊字符都可以作为匹配它自身的正则表达式</p>
+<p>如果要匹配规则定义符，例如如要匹配 <code>\d</code>, 需要用 <code>\</code> 进行转义，也就是要用 <code>\\d</code> 来匹配 <code>\d</code>（其实是 <code>\\</code> 来匹配 <code>\</code>，<code>d</code> 来匹配 <code>d</code>）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">d.+\[a]&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a\d.+[a]&#39;</span>)  
+</span></span></code></pre></div><pre><code>['\\d.+[a]']
+</code></pre>
+<h2 id="2-常用规则定义符">2, 常用规则定义符</h2>
+<h3 id="201-定义类别匹配">2.01, 定义类别匹配</h3>
+<p><code>\w</code> 匹配任意一个可以构成词语的 Unicode 字符, 包括数字及下划线, <code>\W</code> 则相反</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;my\wname&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;my\Wname&#39;</span>  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my1name, my_name, my.name, my我name&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, c)
+</span></span></code></pre></div><pre><code>['my1name', 'my_name', 'my我name']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(b, c)
+</span></span></code></pre></div><pre><code>['my.name']
+</code></pre>
+<p><code>\d</code> 匹配任意一个 十进制 数字, <code>\D</code> 匹配任意一个非数字</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;01\d-\D123&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;010-0123, 010-o123, 01０-P123&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b)  
+</span></span></code></pre></div><pre><code>['010-o123', '01０-P123']
+</code></pre>
+<p><code>\s</code> 匹配任何Unicode空白字符（包括 <code>[ \t\n\r\f\v]</code>，还有很多其他字符，比如不同语言排版规则约定的不换行空格）, <code>\S</code> 则相反</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a\sb\Sc&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a b c, a bcc, a  bcc&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b)  
+</span></span></code></pre></div><pre><code>['a bcc']
+</code></pre>
+<p><code>.</code> 匹配除换行符 <code>\n</code> 之外的任意一个字符</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a.b&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">b, a-b, a b, a</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">b&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b)  
+</span></span></code></pre></div><pre><code>['a-b', 'a b']
+</code></pre>
+<p><code>\b</code> 匹配 <code>\w</code> 和 <code>\W</code> 之间（或 <code>\w</code> 开头和结尾的边界）的空字符串, <code>\B</code> 与 <code>\b</code> 相反，匹配非 <code>\w</code> 和 <code>\W</code> 之间的空字符串（或 <code>\W</code> 开头和结尾的边界）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\b.&#39;</span>, <span style="color:#e6db74">&#39;ab啊_c。d，</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><pre><code>['a', '。', 'd', '，']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;.\B&#39;</span>, <span style="color:#e6db74">&#39;ab啊_c。d，</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><pre><code>['a', 'b', '啊', '_', '，']
+</code></pre>
+<h3 id="202-定义范围匹配">2.02, 定义范围匹配</h3>
+<p>用括号 <code>[]</code> 将字符(表达式)包围起来, 表示在括号内指定的范围内匹配任意一个</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;[abc]&#39;</span>, <span style="color:#e6db74">&#39;bill&#39;</span>)  
+</span></span></code></pre></div><pre><code>['b']
+</code></pre>
+<p>在 <code>[]</code> 内, 以 <code>^</code> 开头, 表示排除括号内的字符(表达式)范围匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;[^abc]&#39;</span>, <span style="color:#e6db74">&#39;abcd&#39;</span>)  
+</span></span></code></pre></div><pre><code>['d']
+</code></pre>
+<p>在 <code>[]</code> 内, 数字或字母之间用 <code>-</code> 连接, 表示在两者(包含)之间的范围内匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;[a-d0-5A\-D]&#39;</span>, <span style="color:#e6db74">&#39;af357AB-&#39;</span>)  
+</span></span></code></pre></div><pre><code>['a', '3', '5', 'A', '-']
+</code></pre>
+<p>一些特殊字符在 <code>[]</code> 内失去特殊含义</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;[(+*)\]\w]&#39;</span>, <span style="color:#e6db74">&#39;+(*)a].?&#39;</span>)
+</span></span></code></pre></div><pre><code>['+', '(', '*', ')', 'a', ']']
+</code></pre>
+<h3 id="203-定义边界匹配">2.03, 定义边界匹配</h3>
+<p><code>^</code> 或 <code>\A</code>, 表示必须以接下来的字符(表达式)开头才能被匹配, 换行开头也不能匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^b\d[bc]&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a2b  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">b2b&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b2bcd&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b)
+</span></span></code></pre></div><pre><code>[]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, c)  
+</span></span></code></pre></div><pre><code>['b2b']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\Ab\d[bc]&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a2b  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">b2b&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b2bcd&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b)
+</span></span></code></pre></div><pre><code>[]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, c)  
+</span></span></code></pre></div><pre><code>['b2b']
+</code></pre>
+<p><code>$</code> 或 <code>\Z</code>表示必须以其前面的字符(表达式)结尾才能被匹配, 换行之前的结束也不能匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;a\w$&#39;</span>, <span style="color:#e6db74">&#39;&#39;&#39;ab
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ac&#39;&#39;&#39;</span>)
+</span></span></code></pre></div><pre><code>['ac']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">&#39;a\w\Z&#39;</span>, <span style="color:#e6db74">&#39;ab</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">ad&#39;</span>)  
+</span></span></code></pre></div><pre><code>['ad']
+</code></pre>
+<h3 id="204-定义数量匹配">2.04, 定义数量匹配</h3>
+<p><code>+</code> 其前面的字符(表达式)至少有一个的都能匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;10+&#39;</span>, <span style="color:#e6db74">&#39;110, 100, 1001&#39;</span>)  
+</span></span></code></pre></div><pre><code>['10', '100', '100']
+</code></pre>
+<p><code>?</code> 其前面的字符(表达式)最多有一个的才能匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;10?&#39;</span>, <span style="color:#e6db74">&#39;1, 10, 100&#39;</span>)  
+</span></span></code></pre></div><pre><code>['1', '10', '10']
+</code></pre>
+<p><code>*</code> 其前面的字符(表达式)没有或有多个都可以匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;10*&#39;</span>, <span style="color:#e6db74">&#39;1, 10, 1001&#39;</span>)  
+</span></span></code></pre></div><pre><code>['1', '10', '100', '1']
+</code></pre>
+<p><code>{n}</code> 其前面的字符(表达式)有 n 个才能匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;1\d</span><span style="color:#e6db74">{3}</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74">&#39;12, 123, 1a23, 1234&#39;</span>)  
+</span></span></code></pre></div><pre><code>['1234']
+</code></pre>
+<p><code>{n,}</code> 其前面的字符(表达式)有至少 n 个才能匹配, <code>{m,n}</code> 则表示有 m~n 个才能匹配, m 和 n 之间只有 <code>,</code> 号而不能有空格</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;1\d{2,}&#39;</span>, <span style="color:#e6db74">&#39;12, 123, 1234, 12345&#39;</span>)  
+</span></span></code></pre></div><pre><code>['123', '1234', '12345']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;1\d{2,3}&#39;</span>, <span style="color:#e6db74">&#39;12, 123, 1234, 12345&#39;</span>)  
+</span></span></code></pre></div><pre><code>['123', '1234', '1234']
+</code></pre>
+<h3 id="205-或-匹配符-">2.05, <code>或</code> 匹配符 <code>|</code></h3>
+<p>符号 <code>|</code> 两边的内容, 有一边匹配 或 两边都匹配都可以, 但当 <code>|</code> 在括号 <code>[]</code> 中则无此作用, 只代表它自身</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;aa|bb&#39;</span>, <span style="color:#e6db74">&#39;aacbbcaabbab&#39;</span>)  
+</span></span></code></pre></div><pre><code>['aa', 'bb', 'aa', 'bb']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a[|]b&#39;</span>, <span style="color:#e6db74">&#39;ab, a|b&#39;</span>)  
+</span></span></code></pre></div><pre><code>['a|b']
+</code></pre>
+<h3 id="206-定义组合匹配">2.06, 定义组合匹配</h3>
+<p>用 <code>()</code> 将多个字符组合成一个整体来匹配, 不管 <code>()</code> 外是否有数量匹配符, 都只返回 <code>()</code> 内的内容, 如果表达式内有多个 <code>()</code> 封装的内容, 匹配结果以元组形式返回</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 匹配的是 ab 和 abab 但只返回括号内的 ab  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(ab)+&#39;</span>, <span style="color:#e6db74">&#39;ab11abab&#39;</span>)   
+</span></span></code></pre></div><pre><code>['ab', 'ab']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(ab)+&#39;</span>, <span style="color:#e6db74">&#39;ab11abab&#39;</span>) <span style="color:#75715e"># 必须 ab 开头 </span>
+</span></span></code></pre></div><pre><code>['ab']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 匹配的是后面的 abab 返回元组  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(ab)(ab)&#39;</span>, <span style="color:#e6db74">&#39;ab11abab&#39;</span>)   
+</span></span></code></pre></div><pre><code>[('ab', 'ab')]
+</code></pre>
+<p>将贪婪匹配转为非贪婪匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 贪婪匹配 \d+ 使得无法将 000 取出  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(\d+)(0*)$&#39;</span>, <span style="color:#e6db74">&#39;123000&#39;</span>)  
+</span></span></code></pre></div><pre><code>[('123000', '')]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># + 后面加个 ? 号  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(\d+?)(0*)$&#39;</span>, <span style="color:#e6db74">&#39;123000&#39;</span>)  
+</span></span></code></pre></div><pre><code>[('123', '000')]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;[(ab)]&#39;</span>, <span style="color:#e6db74">&#39;ab, (ab)&#39;</span>)  
+</span></span></code></pre></div><pre><code>['a', 'b', '(', 'a', 'b', ')']
+</code></pre>
+<p>如果 <code>()</code> 内以 <code>?:</code> 开头, 只有一组时，返回匹配的字符串，多组则 <code>?:</code> 开头的不捕获不返回</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(?:ab)+&#39;</span>, <span style="color:#e6db74">&#39;ab11abab&#39;</span>)   
+</span></span></code></pre></div><pre><code>['ab', 'abab']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 匹配的是后面的 abab, 但只返回前一个 () 内的内容  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(ab)(?:ab)+&#39;</span>, <span style="color:#e6db74">&#39;ab11abab&#39;</span>)   
+</span></span></code></pre></div><pre><code>['ab']
+</code></pre>
+<p>如果 <code>()</code> 内以 <code>?=</code> 开头, 则 <code>()</code> 内的内容只是用来匹配, 不返回也不消耗匹配的字符, 也就是说, 匹配完了, 后面的字符需要继续匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a(?=bc)bc&#39;</span>, <span style="color:#e6db74">&#39;ab, abc, abcde&#39;</span>)  
+</span></span></code></pre></div><pre><code>['abc', 'abc']
+</code></pre>
+<p>如果 <code>()</code> 内以 <code>?!</code> 开头, 则 <code>()</code> 内的内容只是用来排除, 也就是说, 排除括号内的内容都可以匹配, 不占字符, 匹配完了,
+后面的字符需要继续匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># a 后面除了 bc 都可以匹配  </span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a(?!bc)\w+&#39;</span>, <span style="color:#e6db74">&#39;abc, acb, abde&#39;</span>)  
+</span></span></code></pre></div><pre><code>['acb', 'abde']
+</code></pre>
+<p><code>\number</code> 匹配指定的组合，组合从 1 开始编号</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># \1 匹配第一个组合 (a)</span>
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;(a)(\d+)(\1)&#39;</span>, <span style="color:#e6db74">&#39;aba1aa34a2&#39;</span>)  
+</span></span></code></pre></div><pre><code>[('a', '1', 'a'), ('a', '34', 'a')]
+</code></pre>
+<p>绝大部分 Python 的标准转义字符也被正则表达式分析器支持:</p>
+<pre><code>\a      \b      \f      \n
+\N      \r      \t      \u
+\U      \v      \x      \\
+</code></pre>
+<p>（注意 <code>\b</code> 被用于表示词语的边界，它只在 <code>[]</code> 内表示退格，比如 <code>[\b]</code>）</p>
+<h3 id="207-匹配规则修改标志">2.07, 匹配规则修改标志</h3>
+<p>介绍几个常用的规则修改标志</p>
+<p><code>re.I</code> 大小写不敏感匹配</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;aA&#39;</span>,<span style="color:#e6db74">&#39;aA, aa&#39;</span>, re<span style="color:#f92672">.</span>I)  
+</span></span></code></pre></div><pre><code>['aA', 'aa']
+</code></pre>
+<p><code>re.S</code> 使 <code>.</code> 匹配任何字符, 包括换行符</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">b, a-b&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a.b&#39;</span>, s, re<span style="color:#f92672">.</span>S)  
+</span></span></code></pre></div><pre><code>['a\nb', 'a-b']
+</code></pre>
+<p><code>re.M</code> 使得 <code>^</code> 和 <code>$</code> 能匹配换行的开始或换行前的结束</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;^b\d[bc]&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;b2c
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">b2b&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b, re<span style="color:#f92672">.</span>M)  
+</span></span></code></pre></div><pre><code>['b2c', 'b2b']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a\d[bc]$&#39;</span>  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;a2b
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">a2c&#39;&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(a, b, re<span style="color:#f92672">.</span>M)  
+</span></span></code></pre></div><pre><code>['a2b', 'a2c']
+</code></pre>
+<h2 id="3-匹配和处理方法">3, 匹配和处理方法</h2>
+<p><code>match</code> 从字符串起始位置匹配, 匹配到的字符返回为 match 对象, 可以用方法加以获取</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;ab&#39;</span>, <span style="color:#e6db74">&#39;abc&#39;</span>)  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;a(bc)d(ef)g&#39;</span>, <span style="color:#e6db74">&#39;abcdefgh&#39;</span>)  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;ab&#39;</span>, <span style="color:#e6db74">&#39;bab&#39;</span>)  
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(0, 2), match='ab'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(0, 7), match='abcdefg'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># group() 获取匹配的全部字符,   </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># group(1) 获取 () 内匹配的第一个, 以此类推  </span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>group(), b<span style="color:#f92672">.</span>group(), b<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>), b<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)  
+</span></span></code></pre></div><pre><code>('ab', 'abcdefg', 'bc', 'ef')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># start 获取匹配开始的位置  </span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>start(), b<span style="color:#f92672">.</span>start()  
+</span></span></code></pre></div><pre><code>(0, 0)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># end 获取匹配结束的位置  </span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>end(), b<span style="color:#f92672">.</span>end()  
+</span></span></code></pre></div><pre><code>(2, 7)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># span 获取 (开始, 结束) 元组  </span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>span(), b<span style="color:#f92672">.</span>span()  
+</span></span></code></pre></div><pre><code>((0, 2), (0, 7))
+</code></pre>
+<p><code>compile</code> 编译正则表达式, 返回一个 Pattern 对象(后面简写为p), 然后可以用该对象调用方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#39;\d+&#39;</span>)  
+</span></span><span style="display:flex;"><span>p  
+</span></span></code></pre></div><pre><code>re.compile(r'\d+', re.UNICODE)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 调用上面的 match 方法, 可以指定开始和结束位置  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;12a21&#39;</span>, <span style="color:#ae81ff">3</span>)  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(3, 5), match='21'&gt;
+</code></pre>
+<p><code>re.search</code> 扫描整个字符串, 第一个匹配的字符串返回为 match 对象</p>
+<p><code>p.search</code> 扫描指定范围, 不指定就全部扫描</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;python\d.\d&#39;</span>  
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;python3.0, python3.8&#39;</span>  
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(r)  
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>search(r, s)  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>search(s)  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>search(s, <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(0, 9), match='python3.0'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(0, 9), match='python3.0'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(11, 20), match='python3.8'&gt;
+</code></pre>
+<p><code>sub</code> 替换字符串中的匹配项, 可以控制替换次数, 还可传入函数高级替换</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[,.]&#39;</span>  
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;去掉,逗号和.句号.&#39;</span>  
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(r)  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>sub(p, <span style="color:#e6db74">&#39;&#39;</span>, s)
+</span></span></code></pre></div><pre><code>'去掉逗号和句号'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p<span style="color:#f92672">.</span>sub(<span style="color:#e6db74">&#39;&#39;</span>, s, <span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>'去掉逗号和.句号.'
+</code></pre>
+<p><code>findall</code> 已经介绍过</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\D+(\d+)\D+(\d+)\D+(\d+)*&#39;</span>  
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;分组提取123所有456数字78.&#39;</span>  
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(r)  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>findall(p, s)
+</span></span></code></pre></div><pre><code>[('123', '456', '78')]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p<span style="color:#f92672">.</span>findall(s, <span style="color:#ae81ff">8</span>)  
+</span></span></code></pre></div><pre><code>[('456', '78', '')]
+</code></pre>
+<p><code>finditer</code> 和 <code>findall</code>类似, 只是返回的是一个 match 迭代器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> re  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;\D+(\d+)\D+(\d+)\D+(\d+)*&#39;</span>  
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;分组提取123所有456数字78.&#39;</span>  
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(r)  
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>finditer(p, s)  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>finditer(s, <span style="color:#ae81ff">8</span>)  
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>&lt;callable_iterator at 0x18d4fa31460&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b
+</span></span></code></pre></div><pre><code>&lt;callable_iterator at 0x18d4fa31430&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, j <span style="color:#f92672">in</span> zip(a, b):  
+</span></span><span style="display:flex;"><span>    print(i)  
+</span></span><span style="display:flex;"><span>    print(j)  
+</span></span><span style="display:flex;"><span>    print(i<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>    print(j<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>&lt;re.Match object; span=(0, 16), match='分组提取123所有456数字78'&gt;
+&lt;re.Match object; span=(8, 17), match='有456数字78.'&gt;
+('123', '456', '78')
+('456', '78', None)
+</code></pre>
+<p><code>split</code> 用匹配到的字符(或字符串), 将整个字符串分割返回列表, 可设置最大拆分数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[\s\,-]&#39;</span>  
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;将,每 个-字 拆,开&#39;</span>  
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(r)  
+</span></span><span style="display:flex;"><span>re<span style="color:#f92672">.</span>split(p, s)
+</span></span></code></pre></div><pre><code>['将', '每', '个', '字', '拆', '开']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p<span style="color:#f92672">.</span>split(s, <span style="color:#ae81ff">2</span>)  
+</span></span></code></pre></div><pre><code>['将', '每', '个-字 拆,开']
+</code></pre>
+
+<div class="box attachments cstyle blue">
+  <div class="box-label"><i class="fa-fw fas fa-paperclip"></i> jupyter附件</div>
+  <ul class="box-content attachments-files">
+    <li><a href="/regex/_index.files/regex.ipynb">regex.ipynb</a> (32 KB)</li>
+  </ul>
+</div>
+
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <a id="logo" href="/">
+            <br><font face="serif" size="6" color="#17202A"><b>🏠Jupyter.fun</b></font>
+          </a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1661054441" defer></script>
+        <script src="/js/lunr.min.js?1661054441" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661054441" defer></script>
+        <script src="/js/lunr.multi.min.js?1661054441" defer></script>
+        <script src="/js/lunr.en.min.js?1661054441" defer></script>
+        <script src="/js/search.js?1661054441" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/python/" title="Python 语法基础知识详解和查询手册" class="dd-item"><input type="checkbox" id="section-c8861a2651b27ee3930a98ce392020d1" class="toggle"/><label for="section-c8861a2651b27ee3930a98ce392020d1" ></label><a href="/python/">Python<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/" title="数字类型概述" class="dd-item"><input type="checkbox" id="section-f26ae7da78c4758569d4b453b66b4231" class="toggle"/><label for="section-f26ae7da78c4758569d4b453b66b4231" ></label><a href="/python/01_numeric/">数字类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/02_int/" title="整数及其位运算" class="dd-item"><a href="/python/01_numeric/02_int/">整数及其位运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/03_bool/" title="布尔值及布尔运算" class="dd-item"><a href="/python/01_numeric/03_bool/">布尔值及布尔运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/04_float/" title="浮点数" class="dd-item"><a href="/python/01_numeric/04_float/">浮点数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/05_complex/" title="复数" class="dd-item"><a href="/python/01_numeric/05_complex/">复数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/06_number_operations/" title="数字运算" class="dd-item"><a href="/python/01_numeric/06_number_operations/">数字运算<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/02_string/" title="字符串概述" class="dd-item"><input type="checkbox" id="section-0a8894164d573ed7362e26196efabc7a" class="toggle"/><label for="section-0a8894164d573ed7362e26196efabc7a" ></label><a href="/python/02_string/">字符串<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/02_string/02_concatenated_string/" title="字符串拼接" class="dd-item"><a href="/python/02_string/02_concatenated_string/">字符串拼接<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/03_escape_character/" title="转义字符" class="dd-item"><a href="/python/02_string/03_escape_character/">转义字符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/04_str.count/" title="str.count 统计" class="dd-item"><a href="/python/02_string/04_str.count/">str.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/05_str.replace/" title="str.replace 替换" class="dd-item"><a href="/python/02_string/05_str.replace/">str.replace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/06_str.expandtabs/" title="str.expandtabs 替换制表符" class="dd-item"><a href="/python/02_string/06_str.expandtabs/">str.expandtabs<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/07_str.split/" title="str.split 拆分" class="dd-item"><a href="/python/02_string/07_str.split/">str.split<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/08_str.rsplit/" title="str.rsplit 拆分" class="dd-item"><a href="/python/02_string/08_str.rsplit/">str.rsplit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/09_str.partition/" title="str.partition 拆分" class="dd-item"><a href="/python/02_string/09_str.partition/">str.partition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/10_str.rpartition/" title="str.rpartition 拆分" class="dd-item"><a href="/python/02_string/10_str.rpartition/">str.rpartition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/11_str.splitlines/" title="str.splitlines 按行拆分" class="dd-item"><a href="/python/02_string/11_str.splitlines/">str.splitlines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/12_str.strip/" title="str.strip 移除两边字符" class="dd-item"><a href="/python/02_string/12_str.strip/">str.strip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/13_str.lstrip/" title="str.lstrip 移除左边字符" class="dd-item"><a href="/python/02_string/13_str.lstrip/">str.lstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/14_str.rstrip/" title="str.rstrip 移除右边字符" class="dd-item"><a href="/python/02_string/14_str.rstrip/">str.rstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/15_str.find/" title="str.find 查找最小索引" class="dd-item"><a href="/python/02_string/15_str.find/">str.find<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/16_str.rfind/" title="str.rfind 查找最大索引" class="dd-item"><a href="/python/02_string/16_str.rfind/">str.rfind<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/17_str.index/" title="str.index 查找最小索引" class="dd-item"><a href="/python/02_string/17_str.index/">str.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/18_str.rindex/" title="str.rindex 查找最大索引" class="dd-item"><a href="/python/02_string/18_str.rindex/">str.rindex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/19_str.join/" title="str.join 拼接字符串" class="dd-item"><a href="/python/02_string/19_str.join/">str.join<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/20_str.startswith/" title="str.startswith 指定字符串开头？" class="dd-item"><a href="/python/02_string/20_str.startswith/">str.startswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/21_str.endswith/" title="str.endswith 指定字符串结尾？" class="dd-item"><a href="/python/02_string/21_str.endswith/">str.endswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/22_str.ljust/" title="str.ljust 左对齐" class="dd-item"><a href="/python/02_string/22_str.ljust/">str.ljust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/23_str.center/" title="str.center 居中" class="dd-item"><a href="/python/02_string/23_str.center/">str.center<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/24_str.rjust/" title="str.rjust 右对齐" class="dd-item"><a href="/python/02_string/24_str.rjust/">str.rjust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/25_str.format/" title="str.format 格式化" class="dd-item"><a href="/python/02_string/25_str.format/">str.format<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/26_str.format_map/" title="str.format_map 格式化" class="dd-item"><a href="/python/02_string/26_str.format_map/">str.format_map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/27_f-string/" title="f-string 格式化字符串" class="dd-item"><a href="/python/02_string/27_f-string/">f-string 格式化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/28_string_operators/" title="字符串操作符" class="dd-item"><a href="/python/02_string/28_string_operators/">字符串操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/29_str.encode/" title="str.encode 编码为字节串" class="dd-item"><a href="/python/02_string/29_str.encode/">str.encode<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/30_str.capitalize/" title="str.capitalize 首字符大写" class="dd-item"><a href="/python/02_string/30_str.capitalize/">str.capitalize<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/31_str.casefold/" title="str.casefold 消除大小写" class="dd-item"><a href="/python/02_string/31_str.casefold/">str.casefold<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/32_str.lower/" title="str.lower 转小写" class="dd-item"><a href="/python/02_string/32_str.lower/">str.lower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/33_str.title/" title="str.title 单词首字母大写" class="dd-item"><a href="/python/02_string/33_str.title/">str.title<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/34_str.upper/" title="str.upper 转大写" class="dd-item"><a href="/python/02_string/34_str.upper/">str.upper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/35_str.swapcase/" title="str.swapcase 大小写互转" class="dd-item"><a href="/python/02_string/35_str.swapcase/">str.swapcase<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/36_str.zfill/" title="str.zfill 填充 0" class="dd-item"><a href="/python/02_string/36_str.zfill/">str.zfill<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/37_str.translate/" title="str.translate 按表转换" class="dd-item"><a href="/python/02_string/37_str.translate/">str.translate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/38_str.maketrans/" title="str.maketrans 生成转换表" class="dd-item"><a href="/python/02_string/38_str.maketrans/">str.maketrans<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/39_str.isalnum/" title="str.isalnum 是字母或数字？" class="dd-item"><a href="/python/02_string/39_str.isalnum/">str.isalnum<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/40_str.isalpha/" title="str.isalpha 是字母（包括汉字等）？" class="dd-item"><a href="/python/02_string/40_str.isalpha/">str.isalpha<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/41_str.isdecimal/" title="str.isdecimal 是十进制字符？" class="dd-item"><a href="/python/02_string/41_str.isdecimal/">str.isdecimal<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/42_str.isdigit/" title="str.isdigit 是数字？" class="dd-item"><a href="/python/02_string/42_str.isdigit/">str.isdigit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/43_str.isnumeric/" title="str.isnumeric 是数值字符？" class="dd-item"><a href="/python/02_string/43_str.isnumeric/">str.isnumeric<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/44_str.islower/" title="str.islower 是小写？" class="dd-item"><a href="/python/02_string/44_str.islower/">str.islower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/45_str.isupper/" title="str.isupper 是大写？" class="dd-item"><a href="/python/02_string/45_str.isupper/">str.isupper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/46_str.istitle/" title="str.istitle 是标题字符串？" class="dd-item"><a href="/python/02_string/46_str.istitle/">str.istitle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/47_str.isascii/" title="str.isascii 是 ASCII 字符？" class="dd-item"><a href="/python/02_string/47_str.isascii/">str.isascii<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/48_str.isidentifier/" title="str.isidentifier 是有效标识符？" class="dd-item"><a href="/python/02_string/48_str.isidentifier/">str.isidentifier<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/49_str.isprintable/" title="str.isprintable 是可打印字符？" class="dd-item"><a href="/python/02_string/49_str.isprintable/">str.isprintable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/50_str.isspace/" title="str.isspace 是空白字符？" class="dd-item"><a href="/python/02_string/50_str.isspace/">str.isspace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/51_str.removeprefix/" title="str.removeprefix  移除前缀" class="dd-item"><a href="/python/02_string/51_str.removeprefix/">str.removeprefix<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/52_str.removesuffix/" title="str.removesuffix 移除后缀" class="dd-item"><a href="/python/02_string/52_str.removesuffix/">str.removesuffix<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/03_list/" title="列表" class="dd-item"><input type="checkbox" id="section-9dce683949d5d69d823966a12cca5136" class="toggle"/><label for="section-9dce683949d5d69d823966a12cca5136" ></label><a href="/python/03_list/">列表概述<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/03_list/02_list_comprehension/" title="列表推导式" class="dd-item"><a href="/python/03_list/02_list_comprehension/">列表推导式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/03_list_indexes_and_slices/" title="列表的索引和切片" class="dd-item"><a href="/python/03_list/03_list_indexes_and_slices/">列表的索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/15_list.clear/" title="list.clear 删除所有元素" class="dd-item"><a href="/python/03_list/15_list.clear/">list.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/04_list_operator/" title="列表操作符" class="dd-item"><a href="/python/03_list/04_list_operator/">列表操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/05_list.append/" title="list.append 添加一个元素" class="dd-item"><a href="/python/03_list/05_list.append/">list.append<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/06_list.extend/" title="list.extend 加入可迭代对象中元素" class="dd-item"><a href="/python/03_list/06_list.extend/">list.extend<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/07_list.insert/" title="list.insert 插入一个元素" class="dd-item"><a href="/python/03_list/07_list.insert/">list.insert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/08_list.sort/" title="list.sort 对列表原地排序" class="dd-item"><a href="/python/03_list/08_list.sort/">list.sort<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/09_list.reverse/" title="list.reverse 反转列表中元素" class="dd-item"><a href="/python/03_list/09_list.reverse/">list.reverse<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/10_list.pop/" title="list.pop 删除元素并返回" class="dd-item"><a href="/python/03_list/10_list.pop/">list.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/11_list.remove/" title="list.remove 移除一个元素" class="dd-item"><a href="/python/03_list/11_list.remove/">list.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/12_list.count/" title="list.count 统计元素出现次数" class="dd-item"><a href="/python/03_list/12_list.count/">list.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/13_list.index/" title="list.index 查找最小索引" class="dd-item"><a href="/python/03_list/13_list.index/">list.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/14_list.copy/" title="list.copy 列表的一个浅拷贝" class="dd-item"><a href="/python/03_list/14_list.copy/">list.copy<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/04_tuple/" title="元组概述" class="dd-item"><input type="checkbox" id="section-dc7ea79191f25dfd309c92b5e4905cab" class="toggle"/><label for="section-dc7ea79191f25dfd309c92b5e4905cab" ></label><a href="/python/04_tuple/">元组<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/04_tuple/02_tuple.count/" title="tuple.count 统计元素出现次数" class="dd-item"><a href="/python/04_tuple/02_tuple.count/">tuple.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/03_tuple.index/" title="tuple.index 查找元素索引" class="dd-item"><a href="/python/04_tuple/03_tuple.index/">tuple.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/04_operator/" title="元组操作符" class="dd-item"><a href="/python/04_tuple/04_operator/">元组操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/05_sequence/" title="序列类型概述" class="dd-item"><input type="checkbox" id="section-b631793e0b67cf3997ee6b6ccb5a1018" class="toggle"/><label for="section-b631793e0b67cf3997ee6b6ccb5a1018" ></label><a href="/python/05_sequence/">序列<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/05_sequence/02_range/" title="range 对象" class="dd-item"><a href="/python/05_sequence/02_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/03_index_slice/" title="序列索引和切片" class="dd-item"><a href="/python/05_sequence/03_index_slice/">序列索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/04_common_operations/" title="序列通用操作" class="dd-item"><a href="/python/05_sequence/04_common_operations/">序列通用操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/06_set/" title="集合概述" class="dd-item"><input type="checkbox" id="section-c643fef3f2d56a8ad628665722912338" class="toggle"/><label for="section-c643fef3f2d56a8ad628665722912338" ></label><a href="/python/06_set/">集合<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/06_set/02_set.isdisjoint/" title="set.isdisjoint 交集为空吗？" class="dd-item"><a href="/python/06_set/02_set.isdisjoint/">set.isdisjoint<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/03_set.issubset/" title="set.issubset 是子集吗？" class="dd-item"><a href="/python/06_set/03_set.issubset/">set.issubset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/04_set.issuperset/" title="set.issuperset 是超集吗？" class="dd-item"><a href="/python/06_set/04_set.issuperset/">set.issuperset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/05_set.union/" title="set.union 并集" class="dd-item"><a href="/python/06_set/05_set.union/">set.union<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/06_set.intersection/" title="set.intersection 交集" class="dd-item"><a href="/python/06_set/06_set.intersection/">set.intersection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/07_set.difference/" title="set.difference 差集" class="dd-item"><a href="/python/06_set/07_set.difference/">set.difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/08_set.symmetric_difference/" title="set.symmetric_difference 对称差" class="dd-item"><a href="/python/06_set/08_set.symmetric_difference/">set.symmetric_difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/09_set.copy/" title="set.copy 浅拷贝" class="dd-item"><a href="/python/06_set/09_set.copy/">set.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/10_set.update/" title="set.update 合并更新" class="dd-item"><a href="/python/06_set/10_set.update/">set.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/11_set.intersection_update/" title="set.intersection_update 交集更新" class="dd-item"><a href="/python/06_set/11_set.intersection_update/">set.intersection_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/12_set.difference_update/" title="set.difference_update 差集更新" class="dd-item"><a href="/python/06_set/12_set.difference_update/">set.difference_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/13_set.symmetric_difference_update/" title="set ^= other 对称差集更新" class="dd-item"><a href="/python/06_set/13_set.symmetric_difference_update/">set ^= other<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/14_set.add/" title="set.add 添加元素" class="dd-item"><a href="/python/06_set/14_set.add/">set.add<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/15_set.remove/" title="set.remove 删除元素" class="dd-item"><a href="/python/06_set/15_set.remove/">set.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/16_set.discard/" title="set.discard 删除元素" class="dd-item"><a href="/python/06_set/16_set.discard/">set.discard<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/17_set.pop/" title="set.pop 删除元素并返回" class="dd-item"><a href="/python/06_set/17_set.pop/">set.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/18_set.clear/" title="set.clear 清空集合元素" class="dd-item"><a href="/python/06_set/18_set.clear/">set.clear<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/07_dictionary/" title="字典概述" class="dd-item"><input type="checkbox" id="section-6edd912ea63088ea7d421ba4a9a6b0c9" class="toggle"/><label for="section-6edd912ea63088ea7d421ba4a9a6b0c9" ></label><a href="/python/07_dictionary/">字典<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/07_dictionary/02_dict.keys/" title="dict.keys 键视图" class="dd-item"><a href="/python/07_dictionary/02_dict.keys/">dict.keys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/03_dict.values/" title="dict.values 值视图" class="dd-item"><a href="/python/07_dictionary/03_dict.values/">dict.values<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/04_dict.items/" title="dict.items 键值对视图" class="dd-item"><a href="/python/07_dictionary/04_dict.items/">dict.items<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/05_dict.get/" title="dict.get 获取某个键的值" class="dd-item"><a href="/python/07_dictionary/05_dict.get/">dict.get<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/06_dict.copy/" title="dict.copy 浅拷贝" class="dd-item"><a href="/python/07_dictionary/06_dict.copy/">dict.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/07_dict.pop/" title="dict.pop 删除元素并返回值" class="dd-item"><a href="/python/07_dictionary/07_dict.pop/">dict.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/08_dict.popitem/" title="dict.popitem 删除元素并返回键值对" class="dd-item"><a href="/python/07_dictionary/08_dict.popitem/">dict.popitem<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/09_dict.fromkeys/" title="dict.fromkeys 创建字典" class="dd-item"><a href="/python/07_dictionary/09_dict.fromkeys/">dict.fromkeys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/10_dict.clear/" title="dict.clear 清空字典元素" class="dd-item"><a href="/python/07_dictionary/10_dict.clear/">dict.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/11_dict.setdefault/" title="dict.setdefault 获取或插入元素" class="dd-item"><a href="/python/07_dictionary/11_dict.setdefault/">dict.setdefault<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/12_dict.update/" title="dict.update 更新字典" class="dd-item"><a href="/python/07_dictionary/12_dict.update/">dict.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/13_loop_through/" title="字典遍历" class="dd-item"><a href="/python/07_dictionary/13_loop_through/">字典遍历<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/14_operator/" title="字典操作符" class="dd-item"><a href="/python/07_dictionary/14_operator/">字典操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/08_other_types/" title="生成器表达式和推导式" class="dd-item"><input type="checkbox" id="section-6dcb28ff486050e64e8c2098986ff9d6" class="toggle"/><label for="section-6dcb28ff486050e64e8c2098986ff9d6" ></label><a href="/python/08_other_types/">其他类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/08_other_types/01_none/" title="空值 None" class="dd-item"><a href="/python/08_other_types/01_none/">None<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/08_other_types/03_other_types/" title="其他内置类型" class="dd-item"><a href="/python/08_other_types/03_other_types/">其他内置类型<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/09_operator/" title="操作符概述" class="dd-item"><input type="checkbox" id="section-bf0c286771bede167ff18be220caecff" class="toggle"/><label for="section-bf0c286771bede167ff18be220caecff" ></label><a href="/python/09_operator/">操作符<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/09_operator/02_compare/" title="比较运算符" class="dd-item"><a href="/python/09_operator/02_compare/">比较运算符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/03_precedence/" title="操作符优先级" class="dd-item"><a href="/python/09_operator/03_precedence/">操作符优先级<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/04_special/" title="操作符特殊用法" class="dd-item"><a href="/python/09_operator/04_special/">操作符特殊用法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/10_statement/" title="表达式语句" class="dd-item"><input type="checkbox" id="section-64a5f0f51786f2cfc0f1a295e3568242" class="toggle"/><label for="section-64a5f0f51786f2cfc0f1a295e3568242" ></label><a href="/python/10_statement/">语句<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/10_statement/02_assignment/" title="赋值语句" class="dd-item"><a href="/python/10_statement/02_assignment/">赋值语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/03_if/" title="if" class="dd-item"><a href="/python/10_statement/03_if/">if<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/04_for/" title="for" class="dd-item"><a href="/python/10_statement/04_for/">for<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/05_while/" title="while" class="dd-item"><a href="/python/10_statement/05_while/">while<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/06_break/" title="break" class="dd-item"><a href="/python/10_statement/06_break/">break<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/07_continue/" title="continue" class="dd-item"><a href="/python/10_statement/07_continue/">continue<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/08_del/" title="del" class="dd-item"><a href="/python/10_statement/08_del/">del<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/09_pass/" title="pass" class="dd-item"><a href="/python/10_statement/09_pass/">pass<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/10_def/" title="def" class="dd-item"><a href="/python/10_statement/10_def/">def<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/11_return/" title="return" class="dd-item"><a href="/python/10_statement/11_return/">return<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/12_yield/" title="yield" class="dd-item"><a href="/python/10_statement/12_yield/">yield<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/13_class/" title="class 语句" class="dd-item"><a href="/python/10_statement/13_class/">class 语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/14_try/" title="try" class="dd-item"><a href="/python/10_statement/14_try/">try<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/15_raise/" title="raise" class="dd-item"><a href="/python/10_statement/15_raise/">raise<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/16_with/" title="with" class="dd-item"><a href="/python/10_statement/16_with/">with<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/17_assert/" title="assert" class="dd-item"><a href="/python/10_statement/17_assert/">assert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/18_import/" title="import" class="dd-item"><a href="/python/10_statement/18_import/">import<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/19_global/" title="global" class="dd-item"><a href="/python/10_statement/19_global/">global<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/20_nonlocal/" title="nonlocal" class="dd-item"><a href="/python/10_statement/20_nonlocal/">nonlocal<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/11_built-in_function/" title="abs() 数字取绝对值" class="dd-item"><input type="checkbox" id="section-c688daa3d748f201265692938123fc94" class="toggle"/><label for="section-c688daa3d748f201265692938123fc94" ></label><a href="/python/11_built-in_function/">内置函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/11_built-in_function/02_all/" title="all() 所有元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/02_all/">all()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/03_any/" title="any() 有一个元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/03_any/">any()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/04_ascii/" title="ascii() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/04_ascii/">ascii()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/05_bin/" title="bin() 整数的二进制形式" class="dd-item"><a href="/python/11_built-in_function/05_bin/">bin()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/06_bool/" title="bool 返回对象的布尔值" class="dd-item"><a href="/python/11_built-in_function/06_bool/">bool<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/07_bytes/" title="bytes 创建 bytes 对象" class="dd-item"><a href="/python/11_built-in_function/07_bytes/">bytes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/08_callable/" title="callable() 是可调用对象？" class="dd-item"><a href="/python/11_built-in_function/08_callable/">callable()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/09_chr/" title="chr() 返回 Unicode 码位值对应字符" class="dd-item"><a href="/python/11_built-in_function/09_chr/">chr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/10_classmethod/" title="classmethod 封装函数为类方法" class="dd-item"><a href="/python/11_built-in_function/10_classmethod/">classmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/11_compile/" title="compile() 创建代码对象" class="dd-item"><a href="/python/11_built-in_function/11_compile/">compile()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/12_complex/" title="complex 创建复数" class="dd-item"><a href="/python/11_built-in_function/12_complex/">complex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/13_delattr/" title="delattr() 删除对象属性" class="dd-item"><a href="/python/11_built-in_function/13_delattr/">delattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/14_dict/" title="dict 创建字典" class="dd-item"><a href="/python/11_built-in_function/14_dict/">dict<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/15_dir/" title="dir() 返回对象属性列表" class="dd-item"><a href="/python/11_built-in_function/15_dir/">dir()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/16_divmod/" title="divmod() 求两个数的商和余" class="dd-item"><a href="/python/11_built-in_function/16_divmod/">divmod()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/17_enumerate/" title="enumerate 枚举" class="dd-item"><a href="/python/11_built-in_function/17_enumerate/">enumerate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/18_eval/" title="eval() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/18_eval/">eval()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/19_exec/" title="exec() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/19_exec/">exec()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/20_filter/" title="filter 真值元素筛选" class="dd-item"><a href="/python/11_built-in_function/20_filter/">filter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/21_float/" title="float 创建浮点数" class="dd-item"><a href="/python/11_built-in_function/21_float/">float<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/22_format/" title="format() 格式化" class="dd-item"><a href="/python/11_built-in_function/22_format/">format()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/23_frozenset/" title="frozenset 创建不可变集合" class="dd-item"><a href="/python/11_built-in_function/23_frozenset/">frozenset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/24_getattr/" title="getattr() 获取对象的属性" class="dd-item"><a href="/python/11_built-in_function/24_getattr/">getattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/25_globals/" title="globals() 返回全局变量字典" class="dd-item"><a href="/python/11_built-in_function/25_globals/">globals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/26_hasattr/" title="hasattr() 是对象的属性吗？" class="dd-item"><a href="/python/11_built-in_function/26_hasattr/">hasattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/27_hash/" title="hash() 返回对象的哈希值" class="dd-item"><a href="/python/11_built-in_function/27_hash/">hash()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/28_help/" title="help 启动帮助系统" class="dd-item"><a href="/python/11_built-in_function/28_help/">help<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/29_hex/" title="hex() 整数的十六进制形式" class="dd-item"><a href="/python/11_built-in_function/29_hex/">hex()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/30_id/" title="id() 返回对象的唯一标识" class="dd-item"><a href="/python/11_built-in_function/30_id/">id()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/31_input/" title="input() 接受输入返回字符串" class="dd-item"><a href="/python/11_built-in_function/31_input/">input()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/32_int/" title="int 创建整数" class="dd-item"><a href="/python/11_built-in_function/32_int/">int<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/33_isinstance/" title="isinstance() 是给定类的实例？" class="dd-item"><a href="/python/11_built-in_function/33_isinstance/">isinstance()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/34_issubclass/" title="issubclass() 是给定类的子类吗？" class="dd-item"><a href="/python/11_built-in_function/34_issubclass/">issubclass()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/35_iter/" title="iter() 转迭代器" class="dd-item"><a href="/python/11_built-in_function/35_iter/">iter()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/36_len/" title="len() 返回元素个数" class="dd-item"><a href="/python/11_built-in_function/36_len/">len()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/37_list/" title="list 创建列表" class="dd-item"><a href="/python/11_built-in_function/37_list/">list<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/38_locals/" title="locals() 返回局部变量的字典" class="dd-item"><a href="/python/11_built-in_function/38_locals/">locals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/39_map/" title="map 以给定函数转换元素" class="dd-item"><a href="/python/11_built-in_function/39_map/">map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/40_max/" title="max() 求最大项" class="dd-item"><a href="/python/11_built-in_function/40_max/">max()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/41_min/" title="min() 求最小项" class="dd-item"><a href="/python/11_built-in_function/41_min/">min()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/42_next/" title="next() 返回迭代器下一个元素" class="dd-item"><a href="/python/11_built-in_function/42_next/">next()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/43_object/" title="object 所有类的基类" class="dd-item"><a href="/python/11_built-in_function/43_object/">object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/44_oct/" title="oct() 整数的八进制形式" class="dd-item"><a href="/python/11_built-in_function/44_oct/">oct()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/45_open/" title="open() 打开文件" class="dd-item"><a href="/python/11_built-in_function/45_open/">open()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/46_ord/" title="ord() 返回单个字符 Unicode 码位值" class="dd-item"><a href="/python/11_built-in_function/46_ord/">ord()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/47_pow/" title="pow() 幂运算并取余" class="dd-item"><a href="/python/11_built-in_function/47_pow/">pow()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/48_print/" title="print()" class="dd-item"><a href="/python/11_built-in_function/48_print/">print()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/49_property/" title="property 返回 property 属性" class="dd-item"><a href="/python/11_built-in_function/49_property/">property<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/50_range/" title="range 创建 range 序列" class="dd-item"><a href="/python/11_built-in_function/50_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/51_repr/" title="repr() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/51_repr/">repr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/52_reversed/" title="reversed 序列逆置" class="dd-item"><a href="/python/11_built-in_function/52_reversed/">reversed<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/53_round/" title="round() 数字舍入" class="dd-item"><a href="/python/11_built-in_function/53_round/">round()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/54_set/" title="set 创建集合" class="dd-item"><a href="/python/11_built-in_function/54_set/">set<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/55_setattr/" title="setattr() 设置或新增属性" class="dd-item"><a href="/python/11_built-in_function/55_setattr/">setattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/56_slice/" title="slice 创建切片对象" class="dd-item"><a href="/python/11_built-in_function/56_slice/">slice<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/57_sorted/" title="sorted() 返回排序列表" class="dd-item"><a href="/python/11_built-in_function/57_sorted/">sorted()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/58_staticmethod/" title="staticmethod 封装函数为静态方法" class="dd-item"><a href="/python/11_built-in_function/58_staticmethod/">staticmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/59_str/" title="str 创建字符串" class="dd-item"><a href="/python/11_built-in_function/59_str/">str<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/60_sum/" title="sum() 数字求和或序列拼接" class="dd-item"><a href="/python/11_built-in_function/60_sum/">sum()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/61_super/" title="super 调用委托给父类或兄弟类" class="dd-item"><a href="/python/11_built-in_function/61_super/">super<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/62_tuple/" title="tuple 创建元组" class="dd-item"><a href="/python/11_built-in_function/62_tuple/">tuple<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/63_type/" title="type 判断类型或创建类" class="dd-item"><a href="/python/11_built-in_function/63_type/">type<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/64_vars/" title="vars() 返回对象的变量字典" class="dd-item"><a href="/python/11_built-in_function/64_vars/">vars()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/65_zip/" title="zip 重组可迭代对象" class="dd-item"><a href="/python/11_built-in_function/65_zip/">zip<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/12_function/" title="函数概述" class="dd-item"><input type="checkbox" id="section-e6b48a8a67c6f7ff797a323f6568f234" class="toggle"/><label for="section-e6b48a8a67c6f7ff797a323f6568f234" ></label><a href="/python/12_function/">函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/12_function/02_function_definition/" title="函数定义" class="dd-item"><a href="/python/12_function/02_function_definition/">函数定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/03_formal_parameter/" title="函数形参" class="dd-item"><a href="/python/12_function/03_formal_parameter/">函数形参<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/04_return_value/" title="函数返回值" class="dd-item"><a href="/python/12_function/04_return_value/">函数返回值<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/05_recursion/" title="递归函数" class="dd-item"><a href="/python/12_function/05_recursion/">递归函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/06_doc/" title="函数文档" class="dd-item"><a href="/python/12_function/06_doc/">函数文档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/07_function_call/" title="函数调用" class="dd-item"><a href="/python/12_function/07_function_call/">函数调用<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/08_lambda/" title="lambda 函数" class="dd-item"><a href="/python/12_function/08_lambda/">lambda 函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/09_generator/" title="生成器函数" class="dd-item"><a href="/python/12_function/09_generator/">生成器函数<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/13_exception/" title="错误和异常" class="dd-item"><input type="checkbox" id="section-bc4f4d42c44eaf0579ed86ae2d0d51db" class="toggle"/><label for="section-bc4f4d42c44eaf0579ed86ae2d0d51db" ></label><a href="/python/13_exception/">错误和异常<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/13_exception/02_handling/" title="处理异常" class="dd-item"><a href="/python/13_exception/02_handling/">处理异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/03_raising/" title="抛出异常" class="dd-item"><a href="/python/13_exception/03_raising/">抛出异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/04_user_defined/" title="自定义异常" class="dd-item"><a href="/python/13_exception/04_user_defined/">自定义异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/05_finally/" title="finally 清理操作" class="dd-item"><a href="/python/13_exception/05_finally/">finally<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/14_file/" title="文件对象概述" class="dd-item"><input type="checkbox" id="section-e195820c7e4bf396e327bfb0a46a50f9" class="toggle"/><label for="section-e195820c7e4bf396e327bfb0a46a50f9" ></label><a href="/python/14_file/">文件<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/14_file/02_read/" title="读取文件内容" class="dd-item"><a href="/python/14_file/02_read/">读取文件内容<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/14_file/03_write/" title="文件写入内容" class="dd-item"><a href="/python/14_file/03_write/">文件写入内容<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/15_module/" title="模块概述" class="dd-item"><input type="checkbox" id="section-4385ec01f3a88bacfccd61dd3520ad8b" class="toggle"/><label for="section-4385ec01f3a88bacfccd61dd3520ad8b" ></label><a href="/python/15_module/">模块<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/15_module/02_create_module/" title="创建模块" class="dd-item"><a href="/python/15_module/02_create_module/">创建模块<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/04_executable_file/" title="可执行文件" class="dd-item"><a href="/python/15_module/04_executable_file/">可执行文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/05_import_code/" title="导入操作" class="dd-item"><a href="/python/15_module/05_import_code/">导入操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/16_class/" title="面向对象概述" class="dd-item"><input type="checkbox" id="section-1462fcc8311b5f31727642b5a438fc6d" class="toggle"/><label for="section-1462fcc8311b5f31727642b5a438fc6d" ></label><a href="/python/16_class/">面向对象<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/16_class/02_class_definition/" title="类定义" class="dd-item"><a href="/python/16_class/02_class_definition/">类定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/03_instance/" title="实例" class="dd-item"><a href="/python/16_class/03_instance/">实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/04_object/" title="对象" class="dd-item"><a href="/python/16_class/04_object/">对象<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/05_name/" title="名称" class="dd-item"><a href="/python/16_class/05_name/">名称<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/06_variable/" title="变量" class="dd-item"><a href="/python/16_class/06_variable/">变量<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/07_attribute/" title="属性" class="dd-item"><a href="/python/16_class/07_attribute/">属性<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/08_method/" title="方法" class="dd-item"><a href="/python/16_class/08_method/">方法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/09_namespace/" title="命名空间" class="dd-item"><a href="/python/16_class/09_namespace/">命名空间<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/10_scope/" title="作用域" class="dd-item"><a href="/python/16_class/10_scope/">作用域<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/11_create_instance/" title="创建实例" class="dd-item"><a href="/python/16_class/11_create_instance/">创建实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/12_attribute_operation/" title="属性操作" class="dd-item"><a href="/python/16_class/12_attribute_operation/">属性操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/13_method_operation/" title="方法操作" class="dd-item"><a href="/python/16_class/13_method_operation/">方法操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/14_inheritance/" title="类继承" class="dd-item"><a href="/python/16_class/14_inheritance/">类继承<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/regex/" title="通俗易懂 Python 正则表达式" class="dd-item active"><a href="/regex/">正则表达式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/numpy/" title="Numpy 基础快速了解和查询" class="dd-item"><a href="/numpy/">Numpy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pandas/" title="Pandas 基础快速了解和查询" class="dd-item"><a href="/pandas/">Pandas<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/matplotlib/" title="Matpotlib 快速入门" class="dd-item"><a href="/matplotlib/">Matpotlib<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/" title="数理统计、机器学习入门" class="dd-item"><input type="checkbox" id="section-7311b56f8e68ee915dd2e657bac269ed" class="toggle"/><label for="section-7311b56f8e68ee915dd2e657bac269ed" ></label><a href="/statistics/">机器学习入门<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/statistics/statistics1/" title="描述统计" class="dd-item"><a href="/statistics/statistics1/">描述统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics2/" title="推断统计" class="dd-item"><a href="/statistics/statistics2/">推断统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics3/" title="线性回归" class="dd-item"><a href="/statistics/statistics3/">线性回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics4/" title="逻辑回归" class="dd-item"><a href="/statistics/statistics4/">逻辑回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics5/" title="分类模型评估" class="dd-item"><a href="/statistics/statistics5/">分类模型评估<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics6/" title="KNN 算法" class="dd-item"><a href="/statistics/statistics6/">KNN 算法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics7/" title="朴素贝叶斯" class="dd-item"><a href="/statistics/statistics7/">朴素贝叶斯<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics8/" title="决策树" class="dd-item"><a href="/statistics/statistics8/">决策树<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
+            <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
+            <li><a class="padding" href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="blue" value="blue" selected>Blue</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+      <p>©2022 吴明文</p>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1661054441" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661054441" defer></script>
+    <script src="/js/featherlight.min.js?1661054441" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661054441" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="https://unpkg.com/rapidoc/dist/rapidoc-min.js" defer></script>
+    <script>
+      window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
+    </script>
+    <script src="/js/theme.js?1661054441" defer></script>
+  </body>
+</html>

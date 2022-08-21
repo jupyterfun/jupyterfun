@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数字类型概述 on jupyter.fun</title>
+    <link>/python/01_numeric/</link>
+    <description>Recent content in 数字类型概述 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/01_numeric/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>整数及其位运算</title>
+      <link>/python/01_numeric/02_int/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/02_int/</guid>
+      <description>整数具有无限精度。有四种整数表示法：十六进制整数（0x 或 0X 开头），十进制整数，八进制整数（0o 或 0O 开头）和二进制整数（0b 或 0B 开头）。
+# 十六进制 0x10 16# 十进制 10 10# 八进制 0O10 8# 二进制 0b10 2数字之间或基数说明符（例如 0b）后，可以放一个下划线：
+123_456_789 1234567890b_1010 10十进制整数不可以 0 开头：
+012 File &amp;quot;&amp;lt;ipython-input-44-95f378563ada&amp;gt;&amp;quot;, line 1012^SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers整数类型按位运算 按位运算只对整数有意义。以优先级升序排序的按位运算:
+x | y x 和 y 按位 或 运算 x ^ y x 和 y 按位 异或 运算 x &amp;amp; y x 和 y 按位 与 运算 x &amp;lt;&amp;lt; n x 左移 n 位，相当于 x*2**n x &amp;gt;&amp;gt; n x 右移 n 位，相当于 x//(2**n) ~x x 逐位取反 下面以八位机为例，x 取 6，y 取 8，n 取 2：</description>
+    </item>
+    <item>
+      <title>布尔值及布尔运算</title>
+      <link>/python/01_numeric/03_bool/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/03_bool/</guid>
+      <description>布尔值有 True 和 False，布尔类型是整数类型的子类型，所以整数的运算都适用布尔值运算。
+issubclass(bool,int) TrueTrue + 1 2~True -2任何对象都可以进行布尔值的检测，以便在 if 或 while 中作为条件或是作为下文所述布尔运算的操作数来使用。
+一个对象在默认情况下均被视为真值，除非当该对象被调用时其所属类定义了 __bool__() 方法且返回 False 或是定义了 __len__() 方法且返回零。
+下面基本完整地列出了会被视为假值的内置对象:
+被定义为假值的常量: None 和 False。 任何数值类型的零: 0, 0.0, 0j, Decimal(0), Fraction(0, 1) 空的序列和多项集: &amp;lsquo;&amp;rsquo;, (), [], {}, set(), range(0) 可以使用内置函数 bool() 来查看任意对象的布尔值：
+bool(None), bool(int), bool(0) (False, True, False)布尔运算 布尔运算按优先级升序排列：
+x or y, if x is false, then y, else x x and y, if x is false, then x, else y not x, if x is false, then True, else False 任何值（包括表达式求值结果），除了自身之外，还有相应的逻辑值（布尔值），所以布尔运算符 or，and，not 可对任何值进行运算。</description>
+    </item>
+    <item>
+      <title>浮点数</title>
+      <link>/python/01_numeric/04_float/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/04_float/</guid>
+      <description>浮点数简单理解就是带小数点的数，通常使用 C 语音中的 double 来实现。有关你的程序运行所在计算机上浮点数的精度和内部表示法可在 sys.float_info 中查看。
+import sys sys.float_info sys.float_info(max=1.7976931348623157e+308, max_exp=1024, max_10_exp=308, min=2.2250738585072014e-308, min_exp=-1021, min_10_exp=-307, dig=15, mant_dig=53, epsilon=2.220446049250313e-16, radix=2, rounds=1)浮点数可以省略 . 前后的数；可以使用科学计数法；可以在数字之间插入下划线；可以以 0 开头。
+举例如下：
+# e 大小写均可 e-2 表示 10 的 -2 次方 0., .5, 0.1e-2, 3_1.1_4, 01.2e02 (0.0, 0.5, 0.001, 31.14, 120.0)整数除法除一定得到浮点数：
+True/3, 3/3 (0.3333333333333333, 1.0)整数和浮点数可以相互转换，浮点数转为整数，直接去掉小数部分：
+int(3.56), float(0) (3, 0.0)</description>
+    </item>
+    <item>
+      <title>复数</title>
+      <link>/python/01_numeric/05_complex/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/05_complex/</guid>
+      <description>复数包含实部和虚部（带 j 或 J 的部分），分别以一个浮点数表示。在一个数字后面加上 j 或 J，则得到一个实部为零的复数。
+-1j (-0-1j)1 + 0j (1+0j)看起来实部和虚部并不是以浮点数表示，可以使用 .real 和 .imag，从一个复数中提取这两个部分查看。
+(1 + 0j).real, (1 + 0j).imag (1.0, 0.0)-1j.real, -1j.imag (-0.0, -1.0)实部和虚部都是以浮点数表示，所以复数可以使用浮点数的所有表示法：
+0.J, .5J, 0.1e-2J, 3_1.1_4J, 01.2e02J (0j, 0.5j, 0.001j, 31.14j, 120j)对复数取绝对值，就是计算它的模——实部和虚部平方的和开根号：
+abs(3+4j), (3**2 + 4**2)**0.5 (5.0, 5.0)</description>
+    </item>
+    <item>
+      <title>数字运算</title>
+      <link>/python/01_numeric/06_number_operations/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/01_numeric/06_number_operations/</guid>
+      <description>所有数字类型都支持下列运算（复数不支持 // 和 %）：
+x + y, x 和 y 的和 x - y, x 和 y 的差 x * y, x 和 y 的乘积 x / y, x 和 y 的商 x // y, x 和 y 的商数 x % y, x / y 的余数 -x, x 取反 +x, x 不变 x ** y, x 的 y 次幂 Python 完全支持数字的混合运算：当一个二元算术运算符的操作数有不同数值类型时，“较窄” 类型的操作数会拓宽到另一个操作数的类型。其中整数比浮点数窄，浮点数比复数窄。但整数除以整数得到浮点数。
+运算示例如下：
+True + 1 + 3.14 5.140000000000001True + 1 + 3.</description>
+    </item>
+  </channel>
+</rss>

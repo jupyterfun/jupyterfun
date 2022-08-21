@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>abs() 数字取绝对值 on jupyter.fun</title>
+    <link>/python/11_built-in_function/</link>
+    <description>Recent content in abs() 数字取绝对值 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/11_built-in_function/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>all() 所有元素布尔值为真？</title>
+      <link>/python/11_built-in_function/02_all/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/02_all/</guid>
+      <description>内置函数 all()，Python 官方文档描述如下：
+help(all) Help on built-in function all in module builtins:all(iterable, /)Return True if bool(x) is True for all values x in the iterable.If the iterable is empty, return True.如果可迭代对象（iterable）的所有元素均为真值（或可迭代对象为空）则返回 True 。
+all(&amp;#39;0123&amp;#39;) # 字符串 &amp;#39;0&amp;#39; 是真值 Trueall([0,1,2,3]) Falseall({}) Trueall({1:[], 2:0 }) True</description>
+    </item>
+    <item>
+      <title>any() 有一个元素布尔值为真？</title>
+      <link>/python/11_built-in_function/03_any/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/03_any/</guid>
+      <description>内置函数 any()，Python 官方文档描述如下：
+help(any) Help on built-in function any in module builtins:any(iterable, /)Return True if bool(x) is True for any x in the iterable.If the iterable is empty, return False.如果可迭代对象（iterable）的任一元素为真值则返回 True。如果可迭代对象为空，返回 False。
+any([0,1]) Trueany((None, [], range(1,1))) False</description>
+    </item>
+    <item>
+      <title>ascii() 返回对象的可打印字符串</title>
+      <link>/python/11_built-in_function/04_ascii/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/04_ascii/</guid>
+      <description>内置函数 ascii()，Python 官方文档描述如下：
+help(ascii) Help on built-in function ascii in module builtins:ascii(obj, /)Return an ASCII-only representation of an object.As repr(), return a string containing a printable representation of anobject, but escape the non-ASCII characters in the string returned byrepr() using \\x, \\u or \\U escapes. This generates a string similarto that returned by repr() in Python 2.就像函数 repr()，返回一个对象可打印的字符串，但是非 ASCII 编码的字符，会使用 \x、\u 和 \U 来转义。</description>
+    </item>
+    <item>
+      <title>bin() 整数的二进制形式</title>
+      <link>/python/11_built-in_function/05_bin/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/05_bin/</guid>
+      <description>内置函数 bin()，Python 官方文档描述如下：
+help(bin) Help on built-in function bin in module builtins:bin(number, /)Return the binary representation of an integer.&amp;gt;&amp;gt;&amp;gt; bin(2796202)&#39;0b1010101010101010101010&#39;返回给定整数的二进制表示形式的字符串。
+bin(123) &#39;0b1111011&#39;0b1111011 123</description>
+    </item>
+    <item>
+      <title>bool 返回对象的布尔值</title>
+      <link>/python/11_built-in_function/06_bool/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/06_bool/</guid>
+      <description>内置函数（类） bool，Python 官方文档描述如下：
+help(bool) Help on class bool in module builtins:class bool(int)| bool(x) -&amp;gt; bool| | Returns True when the argument x is true, False otherwise.| The builtins True and False are the only two instances of the class bool.| The class bool is a subclass of the class int, and cannot be subclassed.| | Method resolution order:| bool| int| object| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.</description>
+    </item>
+    <item>
+      <title>bytes 创建 bytes 对象</title>
+      <link>/python/11_built-in_function/07_bytes/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/07_bytes/</guid>
+      <description>内置函数（类）bytes，Python 官方文档描述如下：
+help(bytes) Help on class bytes in module builtins:class bytes(object)| bytes(iterable_of_ints) -&amp;gt; bytes| bytes(string, encoding[, errors]) -&amp;gt; bytes| bytes(bytes_or_buffer) -&amp;gt; immutable copy of bytes_or_buffer| bytes(int) -&amp;gt; bytes object of size given by the parameter initialized with null bytes| bytes() -&amp;gt; empty bytes object| | Construct an immutable array of bytes from:| - an iterable yielding integers in range(256)| - a text string encoded using the specified encoding| - any object implementing the buffer API.</description>
+    </item>
+    <item>
+      <title>callable() 是可调用对象？</title>
+      <link>/python/11_built-in_function/08_callable/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/08_callable/</guid>
+      <description>内置函数 callable()，Python 官方文档描述如下：
+help(callable) Help on built-in function callable in module builtins:callable(obj, /)Return whether the object is callable (i.e., some kind of function).Note that classes are callable, as are instances of classes with a__call__() method.如果 obj 是可调用对象就返回 True，否则返回 False。如果返回 True，调用仍可能失败，但如果返回 False，则调用将肯定不会成功。
+函数、方法、类以及实现了 __call__() 方法的类的实例是可调用的。
+callable(1) Falsecallable(int) Trueclass Myint(int): def __call__(self): pass num = Myint(1) num 1callable(num) Truecallable(lambda: 1) True</description>
+    </item>
+    <item>
+      <title>chr() 返回 Unicode 码位值对应字符</title>
+      <link>/python/11_built-in_function/09_chr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/09_chr/</guid>
+      <description>内置函数 chr()，Python 官方文档描述如下：
+help(chr) Help on built-in function chr in module builtins:chr(i, /)Return a Unicode string of one character with ordinal i; 0 &amp;lt;= i &amp;lt;= 0x10ffff.返回 Unicode 码位对应的字符的字符串格式。码位范围是 0~1114111（16 进制表示是 0x10FFFF），超过这个范围，会触发 ValueError 异常。该函数是 ord() 的逆函数。
+chr(97) &#39;a&#39;ord(&amp;#39;a&amp;#39;) 97chr(1114111) &#39;\U0010ffff&#39;chr(1114112) ---------------------------------------------------------------------------ValueError Traceback (most recent call last)&amp;lt;ipython-input-5-4857faf08086&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 chr(1114112)ValueError: chr() arg not in range(0x110000)</description>
+    </item>
+    <item>
+      <title>classmethod 封装函数为类方法</title>
+      <link>/python/11_built-in_function/10_classmethod/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/10_classmethod/</guid>
+      <description>内置函数（类）classmethod，Python 官方文档描述如下：
+help(classmethod) Help on class classmethod in module builtins:class classmethod(object)| classmethod(function) -&amp;gt; method| | Convert a function to be a class method.| | A class method receives the class as implicit first argument,| just like an instance method receives the instance.| To declare a class method, use this idiom:| | class C:| @classmethod| def f(cls, arg1, arg2, ...):| ...| | It can be called either on the class (e.</description>
+    </item>
+    <item>
+      <title>compile() 创建代码对象</title>
+      <link>/python/11_built-in_function/11_compile/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/11_compile/</guid>
+      <description>内置函数 compile()，Python 官方文档描述如下：
+help(compile) Help on built-in function compile in module builtins:compile(source, filename, mode, flags=0, dont_inherit=False, optimize=-1)Compile source into a code object that can be executed by exec() or eval().The source code may represent a Python module, statement or expression.The filename will be used for run-time error messages.The mode must be &#39;exec&#39; to compile a module, &#39;single&#39; to compile asingle (interactive) statement, or &#39;eval&#39; to compile an expression.</description>
+    </item>
+    <item>
+      <title>complex 创建复数</title>
+      <link>/python/11_built-in_function/12_complex/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/12_complex/</guid>
+      <description>内置函数（类）complex，Python 官方文档描述如下：
+help(complex) Help on class complex in module builtins:class complex(object)| complex(real=0, imag=0)| | Create a complex number from a real part and an optional imaginary part.| | This is equivalent to (real + imag*1j) where imag defaults to 0.| | Methods defined here:| | __abs__(self, /)| abs(self)| | __add__(self, value, /)| Return self+value.| | __bool__(self, /)| self != 0| | __divmod__(self, value, /)| Return divmod(self, value).</description>
+    </item>
+    <item>
+      <title>delattr() 删除对象属性</title>
+      <link>/python/11_built-in_function/13_delattr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/13_delattr/</guid>
+      <description>内置函数 delattr()，Python 官方文档描述如下：
+help(delattr) Help on built-in function delattr in module builtins:delattr(obj, name, /)Deletes the named attribute from the given object.delattr(x, &#39;y&#39;) is equivalent to ``del x.y&#39;&#39;实参是一个对象和一个字符串。该字符串必须是对象的某个属性。如果对象允许，该函数将删除指定的属性。delattr(x, &#39;y&#39;) 等价于 del x.y。
+class A: y = 0 x = A x.y 0delattr(x,&amp;#39;y&amp;#39;) x.y ---------------------------------------------------------------------------AttributeError Traceback (most recent call last)&amp;lt;ipython-input-12-3552434a3e61&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 x.yAttributeError: type object &#39;A&#39; has no attribute &#39;y&#39;</description>
+    </item>
+    <item>
+      <title>dict 创建字典</title>
+      <link>/python/11_built-in_function/14_dict/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/14_dict/</guid>
+      <description>内置函数（类）dict，Python 官方文档描述如下：
+help(dict) Help on class dict in module builtins:class dict(object)| dict() -&amp;gt; new empty dictionary| dict(mapping) -&amp;gt; new dictionary initialized from a mapping object&#39;s| (key, value) pairs| dict(iterable) -&amp;gt; new dictionary initialized as if via:| d = {}| for k, v in iterable:| d[k] = v| dict(**kwargs) -&amp;gt; new dictionary initialized with the name=value pairs| in the keyword argument list.</description>
+    </item>
+    <item>
+      <title>dir() 返回对象属性列表</title>
+      <link>/python/11_built-in_function/15_dir/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/15_dir/</guid>
+      <description>内置函数 dir()，Python 官方文档描述如下：
+help(dir) Help on built-in function dir in module builtins:dir(...)dir([object]) -&amp;gt; list of stringsIf called without an argument, return the names in the current scope.Else, return an alphabetized list of names comprising (some of) the attributesof the given object, and of attributes reachable from it.If the object supplies a method named __dir__, it will be used; otherwisethe default dir() logic is used and returns:for a module object: the module&#39;s attributes.</description>
+    </item>
+    <item>
+      <title>divmod() 求两个数的商和余</title>
+      <link>/python/11_built-in_function/16_divmod/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/16_divmod/</guid>
+      <description>内置函数 divmod()，Python 官方文档描述如下：
+help(divmod) Help on built-in function divmod in module builtins:divmod(x, y, /)Return the tuple (x//y, x%y). Invariant: div*y + mod == x.它将两个（非复数）数字作为实参，返回两个数字的（商,余数）元组。对于混合操作数类型，适用二元算术运算符的规则。
+divmod(1,2) (0, 1)divmod(3.14, 2) (1.0, 1.1400000000000001)</description>
+    </item>
+    <item>
+      <title>enumerate 枚举</title>
+      <link>/python/11_built-in_function/17_enumerate/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/17_enumerate/</guid>
+      <description>内置函数（类）enumerate，Python 官方文档描述如下：
+help(enumerate) Help on class enumerate in module builtins:class enumerate(object)| enumerate(iterable, start=0)| | Return an enumerate object.| | iterable| an object supporting iteration| | The enumerate object yields pairs containing a count (from start, which| defaults to zero) and a value yielded by the iterable argument.| | enumerate is useful for obtaining an indexed list:| (0, seq[0]), (1, seq[1]), (2, seq[2]), .</description>
+    </item>
+    <item>
+      <title>eval() 解析字符串或代码并求值</title>
+      <link>/python/11_built-in_function/18_eval/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/18_eval/</guid>
+      <description>内置函数 eval()，Python 官方文档描述如下：
+help(eval) Help on built-in function eval in module builtins:eval(source, globals=None, locals=None, /)Evaluate the given source in the context of globals and locals.The source may be a string representing a Python expressionor a code object as returned by compile().The globals must be a dictionary and locals can be any mapping,defaulting to the current globals and locals.If only globals is given, locals defaults to it.</description>
+    </item>
+    <item>
+      <title>exec() 解析字符串或代码并求值</title>
+      <link>/python/11_built-in_function/19_exec/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/19_exec/</guid>
+      <description>内置函数 exec()，Python 官方文档描述如下：
+help(exec) Help on built-in function exec in module builtins:exec(source, globals=None, locals=None, /)Execute the given source in the context of globals and locals.The source may be a string representing one or more Python statementsor a code object as returned by compile().The globals must be a dictionary and locals can be any mapping,defaulting to the current globals and locals.If only globals is given, locals defaults to it.</description>
+    </item>
+    <item>
+      <title>filter 真值元素筛选</title>
+      <link>/python/11_built-in_function/20_filter/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/20_filter/</guid>
+      <description>内置函数（类）filter，Python 官方文档描述如下：
+help(filter) Help on class filter in module builtins:class filter(object)| filter(function or None, iterable) --&amp;gt; filter object| | Return an iterator yielding those items of iterable for which function(item)| is true. If function is None, return the items that are true.| | Methods defined here:| | __getattribute__(self, name, /)| Return getattr(self, name).| | __iter__(self, /)| Implement iter(self).| | __next__(self, /)| Implement next(self).</description>
+    </item>
+    <item>
+      <title>float 创建浮点数</title>
+      <link>/python/11_built-in_function/21_float/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/21_float/</guid>
+      <description>内置函数（类）float，Python 官方文档描述如下：
+help(float) Help on class float in module builtins:class float(object)| float(x=0, /)| | Convert a string or number to a floating point number, if possible.| | Methods defined here:| | __abs__(self, /)| abs(self)| | __add__(self, value, /)| Return self+value.| | __bool__(self, /)| self != 0| | __divmod__(self, value, /)| Return divmod(self, value).| | __eq__(self, value, /)| Return self==value.</description>
+    </item>
+    <item>
+      <title>format() 格式化</title>
+      <link>/python/11_built-in_function/22_format/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/22_format/</guid>
+      <description>内置函数 format()，Python 官方文档描述如下：
+help(format) Help on built-in function format in module builtins:format(value, format_spec=&#39;&#39;, /)Return value.__format__(format_spec)format_spec defaults to the empty string.See the Format Specification Mini-Language section of help(&#39;FORMATTING&#39;) fordetails.将 value 转换为 format_spec 控制的 “格式化” 表示。format_spec 的解释取决于 value 实参的类型，但是大多数内置类型使用标准格式化语法：格式化迷你语言。详见 str.format 格式化。
+默认的 format_spec 是一个空字符串，它通常和调用 str(value) 的结果相同。
+format(&amp;#39;嗨&amp;#39;,&amp;#39;&amp;gt;10&amp;#39;) &#39; 嗨&#39;format(&amp;#39;嗨&amp;#39;,&amp;#39;~^10&amp;#39;) &#39;~~~~嗨~~~~~&#39;format(1,&amp;#39;05&amp;#39;) &#39;00001&#39;format(3.14,&amp;#39;.3f&amp;#39;) &#39;3.140&#39;format(123456789,&amp;#39;_&amp;#39;) &#39;123_456_789&#39;format(123456789,&amp;#39;.2e&amp;#39;) &#39;1.23e+08&#39;format(123456789) &#39;123456789&#39;</description>
+    </item>
+    <item>
+      <title>frozenset 创建不可变集合</title>
+      <link>/python/11_built-in_function/23_frozenset/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/23_frozenset/</guid>
+      <description>内置函数（类）frozenset，Python 官方文档描述如下：
+help(frozenset) Help on class frozenset in module builtins:class frozenset(object)| frozenset() -&amp;gt; empty frozenset object| frozenset(iterable) -&amp;gt; frozenset object| | Build an immutable unordered collection of unique elements.| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.| | __contains__(...)| x.__contains__(y) &amp;lt;==&amp;gt; y in x.| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.</description>
+    </item>
+    <item>
+      <title>getattr() 获取对象的属性</title>
+      <link>/python/11_built-in_function/24_getattr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/24_getattr/</guid>
+      <description>内置函数 getattr()，Python 官方文档描述如下：
+help(getattr) Help on built-in function getattr in module builtins:getattr(...)getattr(object, name[, default]) -&amp;gt; valueGet a named attribute from an object; getattr(x, &#39;y&#39;) is equivalent to x.y.When a default argument is given, it is returned when the attribute doesn&#39;texist; without it, an exception is raised in that case.返回对象给定的属性名指向的值。name 必须是字符串。如果该字符串是对象的属性名称之一，则返回该属性的值。例如，getattr(x, &#39;y&#39;) 等同于 x.y。如果指定的属性不存在，且提供了 default 值，则返回它，否则触发 AttributeError。
+getattr(1,&amp;#39;imag&amp;#39;) 0getattr(1,&amp;#39;bool&amp;#39;,True) Truegetattr(1,&amp;#39;bool&amp;#39;) ---------------------------------------------------------------------------AttributeError Traceback (most recent call last)&amp;lt;ipython-input-6-524bb2b35e58&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 getattr(1,&#39;bool&#39;)AttributeError: &#39;int&#39; object has no attribute &#39;bool&#39;class A: y = 1 x = A() x.</description>
+    </item>
+    <item>
+      <title>globals() 返回全局变量字典</title>
+      <link>/python/11_built-in_function/25_globals/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/25_globals/</guid>
+      <description>内置函数 globals()，Python 官方文档描述如下：
+help(globals) Help on built-in function globals in module builtins:globals()Return the dictionary containing the current scope&#39;s global variables.NOTE: Updates to this dictionary *will* affect name lookups in the currentglobal scope and vice-versa.返回包含当前作用域的全局变量字典。这总是当前模块的字典（在函数或方法中，不是调用它的模块，而是定义它的模块）。
+更新此字典 将 影响当前全局范围内的名称查找，反之亦然。
+globals() 和 locals() 函数各自返回当前的全局和本地字典，因此可以将它们传递给 eval() 或 exec() 来使用。
+globals() {&#39;__name__&#39;: &#39;__main__&#39;,&#39;__doc__&#39;: &#39;Automatically created module for IPython interactive environment&#39;,&#39;__package__&#39;: None,&#39;__loader__&#39;: None,&#39;__spec__&#39;: None,&#39;__builtin__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;__builtins__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;_ih&#39;: [&#39;&#39;, &#39;help(globals)&#39;, &#39;globals()&#39;],&#39;_oh&#39;: {},&#39;_dh&#39;: [&#39;D:\\Jupyter\\xuecn_books\\books\\xue_python_kp\\11_built-in_function&#39;],&#39;In&#39;: [&#39;&#39;, &#39;help(globals)&#39;, &#39;globals()&#39;],&#39;Out&#39;: {},&#39;get_ipython&#39;: &amp;lt;bound method InteractiveShell.</description>
+    </item>
+    <item>
+      <title>hasattr() 是对象的属性吗？</title>
+      <link>/python/11_built-in_function/26_hasattr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/26_hasattr/</guid>
+      <description>内置函数 hasattr()，Python 官方文档描述如下：
+help(hasattr) Help on built-in function hasattr in module builtins:hasattr(obj, name, /)Return whether the object has an attribute with the given name.This is done by calling getattr(obj, name) and catching AttributeError.该函数实参是一个对象和一个字符串。如果字符串是对象的属性之一的名称，则返回 True，否则返回 False。
+hasattr(&amp;#39;abc&amp;#39;, &amp;#39;join&amp;#39;) Trueclass A: y = 1 hasattr(A, &amp;#39;y&amp;#39;) True</description>
+    </item>
+    <item>
+      <title>hash() 返回对象的哈希值</title>
+      <link>/python/11_built-in_function/27_hash/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/27_hash/</guid>
+      <description>内置函数 hash()，Python 官方文档描述如下：
+help(hash) Help on built-in function hash in module builtins:hash(obj, /)Return the hash value for the given object.Two objects that compare equal must also have the same hash value, but thereverse is not necessarily true.返回对象的哈希值（如果它有的话）。哈希值是整数。它们在集合或字典查找元素时用来快速比较集合的元素或字典的键。相同大小的数字有相同的哈希值。
+可哈希对象必须具有相同的哈希值比较结果才会相同。
+hash(1) == hash(1.0) == hash(True) True1 == 1.0 == True Truehash(&amp;#39;abc&amp;#39;) 2812132477407752679hash((1,2,3)) 529344067295497451hash([1,2,3]) ---------------------------------------------------------------------------TypeError Traceback (most recent call last)&amp;lt;ipython-input-5-35e31e935e9e&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 hash([1,2,3])TypeError: unhashable type: &#39;list&#39;hash((1,2)) </description>
+    </item>
+    <item>
+      <title>help 启动帮助系统</title>
+      <link>/python/11_built-in_function/28_help/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/28_help/</guid>
+      <description>内置函数（帮助系统）help，Python 官方文档描述如下：
+help(help) Help on _Helper in module _sitebuiltins object:class _Helper(builtins.object)| Define the builtin &#39;help&#39;.| | This is a wrapper around pydoc.help that provides a helpful message| when &#39;help&#39; is typed at the Python interactive prompt.| | Calling help() at the Python prompt starts an interactive help session.| Calling help(thing) prints help for the python object &#39;thing&#39;.| | Methods defined here:| | __call__(self, *args, **kwds)| Call self as a function.</description>
+    </item>
+    <item>
+      <title>hex() 整数的十六进制形式</title>
+      <link>/python/11_built-in_function/29_hex/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/29_hex/</guid>
+      <description>内置函数 hex()，Python 官方文档描述如下：
+help(hex) Help on built-in function hex in module builtins:hex(number, /)Return the hexadecimal representation of an integer.&amp;gt;&amp;gt;&amp;gt; hex(12648430)&#39;0xc0ffee&#39;将整数转换为以 0x 为前缀的小写十六进制整数的字符串形式。
+hex(123) &#39;0x7b&#39;0x7b 123</description>
+    </item>
+    <item>
+      <title>id() 返回对象的唯一标识</title>
+      <link>/python/11_built-in_function/30_id/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/30_id/</guid>
+      <description>内置函数 id()，Python 官方文档描述如下：
+help(id) Help on built-in function id in module builtins:id(obj, /)Return the identity of an object.This is guaranteed to be unique among simultaneously existing objects.(CPython uses the object&#39;s memory address.)返回对象的唯一标识。该标识是一个整数，在此对象的生命周期中保证是唯一且恒定的。
+CPython 中该标识是对象的内存地址。
+id(1), id(1.0) (140736642126656, 2785998726512)1 == 1.0 True# 两个变量引用了同一个值为 1 的对象 a = 1 b = int(&amp;#39;01&amp;#39;) id(a), id(b) (140736642126656, 140736642126656)# 两个值为 1000 的不同对象 a = 1000 b = 1000 id(a), id(b) (2785998745552, 2785998745360)# 可变对象改变值，还是同一个对象 _list = [1,2,3] print(id(_list),_list) del _list[:] print(id(_list),_list) 2785999307336 [1, 2, 3]2785999307336 []</description>
+    </item>
+    <item>
+      <title>input() 接受输入返回字符串</title>
+      <link>/python/11_built-in_function/31_input/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/31_input/</guid>
+      <description>内置函数 input()，Python 官方文档描述如下：
+help(input) Help on method raw_input in module ipykernel.kernelbase:raw_input(prompt=&#39;&#39;) method of ipykernel.ipkernel.IPythonKernel instanceForward raw_input to frontendsRaises------StdinNotImplentedError if active frontend doesn&#39;t support stdin.如果存在 prompt 实参，则作为提示信息输出。接下来，该函数将输入转换为字符串并返回。无输入则返回空字符串。
+input(&amp;#39;输入提示：&amp;#39;) 输入提示： 1+1&#39;1+1&#39;input(&amp;#39;输入提示：&amp;#39;) 输入提示： &#39;&#39;</description>
+    </item>
+    <item>
+      <title>int 创建整数</title>
+      <link>/python/11_built-in_function/32_int/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/32_int/</guid>
+      <description>内置函数（类）int，Python 官方文档描述如下：
+help(int) Help on class int in module builtins:class int(object)| int([x]) -&amp;gt; integer| int(x, base=10) -&amp;gt; integer| | Convert a number or string to an integer, or return 0 if no arguments| are given. If x is a number, return x.__int__(). For floating point| numbers, this truncates towards zero.| | If x is not a number or if base is given, then x must be a string,| bytes, or bytearray instance representing an integer literal in the| given base.</description>
+    </item>
+    <item>
+      <title>isinstance() 是给定类的实例？</title>
+      <link>/python/11_built-in_function/33_isinstance/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/33_isinstance/</guid>
+      <description>内置函数 isinstance()，Python 官方文档描述如下：
+help(isinstance) Help on built-in function isinstance in module builtins:isinstance(obj, class_or_tuple, /)Return whether an object is an instance of a class or of a subclass thereof.A tuple, as in ``isinstance(x, (A, B, ...))``, may be given as the target tocheck against. This is equivalent to ``isinstance(x, A) or isinstance(x, B)or ...`` etc.如果对象 obj 是给定类的实例或者是其 (直接、间接或虚拟) 子类的实例则返回 True，不是则返回 False。给定的不是类则引发 TypeError 异常。
+给定类可以以元组形式传参，obj 是其中任何一个类型的实例就返回 True。</description>
+    </item>
+    <item>
+      <title>issubclass() 是给定类的子类吗？</title>
+      <link>/python/11_built-in_function/34_issubclass/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/34_issubclass/</guid>
+      <description>内置函数 issubclass()，Python 官方文档描述如下：
+help(issubclass) Help on built-in function issubclass in module builtins:issubclass(cls, class_or_tuple, /)Return whether &#39;cls&#39; is a derived from another class or is the same class.A tuple, as in ``issubclass(x, (A, B, ...))``, may be given as the target tocheck against. This is equivalent to ``issubclass(x, A) or issubclass(x, B)or ...`` etc.如果类 cls 是给定类的 (直接、间接或虚拟) 子类则返回 True，不是则返回 False。给定的不是类则引发 TypeError 异常。
+给定类可以以元组形式传参，cls 是其中任何一个类的子类就返回 True。</description>
+    </item>
+    <item>
+      <title>iter() 转迭代器</title>
+      <link>/python/11_built-in_function/35_iter/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/35_iter/</guid>
+      <description>内置函数 iter()，Python 官方文档描述如下：
+help(iter) Help on built-in function iter in module builtins:iter(...)iter(iterable) -&amp;gt; iteratoriter(callable, sentinel) -&amp;gt; iteratorGet an iterator from an object. In the first form, the argument mustsupply its own iterator, or be a sequence.In the second form, the callable is called until it returns the sentinel.将一个可迭代对象（iterable）或可调用对象（callable）转换为一个迭代器。
+当参数是可调用对象时，需要提供参数 sentinel，生成的迭代器，每次 迭代时都会不带实参地调用 callable，返回 sentinel 时则触 发 StopIteration。
+a = iter(&amp;#39;abcd&amp;#39;) a &amp;lt;str_iterator at 0x1c7eea4f910&amp;gt;next(a),next(a),next(a),next(a) (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;)a = iter(int, 1) for i in range(3): print(next(a)) 000a = iter(int, 0) next(a) ---------------------------------------------------------------------------StopIteration Traceback (most recent call last)&amp;lt;ipython-input-21-694e44f6d78c&amp;gt; in &amp;lt;module&amp;gt;1 a = iter(int, 0)----&amp;gt; 2 next(a)StopIteration: </description>
+    </item>
+    <item>
+      <title>len() 返回元素个数</title>
+      <link>/python/11_built-in_function/36_len/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/36_len/</guid>
+      <description>内置函数 len()，Python 官方文档描述如下：
+help(len) Help on built-in function len in module builtins:len(obj, /)Return the number of items in a container.返回对象的长度（元素个数）。实参可以是序列（如 str、bytes、tuple、list 或 range 等的实例），集合（set 或 frozenset 的实例），或字典（dict 的实例）等。
+len(&amp;#39;123&amp;#39;) 3len(&amp;#39;嗨&amp;#39;) 1len(&amp;#39;嗨&amp;#39;.encode()) 3len([1,2,3]) 3len({&amp;#39;a&amp;#39;:1,&amp;#39;b&amp;#39;:2}) 2</description>
+    </item>
+    <item>
+      <title>list 创建列表</title>
+      <link>/python/11_built-in_function/37_list/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/37_list/</guid>
+      <description>内置函数（类）list，Python 官方文档描述如下：
+help(list) Help on class list in module builtins:class list(object)| list(iterable=(), /)| | Built-in mutable sequence.| | If no argument is given, the constructor creates a new empty list.| The argument must be an iterable if specified.| | Methods defined here:| | __add__(self, value, /)| Return self+value.| | __contains__(self, key, /)| Return key in self.| | __delitem__(self, key, /)| Delete self[key].</description>
+    </item>
+    <item>
+      <title>locals() 返回局部变量的字典</title>
+      <link>/python/11_built-in_function/38_locals/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/38_locals/</guid>
+      <description>内置函数 locals()，Python 官方文档描述如下：
+help(locals) Help on built-in function locals in module builtins:locals()Return a dictionary containing the current scope&#39;s local variables.NOTE: Whether or not updates to this dictionary will affect name lookups inthe local scope and vice-versa is *implementation dependent* and notcovered by any backwards compatibility guarantees.返回包含当前作用域的局部变量的字典。在模块层级上，locals() 和 globals() 是同一个字典。
+globals() 和 locals() 函数各自返回当前的全局和本地字典，因此可以将它们传递给 eval() 或 exec() 来使用。
+locals() {&#39;__name__&#39;: &#39;__main__&#39;,&#39;__doc__&#39;: &#39;Automatically created module for IPython interactive environment&#39;,&#39;__package__&#39;: None,&#39;__loader__&#39;: None,&#39;__spec__&#39;: None,&#39;__builtin__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;__builtins__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;_ih&#39;: [&#39;&#39;, &#39;help(locals)&#39;, &#39;locals()&#39;],&#39;_oh&#39;: {},&#39;_dh&#39;: [&#39;D:\\Jupyter\\xuecn_books\\books\\xue_python_kp\\11_built-in_function&#39;],&#39;In&#39;: [&#39;&#39;, &#39;help(locals)&#39;, &#39;locals()&#39;],&#39;Out&#39;: {},&#39;get_ipython&#39;: &amp;lt;bound method InteractiveShell.</description>
+    </item>
+    <item>
+      <title>map 以给定函数转换元素</title>
+      <link>/python/11_built-in_function/39_map/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/39_map/</guid>
+      <description>内置函数（类）map，Python 官方文档描述如下：
+help(map) Help on class map in module builtins:class map(object)| map(func, *iterables) --&amp;gt; map object| | Make an iterator that computes the function using arguments from| each of the iterables. Stops when the shortest iterable is exhausted.| | Methods defined here:| | __getattribute__(self, name, /)| Return getattr(self, name).| | __iter__(self, /)| Implement iter(self).| | __next__(self, /)| Implement next(self).| | __reduce__(.</description>
+    </item>
+    <item>
+      <title>max() 求最大项</title>
+      <link>/python/11_built-in_function/40_max/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/40_max/</guid>
+      <description>内置函数 max()，Python 官方文档描述如下：
+help(max) Help on built-in function max in module builtins:max(...)max(iterable, *[, default=obj, key=func]) -&amp;gt; valuemax(arg1, arg2, *args, *[, key=func]) -&amp;gt; valueWith a single iterable argument, return its biggest item. Thedefault keyword-only argument specifies an object to return ifthe provided iterable is empty.With two or more arguments, return the largest argument.返回可迭代对象中最大的元素，或多个实参中最大的项。参数说明：
+如果只提供了一个位置参数，它必须是可迭代对象（iterable），返回 iterable 中最大的元素，iterable 为空，返回 default。 如果提供了两个及以上的位置参数，则返回最大的位置参数。 如果有多个最大元素，则此函数将返回第一个找到的。 参数 key（可选）指定排序函数，将排序的项都经此函数计算，按计算值取最大的项。 max(&amp;#39;3142&amp;#39;) &#39;4&#39;max([], default=0) 0max(2,4,3,4) 4max([2,1],[2,1,1]) [2, 1, 1]max((&amp;#39;a&amp;#39;,&amp;#39;ab&amp;#39;,&amp;#39;bcd&amp;#39;),key=len) &#39;bcd&#39;</description>
+    </item>
+    <item>
+      <title>min() 求最小项</title>
+      <link>/python/11_built-in_function/41_min/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/41_min/</guid>
+      <description>内置函数 min()，Python 官方文档描述如下：
+help(min) Help on built-in function min in module builtins:min(...)min(iterable, *[, default=obj, key=func]) -&amp;gt; valuemin(arg1, arg2, *args, *[, key=func]) -&amp;gt; valueWith a single iterable argument, return its smallest item. Thedefault keyword-only argument specifies an object to return ifthe provided iterable is empty.With two or more arguments, return the smallest argument.返回可迭代对象中最小的元素，或多个实参中最小的项。参数说明：
+如果只提供了一个位置参数，它必须是可迭代对象（iterable），返回 iterable 中最小的元素，iterable 为空，返回 default。 如果提供了两个及以上的位置参数，则返回最小的位置参数。 如果有多个最小元素，则此函数将返回第一个找到的。 参数 key（可选）指定排序函数，将排序的项都经此函数计算，按计算值取最小的项。 min(&amp;#39;3142&amp;#39;) &#39;1&#39;min([], default=0) 0min(2,3,2,4) 2min([2,1],[2,1,1]) [2, 1]min((&amp;#39;a&amp;#39;,&amp;#39;ab&amp;#39;,&amp;#39;bcd&amp;#39;),key=len) &#39;a&#39;</description>
+    </item>
+    <item>
+      <title>next() 返回迭代器下一个元素</title>
+      <link>/python/11_built-in_function/42_next/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/42_next/</guid>
+      <description>内置函数 next()，Python 官方文档描述如下：
+help(next) Help on built-in function next in module builtins:next(...)next(iterator[, default])Return the next item from the iterator. If default is given and the iteratoris exhausted, it is returned instead of raising StopIteration.返回迭代器（iterator）的下一个元素。如果迭代器耗尽，则返回给定的 default，如果没有默认值则触发 StopIteration。
+i = iter(&amp;#39;123&amp;#39;) next(i,&amp;#39;迭代结束&amp;#39;) &#39;1&#39;next(i,&amp;#39;迭代结束&amp;#39;) &#39;2&#39;next(i,&amp;#39;迭代结束&amp;#39;) &#39;3&#39;next(i,&amp;#39;迭代结束&amp;#39;) &#39;迭代结束&#39;next(i,&amp;#39;迭代结束&amp;#39;) &#39;迭代结束&#39;</description>
+    </item>
+    <item>
+      <title>object 所有类的基类</title>
+      <link>/python/11_built-in_function/43_object/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/43_object/</guid>
+      <description>内置函数（类）object，Python 官方文档描述如下：
+help(object) Help on class object in module builtins:class object| The most base type当被调用时，它不接受任何参数，并返回一个新的无特性实例，并且不能给定任何实例属性。
+object 是所有类的基类。它具有所有 Python 类实例的通用方法。
+type(object) typeobject() &amp;lt;object at 0x1de8bc75170&amp;gt;dir(object) [&#39;__class__&#39;,&#39;__delattr__&#39;,&#39;__dir__&#39;,&#39;__doc__&#39;,&#39;__eq__&#39;,&#39;__format__&#39;,&#39;__ge__&#39;,&#39;__getattribute__&#39;,&#39;__gt__&#39;,&#39;__hash__&#39;,&#39;__init__&#39;,&#39;__init_subclass__&#39;,&#39;__le__&#39;,&#39;__lt__&#39;,&#39;__ne__&#39;,&#39;__new__&#39;,&#39;__reduce__&#39;,&#39;__reduce_ex__&#39;,&#39;__repr__&#39;,&#39;__setattr__&#39;,&#39;__sizeof__&#39;,&#39;__str__&#39;,&#39;__subclasshook__&#39;]</description>
+    </item>
+    <item>
+      <title>oct() 整数的八进制形式</title>
+      <link>/python/11_built-in_function/44_oct/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/44_oct/</guid>
+      <description>内置函数 oct()，Python 官方文档描述如下：
+help(oct) Help on built-in function oct in module builtins:oct(number, /)Return the octal representation of an integer.&amp;gt;&amp;gt;&amp;gt; oct(342391)&#39;0o1234567&#39;将一个整数转换为八进制整数的字符串形式。
+oct(123) &#39;0o173&#39;0o173 123oct(0x12) &#39;0o22&#39;0x12, 0o22 (18, 18)</description>
+    </item>
+    <item>
+      <title>open() 打开文件</title>
+      <link>/python/11_built-in_function/45_open/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/45_open/</guid>
+      <description>内置函数 open()，Python 官方文档描述如下：
+help(open) Help on built-in function open in module io:open(file, mode=&#39;r&#39;, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)Open file and return a stream. Raise OSError upon failure.file is either a text or byte string giving the name (and the pathif the file isn&#39;t in the current working directory) of the file tobe opened or an integer file descriptor of the file to bewrapped. (If a file descriptor is given, it is closed when thereturned I/O object is closed, unless closefd is set to False.</description>
+    </item>
+    <item>
+      <title>ord() 返回单个字符 Unicode 码位值</title>
+      <link>/python/11_built-in_function/46_ord/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/46_ord/</guid>
+      <description>内置函数 ord()，Python 官方文档描述如下：
+help(ord) Help on built-in function ord in module builtins:ord(c, /)Return the Unicode code point for a one-character string.返回单个字符 Unicode 码点的整数。这是 chr() 的逆函数。
+ord(&amp;#39;a&amp;#39;) 97chr(97) &#39;a&#39;</description>
+    </item>
+    <item>
+      <title>pow() 幂运算并取余</title>
+      <link>/python/11_built-in_function/47_pow/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/47_pow/</guid>
+      <description>内置函数 pow()，Python 官方文档描述如下：
+help(pow) Help on built-in function pow in module builtins:pow(base, exp, mod=None)Equivalent to base**exp with 2 arguments or base**exp % mod with 3 argumentsSome types, such as ints, are able to use a more efficient algorithm wheninvoked using the three argument form.返回 base 的 exp 次幂；如果 mod 存在，则返回 base 的 exp 次幂对 mod 取余（比 pow(base, exp) % mod 更高效）。
+对于混用的操作数类型，则将应用双目算术运算符的类型强制转换规则。 对于 int 操作数，结果具有与操作数相同的类型（强制转换后），除非第二个参数为负值；在这种情况下，所有参数将被转换为浮点数并输出浮点数结果。</description>
+    </item>
+    <item>
+      <title>print()</title>
+      <link>/python/11_built-in_function/48_print/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/48_print/</guid>
+      <description>内置函数 print()，Python 官方文档描述如下：
+help(print) Help on built-in function print in module builtins:print(...)print(value, ..., sep=&#39; &#39;, end=&#39;\n&#39;, file=sys.stdout, flush=False)Prints the values to a stream, or to sys.stdout by default.Optional keyword arguments:file: a file-like object (stream); defaults to the current sys.stdout.sep: string inserted between values, default a space.end: string appended after the last value, default a newline.flush: whether to forcibly flush the stream.将 value &amp;hellip; 打印到 file 指定的文本流，以 sep 分隔并在末尾加上 end。sep, end, file 和 flush 如果存在，它们必须以关键字参数的形式给出。</description>
+    </item>
+    <item>
+      <title>property 返回 property 属性</title>
+      <link>/python/11_built-in_function/49_property/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/49_property/</guid>
+      <description>内置函数（类）property，Python 官方文档描述如下：
+help(property) Help on class property in module builtins:class property(object)| property(fget=None, fset=None, fdel=None, doc=None)| | Property attribute.| | fget| function to be used for getting an attribute value| fset| function to be used for setting an attribute value| fdel| function to be used for del&#39;ing an attribute| doc| docstring| | Typical use is to define a managed attribute x:| | class C(object):| def getx(self): return self.</description>
+    </item>
+    <item>
+      <title>range 创建 range 序列</title>
+      <link>/python/11_built-in_function/50_range/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/50_range/</guid>
+      <description>内置函数（类）range，Python 官方文档描述如下：
+help(range) Help on class range in module builtins:class range(object)| range(stop) -&amp;gt; range object| range(start, stop[, step]) -&amp;gt; range object| | Return an object that produces a sequence of integers from start (inclusive)| to stop (exclusive) by step. range(i, j) produces i, i+1, i+2, ..., j-1.| start defaults to 0, and stop is omitted! range(4) produces 0, 1, 2, 3.| These are exactly the valid indices for a list of 4 elements.</description>
+    </item>
+    <item>
+      <title>repr() 返回对象的可打印字符串</title>
+      <link>/python/11_built-in_function/51_repr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/51_repr/</guid>
+      <description>内置函数 repr()，Python 官方文档描述如下：
+help(repr) Help on built-in function repr in module builtins:repr(obj, /)Return the canonical string representation of the object.For many object types, including most builtins, eval(repr(obj)) == obj.返回包含一个对象的可打印表示形式的字符串。
+对于许多类型来说，该函数会尝试返回的字符串将会与该对象被传递给 eval() 时所生成的对象具有相同的值，在其他情况下表示形式会是一个括在尖括号中的字符串，其中包含对象类型的名称与通常包括对象名称和地址的附加信息。
+repr(1+1) &#39;2&#39;repr(int) &amp;quot;&amp;lt;class &#39;int&#39;&amp;gt;&amp;quot;str(&amp;#39;python\n&amp;#39;) &#39;python\n&#39;repr(&amp;#39;python\n&amp;#39;) &amp;quot;&#39;python\\n&#39;&amp;quot;</description>
+    </item>
+    <item>
+      <title>reversed 序列逆置</title>
+      <link>/python/11_built-in_function/52_reversed/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/52_reversed/</guid>
+      <description>内置函数（类）reversed，Python 官方文档描述如下：
+help(reversed) Help on class reversed in module builtins:class reversed(object)| reversed(sequence, /)| | Return a reverse iterator over the values of the given sequence.| | Methods defined here:| | __getattribute__(self, name, /)| Return getattr(self, name).| | __iter__(self, /)| Implement iter(self).| | __length_hint__(...)| Private method returning an estimate of len(list(it)).| | __next__(self, /)| Implement next(self).| | __reduce__(...)| Return state information for pickling.</description>
+    </item>
+    <item>
+      <title>round() 数字舍入</title>
+      <link>/python/11_built-in_function/53_round/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/53_round/</guid>
+      <description>内置函数 round()，Python 官方文档描述如下：
+help(round) Help on built-in function round in module builtins:round(number, ndigits=None)Round a number to a given precision in decimal digits.The return value is an integer if ndigits is omitted or None. Otherwisethe return value has the same type as the number. ndigits may be negative.返回 number 舍入到小数点后 ndigits 位精度的值。如果 ndigits 被省略或为 None，则返回最接近输入值的整数。
+对于支持 round() 的内置类型，值会被舍入到最接近的 10 的负 ndigits 次幂的倍数；如果与两个倍数的距离相等，则选择偶数。
+任何整数值都可作为有效的 ndigits (正数、零或负数)。如果 ndigits 被省略或为 None 则返回值将为整数。否则返回值与 number 的类型相同。</description>
+    </item>
+    <item>
+      <title>set 创建集合</title>
+      <link>/python/11_built-in_function/54_set/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/54_set/</guid>
+      <description>内置函数（类）set，Python 官方文档描述如下：
+help(set) Help on class set in module builtins:class set(object)| set() -&amp;gt; new empty set object| set(iterable) -&amp;gt; new set object| | Build an unordered collection of unique elements.| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.| | __contains__(...)| x.__contains__(y) &amp;lt;==&amp;gt; y in x.| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.</description>
+    </item>
+    <item>
+      <title>setattr() 设置或新增属性</title>
+      <link>/python/11_built-in_function/55_setattr/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/55_setattr/</guid>
+      <description>内置函数 setattr()，Python 官方文档描述如下：
+help(setattr) Help on built-in function setattr in module builtins:setattr(obj, name, value, /)Sets the named attribute on the given object to the specified value.setattr(x, &#39;y&#39;, v) is equivalent to ``x.y = v&#39;&#39;参数为一个对象、一个字符串和一个任意值。字符串指定一个现有属性或者新增属性。函数会将值赋给该属性，只要对象允许这种操作。
+class A: y = 1 x = A() x.y 1# 为实例 x 新增属性 setattr(x, &amp;#39;y&amp;#39;, 10) x.y 10A.y 1# 修改类 A 的 y 属性 setattr(A, &amp;#39;y&amp;#39;, 100) A.y 100x.</description>
+    </item>
+    <item>
+      <title>slice 创建切片对象</title>
+      <link>/python/11_built-in_function/56_slice/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/56_slice/</guid>
+      <description>内置函数（类）slice，Python 官方文档描述如下：
+help(slice) Help on class slice in module builtins:class slice(object)| slice(stop)| slice(start, stop[, step])| | Create a slice object. This is used for extended slicing (e.g. a[0:10:2]).| | Methods defined here:| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.| | __getattribute__(self, name, /)| Return getattr(self, name).| | __gt__(self, value, /)| Return self&amp;gt;value.| | __le__(self, value, /)| Return self&amp;lt;=value.</description>
+    </item>
+    <item>
+      <title>sorted() 返回排序列表</title>
+      <link>/python/11_built-in_function/57_sorted/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/57_sorted/</guid>
+      <description>内置函数 sorted()，Python 官方文档描述如下：
+help(sorted) Help on built-in function sorted in module builtins:sorted(iterable, /, *, key=None, reverse=False)Return a new list containing all items from the iterable in ascending order.A custom key function can be supplied to customize the sort order, and thereverse flag can be set to request the result in descending order.根据 iterable 中的项返回一个新的已排序列表。
+具有两个可选参数，它们都必须指定为关键字参数。
+key 指定带有单个参数的函数，应用于 iterable 中的每个元素，将计算结果用来对原 iterable 排序。默认值为 None (直接比较)。
+reverse 为一个布尔值。如果设为 True，则每个列表元素将按反向顺序比较进行排序。</description>
+    </item>
+    <item>
+      <title>staticmethod 封装函数为静态方法</title>
+      <link>/python/11_built-in_function/58_staticmethod/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/58_staticmethod/</guid>
+      <description>内置函数（类）staticmethod，Python 官方文档描述如下：
+help(staticmethod) Help on class staticmethod in module builtins:class staticmethod(object)| staticmethod(function) -&amp;gt; method| | Convert a function to be a static method.| | A static method does not receive an implicit first argument.| To declare a static method, use this idiom:| | class C:| @staticmethod| def f(arg1, arg2, ...):| ...| | It can be called either on the class (e.</description>
+    </item>
+    <item>
+      <title>str 创建字符串</title>
+      <link>/python/11_built-in_function/59_str/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/59_str/</guid>
+      <description>内置函数（类）str，Python 官方文档描述如下：
+help(str) Help on class str in module builtins:class str(object)| str(object=&#39;&#39;) -&amp;gt; str| str(bytes_or_buffer[, encoding[, errors]]) -&amp;gt; str| | Create a new string object from the given object. If encoding or| errors is specified, then the object must expose a data buffer| that will be decoded using the given encoding and error handler.| Otherwise, returns the result of object.__str__() (if defined)| or repr(object).</description>
+    </item>
+    <item>
+      <title>sum() 数字求和或序列拼接</title>
+      <link>/python/11_built-in_function/60_sum/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/60_sum/</guid>
+      <description>内置函数 sum()，Python 官方文档描述如下：
+help(sum) Help on built-in function sum in module builtins:sum(iterable, start=0, /)Return the sum of a &#39;start&#39; value (default: 0) plus an iterable of numbersWhen the iterable is empty, return the start value.This function is intended specifically for use with numeric values and mayreject non-numeric types.通常对一个以数字为元素的可迭代对象求和并返回和。如果指定 start 参数，和需要加上 start。
+start 不能为字符串，拼接字符串 sum() 不支持，更好更快的方式是 str.join() 方法。
+sum() 还支持其他序列（列表和元组）。
+sum([1,2,3]) 6sum(range(4), 10) 16sum([(1,2),(3,4)], (5,)) (5, 1, 2, 3, 4)sum([[1,2],[3]],[0]) [0, 1, 2, 3]</description>
+    </item>
+    <item>
+      <title>super 调用委托给父类或兄弟类</title>
+      <link>/python/11_built-in_function/61_super/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/61_super/</guid>
+      <description>内置函数（类）super，Python 官方文档描述如下：
+help(super) Help on class super in module builtins:class super(object)| super() -&amp;gt; same as super(__class__, &amp;lt;first argument&amp;gt;)| super(type) -&amp;gt; unbound super object| super(type, obj) -&amp;gt; bound super object; requires isinstance(obj, type)| super(type, type2) -&amp;gt; bound super object; requires issubclass(type2, type)| Typical use to call a cooperative superclass method:| class C(B):| def meth(self, arg):| super().meth(arg)| This works for class methods too:| class C(B):| @classmethod| def cmeth(cls, arg):| super().</description>
+    </item>
+    <item>
+      <title>tuple 创建元组</title>
+      <link>/python/11_built-in_function/62_tuple/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/62_tuple/</guid>
+      <description>内置函数（类）tuple，Python 官方文档描述如下：
+help(tuple) Help on class tuple in module builtins:class tuple(object)| tuple(iterable=(), /)| | Built-in immutable sequence.| | If no argument is given, the constructor returns an empty tuple.| If iterable is specified the tuple is initialized from iterable&#39;s items.| | If the argument is a tuple, the return value is the same object.| | Methods defined here:| | __add__(self, value, /)| Return self+value.</description>
+    </item>
+    <item>
+      <title>type 判断类型或创建类</title>
+      <link>/python/11_built-in_function/63_type/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/63_type/</guid>
+      <description>内置函数（类）type，Python 官方文档描述如下：
+help(type) Help on class type in module builtins:class type(object)| type(object_or_name, bases, dict)| type(object) -&amp;gt; the object&#39;s type| type(name, bases, dict) -&amp;gt; a new type| | Methods defined here:| | __call__(self, /, *args, **kwargs)| Call self as a function.| | __delattr__(self, name, /)| Implement delattr(self, name).| | __dir__(self, /)| Specialized __dir__ implementation for types.| | __getattribute__(self, name, /)| Return getattr(self, name).</description>
+    </item>
+    <item>
+      <title>vars() 返回对象的变量字典</title>
+      <link>/python/11_built-in_function/64_vars/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/64_vars/</guid>
+      <description>内置函数 vars()，Python 官方文档描述如下：
+help(vars) Help on built-in function vars in module builtins:vars(...)vars([object]) -&amp;gt; dictionaryWithout arguments, equivalent to locals().With an argument, equivalent to object.__dict__.返回模块、类、实例或任何其它具有 __dict__ 属性的对象的 __dict__ 属性。
+模块和实例这样的对象具有可更新的 __dict__ 属性；但是，其它对象的 __dict__ 属性可能会设为限制写入（例如，类会使用types.MappingProxyType 来防止直接更新字典）。
+不带参数时，vars() 的行为类似 locals()。请注意，locals 字典仅对于读取起作用，因为对 locals 字典的更新会被忽略。
+如果指定了一个对象但它没有 __dict__ 属性则会引发TypeError 异常。
+vars() {&#39;__name__&#39;: &#39;__main__&#39;,&#39;__doc__&#39;: &#39;Automatically created module for IPython interactive environment&#39;,&#39;__package__&#39;: None,&#39;__loader__&#39;: None,&#39;__spec__&#39;: None,&#39;__builtin__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;__builtins__&#39;: &amp;lt;module &#39;builtins&#39; (built-in)&amp;gt;,&#39;_ih&#39;: [&#39;&#39;, &amp;quot;get_ipython().</description>
+    </item>
+    <item>
+      <title>zip 重组可迭代对象</title>
+      <link>/python/11_built-in_function/65_zip/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/11_built-in_function/65_zip/</guid>
+      <description>内置函数（类）zip，Python 官方文档描述如下：
+help(zip) Help on class zip in module builtins:class zip(object)| zip(iter1 [,iter2 [...]]) --&amp;gt; zip object| | Return a zip object whose .__next__() method returns a tuple where| the i-th element comes from the i-th iterable argument. The .__next__()| method continues until the shortest iterable in the argument sequence| is exhausted and then it raises StopIteration.| | Methods defined here:| | __getattribute__(self, name, /)| Return getattr(self, name).</description>
+    </item>
+  </channel>
+</rss>

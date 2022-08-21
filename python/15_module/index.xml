@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>模块概述 on jupyter.fun</title>
+    <link>/python/15_module/</link>
+    <description>Recent content in 模块概述 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/15_module/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>创建模块</title>
+      <link>/python/15_module/02_create_module/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/15_module/02_create_module/</guid>
+      <description>创建一个模块非常简单，有两种方式：
+创建一个 .py 文件，即可创建一个模块；
+创建一个文件夹，则该文件夹也是一个模块（包）。
+模块中可以无任何内容。但模块是用来组织代码，实现处理各类问题或完成各种功能的，这更便于应用或开发。例如正则模块 re，科学计算库 pandas 等。
+创建一个文件夹，如果文件夹中包含一个 __init__.py 模块，则该文件夹是一个常规包；否则是一个命名空间包。包中还可以再创建子包或子模块。
+__init__.py 文件中可以无任何内容，但因为当一个常规包被导入时，这个 __init__.py 文件会隐式地被执行，所以通常用来写入一些导入包即可执行的代码，或导入子包，或导入子包中模块的属性等，从而可以直接调用某些属性，例如 pandas 包的文档描述属性 __doc__ 和 DataFrame 数据结构。
+import folder # 创建的空文件夹 folder &amp;lt;module &#39;folder&#39; (namespace)&amp;gt;import pandas as pd print(pd.__doc__) pandas - a powerful data analysis and manipulation library for Python=====================================================================**pandas** is a Python package providing fast, flexible, and expressive datastructures designed to make working with &amp;quot;relational&amp;quot; or &amp;quot;labeled&amp;quot; data botheasy and intuitive.</description>
+    </item>
+    <item>
+      <title>可执行文件</title>
+      <link>/python/15_module/04_executable_file/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/15_module/04_executable_file/</guid>
+      <description>每一个 .py 文件模块，都是 Python 的可执行文件。文件内容可以为空，但执行什么也不发生。
+你可以在某些编辑工具里打开文件执行，也可以在命令行使用 python 文件路径 或 python -m 模块 的方式执行。这些方式都是主模块中直接执行文件。
+主模块（你正在运行代码的当前模块）的 __name__ 属性总是 &#39;__main__&#39; （__main__ 是一个在解释器启动时直接初始化的特殊模块），因此直接执行文件，if __name__ == &#39;__main__&#39;: 语句下的代码一定会被执行，而如果导入到其他模块则不会。
+__name__ &#39;__main__&#39;下面举例说明：
+当前文件路径下，有一个 myfile 的包，包里有 space.py 和 mycode.py 模块，内容如下：
+# space.py 为空 # mycode.py 的内容, 在此源码直接执行 _a = &amp;#39;自学&amp;#39; def __f(): print(_a) msg1 = &amp;#39;我是mycode模块中的代码&amp;#39; print(msg1) if __name__ == &amp;#39;__main__&amp;#39;: msg2 = &amp;#39;我是导入其他模块不会执行的代码&amp;#39; print(msg2) 我是mycode模块中的代码我是导入其他模块不会执行的代码# 导入不会执行 __name__ == &amp;#39;__main__&amp;#39; 下面的代码 from myfile import mycode print(mycode.</description>
+    </item>
+    <item>
+      <title>导入操作</title>
+      <link>/python/15_module/05_import_code/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/15_module/05_import_code/</guid>
+      <description>导入操作使用 import 语句，详细的语法规则查看 import 导入语句。
+import ... 只能导入模块： import random as r, pandas.core as pc r, pc (&amp;lt;module &#39;random&#39; from &#39;F:\\anaconda\\lib\\random.py&#39;&amp;gt;,&amp;lt;module &#39;pandas.core&#39; from &#39;F:\\anaconda\\lib\\site-packages\\pandas\\core\\__init__.py&#39;&amp;gt;)# 导入方法报错 import random.randint ---------------------------------------------------------------------------ModuleNotFoundError Traceback (most recent call last)&amp;lt;ipython-input-2-8d4ecd1fe339&amp;gt; in &amp;lt;module&amp;gt;1 # 导入方法报错----&amp;gt; 2 import random.randintModuleNotFoundError: No module named &#39;random.randint&#39;; &#39;random&#39; is not a packagefrom ... import ... 从模块中导入子模块，类，函数等： from pandas import core core &amp;lt;module &#39;pandas.core&#39; from &#39;F:\\anaconda\\lib\\site-packages\\pandas\\core\\__init__.py&#39;&amp;gt;from pandas import DataFrame as df df pandas.</description>
+    </item>
+  </channel>
+</rss>

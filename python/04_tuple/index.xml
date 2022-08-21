@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>元组概述 on jupyter.fun</title>
+    <link>/python/04_tuple/</link>
+    <description>Recent content in 元组概述 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/04_tuple/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tuple.count 统计元素出现次数</title>
+      <link>/python/04_tuple/02_tuple.count/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/04_tuple/02_tuple.count/</guid>
+      <description>元组方法 tuple.count()，Python 官方文档描述如下：
+help(tuple.count) Help on method_descriptor:count(self, value, /)Return number of occurrences of value.返回值为 value 的元素在元组中的出现次数。
+(1,2,1,3).count(1) 2(1,2,1,3).count(4) 0</description>
+    </item>
+    <item>
+      <title>tuple.index 查找元素索引</title>
+      <link>/python/04_tuple/03_tuple.index/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/04_tuple/03_tuple.index/</guid>
+      <description>元组方法 tuple.index()，Python 官方文档描述如下：
+help(tuple.index) Help on method_descriptor:index(self, value, start=0, stop=9223372036854775807, /)Return first index of value.Raises ValueError if the value is not present.返回列表中第一个值为 value 的元素从零开始的索引。如果没有这样的元素将会抛出 ValueError 异常。
+可选参数 start 和 stop 是切片符号，用于将搜索限制为元组的特定子序列。返回的是相对于整个序列开始计算的索引，而不是相对于 start 参数。
+(1,2,3,4,1).index(1) 0(1,2,3,4,1).index(1,1) 4(1,2,3,4,1).index(1,1,3) ---------------------------------------------------------------------------ValueError Traceback (most recent call last)&amp;lt;ipython-input-4-c6a812394eea&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 (1,2,3,4,1).index(1,1,3)ValueError: tuple.index(x): x not in tuple</description>
+    </item>
+    <item>
+      <title>元组操作符</title>
+      <link>/python/04_tuple/04_operator/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/04_tuple/04_operator/</guid>
+      <description>元组可以使用 + 拼接，拼接后按原来的顺序排列：
+(4,5,6) + (1,2,3) (4, 5, 6, 1, 2, 3)1,2,3 + 4,5,6 (1, 2, 7, 5, 6)+ 操作符可以与 = 连用，拼接同时赋值，元组是不可变的，该操作是创建了一个新元组：
+a = 1,2,3 print(id(a)) a += 4,5,6 id(a), a 2741588191344(2741587773864, (1, 2, 3, 4, 5, 6))元组还可使用 * 进行 n 次重复拼接：
+(1,)*3 (1, 1, 1)当 n 小于 1 时，得到空元组：
+(1,2,3)*0 ()元组中的元素如果是可变对象，* 重复拼接后，可变对象的性质同 列表操作符 知识点一样，仍然是同一个对象的多次引用：
+a = ([],) b = a*3 # 在元组 a 的第一个元素中加入 1 a[0].</description>
+    </item>
+  </channel>
+</rss>

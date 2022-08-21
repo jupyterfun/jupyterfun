@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作符概述 on jupyter.fun</title>
+    <link>/python/09_operator/</link>
+    <description>Recent content in 操作符概述 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/09_operator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>比较运算符</title>
+      <link>/python/09_operator/02_compare/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/09_operator/02_compare/</guid>
+      <description>比较运算符有 &amp;lt;，&amp;gt;，&amp;lt;=，&amp;gt;=，==，!=，in，not in，is，is not。
+运算符 &amp;lt;，&amp;gt;，&amp;gt;=，&amp;lt;=，== 和 != 比较两个对象的值，&amp;lt;，&amp;gt;，&amp;gt;= 和 &amp;lt;= 称为次序比较；== 和 != 称为一致性比较。
+由于所有类型都是 object 的（直接或间接）子类型，它们都从 object 继承了默认的比较行为，一致性比较是默认的比较行为，因此可在任何对象之间进行。
+False == 0 != &amp;#39;a&amp;#39; != int != {} True对象的值在 Python 中是一个相当抽象的概念：
+对象的值并没有一个规范的访问方法； 对象的值并不要求具有特定的构建方式，例如由其全部数据属性组成等； 比较运算符实现了一个特定的对象的值概念，可以认为正是通过实现对象比较，间接地定义了对象的值。 主要内置类型的比较行为：
+1，数字类型内部可跨类型比较，按数学（算法）规则正确进行比较且不会有精度损失。但复数不支持次序比较。
+True == 1 == 1.0 True3.14 &amp;lt; 3 False0 &amp;gt;= 0j ---------------------------------------------------------------------------TypeError Traceback (most recent call last)&amp;lt;ipython-input-6-df80cad0b1a4&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 0 &amp;gt;= 0jTypeError: &#39;&amp;gt;=&#39; not supported between instances of &#39;int&#39; and &#39;complex&#39;2，字符串使用其字符的 Unicode 码位数字值依次进行比较，某个字符比较出大小即停止。如果一个字符串包含另一个，较短的排前面。</description>
+    </item>
+    <item>
+      <title>操作符优先级</title>
+      <link>/python/09_operator/03_precedence/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/09_operator/03_precedence/</guid>
+      <description>Python 表达式语句中操作符的优先顺序从最低优先级（最后绑定）到最高优先级（最先绑定）如下：
+:= 赋值表达式 lambda lambda 表达式 if -- else 条件表达式 or 布尔逻辑或 OR and 布尔逻辑与 AND not x 布尔逻辑非 NOT in, not in, is, is not, &amp;lt;, &amp;lt;=, &amp;gt;, &amp;gt;=, !=, == 比较运算 | 按位或 OR ^ 按位异或 XOR &amp;amp; 按位与 AND &amp;lt;&amp;lt;, &amp;gt;&amp;gt; 移位 +, - 加和减 *, /, //, % 乘，矩阵乘，除，整除，取余 +x, -x, ~x 正，负，按位非 NOT ** 乘方（右边的先绑定） await x await 表达式 x[index], x[index:index], x(arguments...), x.attribute 抽取，切片，调用，属性引用 (expressions.</description>
+    </item>
+    <item>
+      <title>操作符特殊用法</title>
+      <link>/python/09_operator/04_special/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/09_operator/04_special/</guid>
+      <description>容器类的内置类型，通常对操作符定义了自己特有的的操作行为。
+* 操作符，除了数字运算的 乘，还可以用来将可迭代对象拆包。拆包之后置于元组，列表，集合中，或作为参数传递给函数： {*{&amp;#39;a&amp;#39;:1, &amp;#39;b&amp;#39;:2}} {&#39;a&#39;, &#39;b&#39;}print(*&amp;#39;abc&amp;#39;, sep=&amp;#39;-&amp;#39;) a-b-c+，+=，*，*= 可用来对序列类型进行拼接，重复拼接或拼接并赋值（range 类型除外）。由于列表是可变对象，+= 和 *= 在操作列表时，是用来更新列表。具体详见 列表操作符。 &amp;#39;d-&amp;#39; + &amp;#39;abc&amp;#39;*2 &#39;d-abcabc&#39;a = [1]*2 a += [2] a [1, 1, 2]操作符 **，| 和 |= 可以用来操作字典。具体详见 字典操作符。
+操作符 &amp;gt;，&amp;lt;，&amp;gt;=，&amp;lt;= 可对集合进行子集或超集比较；|，&amp;amp;，-，^ 可求集合的并集，交集，差集，对称差集；|=，&amp;amp;=，-=，^= 可用来更新集合。具体详见集合知识点。
+操作符 % 可以用来格式化字符串，而在格式化迷你语言中，定义了非常多的有特殊意义操作符。具体详见 str.format 格式化 和 字符串操作符。</description>
+    </item>
+  </channel>
+</rss>

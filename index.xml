@@ -6,5 +6,81 @@
     <description>Recent content in 主页 on jupyter.fun</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 语法基础知识详解和查询手册</title>
+      <link>/python/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/</guid>
+      <description>Python 是面向对象的语言，既然是 “找对象”，关键点就是要分清对象，不可将 王大妈 认作 李小妹。
+初学 Python 时，头脑很混乱，入门之后，慢慢摸到了门道，其实就四个字：“找对对象”。
+Python 的基本对象有数字，字符串，列表，函数，类等，在熟悉基本语法、语句的基础上，只要准确把握各种对象的概念，边界，属性，操作等，对象拿来就可以用。也很容易就创建对象。
+例如整数对象 1，2，3，4……，它们是属于 整数类对象（int）的实例，就像 小王，小张，小李……，他们都是属于 人类对象。
+整数有自己的属性，有加、减、乘、除、位运算等操作，那它与浮点数，布尔值，复数等有什么区别？可以定义自己的 整数类 吗？小王，小张，小李…… 他们是男是女，各有什么本事？可以将他们中能力非常强的定义一个 “超人” 类。
+分清对象，找对对象，Python 就是你最好的对象。“人生苦短，我用 Python”，是程序猿们对 Python 易学易用的夸赞，我觉得它还是对任何非程序猿的劝导：花点时间学会 Python，你真的能发现你想象不到的，编程带来的便捷高效，尤其是深度使用电脑办公、生活者，节约时间，就是节约生命，就是珍惜苦短的人生。
+Python 不需要你造轮子，已经有非常多的真程序猿大神们创建了各种各样的 跑车，高铁，火箭……，你只要会找对象，拿来就会开。
+这个手册是为你找对对象打基础的。也可以随时查阅。但是强烈建议多查阅 官方文档。
+安装 Anaconda，将正文末尾的 jupyter附件 下载到本地，启动 jupyter，直接运行更棒。</description>
+    </item>
+    <item>
+      <title>通俗易懂 Python 正则表达式</title>
+      <link>/regex/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/regex/</guid>
+      <description>官方文档
+正则表达式, 也叫规则表达式, 是强大的文本字符串处理工具, 通常用来验证, 查找, 筛选, 提取, 替换那些符合某个规则的文本字符串，是实现文本高效处理的神器
+1, 匹配规则 正则表达式的核心就是设计一个规则, 按照这个规则”按图索骥”, 去寻找符合这个规则的字符串, 并将它按需处理
+先以一个最简单的例子进行探索:
+re: 正则表达式模块
+findall: 模块的一个方法, 传入 正则表达式 和 要去匹配字符串 将匹配结果以列表形式返回, 没有匹配结果返回空列表
+\d: 定义的规则, 表示匹配任意一个 0~9 的数字
+198\d年: 匹配符合 198某年 的字符串
+然后按照规则去匹配字符串: &#39;1988年 2000年 2020年 1980年&#39;
+# 导入模块 re import re # 按规则 r&amp;#39;198\d年&amp;#39; 匹配, r 的作用在 python 基础部分已介绍 re.findall(r&amp;#39;198\d年&amp;#39;, &amp;#39;1988年 2000年 2020年 1980年&amp;#39;) [&#39;1988年&#39;, &#39;1980年&#39;] \d 是其中一个规则定义符, 可以和其他字符组合成正则表达式, 它自身也是一个正则表达式
+d 则是字母 d 本身，像 \d 这样的特殊规则定义符有许多，如 .</description>
+    </item>
+    <item>
+      <title>Numpy 基础快速了解和查询</title>
+      <link>/numpy/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/numpy/</guid>
+      <description>官方文档
+numpy 是 python 的强大科学计算库, 它让 python 处理数据, 进行科学计算变得极其便捷, 高效
+一, N 维数组 ndarray 对象 1, ndaraay 介绍 ndarray 是具有相同类型和大小的项目的多维容器, 它的数据存储效率和输入输出性能远远优于 python 中等价的数据结构
+1.01, 理解 ndarray 创建 ndarray: np.array(), np.ndarray(), 下面只介绍 3 维以下数组, 理解它们的结构
+import numpy as np # 一维 a = np.array((2,3)) # 二维，2 行 3 列 b = np.ndarray((2,3)) a array([2, 3]) b array([[0., 0., 0.], [0., 0., 0.]]) a.dtype, b.dtype # 类型 (dtype(&#39;int32&#39;), dtype(&#39;float64&#39;)) c = np.array((1,&amp;#39;2&amp;#39;)) c array([&#39;1&#39;, &#39;2&#39;], dtype=&#39;&amp;lt;U11&#39;) type(c), type(c[0]) (numpy.</description>
+    </item>
+    <item>
+      <title>Pandas 基础快速了解和查询</title>
+      <link>/pandas/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/pandas/</guid>
+      <description>官方文档
+Pandas 是 Python 的核心数据分析支持库, 基于 NumPy 创建, 它使 python 成为强大而高效的数据分析环境
+一, 数据结构 pandas 的数据结构是基于 numpy 的, 因此其有着 numpy 的基因, 许多操作和大部分函数与 numpy 类似
+pandas 的数据结构其实是 numpy 数组数据对象 array 的容器, 在 pandas 中有了索引结构, 可以利用索引来取 array 或 array 中的元素
+pandas 中最重要的数据结构是 Series 和 DataFrame
+1, 创建 Series 和 DataFrame 创建时若不指定索引, 将自动生成(从 0 开始)
+Series 是一维, 只有行索引, 而 DataFrame 有行和列索引
+创建方式灵活多变, 可以查看参数, 根据要求传参进行创建
+import numpy as np import pandas as pd s = pd.</description>
+    </item>
+    <item>
+      <title>Matpotlib 快速入门</title>
+      <link>/matplotlib/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/matplotlib/</guid>
+      <description>matpotlib官网
+1, 以一个例子开始 matpotlib 绘图非常灵活, 方法和参数繁多, 同样的效果, 可以有很多实现方法, 因此常常让人很混乱和困惑, 理解了绘图的层级结构, 使用起来更得心应手:
+下面将其分四个层级来作说明: 画布 Figure, 绘图对象 Axes, 坐标和图像, 以及图像调整和辅助描述
+# 导入库 import matplotlib.pyplot as plt &amp;#39;&amp;#39;&amp;#39; 设置 rc 参数: 可以用来修改图形的各种默认属性 包括窗体大小, 线条宽度, 颜色, 符号, 字体等等 &amp;#39;&amp;#39;&amp;#39; plt.rcParams[&amp;#39;font.family&amp;#39;] = &amp;#39;Microsoft YaHei&amp;#39; # 字体 plt.rcParams[&amp;#39;font.size&amp;#39;] = 18 # 全体字体大小 plt.rcParams[&amp;#39;legend.fontsize&amp;#39;] = 12 # 图例标签字体大小 plt.rcParams[&amp;#39;axes.unicode_minus&amp;#39;] = False # 正常显示符号 # 创建画布对象 Figure, 可以设置大小等 fig = plt.figure() # 用 add_subplot()在画布上面创建绘图对象 Axes, 默认创建一个 # 也可以用 subplots() 直接将 Figure 和 Axes 一起创建 ax = fig.</description>
+    </item>
+    <item>
+      <title>数理统计、机器学习入门</title>
+      <link>/statistics/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/statistics/</guid>
+      <description>目录和附件
+描述统计 推断统计 线性回归 逻辑回归 分类模型评估 KNN 算法 朴素贝叶斯 决策树 K-Means 算法 jupyter附件 statistics1.ipynb (50 KB) statistics2.ipynb (47 KB) statistics3.ipynb (36 KB) statistics4.ipynb (70 KB) statistics5.ipynb (40 KB) statistics6.ipynb (11 KB) statistics7.ipynb (22 KB) statistics8.ipynb (94 KB) statistics9.ipynb (439 KB) </description>
+    </item>
   </channel>
 </rss>

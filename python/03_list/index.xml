@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>列表 on jupyter.fun</title>
+    <link>/python/03_list/</link>
+    <description>Recent content in 列表 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/03_list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>列表推导式</title>
+      <link>/python/03_list/02_list_comprehension/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/02_list_comprehension/</guid>
+      <description>列表推导式提供了一个更简单的创建列表的方法。常见的用法是把某种操作应用于序列或可迭代对象的每个元素上，然后使用其结果来创建列表，或者通过满足某些特定条件元素来创建子序列。
+对比下列两种创建数值平方列表的方式：
+squares = [] for x in range(5): squares.append(x**2) print(squares) print(x) # 产生了一个变量 x [0, 1, 4, 9, 16]4squares = [y**2 for y in range(5)] print(squares) print(y) # 没有多余变量 y [0, 1, 4, 9, 16]---------------------------------------------------------------------------NameError Traceback (most recent call last)&amp;lt;ipython-input-3-c81791cbad54&amp;gt; in &amp;lt;module&amp;gt;1 squares = [y**2 for y in range(5)]2 print(squares)----&amp;gt; 3 print(y) #NameError: name &#39;y&#39; is not defined我们发现，列表推导式简洁漂亮、易读，不会产生多余的变量而可能带来副作用。
+列表推导式示例:</description>
+    </item>
+    <item>
+      <title>列表的索引和切片</title>
+      <link>/python/03_list/03_list_indexes_and_slices/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/03_list_indexes_and_slices/</guid>
+      <description>列表是序列类型中的可变类型，它的索引和切片操作，和通用的序列操作比较，有许多不一样的地方，主要体现在利用索引和切片对列表元素进行增、删、改。
+索引和切片是序列类型通用操作，详细的规则和用法，见序列索引和切片。
+列表可以利用索引替换某一个元素：
+_list = [1,2,3] _list[1] = 0 _list [1, 0, 3]利用切片将切片中的元素替换为可迭代对象中的元素：
+_list = [1,2,3] _list[1:3] = &amp;#39;123&amp;#39; _list [1, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;]# 该替换,切片长度和可迭代对象长度必须相等 _list = [1,2,3,4,5] _list[1:5:2] = &amp;#39;24&amp;#39; _list [1, &#39;2&#39;, 3, &#39;4&#39;, 5]需要注意，替换并没有改变原来的列表对象：
+list_1 = [1,2,3] print(id(list_1),list_1) list_1[2] = 0 print(id(list_1),list_1) list_1[:] = range(5) print(id(list_1),list_1) list_1[::2] = (&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;) print(id(list_1),list_1) 2065281773704 [1, 2, 3]2065281773704 [1, 2, 0]2065281773704 [0, 1, 2, 3, 4]2065281773704 [&#39;a&#39;, 1, &#39;b&#39;, 3, &#39;c&#39;]可以利用切片在列表中任意位置插入数据片段：</description>
+    </item>
+    <item>
+      <title>list.clear 删除所有元素</title>
+      <link>/python/03_list/15_list.clear/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/15_list.clear/</guid>
+      <description>列表方法 list.clear()，Python 官方文档描述如下：
+help(list.clear) Help on method_descriptor:clear(self, /)Remove all items from list.删除列表中所有的元素。相当于 del a[:]（a 是列表）。
+_list = [1,2,3] _list.clear() _list []del a[:] 是删除列表 a 中的所有元素，和 a 的浅拷贝无关：
+a = [1,2,3] b = a[:] del a[:] a, b ([], [1, 2, 3])该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [1,2,3] a = _list.clear() print(a) None</description>
+    </item>
+    <item>
+      <title>列表操作符</title>
+      <link>/python/03_list/04_list_operator/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/04_list_operator/</guid>
+      <description>列表可以使用 比较运算符，但比较运算符对数据通用，单独用一个知识点讲解。该知识点介绍有列表自己特性的操作符 + 和 *。
+操作符 + 操作符 +，可以让两个列表元素顺序不变地合并到一个新的列表中：
+list_1 = [1,2] list_2 = [3,4] list_1 + list_2, list_2 + list_1 ([1, 2, 3, 4], [3, 4, 1, 2])操作符 + 还可以与赋值操作符 = 连用，将一个列表中的元素，加到另一个列表中（相当于 list.extend()），而不创建一个新列表：
+list_1 = [1,2] list_2 = [3,4] print(id(list_1)) list_1 += list_2 id(list_1), list_1 2893532728008(2893532728008, [1, 2, 3, 4])操作符 * 操作符 *，可以将列表中的元素重复 n 次，得到一个新列表：
+list_1 = [1,2] list_2 = list_1*2 print(id(list_1),id(list_2)) list_2 2893532600136 2893532727432[1, 2, 1, 2]**注意：**如果列表中有可变对象，重复 n 次后，可变对象是同一个对象的多次引用，改变一个，都会跟着改变。</description>
+    </item>
+    <item>
+      <title>list.append 添加一个元素</title>
+      <link>/python/03_list/05_list.append/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/05_list.append/</guid>
+      <description>列表方法 list.append()，Python 官方文档描述如下：
+help(list.append) Help on method_descriptor:append(self, object, /)Append object to the end of the list.在列表的末尾添加一个元素。相当于 a[len(a):] = [x]（a 是一个列表）。添加的元素可以是任何对象。
+_list = [1,2] _list.append(&amp;#39;abc&amp;#39;) _list.append(list.append) _list [1, 2, &#39;abc&#39;, &amp;lt;method &#39;append&#39; of &#39;list&#39; objects&amp;gt;]该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [] a = _list.append(&amp;#39;&amp;#39;) print(a) None</description>
+    </item>
+    <item>
+      <title>list.extend 加入可迭代对象中元素</title>
+      <link>/python/03_list/06_list.extend/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/06_list.extend/</guid>
+      <description>列表方法 list.extend()，Python 官方文档描述如下：
+help(list.extend) Help on method_descriptor:extend(self, iterable, /)Extend list by appending elements from the iterable.使用可迭代对象中的所有元素来扩展列表。相当于 a[len(a):] = iterable（a 是一个列表）。
+_list = [1,2] _list.extend(&amp;#39;abc&amp;#39;) _list [1, 2, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]_list.extend(range(2)) _list [1, 2, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 0, 1]该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [1,2] a = _list.extend(&amp;#39;abc&amp;#39;) print(a) None</description>
+    </item>
+    <item>
+      <title>list.insert 插入一个元素</title>
+      <link>/python/03_list/07_list.insert/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/07_list.insert/</guid>
+      <description>列表方法 list.insert()，Python 官方文档描述如下：
+help(list.insert) Help on method_descriptor:insert(self, index, object, /)Insert object before index.在给定的位置插入一个元素。第一个参数是要插入的元素的索引，所以 a.insert(0, x) 插入列表头部，a.insert(len(a), x) 等同于 a.append(x)（a 是一个列表）。
+_list = [1,2,3] _list.insert(0,0) _list [0, 1, 2, 3]_list.insert(len(_list),[4]) _list [0, 1, 2, 3, [4]]该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [1,2,3] a = _list.insert(0,0) print(a) None</description>
+    </item>
+    <item>
+      <title>list.sort 对列表原地排序</title>
+      <link>/python/03_list/08_list.sort/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/08_list.sort/</guid>
+      <description>列表方法 list.sort()，Python 官方文档描述如下：
+help(list.sort) Help on method_descriptor:sort(self, /, *, key=None, reverse=False)Sort the list in ascending order and return None.The sort is in-place (i.e. the list itself is modified) and stable (i.e. theorder of two equal elements is maintained).If a key function is given, apply it once to each list item and sort them,ascending or descending, according to their function values.The reverse flag can be set to sort in descending order.</description>
+    </item>
+    <item>
+      <title>list.reverse 反转列表中元素</title>
+      <link>/python/03_list/09_list.reverse/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/09_list.reverse/</guid>
+      <description>列表方法 list.reverse()，Python 官方文档描述如下：
+help(list.reverse) Help on method_descriptor:reverse(self, /)Reverse *IN PLACE*.反转列表中的元素。
+_list = [1,2,3] _list.reverse() _list [3, 2, 1]该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [1,2,3] a = _list.reverse() print(a) None</description>
+    </item>
+    <item>
+      <title>list.pop 删除元素并返回</title>
+      <link>/python/03_list/10_list.pop/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/10_list.pop/</guid>
+      <description>列表方法 list.pop()，Python 官方文档描述如下：
+help(list.pop) Help on method_descriptor:pop(self, index=-1, /)Remove and return item at index (default last).Raises IndexError if list is empty or index is out of range.删除列表中给定位置的元素并返回它。如果没有给定位置，list.pop() 将会删除并返回列表中的最后一个元素。给定位置超出范围，抛出 IndexError 错误。
+_list = [1,2,3,4] _list.pop() 4_list [1, 2, 3]_list.pop(0) 1_list [2, 3]_list.pop(5) ---------------------------------------------------------------------------IndexError Traceback (most recent call last)&amp;lt;ipython-input-4-efa5a84417c8&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 _list.pop(5)IndexError: pop index out of range</description>
+    </item>
+    <item>
+      <title>list.remove 移除一个元素</title>
+      <link>/python/03_list/11_list.remove/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/11_list.remove/</guid>
+      <description>列表方法 list.remove()，Python 官方文档描述如下：
+help(list.remove) Help on method_descriptor:remove(self, value, /)Remove first occurrence of value.Raises ValueError if the value is not present.移除列表中第一个值为 value 的元素。如果没有这样的元素，则抛出 ValueError 异常。
+_list = [1,3,2,3] _list.remove(3) _list [1, 2, 3]_list.remove(4) ---------------------------------------------------------------------------ValueError Traceback (most recent call last)&amp;lt;ipython-input-3-5747ddae04fe&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 _list.remove(4)ValueError: list.remove(x): x not in list该方法是一个过程 (过程就是不返回有意义结果的函数；在 Python 中，过程的返回值为 None), 直接对原列表进行修改：
+_list = [1,3,2,3] a = _list.remove(3) print(a) None</description>
+    </item>
+    <item>
+      <title>list.count 统计元素出现次数</title>
+      <link>/python/03_list/12_list.count/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/12_list.count/</guid>
+      <description>列表方法 list.count()，Python 官方文档描述如下：
+help(list.count) Help on method_descriptor:count(self, value, /)Return number of occurrences of value.返回元素 value 在列表中出现的次数，没有出现为 0。
+_list = [1,2,3,1] _list.count(1), _list.count([1]) (2, 0)</description>
+    </item>
+    <item>
+      <title>list.index 查找最小索引</title>
+      <link>/python/03_list/13_list.index/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/13_list.index/</guid>
+      <description>列表方法 list.index()，Python 官方文档描述如下：
+help(list.index) Help on method_descriptor:index(self, value, start=0, stop=9223372036854775807, /)Return first index of value.Raises ValueError if the value is not present.返回列表中第一个值为 value 的元素从零开始的索引。如果没有这样的元素将会抛出 ValueError 异常。
+可选参数 start 和 stop 是切片符号，用于将搜索限制为列表的特定子序列。返回的是相对于整个序列开始计算的索引，而不是相对于 start 参数。
+_list = [1,2,3,4,3] _list.index(3) 2_list.index(3,1,4) 2_list.index(3,4,10) 4_list.index(3,5,10) ---------------------------------------------------------------------------ValueError Traceback (most recent call last)&amp;lt;ipython-input-6-3e258cbffc85&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 _list.index(3,5,10)ValueError: 3 is not in list</description>
+    </item>
+    <item>
+      <title>list.copy 列表的一个浅拷贝</title>
+      <link>/python/03_list/14_list.copy/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/03_list/14_list.copy/</guid>
+      <description>列表方法 list.copy()，Python 官方文档描述如下：
+help(list.copy) Help on method_descriptor:copy(self, /)Return a shallow copy of the list.返回列表的一个浅拷贝。相当于 a[:]（a 是一个列表）。浅拷贝得到新的列表，列表中有可变对象时，浅拷贝中的可变对象元素，是原列表中同一个对象的多次引用。
+list_1 = [[1],2,3] list_2 = list_1.copy() print(list_2) id(list_1),id(list_2) [[1], 2, 3](2622792783240, 2622792782728)# 同一个对象 id(list_1[0]), id(list_2[0]) (2622792782792, 2622792782792)改变其中一个都会跟着改变：
+list_1[0][:] = &amp;#39;abc&amp;#39; list_1, list_2 ([[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 2, 3], [[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 2, 3])</description>
+    </item>
+  </channel>
+</rss>

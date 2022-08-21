@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生成器表达式和推导式 on jupyter.fun</title>
+    <link>/python/08_other_types/</link>
+    <description>Recent content in 生成器表达式和推导式 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/08_other_types/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>空值 None</title>
+      <link>/python/08_other_types/01_none/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/08_other_types/01_none/</guid>
+      <description>空值 None，此对象会由没有显式地设置返回值的函数返回。None 是个内置名称，空对象求值，什么也不会发生。
+None help(None) Help on NoneType object:class NoneType(object)| Methods defined here:| | __bool__(self, /)| self != 0| | __repr__(self, /)| Return repr(self).| | ----------------------------------------------------------------------| Static methods defined here:| | __new__(*args, **kwargs) from builtins.type| Create and return a new object. See help(type) for accurate signature.# 没有返回值的列表方法 a = [].append(1) a # 将 a 打印出来，将打印内置名称 None print(a) None</description>
+    </item>
+    <item>
+      <title>其他内置类型</title>
+      <link>/python/08_other_types/03_other_types/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/08_other_types/03_other_types/</guid>
+      <description>内置类型除了数字类型，布尔类型，序列类型，集合类型，映射类型，迭代器类型，解释器支持的还有一些其他种类的对象。这些对象大都仅支持一两种操作。
+模块 模块唯一的特殊操作是属性访问: m.name，这里 m 为一个模块而 name 为定义在 m 的符号表中的一个属性的名称。模块属性可以被赋值。import 语句严格来说也是对模块对象的一种操作。关于模块有详细的知识点介绍。
+type(math) moduleimport math math.pi 3.141592653589793函数 函数对象是通过函数定义创建的。对函数对象的唯一操作是调用它: func(argument-list)。
+实际上存在两种不同的函数对象：内置函数和用户自定义函数。两者支持同样的操作（调用函数），但实现方式不同，因此对象类型也不同。关于函数有详细的知识点介绍。
+print(&amp;#39;abc&amp;#39;) # 调用函数 abctype(print) builtin_function_or_methoddef f():pass # 自定义函数 type(f) function方法 方法是在类中定义，使用属性表示法来调用的函数。关于方法有详细的知识点介绍。
+type(list.append) method_descriptortype([].append) builtin_function_or_method代码对象 代码对象可由内置的 compile() 函数返回，也可通过从函数对象的 __code__ 属性从中提取。
+可将代码对象（而非源码字符串）传给 exec() 或 eval() 内置函数来执行或求值。
+def f(): print(&amp;#39;代码对象&amp;#39;) code = f.__code__ type(code) codeexec(code) 代码对象类型对象 类型对象表示各种对象类型。对象的类型可通过内置函数 type() 来获取。类型没有特殊的操作。标准库模块 types 定义了所有标准内置类型的名称。
+type(int), type(list) (type, type)type(1), type([]) (int, list)</description>
+    </item>
+  </channel>
+</rss>

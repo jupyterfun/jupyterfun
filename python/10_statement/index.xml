@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>表达式语句 on jupyter.fun</title>
+    <link>/python/10_statement/</link>
+    <description>Recent content in 表达式语句 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/10_statement/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>赋值语句</title>
+      <link>/python/10_statement/02_assignment/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/02_assignment/</guid>
+      <description>赋值语句用于将名称绑定或重新绑定到特定值，以及修改属性或可变对象的成员项。
+赋值语句使用赋值操作符和增强赋值操作符。详见 操作符概述。
+# 将值 1 绑定到变量 a a = 1 print(&amp;#39;a =&amp;#39;, a) # 变量 a 重新绑定值 &amp;#39;a&amp;#39; a = &amp;#39;a&amp;#39; print(&amp;#39;a =&amp;#39;, a) a = 1a = a同时进行多个值多个名称绑定，值和名称数量要相等：
+# 一个名称时，右边为元组 a = 1,2,3,4 a (1, 2, 3, 4)# 多个名称 a,b,c,d = 1,[2,3],4,5 f&amp;#39;a={a},b={b},c={c},d={d}&amp;#39; &#39;a=1,b=[2, 3],c=4,d=5&#39;# 可迭代对象拆包，则需要更多名称 a,b,c,d,e = 1,*[2,3],4,5 f&amp;#39;a={a},b={b},c={c},d={d},e={e}&amp;#39; &#39;a=1,b=2,c=3,d=4,e=5&#39;赋值一般左右两边一一对应 “同时” 赋值，但赋值给变量的多项集时可能不一样（例如列表的某一项）：
+x = [0,1] i = 0 i, x[i] = 1, 2 f&amp;#39;x={x},i={i}&amp;#39; &#39;x=[0, 2],i=1&#39;修改属性或可变对象的成员项：</description>
+    </item>
+    <item>
+      <title>if</title>
+      <link>/python/10_statement/03_if/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/03_if/</guid>
+      <description>if 语句用于有条件的执行。语法如下：
+if assignment_expression:suiteelif assignment_expression: # 可选子句suite... # 可以多个 elifelse: #可选子句suite 对于简单语句，可以写为一行，但不推荐。
+它通过对表达式逐个求值直至找到一个真值。然后执行该 if 语句或子句体下的代码，从而 if 语句的其他部分不会被执行或求值。
+如果所有表达式均为假值，else 子句体如果存在就会被执行。
+for i in range(5): if i % 2 == 0:print(i) 024for i in range(5): if i % 2 == 0: print(i) 024i,j = 0,1 if i &amp;lt; 0: print(i) # 不执行 elif i == 0: print(i) # 执行，下面的则不再执行 elif j == 1: print(j) else: print(i,j) 0i,j = 0,1 if i &amp;lt; 0: print(i) # 不执行 elif i == 1: print(i) # 不执行 elif j == 0: print(j) # 不执行 else: print(i,j) # 执行 0 1多个 if 语句连用，则分别判断，互不影响：</description>
+    </item>
+    <item>
+      <title>for</title>
+      <link>/python/10_statement/04_for/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/04_for/</guid>
+      <description>for 语句用于对可迭代对象中的元素进行迭代。语法如下：
+for target_list in expression_list:suiteelse: # 可选子句suite 对于简单语句可以写为一行，但不推荐。
+表达式 expression_list 被求值一次，它应该产生一个可迭代对象。系统将为 expression_list 的结果创建一个迭代器，然后每一项会按标准赋值规则（详见见 赋值语句）被依次赋值给 target_list，每赋值一次执行一次语句下的代码。
+当所有项被耗尽时，else 子句如果存在将会被执行，并终止循环。
+for i in range(3):print(i) 012for i in zip(&amp;#39;123&amp;#39;,&amp;#39;abc&amp;#39;): print(i) (&#39;1&#39;, &#39;a&#39;)(&#39;2&#39;, &#39;b&#39;)(&#39;3&#39;, &#39;c&#39;)for i,j in zip(&amp;#39;123&amp;#39;,&amp;#39;abc&amp;#39;): print(f&amp;#39;{i}-&amp;gt;{j}&amp;#39;) else: print(&amp;#39;end&amp;#39;) 1-&amp;gt;a2-&amp;gt;b3-&amp;gt;cendfor 循环会对 target_list 中的变量进行赋值。这将覆盖之前对这些变量的所有赋值，包括在 for 循环体中的赋值。
+变量在循环结束时不会被删除，但如果序列为空，则它们根本不会被循环所赋值。
+i = &amp;#39;a&amp;#39; for i in range(3): print(i) print(i) 0122for i in range(0): print(i) print(i) 2</description>
+    </item>
+    <item>
+      <title>while</title>
+      <link>/python/10_statement/05_while/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/05_while/</guid>
+      <description>while 语句用于在表达式保持为真的情况下重复地执行。语法如下：
+while assignment_expression:suiteelse: # 可选子句suite 对于简单语句可以写为一行，但不推荐。
+这将重复地检验表达式，如果其值为真就执行其下的代码；表达式值为假则如果 else 子句存在就会被执行并终止循环。
+i = 0 while i &amp;lt; 3: print(i); i += 1 012i = 0 while i &amp;lt; 3: print(i) i += 1 else: # i 为 3 时执行 print(f&amp;#39;i={i}&amp;#39;) print(&amp;#39;end&amp;#39;) 012i=3end</description>
+    </item>
+    <item>
+      <title>break</title>
+      <link>/python/10_statement/06_break/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/06_break/</guid>
+      <description>break 在语法上只会出现于 for 或 while 循环所嵌套的代码。
+它会终结最近的外层循环，如果循环有可选的 else 子句，也会跳过该子句。
+如果一个 for 循环被 break 所终结，该循环的控制变量会保持其当前值。
+当 break 将控制流传出一个带有 finally 子句的 try 语句时，该 finally 子句会先被执行然后再真正离开该循环。
+for i in range(6): for j in range(6): if i**2 == j: print(f&amp;#39;i={i},j={j}&amp;#39;) print(f&amp;#39;i={i},j={j}&amp;#39;) i=0,j=0i=1,j=1i=2,j=4i=5,j=5for i in range(6): for j in range(6): if i**2 == j: print(f&amp;#39;i={i},j={j}&amp;#39;) break print(f&amp;#39;i={i},j={j}&amp;#39;) i=0,j=0i=5,j=0for i in range(6): for j in range(6): if i**2 == j: print(f&amp;#39;i={i},j={j}&amp;#39;) break # 控制内层循环 else: # 不会执行 print(f&amp;#39;i={i},j={j}&amp;#39;) i=0,j=0for i in range(6): for j in range(6): if i**2 == j: print(f&amp;#39;i={i},j={j}&amp;#39;) break else: # 属于外层循环，会执行 print(f&amp;#39;i={i},j={j}&amp;#39;) i=0,j=0i=5,j=0for i in range(5): try: print(f&amp;#39;3/i={3/i}&amp;#39;) except ZeroDivisionError as e: print(e) finally: print(f&amp;#39;i={i}&amp;#39;) division by zeroi=03/i=3.</description>
+    </item>
+    <item>
+      <title>continue</title>
+      <link>/python/10_statement/07_continue/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/07_continue/</guid>
+      <description>continue 在语法上只会出现于 for 或 while 循环所嵌套的代码中。
+它会继续执行最近的外层循环的下一个轮次，或者在没有下一轮次时转往 else 子句执行。
+当 continue 将控制流传出一个带有 finally 子句的 try 语句时，该 finally 子句会先被执行然后再真正开始循环的下一个轮次。
+for i in range(3): for j in range(3): if j == 1: print(f&amp;#39;i={i},j={j}&amp;#39;) continue i=0,j=1i=1,j=1i=2,j=1for i in range(3): for j in range(3): if j == 2: print(f&amp;#39;i={i},j={j}&amp;#39;) continue else: # 属于内层循环，每次内层循环结束都执行 print(&amp;#39;end&amp;#39;) i=0,j=2endi=1,j=2endi=2,j=2endfor i in range(3): for j in range(3): if j == 2: print(f&amp;#39;i={i},j={j}&amp;#39;) continue else: # 属于外层循环，外层循环结束才执行 print(&amp;#39;end&amp;#39;) i=0,j=2i=1,j=2i=2,j=2end# 引发异常直接跳过 continue # 无异常则继续执行完 finally 才继续下一次循环 for i in range(3): try: print(f&amp;#39;3/i={3/i}&amp;#39;) continue except ZeroDivisionError as e: print(e) finally: print(f&amp;#39;i={i}&amp;#39;) print(i) # 无异常时被跳过 else: print(&amp;#39;end&amp;#39;) division by zeroi=003/i=3.</description>
+    </item>
+    <item>
+      <title>del</title>
+      <link>/python/10_statement/08_del/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/08_del/</guid>
+      <description>del 语句用来删除名称的绑定，删除对象的属性引用 或 删除可抽取、切片的可变容器的元素。
+删除名称绑定：
+# 将值 (1,2) 绑定到名称 a, b, c a = b = c = (1,2) # 删除名称 b, c del b,c a (1, 2)b # 名称 b 已被删除 ---------------------------------------------------------------------------NameError Traceback (most recent call last)&amp;lt;ipython-input-27-9185c0ba25e7&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 b # 名称 b 已被删除NameError: name &#39;b&#39; is not definedclass A: x = y = 1 A.x, A.y (1, 1)del A.y print(A.x) A.</description>
+    </item>
+    <item>
+      <title>pass</title>
+      <link>/python/10_statement/09_pass/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/09_pass/</guid>
+      <description>pass 是一个空操作 —— 当它被执行时，什么都不发生。
+它适合当语法上需要一条语句但并不需要执行任何代码时用来临时占位，例如:
+pass # 什么也不做的函数 def f():pass # 没有任何自定义属性的类 class A:pass </description>
+    </item>
+    <item>
+      <title>def</title>
+      <link>/python/10_statement/10_def/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/10_def/</guid>
+      <description>def 语句是定义函数的语句。语法如下：
+@assignment_expressiondef funcname(parameter_list) -&amp;gt; expression:suite 其中的装饰器 @assignment_expression，形参 parameter_list 和标注 -&amp;gt; expression 是可选项。
+函数定义是一条可执行语句。它执行时会将函数名称 funcname 绑定到一个函数对象（函数可执行代码的包装器）。
+例如，用必选项定义一个什么也不做的函数如下：
+def f(): pass f &amp;lt;function __main__.f()&amp;gt;一个函数定义可以被一个或多个装饰器表达式所包装。
+装饰器必须是可调用对象，它会以该函数对象作为唯一参数被发起调用。
+其返回值将被绑定到函数名称。多个装饰器会以嵌套方式被应用。
+@str @type def f():pass f &amp;quot;&amp;lt;class &#39;function&#39;&amp;gt;&amp;quot;大致相当于：
+def f():pass f = str(type(f)) f &amp;quot;&amp;lt;class &#39;function&#39;&amp;gt;&amp;quot;函数形参 parameter_list 详见 函数形参。
+函数标注 -&amp;gt; expression 可以是任何表达式，标注对提高代码的可读性非常有用，看标注而不需要看代码上下文就大概知道代码的使用。例如：
+# 标注函数的参数和返回值类型 def f(arg:int) -&amp;gt; list: return list(str(arg)) f(123) [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]</description>
+    </item>
+    <item>
+      <title>return</title>
+      <link>/python/10_statement/11_return/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/11_return/</guid>
+      <description>return 在语法上只会出现于函数定义所嵌套的代码，不会出现于类定义所嵌套的代码。
+如果提供了表达式，它将被求值，否则以 None 替代（类似省略 return 语句结果）。
+return 会离开当前函数调用，并以表达式的值 (或 None) 作为返回值。
+当 return 将控制流传出一个带有 finally 子句的 try 语句时，该 finally 子句会先被执行然后再真正离开该函数。
+def f2(): x =1 print(f2()) Nonedef f1(): x = 1 return print(f1()) None# return 结束函数调用 def f(x): return x**2 print(&amp;#39;end&amp;#39;) # retrun 结束函数调用，不会被执行 f(2) 4# finally 总是被执行再结束函数调用 def f(x): try: return 3/x except ZeroDivisionError as e: print(e) finally: return x, x**2 f(0),f(2) division by zero((0, 0), (2, 4))</description>
+    </item>
+    <item>
+      <title>yield</title>
+      <link>/python/10_statement/12_yield/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/12_yield/</guid>
+      <description>yield 语句，仅在定义 生成器函数 时使用，并且仅被用于生成器函数的函数体内部。语法如下：
+yield from expression from 和表达式 expression 是可选的，没有表达式默认是 None。
+yield 语句整体也是一个可被求值的表达式语句，初始值也是默认 None，可通过 send 方法设置 yield 表达式的值。
+在函数定义中使用 yield 使得该定义创建的是生成器函数而非普通函数。当一个生成器函数被调用的时候，它返回一个生成器迭代器。
+yield from 相当于将一个可迭代对象 “拆包”，然后逐项被生成器迭代时使用。
+# 创建一个简单的生成器函数 def f(): yield print(f) # 调用它获得一个生成器 print(f()) # next() 函数迭代生成器获取表达式的值 print(next(f())) &amp;lt;function f at 0x00000157028A9598&amp;gt;&amp;lt;generator object f at 0x000001570286CB88&amp;gt;None# 获取并设置 yield 语句的值 def f(n): x = yield n print(x) g = f(1) print(next(g)) # 迭代结束，打印出 yield 语句 x 的初始值为 None print(next(g,&amp;#39;end&amp;#39;)) 1Noneend# 可通过 send 方法设置当前 yield 表达式的值 # 并返回生成器产生的下一个值 def f(n): x = yield n print(f&amp;#39;yield 表达式的值为:{x}&amp;#39;) n += 1 yield n g = f(0) next(g), g.</description>
+    </item>
+    <item>
+      <title>class 语句</title>
+      <link>/python/10_statement/13_class/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/13_class/</guid>
+      <description>class 语句用来定义类，语法如下：
+@assignment_expressionclass classname(argument_list):suite 其中的装饰器 @assignment_expression，基类参数及圆括号 (argument_list) 是可选项。
+类定义是一条可执行语句。它执行时会将类名称 classname 绑定到一个新建的类对象。
+没有继承基类参数 argument_list 的类默认继承自基类 object。下列是一个必选参数定义的类，默认继承自 object:
+# 创建一个类名为 A 的类 class A: pass A.__bases__ # 查看基类 (object,)# 创建一个类 B 继承自 int 和 A class B(int, A): pass B.__bases__ (int, __main__.A)类也可以被装饰，就像装饰函数一样，装饰器表达式的求值规则与函数装饰器相同（详见 def 定义函数）。结果随后会被绑定到类名称。
+@str @type class C: pass C &amp;quot;&amp;lt;class &#39;type&#39;&amp;gt;&amp;quot;大致相当于：
+class C: pass C = str(type(C)) C &amp;quot;&amp;lt;class &#39;type&#39;&amp;gt;&amp;quot;</description>
+    </item>
+    <item>
+      <title>try</title>
+      <link>/python/10_statement/14_try/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/14_try/</guid>
+      <description>try 语句可为一组语句指定异常处理器和/或清理代码。语法结构有两种如下。
+有 try 和 except 子句（可多个），以及可选的 else 和 finally 子句： try:suiteexcept expression as identifier:suiteelse: # 可选suitefinally: # 可选suite 只有 try 和 finally 子句： try:suitefinally:suite except 子句之后的表达式（通常为异常）expression，关键字 as 以及指定的别名 identifier 都是可选的。
+当 try 子句中没有发生异常时，没有异常处理器会被执行。当 try 子句中发生异常时，将启动对异常处理器的搜索。此搜索会依次检查 except 子句，直至找到与该异常相匹配的子句。
+except 子句可指定一个或多个异常，如果与发生的异常 “兼容” 则该子句将匹配该异常。
+指定的异常如果是发生的异常所属的类或基类，则该子句将匹配该异常； 指定的异常可以置于一个元组，其中包含有与发生的异常 “兼容” 的异常，该子句将匹配该异常。 当一个异常完全未被处理时，解释器会终止程序的执行。
+for i in range(3): try: print(3/i) except (ZeroDivisionError, AssertionError) as e: print(e) division by zero3.</description>
+    </item>
+    <item>
+      <title>raise</title>
+      <link>/python/10_statement/15_raise/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/15_raise/</guid>
+      <description>raise 语句用来引发异常。语法如下：
+raise expression from expression 如果不带表达式，raise 会重新引发当前作用域内最后一个激活的异常。如果当前作用域内没有激活的异常，将会引发 RuntimeError 来提示错误。
+raise ---------------------------------------------------------------------------RuntimeError Traceback (most recent call last)&amp;lt;ipython-input-1-9c9a2cba73bf&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 raiseRuntimeError: No active exception to reraiseraise 会将第一个表达式求值为异常对象。它必须为 BaseException 的子类或实例。如果它是一个类，当需要时会通过不带参数地实例化该类来获得异常的实例。
+type(ZeroDivisionError) typeraise ZeroDivisionError # 无提示信息 ---------------------------------------------------------------------------ZeroDivisionError Traceback (most recent call last)&amp;lt;ipython-input-2-798b08d1683c&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 raise ZeroDivisionError # 无提示信息ZeroDivisionError: raise ZeroDivisionError(&amp;#39;分母不能为 0&amp;#39;) # 自定义提示信息 ---------------------------------------------------------------------------ZeroDivisionError Traceback (most recent call last)&amp;lt;ipython-input-17-950b4accf1f2&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 raise ZeroDivisionError(&#39;分母不能为 0&#39;) # 自定义提示信息ZeroDivisionError: 分母不能为 0from 子句用于异常串连：如果有该子句，则第二个表达式必须为另一个异常类或实例，它将被关联到所引发的异常:</description>
+    </item>
+    <item>
+      <title>with</title>
+      <link>/python/10_statement/16_with/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/16_with/</guid>
+      <description>with 语句用于包装代码块的执行，代码块带有使用上下文管理器定义的函数或方法。语法如下：
+with expression as target, expression as target, ...:suite 带有一个表达式 expression 的 with 语句的执行过程如下:
+对上下文表达式求值以获得一个上下文管理器。 载入上下文管理器的 __enter__() 以便后续使用。 载入上下文管理器的 __exit__() 以便后续使用。 发起调用上下文管理器的 __enter__() 方法。 如果 with 语句中包含目标 target，来自 __enter__() 的返回值将被赋值给它。 执行语句体。 发起调用上下文管理器的 __exit__() 方法。 with 语句会保证如果 __enter__() 方法返回时未发生错误，则 __exit__() 将总是被调用。因此，如果在对目标赋值期间发生错误，则会将其视为在语句体内部发生的错误。
+如果语句体的退出是由异常导致的，则其类型、值和回溯信息将被作为参数传递给 __exit__()。否则的话，将提供三个 None 参数（相当于无异常地退出）。
+如果语句体的退出是由异常导致的，并且来自 __exit__() 方法的返回值为真，则该异常会被抑制，并会继续执行 with 语句之后的语句。如果返回值为假，则该异常会被重新引发（__exit__() 方法不应该重新引发被传入的异常，这是调用者的责任）。
+如果语句体由于异常以外的任何原因退出，则来自 __exit__() 的返回值会被忽略，并会在该类退出正常的发生位置继续执行。
+以下代码:
+with EXPRESSION as TARGET:SUITE 在语义上等价于:
+manager = (EXPRESSION)enter = type(manager).__enter__exit = type(manager).</description>
+    </item>
+    <item>
+      <title>assert</title>
+      <link>/python/10_statement/17_assert/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/17_assert/</guid>
+      <description>assert 语句是在程序中插入调试性断言的简便方式。在表达式条件为 False 的时候触发异常。
+简单形式为：assert expression。
+assert 1 + 1 == 2 assert 1 + 1 != 2 ---------------------------------------------------------------------------AssertionError Traceback (most recent call last)&amp;lt;ipython-input-2-5cd89e6dd50b&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 assert 1 + 1 != 2AssertionError: 扩展形式为：assert expression1, expression2。expression2 通常是提示信息。
+assert 1 + 1 != 2, &amp;#39;计算错误&amp;#39; ---------------------------------------------------------------------------AssertionError Traceback (most recent call last)&amp;lt;ipython-input-7-3b85a53ff241&amp;gt; in &amp;lt;module&amp;gt;----&amp;gt; 1 assert 1 + 1 != 2, &#39;计算错误&#39;AssertionError: 计算错误for i in range(5): try: assert i % 2 == 0, f&amp;#39;{i}是奇数&amp;#39; print(i) except AssertionError as a: print(a) 01是奇数23是奇数4</description>
+    </item>
+    <item>
+      <title>import</title>
+      <link>/python/10_statement/18_import/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/18_import/</guid>
+      <description>import 语句用于从模块中导入子模块，类，函数等。语法大致有三种：
+# 第一种import module as name, module as name, ...# 第二种# import 之后可以置于一个元组from module import identifier as name, identifier as name, ...# 第三种from module import * 模块 module 可以是高层级到低层级用属性表示法引用的模块，例如 pandas.core.series。
+as 及其后的别名 name 是可选的。
+语句可以导入单个或多个对象，用逗号分隔实际是多个子句。
+第一种导入方法，如果成功获取到模块，则可以通过以下方式之一在 import 语句所在命名空间中使用它：
+如果被导入模块是最高层级模块，模块名被绑定； 如果导入的模块不是最高层级的模块，则该模块的最高层级模块名被绑定，该模块必须使用完整限定名访问； 如果有 as，则 as 之后的别名被绑定，模块名不绑定。 如果没有指定模块，引发 ModuleNotFoundError。
+import pandas pandas &amp;lt;module &#39;pandas&#39; from &#39;F:\\anaconda\\lib\\site-packages\\pandas\\__init__.py&#39;&amp;gt;del pandas import pandas.core.series pandas, pandas.core, pandas.core.series (&amp;lt;module &#39;pandas&#39; from &#39;F:\\anaconda\\lib\\site-packages\\pandas\\__init__.</description>
+    </item>
+    <item>
+      <title>global</title>
+      <link>/python/10_statement/19_global/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/19_global/</guid>
+      <description>global 语句作用于整个当前代码块，它后面所列出的标识符将被解读为全局变量。
+在 global 语句中列出的名称不得在同一代码块内该 global 语句之前的位置中使用。
+当前的实现虽然并未强制要求，但在 global 语句中列出的名称不得被定义为正式形参，不也得出现于 for 循环的控制目标、class 定义、函数定义、import 语句 或 变量标注之中。
+举例如下：
+def f(): a = 0 f() # 调用函数，对 a 赋值 a # a 是局部变量，不可访问 ---------------------------------------------------------------------------NameError Traceback (most recent call last)&amp;lt;ipython-input-5-251a24e05273&amp;gt; in &amp;lt;module&amp;gt;3 4 f() # 调用函数，对 a 赋值----&amp;gt; 5 a # a 是局部变量，不可访问NameError: name &#39;a&#39; is not defineddef f(): global a # 将 a 声明为全局变量 a = 0 f() # 调用函数，对 a 赋值 print(a) # a 已经是全局变量 del a 0def f(): a = 1 # 同一代码块中，不可在 global 前使用 global a # 将 a 声明为全局变量 a = 0 File &amp;quot;&amp;lt;ipython-input-9-51bc7826eb42&amp;gt;&amp;quot;, line 3global a # 将 a 声明为全局变量^SyntaxError: name &#39;a&#39; is assigned to before global declarationa = 1 # 与 global 不在一个代码块 def f(): global a, b # 将 a, b 声明为全局变量 a = 0 # a 被重新赋值 b = 1 f() # 调用函数，对 b 赋值，对 a 重新赋值 print(a,b) del a,b 0 1</description>
+    </item>
+    <item>
+      <title>nonlocal</title>
+      <link>/python/10_statement/20_nonlocal/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/10_statement/20_nonlocal/</guid>
+      <description>nonlocal 语句会使得所列出的名称指向在它之前已经存在的，和它最近并且在包含它的作用域中绑定，除全局变量以外的变量。
+这种功能很重要，因为绑定的默认行为是先搜索局部命名空间。这个语句允许被封装的代码重新绑定局部作用域以外且非全局（模块）作用域当中的变量。
+举例如下：
+a = &amp;#39;全局&amp;#39; def f(): a = &amp;#39;f&amp;#39; # f 中已经存在的 a, 包含 f2 def f1(): a = &amp;#39;f1&amp;#39; # f1 中的局部变量 def f2(): nonlocal a # 和他最近且包含的是 &amp;#39;f&amp;#39; a = &amp;#39;f2&amp;#39; def f3(): global a a = &amp;#39;f3&amp;#39; # 调用 f1 不改变 a = &amp;#39;f&amp;#39; f1() print(a) # 调用 f2, nonlocal 将 a = &amp;#39;f&amp;#39; 重新绑定为 a = &amp;#39;f2&amp;#39; f2() print(a) # 调用 f3, global 将 a 声明为全局变量， # 并将 a = &amp;#39;全局&amp;#39; 重新绑定为 a = &amp;#39;f3&amp;#39; # 但在 f 这个局部中，a 仍然是 &amp;#39;f2&amp;#39; f3() print(a) f() # 调用 f 使绑定都生效 print(a) ff2f2f3# 不存在不可以绑定 def f(): nonlocal a a = 1 f() File &amp;quot;&amp;lt;ipython-input-3-3706e217f701&amp;gt;&amp;quot;, line 2nonlocal a^SyntaxError: no binding for nonlocal &#39;a&#39; found# 不是包含它的作用域，不可以绑定 def f(): def f1(): a = 0 f1() nonlocal a a = 1 f() File &amp;quot;&amp;lt;ipython-input-4-a036260d029b&amp;gt;&amp;quot;, line 5nonlocal a^SyntaxError: no binding for nonlocal &#39;a&#39; found# 全局变量，不可以绑定 a = 0 def f(): nonlocal a a = 1 f() File &amp;quot;&amp;lt;ipython-input-5-87297c0b0eeb&amp;gt;&amp;quot;, line 4nonlocal a^SyntaxError: no binding for nonlocal &#39;a&#39; found</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.101.0">
+    <meta name="generator" content="Relearn 5.2.1+tip">
+    <meta name="description" content="">
+    <meta name="author" content="吴明文">
+    <title>Numpy 基础快速了解和查询 - jupyter.fun</title>
+    <link href="/numpy/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun">
+    <link href="/numpy/index.print.html" rel="alternate" type="text/html" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661054440" rel="stylesheet">
+    <link href="/css/nucleus.css?1661054440" rel="stylesheet">
+    <link href="/css/fonts.css?1661054440" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054440" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661054440" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661054440" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661054440" rel="stylesheet">
+    <link href="/css/variant.css?1661054440" rel="stylesheet">
+    <link href="/css/print.css?1661054440" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1661054440"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'blue' ] );
+    </script>
+    <script src="/js/jquery.min.js?1661054440" defer></script>
+  </head>
+  <body class="mobile-support html" data-url="/numpy/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-print-link">
+            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/numpy/index.print.html">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='本章节目录 (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/"><span itemprop="name">主页</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/numpy/" aria-disabled="true"><span itemprop="name">Numpy 基础快速了解和查询</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#一-n-维数组-ndarray-对象">一, N 维数组 ndarray 对象</a>
+      <ul>
+        <li><a href="#1-ndaraay-介绍">1, ndaraay 介绍</a></li>
+        <li><a href="#2-ndarray-的属性">2, ndarray 的属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#二-ndarray-对象的切片操作">二, ndarray 对象的切片操作</a>
+      <ul>
+        <li><a href="#1-切片取值">1, 切片取值</a></li>
+        <li><a href="#2-利用切片修改值">2, 利用切片修改值</a></li>
+      </ul>
+    </li>
+    <li><a href="#三-ndarray-对象的运算及其方法">三, ndarray 对象的运算及其方法</a>
+      <ul>
+        <li><a href="#1-ndarray-的运算">1, ndarray 的运算</a></li>
+        <li><a href="#2-常用-ndarray-对象的方法">2, 常用 ndarray 对象的方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#四-创建或生成-ndarray-对象">四, 创建或生成 ndarray 对象</a>
+      <ul>
+        <li><a href="#1-生成随机数">1, 生成随机数</a></li>
+        <li><a href="#2-创建数组">2, 创建数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#五-常用的通函数及-api">五, 常用的通函数及 API</a>
+      <ul>
+        <li><a href="#1-修改数组形状">1, 修改数组形状</a></li>
+        <li><a href="#2-组合数组">2, 组合数组</a></li>
+        <li><a href="#3-拆分数组">3, 拆分数组</a></li>
+        <li><a href="#4-添加-删除元素">4, 添加, 删除元素</a></li>
+        <li><a href="#5-重新排列元素">5, 重新排列元素</a></li>
+        <li><a href="#6-常用数学运算函数">6, 常用数学运算函数</a></li>
+        <li><a href="#7-字符串操作">7, 字符串操作</a></li>
+        <li><a href="#8-索引与迭代">8, 索引与迭代</a></li>
+        <li><a href="#9-统计运算函数">9, 统计运算函数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1>Numpy 基础快速了解和查询</h1>
+
+<p><a href="https://numpy.org/doc/">官方文档</a></p>
+<blockquote>
+<p>numpy 是 python 的强大科学计算库, 它让 python 处理数据, 进行科学计算变得极其便捷, 高效</p>
+</blockquote>
+<h2 id="一-n-维数组-ndarray-对象">一, N 维数组 ndarray 对象</h2>
+<h3 id="1-ndaraay-介绍">1, ndaraay 介绍</h3>
+<p>ndarray 是具有相同类型和大小的项目的多维容器, 它的数据存储效率和输入输出性能远远优于 python 中等价的数据结构</p>
+<h4 id="101-理解-ndarray">1.01, 理解 ndarray</h4>
+<p>创建 ndarray: <code>np.array()</code>, <code>np.ndarray()</code>, 下面只介绍 3 维以下数组, 理解它们的结构</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 一维  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 二维，2 行 3 列</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ndarray((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>array([2, 3])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b
+</span></span></code></pre></div><pre><code>array([[0., 0., 0.],
+       [0., 0., 0.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>dtype, b<span style="color:#f92672">.</span>dtype <span style="color:#75715e"># 类型</span>
+</span></span></code></pre></div><pre><code>(dtype('int32'), dtype('float64'))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array((<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;2&#39;</span>))
+</span></span><span style="display:flex;"><span>c
+</span></span></code></pre></div><pre><code>array(['1', '2'], dtype='&lt;U11')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(c), type(c[<span style="color:#ae81ff">0</span>])
+</span></span></code></pre></div><pre><code>(numpy.ndarray, numpy.str_)
+</code></pre>
+<p>可见, ndarray 对象中的元素类型只有一种, 如上例，都统一成 Unicode, 元素位长是 11, 所以说 ndarray 是一个具有相同类型和大小的项目的多维容器</p>
+<p>一维就是一行，二维就像一个表格, 横着是一行, 竖着是一列</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 三维  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>ndarray((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([[[6.23042070e-307, 7.56587584e-307, 1.37961302e-306],
+        [6.23053614e-307, 6.23053954e-307, 9.34609790e-307],
+        [8.45593934e-307, 9.34600963e-307, 9.34598925e-307]],
+
+       [[1.42418715e-306, 1.95819401e-306, 1.37961370e-306],
+        [6.23054633e-307, 9.34598926e-307, 6.89804132e-307],
+        [9.34598926e-307, 8.01091099e-307, 1.24610927e-306]],
+
+       [[8.90094053e-307, 1.02361342e-306, 7.56593017e-307],
+        [1.60219035e-306, 8.90111708e-307, 6.89806849e-307],
+        [9.34601642e-307, 1.42410974e-306, 5.97819431e-322]]])
+</code></pre>
+<p>三维类似一个 excel 文件里的多个表格</p>
+<h4 id="102-ndarray-对象计算的优势">1.02, ndarray 对象计算的优势</h4>
+<p>用实例来对比利用 ndarray 进行计算的优势</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 假设有如下列表和 array, 使其中每个数都变成它的平方  </span>
+</span></span><span style="display:flex;"><span>a1 <span style="color:#f92672">=</span> [random<span style="color:#f92672">.</span>random() <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100000000</span>)]  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># a2 = np.array(a1)  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t1 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> [i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> a1]  
+</span></span><span style="display:flex;"><span>t2 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()  
+</span></span><span style="display:flex;"><span>a2 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(a1)  
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> a2<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>  
+</span></span><span style="display:flex;"><span>t3 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()  
+</span></span><span style="display:flex;"><span>print(t2 <span style="color:#f92672">-</span> t1, t3 <span style="color:#f92672">-</span> t2, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+</span></span></code></pre></div><pre><code>15.133688688278198
+4.770834445953369
+</code></pre>
+<p>差距非常明显(如果 a2 在计算之前就已经是 ndarray 对象会更明显), numpy 有其自身机制(广播)实现快速计算</p>
+<h4 id="103-ndarray-的数据类型和常量">1.03, ndarray 的数据类型和常量</h4>
+<p>ndarray 对象数据的数据类型有 <code>bool</code>, <code>int</code>, <code>float</code>, <code>U</code>(字符串), <code>O</code>(python 对象)等, 查看数据类型用
+<code>dtype</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;a&#39;</span>, np<span style="color:#f92672">.</span>nan])  
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>dtype, a[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>dtype, a[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>(dtype('&lt;U32'), dtype('&lt;U1'), dtype('&lt;U3'))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>array(<span style="color:#66d9ef">True</span>)<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>dtype('bool')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>array(<span style="color:#ae81ff">123456</span>)<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>dtype('int32')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>array(<span style="color:#ae81ff">3.1415926</span>)<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>dtype('float64')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>array(list)<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>dtype('O')
+</code></pre>
+<p>ndarray 对象数据的常量有 <code>pi</code>, <code>e</code>, <code>nan</code> (空值), <code>inf</code> (无穷大)等</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>pi  
+</span></span></code></pre></div><pre><code>3.141592653589793
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>e  
+</span></span></code></pre></div><pre><code>2.718281828459045
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>nan  
+</span></span></code></pre></div><pre><code>nan
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>inf  
+</span></span></code></pre></div><pre><code>inf
+</code></pre>
+<h3 id="2-ndarray-的属性">2, ndarray 的属性</h3>
+<p>常用 ndarray 对象的属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>]])  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[1, 2, 3],
+       [4, 5, 6]])
+</code></pre>
+<p>查看数组形状 <code>(行, 列)</code>, 这在数据处理和计算时非常有用, 例如遍历出所有行或列</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>shape  
+</span></span></code></pre></div><pre><code>(2, 3)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 遍历所有列  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(a<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>]):  
+</span></span><span style="display:flex;"><span>    print(a[:, i])  
+</span></span></code></pre></div><pre><code>[1 4]
+[2 5]
+[3 6]
+</code></pre>
+<p>查看数组维度</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>ndim  
+</span></span></code></pre></div><pre><code>2
+</code></pre>
+<p>查看数组元素个数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>size  
+</span></span></code></pre></div><pre><code>6
+</code></pre>
+<p>查看数组类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>dtype  
+</span></span></code></pre></div><pre><code>dtype('int32')
+</code></pre>
+<p>查看数组元素的大小, 字节为单位</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>itemsize  
+</span></span></code></pre></div><pre><code>4
+</code></pre>
+<p>数组转置, 就是行列互换</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>T  
+</span></span></code></pre></div><pre><code>array([[1, 4],
+       [2, 5],
+       [3, 6]])
+</code></pre>
+<h2 id="二-ndarray-对象的切片操作">二, ndarray 对象的切片操作</h2>
+<h3 id="1-切片取值">1, 切片取值</h3>
+<p>ndarray 的切片操作和 python 类似, 一维切片 <code>[起始:结束:步长]</code>, 二维的切片 <code>[起始行:结束行:步长, 起始列:结束列:步长]</code>
+或 <code>[[行, ...], [列, ...]]</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">20</span>)  
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>shape <span style="color:#f92672">=</span> (<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>)  
+</span></span><span style="display:flex;"><span>a 
+</span></span></code></pre></div><pre><code>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14],
+       [15, 16, 17, 18, 19]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 第一行的第 1, 3, 5 个数  </span>
+</span></span><span style="display:flex;"><span>a[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>::<span style="color:#ae81ff">2</span>]  
+</span></span></code></pre></div><pre><code>array([0, 2, 4])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] 
+</span></span></code></pre></div><pre><code>13
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">5</span>]  
+</span></span></code></pre></div><pre><code>array([[1, 2, 3, 4],
+       [6, 7, 8, 9]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>:<span style="color:#ae81ff">2</span>]  
+</span></span></code></pre></div><pre><code>array([[ 0,  2],
+       [10, 12]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a[[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">3</span>]  
+</span></span></code></pre></div><pre><code>array([[ 5,  6,  7],
+       [15, 16, 17]])
+</code></pre>
+<p>还可以通过逻辑运算取值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 取出数组中的数翻倍之后小于 15 的数  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 结果展开为 1 维  </span>
+</span></span><span style="display:flex;"><span>a[a <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">15</span>]  
+</span></span></code></pre></div><pre><code>array([0, 1, 2, 3, 4, 5, 6, 7])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># &amp; 与  </span>
+</span></span><span style="display:flex;"><span>a[(a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">&amp;</span> (a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)]  
+</span></span></code></pre></div><pre><code>array([2, 3, 4])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># | 或  </span>
+</span></span><span style="display:flex;"><span>a[(a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">|</span> (a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>)]  
+</span></span></code></pre></div><pre><code>array([ 0,  1,  2, 16, 17, 18, 19])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># ~ 非  </span>
+</span></span><span style="display:flex;"><span>a[<span style="color:#f92672">~</span> (a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span>)]  
+</span></span></code></pre></div><pre><code>array([0, 1, 2, 3])
+</code></pre>
+<h3 id="2-利用切片修改值">2, 利用切片修改值</h3>
+<p>切片修改值, 其实就是将取到的值重新赋值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a[<span style="color:#f92672">~</span> (a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span>)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[ 1,  1,  1,  1,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14],
+       [15, 16, 17, 18, 19]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将 1 修改为 nan, nan 是 float 类型,   </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保证类型一致性, 需要将 a 转为 float  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>astype(float)  
+</span></span><span style="display:flex;"><span>a[a <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>nan  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[nan, nan, nan, nan,  4.],
+       [ 5.,  6.,  7.,  8.,  9.],
+       [10., 11., 12., 13., 14.],
+       [15., 16., 17., 18., 19.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 任何 nan 都不等于 nan,   </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 利用此特性取 nan, 或非 nan 的数  </span>
+</span></span><span style="display:flex;"><span>a[a <span style="color:#f92672">!=</span> a], a[a <span style="color:#f92672">==</span> a]  
+</span></span></code></pre></div><pre><code>(array([nan, nan, nan, nan]),
+ array([ 4.,  5.,  6.,  7.,  8.,  9., 10., 11., 12., 13., 14., 15., 16.,
+        17., 18., 19.]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 交换行, 交换列  </span>
+</span></span><span style="display:flex;"><span>a[[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>], :] <span style="color:#f92672">=</span> a[[<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>], :]  
+</span></span><span style="display:flex;"><span>a[:, [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> a[:, [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>]]  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[19., 16., 17., 18., 15.],
+       [ 9.,  6.,  7.,  8.,  5.],
+       [14., 11., 12., 13., 10.],
+       [ 4., nan, nan, nan, nan]])
+</code></pre>
+<h2 id="三-ndarray-对象的运算及其方法">三, ndarray 对象的运算及其方法</h2>
+<h3 id="1-ndarray-的运算">1, ndarray 的运算</h3>
+<p>numpy 在运算时, 会通过广播机制, 将运算相对应到每个元素上:</p>
+<p><strong>数和数组计算, 数会和数组中的每一个元素进行计算</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 方法 reshape 用于设置数组的形状, 后面会说  </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>  
+</span></span><span style="display:flex;"><span>b  
+</span></span></code></pre></div><pre><code>array([[  0,  -2,  -4],
+       [ -6,  -8, -10],
+       [-12, -14, -16]])
+</code></pre>
+<p><strong>相同形状的多维数组之间的运算, 对应位置的元素进行计算</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">+</span> b  
+</span></span></code></pre></div><pre><code>array([[ 0, -1, -2],
+       [-3, -4, -5],
+       [-6, -7, -8]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 行相同  </span>
+</span></span><span style="display:flex;"><span>a[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> (a <span style="color:#f92672">+</span> b)  
+</span></span></code></pre></div><pre><code>array([[ 3,  3,  3],
+       [ 0,  0,  0],
+       [-3, -3, -3]])
+</code></pre>
+<p><strong>二维一列的数组和多维数组之间的运算, 需要列元素个数相同, 然后一一对应并广播计算</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 列相同  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># a 的列取出来成了一维, 需要转为二维  </span>
+</span></span><span style="display:flex;"><span>a[:, <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> (a <span style="color:#f92672">+</span> b)  
+</span></span></code></pre></div><pre><code>array([[ 1,  0, -1],
+       [ 1,  0, -1],
+       [ 1,  0, -1]])
+</code></pre>
+<h3 id="2-常用-ndarray-对象的方法">2, 常用 ndarray 对象的方法</h3>
+<p>就是直接用 ndarray 对象调用的方法</p>
+<h4 id="201-形状操作">2.01, 形状操作</h4>
+<p><strong>flatten 或 ravel 将多维数组展开为一维, 不改变原数组</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 默认参数 &#39;C&#39; 以行展开, &#39;F&#39; 以列展开  </span>
+</span></span><span style="display:flex;"><span>display(a<span style="color:#f92672">.</span>flatten())  
+</span></span><span style="display:flex;"><span>display(a<span style="color:#f92672">.</span>flatten(<span style="color:#e6db74">&#39;F&#39;</span>))  
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>ravel(<span style="color:#e6db74">&#39;F&#39;</span>)  
+</span></span></code></pre></div><pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+
+
+
+array([0, 3, 6, 1, 4, 7, 2, 5, 8])
+
+
+
+
+
+array([0, 3, 6, 1, 4, 7, 2, 5, 8])
+</code></pre>
+<p><strong>reshape 修改数组的形状, 不改变原数组, 行列数相乘要等于元素总数; resize 就地修改原数组形状</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 默认以行展开修改  </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>))  
+</span></span><span style="display:flex;"><span>display(b)  
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>), order<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;F&#39;</span>)  
+</span></span></code></pre></div><pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+
+
+
+
+
+array([[ 0,  8,  5,  2, 10,  7],
+       [ 4,  1,  9,  6,  3, 11]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 就地修改 b  </span>
+</span></span><span style="display:flex;"><span>display(b)  
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>resize((<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>b  
+</span></span></code></pre></div><pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+
+
+
+
+
+array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])
+</code></pre>
+<h4 id="202-转换类型">2.02, 转换类型</h4>
+<p><strong>tolist 数组转列表</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b<span style="color:#f92672">.</span>tolist()  
+</span></span></code></pre></div><pre><code>[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
+</code></pre>
+<p><strong>astype 改变数组类型</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b<span style="color:#f92672">.</span>astype(float)  
+</span></span></code></pre></div><pre><code>array([[ 0.,  1.,  2.],
+       [ 3.,  4.,  5.],
+       [ 6.,  7.,  8.],
+       [ 9., 10., 11.]])
+</code></pre>
+<h4 id="203-修改-排序及查找">2.03, 修改, 排序及查找</h4>
+<p><strong>fill 给原数组重新填值, 类型不变</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>fill(<span style="color:#ae81ff">2.01</span>)  
+</span></span><span style="display:flex;"><span>b  
+</span></span></code></pre></div><pre><code>array([[ 2,  2,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])
+</code></pre>
+<p><strong>sort 就地排序, 参数 0 将列排序, 1 将行排序</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>]])  
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>sort(<span style="color:#ae81ff">0</span>)  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[0, 0, 3],
+       [3, 4, 5],
+       [8, 7, 6]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>argsort() <span style="color:#75715e"># 返回排序后的索引位置  </span>
+</span></span></code></pre></div><pre><code>array([[0, 1, 2],
+       [0, 1, 2],
+       [2, 1, 0]], dtype=int64)
+</code></pre>
+<p><strong>nonzero 返回非零元素的索引, 行坐标一个数组, 列坐标一个数组</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>nonzero()  
+</span></span></code></pre></div><pre><code>(array([0, 1, 1, 1, 2, 2, 2], dtype=int64),
+ array([2, 0, 1, 2, 0, 1, 2], dtype=int64))
+</code></pre>
+<h4 id="204-计算">2.04, 计算</h4>
+<p><strong>max 返回最大值, 给定轴将返回给定轴的最大值, argmax 返回索引, 与之对应的还有最小min 和 argmin</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 参数 0 列的最大值, 参数 1 行的最大值  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">1.01</span>, <span style="color:#ae81ff">13.13</span>, <span style="color:#ae81ff">1.01</span>)<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)  
+</span></span><span style="display:flex;"><span>print(a)  
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>max(), a<span style="color:#f92672">.</span>max(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), a<span style="color:#f92672">.</span>max(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>))  
+</span></span></code></pre></div><pre><code>[[ 1.01  2.02  3.03  4.04]
+ [ 5.05  6.06  7.07  8.08]
+ [ 9.09 10.1  11.11 12.12]]
+12.12 [ 9.09 10.1  11.11 12.12] [ 4.04  8.08 12.12]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 参数 0 行索引, 1 列索引  </span>
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>argmax(), a<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">0</span>), a<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>))  
+</span></span></code></pre></div><pre><code>11 [2 2 2 2] [3 3 3]
+</code></pre>
+<p><strong>ptp 返回极值或给定轴的极值(最大-最小)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>ptp(), a<span style="color:#f92672">.</span>ptp(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), a<span style="color:#f92672">.</span>ptp(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(11.11, array([8.08, 8.08, 8.08, 8.08]), array([3.03, 3.03, 3.03]))
+</code></pre>
+<p><strong>clip 返回指定值之间的数组, 小于或大于指定值的, 用指定值填充</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>clip(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>)  
+</span></span></code></pre></div><pre><code>array([[2.  , 2.02, 3.03, 4.04],
+       [5.05, 6.  , 6.  , 6.  ],
+       [6.  , 6.  , 6.  , 6.  ]])
+</code></pre>
+<p><strong>round 四舍五入到指定位数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>round(<span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>array([[ 1. ,  2. ,  3. ,  4. ],
+       [ 5. ,  6.1,  7.1,  8.1],
+       [ 9.1, 10.1, 11.1, 12.1]])
+</code></pre>
+<p><strong>sum 求和, cumsum 累积求和</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>sum()) <span style="color:#75715e"># 总和  </span>
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">0</span>)) <span style="color:#75715e"># 列求和  </span>
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>sum(<span style="color:#ae81ff">1</span>)) <span style="color:#75715e"># 行求和  </span>
+</span></span></code></pre></div><pre><code>78.78
+[15.15 18.18 21.21 24.24]
+[10.1  26.26 42.42]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>cumsum()) <span style="color:#75715e"># 全部累积  </span>
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>cumsum(<span style="color:#ae81ff">0</span>)) <span style="color:#75715e"># 列累积  </span>
+</span></span><span style="display:flex;"><span>print(a<span style="color:#f92672">.</span>cumsum(<span style="color:#ae81ff">1</span>)) <span style="color:#75715e"># 行累积  </span>
+</span></span></code></pre></div><pre><code>[ 1.01  3.03  6.06 10.1  15.15 21.21 28.28 36.36 45.45 55.55 66.66 78.78]
+[[ 1.01  2.02  3.03  4.04]
+ [ 6.06  8.08 10.1  12.12]
+ [15.15 18.18 21.21 24.24]]
+[[ 1.01  3.03  6.06 10.1 ]
+ [ 5.05 11.11 18.18 26.26]
+ [ 9.09 19.19 30.3  42.42]]
+</code></pre>
+<p>类似还有 mean 均值, var 方差, std 标准差, prod 乘积, cumprod 累积乘积, 不在一一举例</p>
+<p><strong>all 数组所有元素都判断为 True, 返回 True, 而 any 只要任何一个 True 返回 True</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>])  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>])  
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>all(), b<span style="color:#f92672">.</span>all(), a<span style="color:#f92672">.</span>any(), b<span style="color:#f92672">.</span>any()  
+</span></span></code></pre></div><pre><code>(True, False, True, False)
+</code></pre>
+<h2 id="四-创建或生成-ndarray-对象">四, 创建或生成 ndarray 对象</h2>
+<h3 id="1-生成随机数">1, 生成随机数</h3>
+<p>利用 numpy 生成随机数的模块 random, 创建数据来作例子非常有用. 先研究一下这个模块, 再研究通用函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># random 生成 0 ~ 1 之间的随机数  </span>
+</span></span><span style="display:flex;"><span>display(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>random(<span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>random((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>  
+</span></span></code></pre></div><pre><code>array([1.33317465, 1.03829035, 1.19401465])
+
+
+
+
+
+array([[2.13175522, 1.41162992, 9.67005144],
+       [0.03480687, 4.63431381, 5.88380759]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 同上, 传参方式不一样  </span>
+</span></span><span style="display:flex;"><span>display(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>)  
+</span></span></code></pre></div><pre><code>array([0.60852454, 0.70296852, 0.31611002])
+
+
+
+
+
+array([[[0.76136557, 0.14321424],
+        [0.01322461, 0.89676522],
+        [0.71400795, 0.00755323]]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 返回指定范围内的随机整数 [a,b) 包含 a 不包含 b, 不指定 b 则 [0,a)  </span>
+</span></span><span style="display:flex;"><span>display(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">3</span>, size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([0, 2, 0])
+
+
+
+
+
+array([[2, 2, 1],
+       [3, 2, 3]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 生成的随机数服从标准正态分布  </span>
+</span></span><span style="display:flex;"><span>display(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>)  
+</span></span></code></pre></div><pre><code>array([-1.46427887,  0.87862733, -0.98698207])
+
+
+
+
+
+array([[ 0.51350851, -0.67478546],
+       [ 0.543379  ,  0.63665877],
+       [-1.31200705, -0.30697352]])
+</code></pre>
+<p>类似还有拉普拉斯分布 laplace, 逻辑分布 logistic, 正态分布 normal 等, 可以设置分布的参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>logistic(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([[2.40647744, 5.62327677, 5.8642342 ],
+       [4.10741882, 7.65751053, 4.99483744]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 打乱原数组元素, 二维时只能打乱行的顺序  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">5</span>)  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>shuffle(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>shuffle(b)  
+</span></span><span style="display:flex;"><span>a, b  
+</span></span></code></pre></div><pre><code>(array([0, 2, 4, 1, 3]),
+ array([[3, 4, 5],
+        [6, 7, 8],
+        [0, 1, 2]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 从一个一维数组里随机选择指定数量的元素,   </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或随机生成 0 到指定整数(不包含)的随机数  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># replace=True 元素可以重复选择(默认)  </span>
+</span></span><span style="display:flex;"><span>display(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(a, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([4, 3, 1, 2, 0])
+
+
+
+
+
+array([[3, 2, 2],
+       [3, 0, 0]])
+</code></pre>
+<h3 id="2-创建数组">2, 创建数组</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>empty((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([[2.40647744, 5.62327677, 5.8642342 ],
+       [4.10741882, 7.65751053, 4.99483744]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>eye(<span style="color:#ae81ff">3</span>)  
+</span></span><span style="display:flex;"><span>a  
+</span></span></code></pre></div><pre><code>array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([[1., 1., 1.],
+       [1., 1., 1.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>ones_like(a)  
+</span></span></code></pre></div><pre><code>array([[1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span></code></pre></div><pre><code>array([[0., 0., 0.],
+       [0., 0., 0.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>full((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>array([[3, 3, 3],
+       [3, 3, 3]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>array(list)  
+</span></span></code></pre></div><pre><code>array(&lt;class 'list'&gt;, dtype=object)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>array([0, 1, 2])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>array([1., 5., 9.])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>logspace(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>array([  10.,  100., 1000.])
+</code></pre>
+<h2 id="五-常用的通函数及-api">五, 常用的通函数及 API</h2>
+<p>numpy 调用, 用来操作 ndarray 对象的函数</p>
+<h3 id="1-修改数组形状">1, 修改数组形状</h3>
+<p><strong>reshape 与 ndarray 对象的方法一样, 另有 resize 只能按行展开</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(<span style="color:#ae81ff">5</span>, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>display(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>reshape(a,(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>), <span style="color:#e6db74">&#39;F&#39;</span>)  
+</span></span></code></pre></div><pre><code>array([[0, 2, 2],
+       [4, 1, 2]])
+
+
+
+
+
+array([[0, 4, 2, 1, 2, 2]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>resize(a, (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>))  
+</span></span></code></pre></div><pre><code>array([[0, 2, 2, 4, 1, 2]])
+</code></pre>
+<p><strong>ravel 展开为一维(ndarray 对象也有该方法)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>ravel(a, <span style="color:#e6db74">&#39;F&#39;</span>)  
+</span></span></code></pre></div><pre><code>array([0, 4, 2, 1, 2, 2])
+</code></pre>
+<h3 id="2-组合数组">2, 组合数组</h3>
+<p><strong>concatenate, hstack, vstack 连接数组</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># axis=0, 行方向连接(默认), axis=1, 列方向连接  </span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(<span style="color:#ae81ff">6</span>, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>concatenate((a, b), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>array([[0, 2, 2, 2, 5, 5],
+       [4, 1, 2, 2, 5, 2]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>hstack((a, b)) <span style="color:#75715e"># 列方向连接  </span>
+</span></span></code></pre></div><pre><code>array([[0, 2, 2, 2, 5, 5],
+       [4, 1, 2, 2, 5, 2]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>vstack((a, b)) <span style="color:#75715e"># 行方向连接  </span>
+</span></span></code></pre></div><pre><code>array([[0, 2, 2],
+       [4, 1, 2],
+       [2, 5, 5],
+       [2, 5, 2]])
+</code></pre>
+<p><strong>stack 堆叠数组, 堆叠后维度增加 1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># axis=0, 行方向堆叠(默认), axis=1, 列方向堆叠  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>stack((a[<span style="color:#ae81ff">0</span>], b[<span style="color:#ae81ff">0</span>])), np<span style="color:#f92672">.</span>stack((a[<span style="color:#ae81ff">0</span>], b[<span style="color:#ae81ff">0</span>]), axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(array([[0, 2, 2],
+        [2, 5, 5]]),
+ array([[0, 2],
+        [2, 5],
+        [2, 5]]))
+</code></pre>
+<h3 id="3-拆分数组">3, 拆分数组</h3>
+<p><strong>split, hsplit, vsplit 将数组拆分, 返回为列表</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>split(a, <span style="color:#ae81ff">2</span>), np<span style="color:#f92672">.</span>vsplit(a, <span style="color:#ae81ff">2</span>), np<span style="color:#f92672">.</span>hsplit(a, <span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>([array([[0, 2, 2]]), array([[4, 1, 2]])],
+ [array([[0, 2, 2]]), array([[4, 1, 2]])],
+ [array([[0],
+         [4]]),
+  array([[2],
+         [1]]),
+  array([[2],
+         [2]])])
+</code></pre>
+<h3 id="4-添加-删除元素">4, 添加, 删除元素</h3>
+<p><strong>delete 删除指定索引的元素, 行或列</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a, np<span style="color:#f92672">.</span>delete(a, <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># 删除第 2 个元素  </span>
+</span></span></code></pre></div><pre><code>(array([[0, 2, 2],
+        [4, 1, 2]]),
+ array([0, 2, 4, 1, 2]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 删除第 2 行, 或第 2 列  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>delete(a, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), np<span style="color:#f92672">.</span>delete(a, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(array([[0, 2, 2]]),
+ array([[0, 2],
+        [4, 2]]))
+</code></pre>
+<p><strong>insert 在指定索引前插入元素, 行或列</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>insert(a, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>)  
+</span></span></code></pre></div><pre><code>array([0, 9, 2, 2, 4, 1, 2])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>insert(a, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), np<span style="color:#f92672">.</span>insert(a, <span style="color:#ae81ff">1</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)  
+</span></span></code></pre></div><pre><code>(array([[0, 2, 2],
+        [9, 9, 9],
+        [4, 1, 2]]),
+ array([[0, 2, 2],
+        [1, 2, 3],
+        [4, 1, 2]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>insert(a, <span style="color:#ae81ff">1</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>array([[0, 1, 2, 2],
+       [4, 3, 1, 2]])
+</code></pre>
+<p><strong>append 在数组末尾(或行,列末尾)加入元素, 行或列(维数必须相同)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>append(a, <span style="color:#ae81ff">2</span>)  
+</span></span></code></pre></div><pre><code>array([0, 2, 2, 4, 1, 2, 2])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>append(a, [[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>]], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), np<span style="color:#f92672">.</span>append(a, [[<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>]], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(array([[0, 2, 2],
+        [4, 1, 2],
+        [2, 2, 2]]),
+ array([[0, 2, 2, 2],
+        [4, 1, 2, 2]]))
+</code></pre>
+<p><strong>unique 查找数组中的唯一值</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(<span style="color:#ae81ff">4</span>, (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))  
+</span></span><span style="display:flex;"><span>display(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>unique(a,return_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  
+</span></span><span style="display:flex;"><span>             return_inverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  
+</span></span><span style="display:flex;"><span>             return_counts<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, axis<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>)  
+</span></span></code></pre></div><pre><code>array([[3, 0, 3],
+       [1, 3, 1]])
+
+
+
+
+
+(array([0, 1, 3]),
+ array([1, 3, 0], dtype=int64),
+ array([2, 0, 2, 1, 2, 1], dtype=int64),
+ array([1, 2, 3], dtype=int64))
+</code></pre>
+<h3 id="5-重新排列元素">5, 重新排列元素</h3>
+<p><strong>flip, fliplr, flipud 翻转数组</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>flip(a), np<span style="color:#f92672">.</span>flip(a, <span style="color:#ae81ff">0</span>), np<span style="color:#f92672">.</span>flip(a, <span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(array([[1, 3, 1],
+        [3, 0, 3]]),
+ array([[1, 3, 1],
+        [3, 0, 3]]),
+ array([[3, 0, 3],
+        [1, 3, 1]]))
+</code></pre>
+<p><strong>sort 排序数组元素</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>sort(a)  
+</span></span></code></pre></div><pre><code>array([[0, 3, 3],
+       [1, 1, 3]])
+</code></pre>
+<p><strong>roll 滚动数组元素</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>roll(a, <span style="color:#ae81ff">1</span>), np<span style="color:#f92672">.</span>roll(a, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), np<span style="color:#f92672">.</span>roll(a, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>(array([[1, 3, 0],
+        [3, 1, 3]]),
+ array([[1, 3, 1],
+        [3, 0, 3]]),
+ array([[3, 3, 0],
+        [1, 1, 3]]))
+</code></pre>
+<h3 id="6-常用数学运算函数">6, 常用数学运算函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 固定随机种子  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(<span style="color:#ae81ff">0</span>)  
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>))  
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>))  
+</span></span><span style="display:flex;"><span>a, b  
+</span></span></code></pre></div><pre><code>(array([[5, 1, 4, 4],
+        [4, 2, 4, 3],
+        [5, 1, 1, 5]]),
+ array([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>power(b, a) <span style="color:#75715e"># b**a  </span>
+</span></span></code></pre></div><pre><code>array([[     0,      1,     16,     81],
+       [   256,     25,   1296,    343],
+       [ 32768,      9,     10, 161051]], dtype=int32)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>divmod(b, a) <span style="color:#75715e"># 商 和 余  </span>
+</span></span></code></pre></div><pre><code>(array([[ 0,  1,  0,  0],
+        [ 1,  2,  1,  2],
+        [ 1,  9, 10,  2]], dtype=int32),
+ array([[0, 0, 2, 3],
+        [0, 1, 2, 1],
+        [3, 0, 0, 1]], dtype=int32))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>fabs(<span style="color:#f92672">-</span>a), np<span style="color:#f92672">.</span>abs(<span style="color:#f92672">-</span>a) <span style="color:#75715e"># 取绝对值  </span>
+</span></span></code></pre></div><pre><code>(array([[5., 1., 4., 4.],
+        [4., 2., 4., 3.],
+        [5., 1., 1., 5.]]),
+ array([[5, 1, 4, 4],
+        [4, 2, 4, 3],
+        [5, 1, 1, 5]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>  
+</span></span><span style="display:flex;"><span>display(c)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>rint(c) <span style="color:#75715e"># 舍入最接近的整数  </span>
+</span></span></code></pre></div><pre><code>array([[3.83441519, 7.91725038, 5.2889492 , 5.68044561],
+       [9.25596638, 0.71036058, 0.871293  , 0.20218397],
+       [8.32619846, 7.78156751, 8.70012148, 9.78618342]])
+
+
+
+
+
+array([[ 4.,  8.,  5.,  6.],
+       [ 9.,  1.,  1.,  0.],
+       [ 8.,  8.,  9., 10.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>exp(a)<span style="color:#f92672">.</span>round(<span style="color:#ae81ff">1</span>) <span style="color:#75715e"># np.e ** a  </span>
+</span></span></code></pre></div><pre><code>array([[148.4,   2.7,  54.6,  54.6],
+       [ 54.6,   7.4,  54.6,  20.1],
+       [148.4,   2.7,   2.7, 148.4]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>exp2(a) <span style="color:#75715e"># 2**a  </span>
+</span></span><span style="display:flex;"><span>a, b  
+</span></span></code></pre></div><pre><code>(array([[5, 1, 4, 4],
+        [4, 2, 4, 3],
+        [5, 1, 1, 5]]),
+ array([[32.,  2., 16., 16.],
+        [16.,  4., 16.,  8.],
+        [32.,  2.,  2., 32.]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>log(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>log2(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>log10(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>sqrt(a) <span style="color:#75715e"># 开根号  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>gcd(a, b<span style="color:#f92672">.</span>astype(int)) <span style="color:#75715e"># 最大公约数  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>lcm(a, b<span style="color:#f92672">.</span>astype(int)) <span style="color:#75715e"># 最小公倍数  </span>
+</span></span></code></pre></div><pre><code>array([[160,   2,  16,  16],
+       [ 16,   4,  16,  24],
+       [160,   2,   2, 160]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>sin(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>cos(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>tan(a)  
+</span></span></code></pre></div><pre><code>array([[-3.38051501,  1.55740772,  1.15782128,  1.15782128],
+       [ 1.15782128, -2.18503986,  1.15782128, -0.14254654],
+       [-3.38051501,  1.55740772,  1.55740772, -3.38051501]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>greater(a, b) <span style="color:#75715e"># a &gt; b  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>less(a, b) <span style="color:#75715e"># a &lt; b  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">!=</span> b <span style="color:#75715e"># np.not_equal(a, b)  </span>
+</span></span><span style="display:flex;"><span>(a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">|</span> <span style="color:#f92672">~</span>(b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) <span style="color:#75715e"># np.logical_or(a&gt;2, ~(b&lt;5))  </span>
+</span></span></code></pre></div><pre><code>array([[ True, False,  True,  True],
+       [ True, False,  True,  True],
+       [ True, False, False,  True]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 两者取其大, 同 np.fmax(a*5, b) 对应还有 minimum, fmin  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>maximum(a<span style="color:#f92672">*</span><span style="color:#ae81ff">5</span>, b)   
+</span></span></code></pre></div><pre><code>array([[32.,  5., 20., 20.],
+       [20., 10., 20., 15.],
+       [32.,  5.,  5., 32.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>isinf(a) <span style="color:#75715e"># 判断是否正负无穷大  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>isnan(a) <span style="color:#75715e"># 判断是否 nan  </span>
+</span></span></code></pre></div><pre><code>array([[False, False, False, False],
+       [False, False, False, False],
+       [False, False, False, False]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>modf(c) <span style="color:#75715e"># 分别返回小数和整数部分  </span>
+</span></span></code></pre></div><pre><code>(array([[0.83441519, 0.91725038, 0.2889492 , 0.68044561],
+        [0.25596638, 0.71036058, 0.871293  , 0.20218397],
+        [0.32619846, 0.78156751, 0.70012148, 0.78618342]]),
+ array([[3., 7., 5., 5.],
+        [9., 0., 0., 0.],
+        [8., 7., 8., 9.]]))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>fmod(b, a) <span style="color:#75715e"># 返回余数  </span>
+</span></span></code></pre></div><pre><code>array([[2., 0., 0., 0.],
+       [0., 0., 0., 2.],
+       [2., 0., 0., 2.]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>  
+</span></span><span style="display:flex;"><span>display(c)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>floor(c) <span style="color:#75715e"># 向下取整  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>ceil(c) <span style="color:#75715e"># 向上取整  </span>
+</span></span></code></pre></div><pre><code>array([[7.99158564, 4.61479362, 7.80529176, 1.18274426],
+       [6.39921021, 1.43353287, 9.44668917, 5.21848322],
+       [4.1466194 , 2.64555612, 7.74233689, 4.56150332]])
+
+
+
+
+
+array([[ 8.,  5.,  8.,  2.],
+       [ 7.,  2., 10.,  6.],
+       [ 5.,  3.,  8.,  5.]])
+</code></pre>
+<h3 id="7-字符串操作">7, 字符串操作</h3>
+<p>字符串的操作函数, 和 python 的操作函数相似, 只是 numpy 作用到整个数组上</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>], [<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">18</span>]])  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>add(a, a)  
+</span></span></code></pre></div><pre><code>array([['aa', 'bb', 'cc'],
+       ['2020', '1919', '1818']], dtype='&lt;U22')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>multiply(a, <span style="color:#ae81ff">3</span>)  
+</span></span></code></pre></div><pre><code>array([['aaa', 'bbb', 'ccc'],
+       ['202020', '191919', '181818']], dtype='&lt;U33')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将每一个制表符替换成指定个数的空格  </span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">a</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">bc</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">d&#39;</span>)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>expandtabs(b, <span style="color:#ae81ff">1</span>)  
+</span></span></code></pre></div><pre><code>array(' a  bc d', dtype='&lt;U8')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>replace(a, <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>) <span style="color:#75715e"># 替换  </span>
+</span></span></code></pre></div><pre><code>array([['a', 'b', 'c'],
+       ['20', '29', '28']], dtype='&lt;U2')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>title(a)  
+</span></span></code></pre></div><pre><code>array([['A', 'B', 'C'],
+       ['20', '19', '18']], dtype='&lt;U11')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>zfill(a, <span style="color:#ae81ff">4</span>)  
+</span></span><span style="display:flex;"><span>b  
+</span></span></code></pre></div><pre><code>array([['000a', '000b', '000c'],
+       ['0020', '0019', '0018']], dtype='&lt;U4')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>count(b, <span style="color:#e6db74">&#39;0&#39;</span>) <span style="color:#75715e"># 0 出现的次数  </span>
+</span></span></code></pre></div><pre><code>array([[3, 3, 3],
+       [3, 2, 2]])
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>char<span style="color:#f92672">.</span>str_len(a) <span style="color:#75715e"># 字符串长度  </span>
+</span></span></code></pre></div><pre><code>array([[1, 1, 1],
+       [2, 2, 2]])
+</code></pre>
+<h3 id="8-索引与迭代">8, 索引与迭代</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(<span style="color:#ae81ff">4</span>, (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>))  
+</span></span><span style="display:flex;"><span>display(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>nonzero(a) <span style="color:#75715e"># 非 0 索引  </span>
+</span></span></code></pre></div><pre><code>array([[2, 0, 0, 0],
+       [1, 1, 2, 0],
+       [0, 1, 3, 0]])
+
+
+
+
+
+(array([0, 1, 1, 1, 2, 2], dtype=int64),
+ array([0, 0, 1, 2, 1, 2], dtype=int64))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 返回指定条件的元素的索引, 并可进行替换  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不设条件, 和 nonzero 一样  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>where(a<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)  
+</span></span></code></pre></div><pre><code>(array([0, 1, 1, 1, 2, 2], dtype=int64),
+ array([0, 0, 1, 2, 1, 2], dtype=int64))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 大于 0 都换成 a, 否则都换成 b  </span>
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>where(a<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>)  
+</span></span></code></pre></div><pre><code>array([['a', 'b', 'b', 'b'],
+       ['a', 'a', 'a', 'b'],
+       ['b', 'a', 'a', 'b']], dtype='&lt;U1')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>nditer(a) <span style="color:#75715e"># 将数组变成一个高效的迭代器  </span>
+</span></span></code></pre></div><pre><code>&lt;numpy.nditer at 0x2b410944d50&gt;
+</code></pre>
+<h3 id="9-统计运算函数">9, 统计运算函数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 下述与 ndarray 对象直接调用的方法一样  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>all(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>any(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>max(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>sum(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>mean(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>cumsum(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>var(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>std(a)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>clip(a, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>)  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>around(a, <span style="color:#ae81ff">2</span>) <span style="color:#75715e"># ndarray 对象的方法是 round  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 等等  </span>
+</span></span></code></pre></div><pre><code>array([[3.41, 1.8 , 2.19, 3.49],
+       [0.3 , 3.33, 3.35, 1.05],
+       [0.64, 1.58, 1.82, 2.85]])
+</code></pre>
+<p>任何数与 nan 计算都是 nan, 可以用相应的函数排除 nan</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, np<span style="color:#f92672">.</span>nan, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>])  
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>sum(b), np<span style="color:#f92672">.</span>nansum(b)  
+</span></span></code></pre></div><pre><code>(nan, 8.0)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>np<span style="color:#f92672">.</span>nancumsum(b)  
+</span></span></code></pre></div><pre><code>array([1., 1., 4., 8.])
+</code></pre>
+
+<div class="box attachments cstyle blue">
+  <div class="box-label"><i class="fa-fw fas fa-paperclip"></i> jupyter附件</div>
+  <ul class="box-content attachments-files">
+    <li><a href="/numpy/_index.files/numpy.ipynb">numpy.ipynb</a> (67 KB)</li>
+  </ul>
+</div>
+
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <a id="logo" href="/">
+            <br><font face="serif" size="6" color="#17202A"><b>🏠Jupyter.fun</b></font>
+          </a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1661054440" defer></script>
+        <script src="/js/lunr.min.js?1661054440" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661054440" defer></script>
+        <script src="/js/lunr.multi.min.js?1661054440" defer></script>
+        <script src="/js/lunr.en.min.js?1661054440" defer></script>
+        <script src="/js/search.js?1661054440" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/python/" title="Python 语法基础知识详解和查询手册" class="dd-item"><input type="checkbox" id="section-c8861a2651b27ee3930a98ce392020d1" class="toggle"/><label for="section-c8861a2651b27ee3930a98ce392020d1" ></label><a href="/python/">Python<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/" title="数字类型概述" class="dd-item"><input type="checkbox" id="section-f26ae7da78c4758569d4b453b66b4231" class="toggle"/><label for="section-f26ae7da78c4758569d4b453b66b4231" ></label><a href="/python/01_numeric/">数字类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/02_int/" title="整数及其位运算" class="dd-item"><a href="/python/01_numeric/02_int/">整数及其位运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/03_bool/" title="布尔值及布尔运算" class="dd-item"><a href="/python/01_numeric/03_bool/">布尔值及布尔运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/04_float/" title="浮点数" class="dd-item"><a href="/python/01_numeric/04_float/">浮点数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/05_complex/" title="复数" class="dd-item"><a href="/python/01_numeric/05_complex/">复数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/06_number_operations/" title="数字运算" class="dd-item"><a href="/python/01_numeric/06_number_operations/">数字运算<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/02_string/" title="字符串概述" class="dd-item"><input type="checkbox" id="section-0a8894164d573ed7362e26196efabc7a" class="toggle"/><label for="section-0a8894164d573ed7362e26196efabc7a" ></label><a href="/python/02_string/">字符串<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/02_string/02_concatenated_string/" title="字符串拼接" class="dd-item"><a href="/python/02_string/02_concatenated_string/">字符串拼接<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/03_escape_character/" title="转义字符" class="dd-item"><a href="/python/02_string/03_escape_character/">转义字符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/04_str.count/" title="str.count 统计" class="dd-item"><a href="/python/02_string/04_str.count/">str.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/05_str.replace/" title="str.replace 替换" class="dd-item"><a href="/python/02_string/05_str.replace/">str.replace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/06_str.expandtabs/" title="str.expandtabs 替换制表符" class="dd-item"><a href="/python/02_string/06_str.expandtabs/">str.expandtabs<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/07_str.split/" title="str.split 拆分" class="dd-item"><a href="/python/02_string/07_str.split/">str.split<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/08_str.rsplit/" title="str.rsplit 拆分" class="dd-item"><a href="/python/02_string/08_str.rsplit/">str.rsplit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/09_str.partition/" title="str.partition 拆分" class="dd-item"><a href="/python/02_string/09_str.partition/">str.partition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/10_str.rpartition/" title="str.rpartition 拆分" class="dd-item"><a href="/python/02_string/10_str.rpartition/">str.rpartition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/11_str.splitlines/" title="str.splitlines 按行拆分" class="dd-item"><a href="/python/02_string/11_str.splitlines/">str.splitlines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/12_str.strip/" title="str.strip 移除两边字符" class="dd-item"><a href="/python/02_string/12_str.strip/">str.strip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/13_str.lstrip/" title="str.lstrip 移除左边字符" class="dd-item"><a href="/python/02_string/13_str.lstrip/">str.lstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/14_str.rstrip/" title="str.rstrip 移除右边字符" class="dd-item"><a href="/python/02_string/14_str.rstrip/">str.rstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/15_str.find/" title="str.find 查找最小索引" class="dd-item"><a href="/python/02_string/15_str.find/">str.find<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/16_str.rfind/" title="str.rfind 查找最大索引" class="dd-item"><a href="/python/02_string/16_str.rfind/">str.rfind<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/17_str.index/" title="str.index 查找最小索引" class="dd-item"><a href="/python/02_string/17_str.index/">str.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/18_str.rindex/" title="str.rindex 查找最大索引" class="dd-item"><a href="/python/02_string/18_str.rindex/">str.rindex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/19_str.join/" title="str.join 拼接字符串" class="dd-item"><a href="/python/02_string/19_str.join/">str.join<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/20_str.startswith/" title="str.startswith 指定字符串开头？" class="dd-item"><a href="/python/02_string/20_str.startswith/">str.startswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/21_str.endswith/" title="str.endswith 指定字符串结尾？" class="dd-item"><a href="/python/02_string/21_str.endswith/">str.endswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/22_str.ljust/" title="str.ljust 左对齐" class="dd-item"><a href="/python/02_string/22_str.ljust/">str.ljust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/23_str.center/" title="str.center 居中" class="dd-item"><a href="/python/02_string/23_str.center/">str.center<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/24_str.rjust/" title="str.rjust 右对齐" class="dd-item"><a href="/python/02_string/24_str.rjust/">str.rjust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/25_str.format/" title="str.format 格式化" class="dd-item"><a href="/python/02_string/25_str.format/">str.format<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/26_str.format_map/" title="str.format_map 格式化" class="dd-item"><a href="/python/02_string/26_str.format_map/">str.format_map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/27_f-string/" title="f-string 格式化字符串" class="dd-item"><a href="/python/02_string/27_f-string/">f-string 格式化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/28_string_operators/" title="字符串操作符" class="dd-item"><a href="/python/02_string/28_string_operators/">字符串操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/29_str.encode/" title="str.encode 编码为字节串" class="dd-item"><a href="/python/02_string/29_str.encode/">str.encode<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/30_str.capitalize/" title="str.capitalize 首字符大写" class="dd-item"><a href="/python/02_string/30_str.capitalize/">str.capitalize<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/31_str.casefold/" title="str.casefold 消除大小写" class="dd-item"><a href="/python/02_string/31_str.casefold/">str.casefold<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/32_str.lower/" title="str.lower 转小写" class="dd-item"><a href="/python/02_string/32_str.lower/">str.lower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/33_str.title/" title="str.title 单词首字母大写" class="dd-item"><a href="/python/02_string/33_str.title/">str.title<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/34_str.upper/" title="str.upper 转大写" class="dd-item"><a href="/python/02_string/34_str.upper/">str.upper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/35_str.swapcase/" title="str.swapcase 大小写互转" class="dd-item"><a href="/python/02_string/35_str.swapcase/">str.swapcase<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/36_str.zfill/" title="str.zfill 填充 0" class="dd-item"><a href="/python/02_string/36_str.zfill/">str.zfill<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/37_str.translate/" title="str.translate 按表转换" class="dd-item"><a href="/python/02_string/37_str.translate/">str.translate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/38_str.maketrans/" title="str.maketrans 生成转换表" class="dd-item"><a href="/python/02_string/38_str.maketrans/">str.maketrans<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/39_str.isalnum/" title="str.isalnum 是字母或数字？" class="dd-item"><a href="/python/02_string/39_str.isalnum/">str.isalnum<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/40_str.isalpha/" title="str.isalpha 是字母（包括汉字等）？" class="dd-item"><a href="/python/02_string/40_str.isalpha/">str.isalpha<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/41_str.isdecimal/" title="str.isdecimal 是十进制字符？" class="dd-item"><a href="/python/02_string/41_str.isdecimal/">str.isdecimal<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/42_str.isdigit/" title="str.isdigit 是数字？" class="dd-item"><a href="/python/02_string/42_str.isdigit/">str.isdigit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/43_str.isnumeric/" title="str.isnumeric 是数值字符？" class="dd-item"><a href="/python/02_string/43_str.isnumeric/">str.isnumeric<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/44_str.islower/" title="str.islower 是小写？" class="dd-item"><a href="/python/02_string/44_str.islower/">str.islower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/45_str.isupper/" title="str.isupper 是大写？" class="dd-item"><a href="/python/02_string/45_str.isupper/">str.isupper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/46_str.istitle/" title="str.istitle 是标题字符串？" class="dd-item"><a href="/python/02_string/46_str.istitle/">str.istitle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/47_str.isascii/" title="str.isascii 是 ASCII 字符？" class="dd-item"><a href="/python/02_string/47_str.isascii/">str.isascii<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/48_str.isidentifier/" title="str.isidentifier 是有效标识符？" class="dd-item"><a href="/python/02_string/48_str.isidentifier/">str.isidentifier<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/49_str.isprintable/" title="str.isprintable 是可打印字符？" class="dd-item"><a href="/python/02_string/49_str.isprintable/">str.isprintable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/50_str.isspace/" title="str.isspace 是空白字符？" class="dd-item"><a href="/python/02_string/50_str.isspace/">str.isspace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/51_str.removeprefix/" title="str.removeprefix  移除前缀" class="dd-item"><a href="/python/02_string/51_str.removeprefix/">str.removeprefix<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/52_str.removesuffix/" title="str.removesuffix 移除后缀" class="dd-item"><a href="/python/02_string/52_str.removesuffix/">str.removesuffix<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/03_list/" title="列表" class="dd-item"><input type="checkbox" id="section-9dce683949d5d69d823966a12cca5136" class="toggle"/><label for="section-9dce683949d5d69d823966a12cca5136" ></label><a href="/python/03_list/">列表概述<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/03_list/02_list_comprehension/" title="列表推导式" class="dd-item"><a href="/python/03_list/02_list_comprehension/">列表推导式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/03_list_indexes_and_slices/" title="列表的索引和切片" class="dd-item"><a href="/python/03_list/03_list_indexes_and_slices/">列表的索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/15_list.clear/" title="list.clear 删除所有元素" class="dd-item"><a href="/python/03_list/15_list.clear/">list.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/04_list_operator/" title="列表操作符" class="dd-item"><a href="/python/03_list/04_list_operator/">列表操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/05_list.append/" title="list.append 添加一个元素" class="dd-item"><a href="/python/03_list/05_list.append/">list.append<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/06_list.extend/" title="list.extend 加入可迭代对象中元素" class="dd-item"><a href="/python/03_list/06_list.extend/">list.extend<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/07_list.insert/" title="list.insert 插入一个元素" class="dd-item"><a href="/python/03_list/07_list.insert/">list.insert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/08_list.sort/" title="list.sort 对列表原地排序" class="dd-item"><a href="/python/03_list/08_list.sort/">list.sort<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/09_list.reverse/" title="list.reverse 反转列表中元素" class="dd-item"><a href="/python/03_list/09_list.reverse/">list.reverse<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/10_list.pop/" title="list.pop 删除元素并返回" class="dd-item"><a href="/python/03_list/10_list.pop/">list.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/11_list.remove/" title="list.remove 移除一个元素" class="dd-item"><a href="/python/03_list/11_list.remove/">list.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/12_list.count/" title="list.count 统计元素出现次数" class="dd-item"><a href="/python/03_list/12_list.count/">list.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/13_list.index/" title="list.index 查找最小索引" class="dd-item"><a href="/python/03_list/13_list.index/">list.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/14_list.copy/" title="list.copy 列表的一个浅拷贝" class="dd-item"><a href="/python/03_list/14_list.copy/">list.copy<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/04_tuple/" title="元组概述" class="dd-item"><input type="checkbox" id="section-dc7ea79191f25dfd309c92b5e4905cab" class="toggle"/><label for="section-dc7ea79191f25dfd309c92b5e4905cab" ></label><a href="/python/04_tuple/">元组<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/04_tuple/02_tuple.count/" title="tuple.count 统计元素出现次数" class="dd-item"><a href="/python/04_tuple/02_tuple.count/">tuple.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/03_tuple.index/" title="tuple.index 查找元素索引" class="dd-item"><a href="/python/04_tuple/03_tuple.index/">tuple.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/04_operator/" title="元组操作符" class="dd-item"><a href="/python/04_tuple/04_operator/">元组操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/05_sequence/" title="序列类型概述" class="dd-item"><input type="checkbox" id="section-b631793e0b67cf3997ee6b6ccb5a1018" class="toggle"/><label for="section-b631793e0b67cf3997ee6b6ccb5a1018" ></label><a href="/python/05_sequence/">序列<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/05_sequence/02_range/" title="range 对象" class="dd-item"><a href="/python/05_sequence/02_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/03_index_slice/" title="序列索引和切片" class="dd-item"><a href="/python/05_sequence/03_index_slice/">序列索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/04_common_operations/" title="序列通用操作" class="dd-item"><a href="/python/05_sequence/04_common_operations/">序列通用操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/06_set/" title="集合概述" class="dd-item"><input type="checkbox" id="section-c643fef3f2d56a8ad628665722912338" class="toggle"/><label for="section-c643fef3f2d56a8ad628665722912338" ></label><a href="/python/06_set/">集合<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/06_set/02_set.isdisjoint/" title="set.isdisjoint 交集为空吗？" class="dd-item"><a href="/python/06_set/02_set.isdisjoint/">set.isdisjoint<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/03_set.issubset/" title="set.issubset 是子集吗？" class="dd-item"><a href="/python/06_set/03_set.issubset/">set.issubset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/04_set.issuperset/" title="set.issuperset 是超集吗？" class="dd-item"><a href="/python/06_set/04_set.issuperset/">set.issuperset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/05_set.union/" title="set.union 并集" class="dd-item"><a href="/python/06_set/05_set.union/">set.union<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/06_set.intersection/" title="set.intersection 交集" class="dd-item"><a href="/python/06_set/06_set.intersection/">set.intersection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/07_set.difference/" title="set.difference 差集" class="dd-item"><a href="/python/06_set/07_set.difference/">set.difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/08_set.symmetric_difference/" title="set.symmetric_difference 对称差" class="dd-item"><a href="/python/06_set/08_set.symmetric_difference/">set.symmetric_difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/09_set.copy/" title="set.copy 浅拷贝" class="dd-item"><a href="/python/06_set/09_set.copy/">set.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/10_set.update/" title="set.update 合并更新" class="dd-item"><a href="/python/06_set/10_set.update/">set.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/11_set.intersection_update/" title="set.intersection_update 交集更新" class="dd-item"><a href="/python/06_set/11_set.intersection_update/">set.intersection_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/12_set.difference_update/" title="set.difference_update 差集更新" class="dd-item"><a href="/python/06_set/12_set.difference_update/">set.difference_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/13_set.symmetric_difference_update/" title="set ^= other 对称差集更新" class="dd-item"><a href="/python/06_set/13_set.symmetric_difference_update/">set ^= other<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/14_set.add/" title="set.add 添加元素" class="dd-item"><a href="/python/06_set/14_set.add/">set.add<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/15_set.remove/" title="set.remove 删除元素" class="dd-item"><a href="/python/06_set/15_set.remove/">set.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/16_set.discard/" title="set.discard 删除元素" class="dd-item"><a href="/python/06_set/16_set.discard/">set.discard<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/17_set.pop/" title="set.pop 删除元素并返回" class="dd-item"><a href="/python/06_set/17_set.pop/">set.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/18_set.clear/" title="set.clear 清空集合元素" class="dd-item"><a href="/python/06_set/18_set.clear/">set.clear<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/07_dictionary/" title="字典概述" class="dd-item"><input type="checkbox" id="section-6edd912ea63088ea7d421ba4a9a6b0c9" class="toggle"/><label for="section-6edd912ea63088ea7d421ba4a9a6b0c9" ></label><a href="/python/07_dictionary/">字典<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/07_dictionary/02_dict.keys/" title="dict.keys 键视图" class="dd-item"><a href="/python/07_dictionary/02_dict.keys/">dict.keys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/03_dict.values/" title="dict.values 值视图" class="dd-item"><a href="/python/07_dictionary/03_dict.values/">dict.values<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/04_dict.items/" title="dict.items 键值对视图" class="dd-item"><a href="/python/07_dictionary/04_dict.items/">dict.items<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/05_dict.get/" title="dict.get 获取某个键的值" class="dd-item"><a href="/python/07_dictionary/05_dict.get/">dict.get<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/06_dict.copy/" title="dict.copy 浅拷贝" class="dd-item"><a href="/python/07_dictionary/06_dict.copy/">dict.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/07_dict.pop/" title="dict.pop 删除元素并返回值" class="dd-item"><a href="/python/07_dictionary/07_dict.pop/">dict.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/08_dict.popitem/" title="dict.popitem 删除元素并返回键值对" class="dd-item"><a href="/python/07_dictionary/08_dict.popitem/">dict.popitem<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/09_dict.fromkeys/" title="dict.fromkeys 创建字典" class="dd-item"><a href="/python/07_dictionary/09_dict.fromkeys/">dict.fromkeys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/10_dict.clear/" title="dict.clear 清空字典元素" class="dd-item"><a href="/python/07_dictionary/10_dict.clear/">dict.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/11_dict.setdefault/" title="dict.setdefault 获取或插入元素" class="dd-item"><a href="/python/07_dictionary/11_dict.setdefault/">dict.setdefault<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/12_dict.update/" title="dict.update 更新字典" class="dd-item"><a href="/python/07_dictionary/12_dict.update/">dict.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/13_loop_through/" title="字典遍历" class="dd-item"><a href="/python/07_dictionary/13_loop_through/">字典遍历<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/14_operator/" title="字典操作符" class="dd-item"><a href="/python/07_dictionary/14_operator/">字典操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/08_other_types/" title="生成器表达式和推导式" class="dd-item"><input type="checkbox" id="section-6dcb28ff486050e64e8c2098986ff9d6" class="toggle"/><label for="section-6dcb28ff486050e64e8c2098986ff9d6" ></label><a href="/python/08_other_types/">其他类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/08_other_types/01_none/" title="空值 None" class="dd-item"><a href="/python/08_other_types/01_none/">None<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/08_other_types/03_other_types/" title="其他内置类型" class="dd-item"><a href="/python/08_other_types/03_other_types/">其他内置类型<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/09_operator/" title="操作符概述" class="dd-item"><input type="checkbox" id="section-bf0c286771bede167ff18be220caecff" class="toggle"/><label for="section-bf0c286771bede167ff18be220caecff" ></label><a href="/python/09_operator/">操作符<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/09_operator/02_compare/" title="比较运算符" class="dd-item"><a href="/python/09_operator/02_compare/">比较运算符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/03_precedence/" title="操作符优先级" class="dd-item"><a href="/python/09_operator/03_precedence/">操作符优先级<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/04_special/" title="操作符特殊用法" class="dd-item"><a href="/python/09_operator/04_special/">操作符特殊用法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/10_statement/" title="表达式语句" class="dd-item"><input type="checkbox" id="section-64a5f0f51786f2cfc0f1a295e3568242" class="toggle"/><label for="section-64a5f0f51786f2cfc0f1a295e3568242" ></label><a href="/python/10_statement/">语句<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/10_statement/02_assignment/" title="赋值语句" class="dd-item"><a href="/python/10_statement/02_assignment/">赋值语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/03_if/" title="if" class="dd-item"><a href="/python/10_statement/03_if/">if<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/04_for/" title="for" class="dd-item"><a href="/python/10_statement/04_for/">for<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/05_while/" title="while" class="dd-item"><a href="/python/10_statement/05_while/">while<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/06_break/" title="break" class="dd-item"><a href="/python/10_statement/06_break/">break<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/07_continue/" title="continue" class="dd-item"><a href="/python/10_statement/07_continue/">continue<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/08_del/" title="del" class="dd-item"><a href="/python/10_statement/08_del/">del<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/09_pass/" title="pass" class="dd-item"><a href="/python/10_statement/09_pass/">pass<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/10_def/" title="def" class="dd-item"><a href="/python/10_statement/10_def/">def<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/11_return/" title="return" class="dd-item"><a href="/python/10_statement/11_return/">return<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/12_yield/" title="yield" class="dd-item"><a href="/python/10_statement/12_yield/">yield<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/13_class/" title="class 语句" class="dd-item"><a href="/python/10_statement/13_class/">class 语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/14_try/" title="try" class="dd-item"><a href="/python/10_statement/14_try/">try<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/15_raise/" title="raise" class="dd-item"><a href="/python/10_statement/15_raise/">raise<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/16_with/" title="with" class="dd-item"><a href="/python/10_statement/16_with/">with<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/17_assert/" title="assert" class="dd-item"><a href="/python/10_statement/17_assert/">assert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/18_import/" title="import" class="dd-item"><a href="/python/10_statement/18_import/">import<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/19_global/" title="global" class="dd-item"><a href="/python/10_statement/19_global/">global<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/20_nonlocal/" title="nonlocal" class="dd-item"><a href="/python/10_statement/20_nonlocal/">nonlocal<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/11_built-in_function/" title="abs() 数字取绝对值" class="dd-item"><input type="checkbox" id="section-c688daa3d748f201265692938123fc94" class="toggle"/><label for="section-c688daa3d748f201265692938123fc94" ></label><a href="/python/11_built-in_function/">内置函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/11_built-in_function/02_all/" title="all() 所有元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/02_all/">all()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/03_any/" title="any() 有一个元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/03_any/">any()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/04_ascii/" title="ascii() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/04_ascii/">ascii()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/05_bin/" title="bin() 整数的二进制形式" class="dd-item"><a href="/python/11_built-in_function/05_bin/">bin()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/06_bool/" title="bool 返回对象的布尔值" class="dd-item"><a href="/python/11_built-in_function/06_bool/">bool<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/07_bytes/" title="bytes 创建 bytes 对象" class="dd-item"><a href="/python/11_built-in_function/07_bytes/">bytes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/08_callable/" title="callable() 是可调用对象？" class="dd-item"><a href="/python/11_built-in_function/08_callable/">callable()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/09_chr/" title="chr() 返回 Unicode 码位值对应字符" class="dd-item"><a href="/python/11_built-in_function/09_chr/">chr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/10_classmethod/" title="classmethod 封装函数为类方法" class="dd-item"><a href="/python/11_built-in_function/10_classmethod/">classmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/11_compile/" title="compile() 创建代码对象" class="dd-item"><a href="/python/11_built-in_function/11_compile/">compile()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/12_complex/" title="complex 创建复数" class="dd-item"><a href="/python/11_built-in_function/12_complex/">complex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/13_delattr/" title="delattr() 删除对象属性" class="dd-item"><a href="/python/11_built-in_function/13_delattr/">delattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/14_dict/" title="dict 创建字典" class="dd-item"><a href="/python/11_built-in_function/14_dict/">dict<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/15_dir/" title="dir() 返回对象属性列表" class="dd-item"><a href="/python/11_built-in_function/15_dir/">dir()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/16_divmod/" title="divmod() 求两个数的商和余" class="dd-item"><a href="/python/11_built-in_function/16_divmod/">divmod()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/17_enumerate/" title="enumerate 枚举" class="dd-item"><a href="/python/11_built-in_function/17_enumerate/">enumerate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/18_eval/" title="eval() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/18_eval/">eval()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/19_exec/" title="exec() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/19_exec/">exec()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/20_filter/" title="filter 真值元素筛选" class="dd-item"><a href="/python/11_built-in_function/20_filter/">filter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/21_float/" title="float 创建浮点数" class="dd-item"><a href="/python/11_built-in_function/21_float/">float<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/22_format/" title="format() 格式化" class="dd-item"><a href="/python/11_built-in_function/22_format/">format()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/23_frozenset/" title="frozenset 创建不可变集合" class="dd-item"><a href="/python/11_built-in_function/23_frozenset/">frozenset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/24_getattr/" title="getattr() 获取对象的属性" class="dd-item"><a href="/python/11_built-in_function/24_getattr/">getattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/25_globals/" title="globals() 返回全局变量字典" class="dd-item"><a href="/python/11_built-in_function/25_globals/">globals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/26_hasattr/" title="hasattr() 是对象的属性吗？" class="dd-item"><a href="/python/11_built-in_function/26_hasattr/">hasattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/27_hash/" title="hash() 返回对象的哈希值" class="dd-item"><a href="/python/11_built-in_function/27_hash/">hash()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/28_help/" title="help 启动帮助系统" class="dd-item"><a href="/python/11_built-in_function/28_help/">help<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/29_hex/" title="hex() 整数的十六进制形式" class="dd-item"><a href="/python/11_built-in_function/29_hex/">hex()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/30_id/" title="id() 返回对象的唯一标识" class="dd-item"><a href="/python/11_built-in_function/30_id/">id()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/31_input/" title="input() 接受输入返回字符串" class="dd-item"><a href="/python/11_built-in_function/31_input/">input()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/32_int/" title="int 创建整数" class="dd-item"><a href="/python/11_built-in_function/32_int/">int<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/33_isinstance/" title="isinstance() 是给定类的实例？" class="dd-item"><a href="/python/11_built-in_function/33_isinstance/">isinstance()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/34_issubclass/" title="issubclass() 是给定类的子类吗？" class="dd-item"><a href="/python/11_built-in_function/34_issubclass/">issubclass()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/35_iter/" title="iter() 转迭代器" class="dd-item"><a href="/python/11_built-in_function/35_iter/">iter()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/36_len/" title="len() 返回元素个数" class="dd-item"><a href="/python/11_built-in_function/36_len/">len()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/37_list/" title="list 创建列表" class="dd-item"><a href="/python/11_built-in_function/37_list/">list<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/38_locals/" title="locals() 返回局部变量的字典" class="dd-item"><a href="/python/11_built-in_function/38_locals/">locals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/39_map/" title="map 以给定函数转换元素" class="dd-item"><a href="/python/11_built-in_function/39_map/">map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/40_max/" title="max() 求最大项" class="dd-item"><a href="/python/11_built-in_function/40_max/">max()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/41_min/" title="min() 求最小项" class="dd-item"><a href="/python/11_built-in_function/41_min/">min()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/42_next/" title="next() 返回迭代器下一个元素" class="dd-item"><a href="/python/11_built-in_function/42_next/">next()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/43_object/" title="object 所有类的基类" class="dd-item"><a href="/python/11_built-in_function/43_object/">object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/44_oct/" title="oct() 整数的八进制形式" class="dd-item"><a href="/python/11_built-in_function/44_oct/">oct()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/45_open/" title="open() 打开文件" class="dd-item"><a href="/python/11_built-in_function/45_open/">open()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/46_ord/" title="ord() 返回单个字符 Unicode 码位值" class="dd-item"><a href="/python/11_built-in_function/46_ord/">ord()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/47_pow/" title="pow() 幂运算并取余" class="dd-item"><a href="/python/11_built-in_function/47_pow/">pow()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/48_print/" title="print()" class="dd-item"><a href="/python/11_built-in_function/48_print/">print()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/49_property/" title="property 返回 property 属性" class="dd-item"><a href="/python/11_built-in_function/49_property/">property<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/50_range/" title="range 创建 range 序列" class="dd-item"><a href="/python/11_built-in_function/50_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/51_repr/" title="repr() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/51_repr/">repr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/52_reversed/" title="reversed 序列逆置" class="dd-item"><a href="/python/11_built-in_function/52_reversed/">reversed<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/53_round/" title="round() 数字舍入" class="dd-item"><a href="/python/11_built-in_function/53_round/">round()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/54_set/" title="set 创建集合" class="dd-item"><a href="/python/11_built-in_function/54_set/">set<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/55_setattr/" title="setattr() 设置或新增属性" class="dd-item"><a href="/python/11_built-in_function/55_setattr/">setattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/56_slice/" title="slice 创建切片对象" class="dd-item"><a href="/python/11_built-in_function/56_slice/">slice<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/57_sorted/" title="sorted() 返回排序列表" class="dd-item"><a href="/python/11_built-in_function/57_sorted/">sorted()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/58_staticmethod/" title="staticmethod 封装函数为静态方法" class="dd-item"><a href="/python/11_built-in_function/58_staticmethod/">staticmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/59_str/" title="str 创建字符串" class="dd-item"><a href="/python/11_built-in_function/59_str/">str<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/60_sum/" title="sum() 数字求和或序列拼接" class="dd-item"><a href="/python/11_built-in_function/60_sum/">sum()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/61_super/" title="super 调用委托给父类或兄弟类" class="dd-item"><a href="/python/11_built-in_function/61_super/">super<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/62_tuple/" title="tuple 创建元组" class="dd-item"><a href="/python/11_built-in_function/62_tuple/">tuple<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/63_type/" title="type 判断类型或创建类" class="dd-item"><a href="/python/11_built-in_function/63_type/">type<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/64_vars/" title="vars() 返回对象的变量字典" class="dd-item"><a href="/python/11_built-in_function/64_vars/">vars()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/65_zip/" title="zip 重组可迭代对象" class="dd-item"><a href="/python/11_built-in_function/65_zip/">zip<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/12_function/" title="函数概述" class="dd-item"><input type="checkbox" id="section-e6b48a8a67c6f7ff797a323f6568f234" class="toggle"/><label for="section-e6b48a8a67c6f7ff797a323f6568f234" ></label><a href="/python/12_function/">函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/12_function/02_function_definition/" title="函数定义" class="dd-item"><a href="/python/12_function/02_function_definition/">函数定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/03_formal_parameter/" title="函数形参" class="dd-item"><a href="/python/12_function/03_formal_parameter/">函数形参<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/04_return_value/" title="函数返回值" class="dd-item"><a href="/python/12_function/04_return_value/">函数返回值<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/05_recursion/" title="递归函数" class="dd-item"><a href="/python/12_function/05_recursion/">递归函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/06_doc/" title="函数文档" class="dd-item"><a href="/python/12_function/06_doc/">函数文档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/07_function_call/" title="函数调用" class="dd-item"><a href="/python/12_function/07_function_call/">函数调用<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/08_lambda/" title="lambda 函数" class="dd-item"><a href="/python/12_function/08_lambda/">lambda 函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/09_generator/" title="生成器函数" class="dd-item"><a href="/python/12_function/09_generator/">生成器函数<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/13_exception/" title="错误和异常" class="dd-item"><input type="checkbox" id="section-bc4f4d42c44eaf0579ed86ae2d0d51db" class="toggle"/><label for="section-bc4f4d42c44eaf0579ed86ae2d0d51db" ></label><a href="/python/13_exception/">错误和异常<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/13_exception/02_handling/" title="处理异常" class="dd-item"><a href="/python/13_exception/02_handling/">处理异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/03_raising/" title="抛出异常" class="dd-item"><a href="/python/13_exception/03_raising/">抛出异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/04_user_defined/" title="自定义异常" class="dd-item"><a href="/python/13_exception/04_user_defined/">自定义异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/05_finally/" title="finally 清理操作" class="dd-item"><a href="/python/13_exception/05_finally/">finally<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/14_file/" title="文件对象概述" class="dd-item"><input type="checkbox" id="section-e195820c7e4bf396e327bfb0a46a50f9" class="toggle"/><label for="section-e195820c7e4bf396e327bfb0a46a50f9" ></label><a href="/python/14_file/">文件<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/14_file/02_read/" title="读取文件内容" class="dd-item"><a href="/python/14_file/02_read/">读取文件内容<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/14_file/03_write/" title="文件写入内容" class="dd-item"><a href="/python/14_file/03_write/">文件写入内容<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/15_module/" title="模块概述" class="dd-item"><input type="checkbox" id="section-4385ec01f3a88bacfccd61dd3520ad8b" class="toggle"/><label for="section-4385ec01f3a88bacfccd61dd3520ad8b" ></label><a href="/python/15_module/">模块<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/15_module/02_create_module/" title="创建模块" class="dd-item"><a href="/python/15_module/02_create_module/">创建模块<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/04_executable_file/" title="可执行文件" class="dd-item"><a href="/python/15_module/04_executable_file/">可执行文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/05_import_code/" title="导入操作" class="dd-item"><a href="/python/15_module/05_import_code/">导入操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/16_class/" title="面向对象概述" class="dd-item"><input type="checkbox" id="section-1462fcc8311b5f31727642b5a438fc6d" class="toggle"/><label for="section-1462fcc8311b5f31727642b5a438fc6d" ></label><a href="/python/16_class/">面向对象<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/16_class/02_class_definition/" title="类定义" class="dd-item"><a href="/python/16_class/02_class_definition/">类定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/03_instance/" title="实例" class="dd-item"><a href="/python/16_class/03_instance/">实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/04_object/" title="对象" class="dd-item"><a href="/python/16_class/04_object/">对象<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/05_name/" title="名称" class="dd-item"><a href="/python/16_class/05_name/">名称<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/06_variable/" title="变量" class="dd-item"><a href="/python/16_class/06_variable/">变量<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/07_attribute/" title="属性" class="dd-item"><a href="/python/16_class/07_attribute/">属性<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/08_method/" title="方法" class="dd-item"><a href="/python/16_class/08_method/">方法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/09_namespace/" title="命名空间" class="dd-item"><a href="/python/16_class/09_namespace/">命名空间<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/10_scope/" title="作用域" class="dd-item"><a href="/python/16_class/10_scope/">作用域<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/11_create_instance/" title="创建实例" class="dd-item"><a href="/python/16_class/11_create_instance/">创建实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/12_attribute_operation/" title="属性操作" class="dd-item"><a href="/python/16_class/12_attribute_operation/">属性操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/13_method_operation/" title="方法操作" class="dd-item"><a href="/python/16_class/13_method_operation/">方法操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/14_inheritance/" title="类继承" class="dd-item"><a href="/python/16_class/14_inheritance/">类继承<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/regex/" title="通俗易懂 Python 正则表达式" class="dd-item"><a href="/regex/">正则表达式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/numpy/" title="Numpy 基础快速了解和查询" class="dd-item active"><a href="/numpy/">Numpy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pandas/" title="Pandas 基础快速了解和查询" class="dd-item"><a href="/pandas/">Pandas<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/matplotlib/" title="Matpotlib 快速入门" class="dd-item"><a href="/matplotlib/">Matpotlib<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/" title="数理统计、机器学习入门" class="dd-item"><input type="checkbox" id="section-7311b56f8e68ee915dd2e657bac269ed" class="toggle"/><label for="section-7311b56f8e68ee915dd2e657bac269ed" ></label><a href="/statistics/">机器学习入门<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/statistics/statistics1/" title="描述统计" class="dd-item"><a href="/statistics/statistics1/">描述统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics2/" title="推断统计" class="dd-item"><a href="/statistics/statistics2/">推断统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics3/" title="线性回归" class="dd-item"><a href="/statistics/statistics3/">线性回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics4/" title="逻辑回归" class="dd-item"><a href="/statistics/statistics4/">逻辑回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics5/" title="分类模型评估" class="dd-item"><a href="/statistics/statistics5/">分类模型评估<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics6/" title="KNN 算法" class="dd-item"><a href="/statistics/statistics6/">KNN 算法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics7/" title="朴素贝叶斯" class="dd-item"><a href="/statistics/statistics7/">朴素贝叶斯<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics8/" title="决策树" class="dd-item"><a href="/statistics/statistics8/">决策树<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
+            <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
+            <li><a class="padding" href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="blue" value="blue" selected>Blue</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+      <p>©2022 吴明文</p>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1661054440" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661054440" defer></script>
+    <script src="/js/featherlight.min.js?1661054440" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661054440" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="https://unpkg.com/rapidoc/dist/rapidoc-min.js" defer></script>
+    <script>
+      window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
+    </script>
+    <script src="/js/theme.js?1661054440" defer></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文件对象概述 on jupyter.fun</title>
+    <link>/python/14_file/</link>
+    <description>Recent content in 文件对象概述 on jupyter.fun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/14_file/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>读取文件内容</title>
+      <link>/python/14_file/02_read/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/14_file/02_read/</guid>
+      <description>打开方式不同，会创建不同类型的文件对象（流），不同类型的文件对象，可能有不同的属性或方法。
+下列检查或读取内容的属性或方法，是多数文件对象通用的：
+readable() 如果可以读取流，则返回 True 。否则为 False ，且 read() 将引发 OSError 错误。 f = open(&amp;#39;test.txt&amp;#39;) f.readable() Trueread(size=-1) 从对象中读取 size 个字节并将其返回。作为一个便捷选项，如果 size 未指定或为 -1，则返回所有字节直到 EOF。流的位置与读取内容同步，不重设流的位置，内容只能被读取一次。
+tell() 返回当前流的位置。
+f = open(&amp;#39;test.txt&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.read() &#39;为什么一定要掌握自学能力？\n未来的日子还很长，\n这世界进步得太快，\n没有自学能力，\n没有未来。&#39;f = open(&amp;#39;test.txt&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.read(12) &#39;为什么一定要掌握自学能力&#39;f.tell() 36f.read() # 再次读取，将读取剩下未读部分 &#39;？\n未来的日子还很长，\n这世界进步得太快，\n没有自学能力，\n没有未来。&#39;f.read() # 已经没有内容 &#39;&#39;seek(offset, whence=0) 将流位置修改到给定的字节 offset。返回新的绝对位置。 f.seek(0, 0) 0f.read() # 从新位置读取 &#39;为什么一定要掌握自学能力？\n未来的日子还很长，\n这世界进步得太快，\n没有自学能力，\n没有未来。&#39;readline(size=-1) 从流中读取并返回一行。如果指定了 size，将至多读取 size 个字节。 f = open(&amp;#39;test.txt&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.readline() &#39;为什么一定要掌握自学能力？\n&#39;f.readline(2) # 再次读取，将读取剩下未读部分 &#39;未来&#39;readlines(hint=-1) 从流中读取并返回包含多行的列表。可以指定 hint 来控制要读取的行数。指定行数可以多于实际。 f = open(&amp;#39;test.</description>
+    </item>
+    <item>
+      <title>文件写入内容</title>
+      <link>/python/14_file/03_write/</link>
+      <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
+      <guid>/python/14_file/03_write/</guid>
+      <description>打开方式不同，会创建不同类型的文件对象（流），不同类型的文件对象，可能有不同的属性或方法。
+打开模式不同，写入内容的方式也会不同，详见 open() 打开文件。
+下列检查或写入内容的属性或方法，是多数文件对象通用的：
+writable() 如果流支持写入则返回 True。如为 False，则 write() 将引发 OSError。 f = open(&amp;#39;test.txt&amp;#39;,&amp;#39;a&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.writable() Truef = open(&amp;#39;test.txt&amp;#39;) f.writable() f.write(&amp;#39;这世界进步得太快，&amp;#39;) ---------------------------------------------------------------------------UnsupportedOperation Traceback (most recent call last)&amp;lt;ipython-input-1-7bf449cf8958&amp;gt; in &amp;lt;module&amp;gt;1 f = open(&#39;test.txt&#39;)2 f.writable()----&amp;gt; 3 f.write(&#39;这世界进步得太快，&#39;)UnsupportedOperation: not writablewrite() 将字符串或字节串写入到流并返回写入的字符或字节数。对于阻塞流（需要刷新才能将内容写入文件），写入内容在缓冲区（打开文件看不到写入的内容）。 f = open(&amp;#39;test.txt&amp;#39;,&amp;#39;a+&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.write(&amp;#39;\n这世界进步得太快，&amp;#39;) 10flush() 刷新流的写入缓冲区（打开文件将看到写入的内容）。这对只读和非阻塞流不起作用。 f.flush() writelines(lines) 将行列表写入到流。不会添加行分隔符，因此通常所提供的每一行都带有末尾行分隔符。对于阻塞流，写入内容在缓冲区。 f = open(&amp;#39;test.txt&amp;#39;,&amp;#39;a+&amp;#39;,encoding=&amp;#39;utf-8&amp;#39;) f.writelines([&amp;#39;\n没有自学能力，\n&amp;#39;, &amp;#39;没有未来。&amp;#39;]) f.tell() # 流的位置在末尾 137f.read() # 从末尾读取内容为空 &#39;&#39;f.seek(0, 0) # 重设流的位置为开头 0f.</description>
+    </item>
+  </channel>
+</rss>

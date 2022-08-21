@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.101.0">
+    <meta name="generator" content="Relearn 5.2.1+tip">
+    <meta name="description" content="">
+    <meta name="author" content="吴明文">
+    <title>推断统计 - jupyter.fun</title>
+    <link href="/statistics/statistics2/" rel="canonical" type="text/html" title="jupyter.fun">
+    <link href="/statistics/statistics2/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661054444" rel="stylesheet">
+    <link href="/css/nucleus.css?1661054444" rel="stylesheet">
+    <link href="/css/fonts.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661054444" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661054444" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661054444" rel="stylesheet">
+    <link href="/css/variant.css?1661054444" rel="stylesheet">
+    <link href="/css/print.css?1661054444" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661054444" rel="stylesheet">
+    <script src="/js/variant.js?1661054444"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'blue' ] );
+    </script>
+    <script src="/js/jquery.min.js?1661054444" defer></script>
+  </head>
+  <body class="mobile-support print" data-url="/statistics/statistics2/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-print-link">
+            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/statistics/statistics2/index.print.html">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='本章节目录 (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="/"><span itemprop="name">主页</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/statistics/"><span itemprop="name">数理统计、机器学习入门</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/statistics/statistics2/" aria-disabled="true"><span itemprop="name">推断统计</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-总体-个体与样本">1, 总体, 个体与样本</a></li>
+    <li><a href="#2-参数估计">2, 参数估计</a>
+      <ul>
+        <li><a href="#201-点估计">2.01, 点估计</a></li>
+        <li><a href="#202-区间估计">2.02, 区间估计</a></li>
+        <li><a href="#203-中心极限定理">2.03, 中心极限定理</a></li>
+        <li><a href="#204-正态分布的特性">2.04, 正态分布的特性</a></li>
+        <li><a href="#205-重要结论">2.05, 重要结论</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-假设检验">3, 假设检验</a>
+      <ul>
+        <li><a href="#301-关键概念">3.01, 关键概念:</a></li>
+        <li><a href="#302-假设检验的步骤">3.02, 假设检验的步骤</a></li>
+        <li><a href="#303-z检验">3.03, Z检验</a></li>
+        <li><a href="#304-t检验">3.04, t检验</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1>推断统计</h1>
+
+<p>推断统计, 通过样本推断总体的统计方法, 包括对总体的未知参数进行估计; 对关于参数的假设进行检查; 对总体进行预测预报等.
+推断统计的基本问题可以分为两大类：一类是 <strong>参数估计</strong> 问题; 另一类是 <strong>假设检验</strong> 问题</p>
+<h2 id="1-总体-个体与样本">1, 总体, 个体与样本</h2>
+<p>总体, 要研究对象的所有数据, 获取通常比较困难. 总体中的某个数据, 就是个体. 从总体中抽取部分个体, 就构成了样本, 样本中的个体数, 称为样本容量.</p>
+<h2 id="2-参数估计">2, 参数估计</h2>
+<p>参数估计, 用样本指标(统计量)估计总体指标(参数). 参数估计有 <strong>点估计</strong> 和 <strong>区间估计</strong> 两种</p>
+<h3 id="201-点估计">2.01, 点估计</h3>
+<p>点估计是依据样本统计量估计总体中的未知参数. 通常它们是总体的某个特征值，如数学期望, 方差和相关系数等.
+点估计问题就是要构造一个只依赖于样本的量，作为总体未知参数的估计值.</p>
+<h3 id="202-区间估计">2.02, 区间估计</h3>
+<p>区间估计是根据样本的统计量, 计算出一个可能的区间(置信区间) 和 概率(置信度), 表示总体的未知参数有多少概率位于该区间.</p>
+<p><strong>注意:</strong><br>
+点估计使用一个值来作为总体参数值, 能给出具体值, 但易受随机抽样影响, 准确性不够<br>
+区间估计使用一个置信区间和置信度, 表示总体参数值有多少可能(置信度)会在该范围(置信区间)内, 能给出合理的范围和信心指数, 不能给出具体值</p>
+<h3 id="203-中心极限定理">2.03, 中心极限定理</h3>
+<p>要确定置信区间与置信度, 我们先要知道总体与样本之间, 在分布上有着怎样的联系. 中心极限定理(独立同分布的中心极限定理)给出了它们之间的联系:</p>
+<p>如果总体均值为 
+<span class="math align-center">$\mu$</span>, 方差为 
+<span class="math align-center">$\sigma^{2}$</span>, 我们进行随机抽样, 样本容量为 n, 当 n 增大时，则样本均值 
+<span class="math align-center">$\bar{X}$</span>
+逐渐趋近服从均值为 
+<span class="math align-center">$\mu$</span>, 方差为 
+<span class="math align-center">$\sigma^{2} / n$</span> 的正态分布：</p>
+
+<span class="math align-center">$$\bar{X} \sim N\left(\mu, \sigma^{2} / n\right)$$</span><p><strong>说明:</strong><br>
+进行多次抽样，每次抽样会得到一个均值, 这些均值会围绕在总体均值左右，呈正态分布<br>
+当样本容量 n 足够大时, 抽样样本均值的均值 ≈ 样本均值 
+<span class="math align-center">$\bar{X}$</span> ≈ 总体均值 
+<span class="math align-center">$\mu$</span>, 样本均值分布的标准差等于 
+<span class="math align-center">$\sigma / \sqrt{n}$</span><br>
+样本均值分布的标准差, 称为标准误差, 简称标准误</p>
+<p>模拟证明:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;font.family&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;SimHei&#39;</span>  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>rcParams[<span style="color:#e6db74">&#39;axes.unicode_minus&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义非正态分布总体(也可以是正态分布)  </span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">5</span>, size<span style="color:#f92672">=</span><span style="color:#ae81ff">10000</span>)  
+</span></span><span style="display:flex;"><span>data<span style="color:#f92672">.</span>sort()  
+</span></span><span style="display:flex;"><span>all_ <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(data[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">8000</span>], size<span style="color:#f92672">=</span><span style="color:#ae81ff">10000</span>)  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sns.displot(all_)  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将总体的均值和标准差设为已知条件  </span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;总体均值:&#39;</span>, all_<span style="color:#f92672">.</span>mean(), <span style="color:#e6db74">&#39;总体标准差:&#39;</span>, all_<span style="color:#f92672">.</span>std())  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建存放每次抽样的平均值的数组(初始值为 0)  </span>
+</span></span><span style="display:flex;"><span>mean_arr <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(<span style="color:#ae81ff">1000</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 循环抽取 1000 个样本, 每次抽 100 个  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(mean_arr)):  
+</span></span><span style="display:flex;"><span>    mean_arr[i] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(all_, size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)<span style="color:#f92672">.</span>mean()  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证结果  </span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;样本均值:&#39;</span>, mean_arr[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;样本均值的均值:&#39;</span>, mean_arr<span style="color:#f92672">.</span>mean(),   
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;标准误差:&#39;</span>, mean_arr<span style="color:#f92672">.</span>std(), <span style="color:#e6db74">&#39;偏度:&#39;</span>, pd<span style="color:#f92672">.</span>Series(mean_arr)<span style="color:#f92672">.</span>skew(), sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sns<span style="color:#f92672">.</span>displot(mean_arr, kde<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show() 
+</span></span></code></pre></div><pre><code>总体均值: 18.270423532980452 总体标准差: 3.8201265113791596
+样本均值:
+18.194948520041606
+样本均值的均值:
+18.26385715935595
+标准误差:
+0.373202226318143
+偏度:
+0.00746666188264042
+</code></pre>
+<p><img src="output_1_1.png" alt="png"></p>
+<h3 id="204-正态分布的特性">2.04, 正态分布的特性</h3>
+<p>正态分布: 
+<span class="math align-center">$X \sim N\left(\mu, \sigma^{2}\right)$</span></p>
+<p><img src="zttx.png" alt="png"></p>
+<p>以均值为中心:<br>
+在 1 倍标准差内包含约 68.2% 的样本数据<br>
+在 2 倍标准差内包含约 95.4% 的样本数据<br>
+在 3 倍标准差内包含约 99.7% 的样本数据</p>
+<p>证明:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 定义标准差  </span>
+</span></span><span style="display:flex;"><span>scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义数据  </span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">0</span>, scale, size<span style="color:#f92672">=</span><span style="color:#ae81ff">100000</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> times <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>):  
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> x[(x <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span>times <span style="color:#f92672">*</span> scale) <span style="color:#f92672">&amp;</span> (x <span style="color:#f92672">&lt;</span> times <span style="color:#f92672">*</span> scale)]  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>times<span style="color:#e6db74">}</span><span style="color:#e6db74">倍的标准差:&#39;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>len(y) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">/</span> len(x)<span style="color:#e6db74">}</span><span style="color:#e6db74">%&#39;</span>)  
+</span></span></code></pre></div><pre><code>1倍的标准差:
+68.206%
+2倍的标准差:
+95.354%
+3倍的标准差:
+99.711%
+</code></pre>
+<h3 id="205-重要结论">2.05, 重要结论</h3>
+<p>根据中心极限定理和正态分布的特性, 如果总体标准差为
+<span class="math align-center">$\sigma$</span>, 对总体进行一次抽样, 如果样本足够大, 则样品均值 
+<span class="math align-center">$\bar{X}$</span>
+服从正态分布, 该均值约有 95.4% 的概率会在 2 倍的标准误差 (
+<span class="math align-center">$\mu - 2\sigma / \sqrt{n}, \mu + 2\sigma / \sqrt{n}$</span>) 范围内, 并且该样本均值约等于总体均值 
+<span class="math align-center">$\mu$</span>. 从而, 可以利用这一结论, 对总体均值进行区间估计.</p>
+<p><strong>结论验证:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 随机生成总体均值, 其值未知  </span>
+</span></span><span style="display:flex;"><span>mean <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10000</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 总体的标准差已知为 50  </span>
+</span></span><span style="display:flex;"><span>std <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义总体数据  </span>
+</span></span><span style="display:flex;"><span>all_ <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(mean, std, size<span style="color:#f92672">=</span><span style="color:#ae81ff">100000</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从总体抽取 100 个元素构成样本  </span>
+</span></span><span style="display:flex;"><span>sample <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(all_, size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, replace<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本均值  </span>
+</span></span><span style="display:flex;"><span>sample_mean <span style="color:#f92672">=</span> sample<span style="color:#f92672">.</span>mean()  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;样本均值:&#39;</span>, sample_mean)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本的标准误差  </span>
+</span></span><span style="display:flex;"><span>se <span style="color:#f92672">=</span> std <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>sqrt(n)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算置信区间 95%置信度  </span>
+</span></span><span style="display:flex;"><span>min_ <span style="color:#f92672">=</span> sample_mean <span style="color:#f92672">-</span> <span style="color:#ae81ff">1.96</span> <span style="color:#f92672">*</span> se  
+</span></span><span style="display:flex;"><span>max_ <span style="color:#f92672">=</span> sample_mean <span style="color:#f92672">+</span> <span style="color:#ae81ff">1.96</span> <span style="color:#f92672">*</span> se  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;置信区间(95%置信度):&#39;</span>, (min_, max_))  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 区间估计  </span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;总体均值有 95% 的概率在</span><span style="color:#e6db74">{</span>(min_, max_)<span style="color:#e6db74">}</span><span style="color:#e6db74">区间内&#39;</span>)  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;总体均值:&#39;</span>, mean)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 绘图辅助  </span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(mean, <span style="color:#ae81ff">0</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*&#39;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;orange&#39;</span>, ms<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;总体均值&#39;</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(sample_mean, <span style="color:#ae81ff">0</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;o&#39;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;样本均值&#39;</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>hlines(<span style="color:#ae81ff">0</span>, xmin<span style="color:#f92672">=</span>min_, xmax<span style="color:#f92672">=</span>max_, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;b&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;置信区间&#39;</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>axvline(min_, <span style="color:#ae81ff">0.4</span>, <span style="color:#ae81ff">0.6</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, ls<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;左边界&#39;</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>axvline(max_, <span style="color:#ae81ff">0.4</span>, <span style="color:#ae81ff">0.6</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;g&#39;</span>, ls<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;右边界&#39;</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  
+</span></span></code></pre></div><pre><code>样本均值: 9695.658932218576
+置信区间(95%置信度): (9685.858932218576, 9705.458932218575)
+总体均值有 95% 的概率在(9685.858932218576, 9705.458932218575)区间内
+总体均值: 9696
+</code></pre>
+<p><img src="output_5_1.png" alt="png"></p>
+<h2 id="3-假设检验">3, 假设检验</h2>
+<p>假设检验(显著性检验), 先对总体做出假设, 然后通过判断样本与总体之间是否存在显著性差异, 来验证总体的假设</p>
+<p>假设检验使用了一种类似于 “反证法” 的推理方法，它的特点是：</p>
+<ul>
+<li>
+<p>先对总体做出两个完全相反的假设, 原假设(设为真) 和 备择假设, 计算后导致不合理现象产生，则拒绝原假设, 接受备择假设, 反之接受原假设, 放弃备择假设</p>
+</li>
+<li>
+<p>这种 “反证法” 不同于一般的反证法. 所谓不合理现象产生，并非指形式逻辑上的绝对矛盾，而是基于小概率原理：概率很小的事件在一次试验中几乎是不可能发生的，若发生了，就是不合理的.</p>
+</li>
+<li>
+<p>怎样才算 “小概率”, 通常可将概率不超过 0.05 的事件称为 “小概率事件” ，也可视具体情形而取 0.1 或 0.01 等. 在假设检验中常记这个概率为 α，称为显著性水平</p>
+</li>
+</ul>
+<p>假设检验可分为正态分布检验, 正态总体均值检验, 非参数检验三类, 本文只介绍 <strong>正态总体均值检验</strong> , 包括 Z检验 和 t检验 两种情况</p>
+<h3 id="301-关键概念">3.01, 关键概念:</h3>
+<p>对总体参数做出两个完全对立的假设, 分别为:<br>
+<strong>原假设(零假设) 
+<span class="math align-center">$H_{0}$</span><br>
+备择假设(对立假设) 
+<span class="math align-center">$H_{1}$</span></strong></p>
+<p><strong>双边假设检验</strong> :<br>
+
+<span class="math align-center">$H_{0}: \mu=\mu_{0}, H_{1}: \mu \neq \mu_{0}$</span></p>
+<p><strong>单边假设检验</strong> :<br>
+
+<span class="math align-center">$H_{0}: \mu \geq \mu_{0}, H_{1}: \mu<\mu_{0}$</span> (<strong>左边检验</strong>)<br>
+
+<span class="math align-center">$H_{0}: \mu \leq \mu_{0}, H_{1}: \mu>\mu_{0}$</span> ( <strong>右边检验</strong> )<br>
+
+<span class="math align-center">$\mu$</span> 为总体均值, 
+<span class="math align-center">$\mu_{0}$</span> 为假设均值</p>
+<p><strong>显著性水平</strong> : 根据需要设定的小概率事件的概率 α (1 - α 为置信度)</p>
+<p><strong>检验统计量</strong> (Z 和 t): 用来判断样本均值与总体均值是否存在显著性差异</p>
+<p><strong>P值:</strong> 通过检验统计量计算而得的概率值, 表示原假设可被拒绝的最小值(或可支持原假设的概率):<br>
+P ≤ α, 原假设可被拒绝的最小值比显著性水平还低, 原假设可被拒绝, 则拒绝原假设<br>
+P &gt; α, 原假设可被拒绝的最小值大于显著性水平, 原假设不可被拒绝, 支持原假设</p>
+<h3 id="302-假设检验的步骤">3.02, 假设检验的步骤</h3>
+<p>设置原假设与备择假设<br>
+设置显著性水平 α<br>
+根据问题选择假设检验的方式<br>
+计算统计量(Z 或 t)<br>
+计算 P值(Z 或 t 围成的分布面积)<br>
+根据 P值 与 α值, 决定接受原假设还是备择假设</p>
+<p>例, 某车间用一台包装机包装葡萄糖. 袋装糖的净重是一个随机变量，它服从正态分布. 当机器正常时，其均值为 0.5kg，标准差为 0.015kg.
+某日开工后为检验包装机是否正常，随机地抽取它所包装的糖 9 袋，称得净重为(kg):<br>
+0.497, 0.506, 0.518, 0.524, 0.498, 0.511, 0.520, 0.515, 0.512<br>
+判断下面说法是否正确:<br>
+(1) 机器正常</p>
+<p>例, 某车间用包装机包装葡萄糖. 袋装糖的净重是一个随机变量，它服从正态分布. 随机地抽取糖 9 袋，称得净重为(kg):<br>
+0.497, 0.506, 0.518, 0.524, 0.498, 0.511, 0.520, 0.515, 0.512<br>
+判断下面说法是否正确:<br>
+(2) 该车间袋装糖净重均值为 0.5kg<br>
+(3) 该车间袋装糖净重均值不少于 0.5kg<br>
+(4) 该车间袋装糖净重均值不多于 0.5kg</p>
+<h3 id="303-z检验">3.03, Z检验</h3>
+<p>Z检验适用于: 总体正态分布且方差已知, 样本容量较大(一般 ≥ 30)</p>
+<p>Z统计量计算公式:</p>
+
+<span class="math align-center">$$Z=\frac{\bar{x}-\mu_{0}}{S_{\bar{x}}}=\frac{\bar{x}-\mu_{0}}{\sigma /
+\sqrt{n}}$$</span><p>
+<span class="math align-center">$\bar{x}$</span>: 样本均值<br>
+
+<span class="math align-center">$\mu_{0}$</span>: 假设的总体均值<br>
+
+<span class="math align-center">$S_{\bar{x}}$</span>: 样本的标准误差<br>
+
+<span class="math align-center">$\sigma$</span>: 总体的标准差<br>
+
+<span class="math align-center">$n$</span>: 样本容量</p>
+<p>检验说法(1): 机器正常</p>
+<p>双边检验:<br>
+原假设机器正常: 
+<span class="math align-center">$H_{0}: \mu=\mu_{0}=0.5kg$</span><br>
+备择假设机器不正常: 
+<span class="math align-center">$H_{1}: \mu \neq \mu_{0} \neq 0.5kg$</span><br>
+设置显著性水平: α = 0.05</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy <span style="color:#f92672">import</span> stats  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 样本已知  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0.497</span>, <span style="color:#ae81ff">0.506</span>, <span style="color:#ae81ff">0.518</span>, <span style="color:#ae81ff">0.524</span>, <span style="color:#ae81ff">0.498</span>, <span style="color:#ae81ff">0.511</span>, <span style="color:#ae81ff">0.520</span>, <span style="color:#ae81ff">0.515</span>, <span style="color:#ae81ff">0.512</span>])  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 总体均值和标准差已知  </span>
+</span></span><span style="display:flex;"><span>mean, std <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.015</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本均值  </span>
+</span></span><span style="display:flex;"><span>sample_mean <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>mean()  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本标准误差  </span>
+</span></span><span style="display:flex;"><span>se <span style="color:#f92672">=</span> std <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>sqrt(len(a))  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算 Z统计量  </span>
+</span></span><span style="display:flex;"><span>Z <span style="color:#f92672">=</span> (sample_mean <span style="color:#f92672">-</span> mean) <span style="color:#f92672">/</span> se  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;Z统计量:&#39;</span>, Z)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算 P值, 双边检验: Z值与其右边曲线围成的面积的 2 倍  </span>
+</span></span><span style="display:flex;"><span>P <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> stats<span style="color:#f92672">.</span>norm<span style="color:#f92672">.</span>sf(abs(Z))  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;P值:&#39;</span> , P)  
+</span></span></code></pre></div><pre><code>Z统计量: 2.244444444444471
+P值: 0.02480381963225589
+</code></pre>
+<p><img src="mianji.png" alt=""></p>
+<p>由结果可知, Z值 超过了 1.96, 由 Z值 与其右边曲线围成的面积的 2 倍, 必然小于 α(1.96 与其右边曲线围成的面积的 2 倍), 计算结果 P &lt; α, 因此拒绝原假设, 接受备择假设, 机器不正常</p>
+<h3 id="304-t检验">3.04, t检验</h3>
+<p>t检验适用于: 总体正态分布, 方差未知, 样本数量较少(一般 &lt; 30), 但是随着样本容量的增加, 分布逐渐趋于正态分布</p>
+<p><img src="tzyd.png" alt=""></p>
+<p>t统计量计算公式:</p>
+
+<span class="math align-center">$$t=\frac{\bar{x}-\mu_{0}}{S_{\bar{x}}}=\frac{\bar{x}-\mu_{0}}{S / \sqrt{n}}$$</span><p>
+<span class="math align-center">$\bar{x}$</span>: 样本均值<br>
+
+<span class="math align-center">$\mu_{0}$</span>: 假设的总体均值<br>
+
+<span class="math align-center">$S_{\bar{x}}$</span>: 样本的标准误差<br>
+
+<span class="math align-center">$S$</span>: 样本的标准差<br>
+
+<span class="math align-center">$n$</span>: 样本容量</p>
+<p><strong>双边检验</strong> :<br>
+检验说法(2): 该车间袋装糖净重均值为 0.5kg</p>
+<p>原假设, 该车间袋装糖净重均值为 0.5kg: 
+<span class="math align-center">$H_{0}: \mu=\mu_{0}=0.5kg$</span><br>
+备择假设, 该车间袋装糖净重均值不为 0.5kg: 
+<span class="math align-center">$H_{1}: \mu \neq \mu_{0} \neq 0.5kg$</span><br>
+设置显著性水平: α = 0.05</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 样本已知  </span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0.497</span>, <span style="color:#ae81ff">0.506</span>, <span style="color:#ae81ff">0.518</span>, <span style="color:#ae81ff">0.524</span>, <span style="color:#ae81ff">0.498</span>, <span style="color:#ae81ff">0.511</span>, <span style="color:#ae81ff">0.520</span>, <span style="color:#ae81ff">0.515</span>, <span style="color:#ae81ff">0.512</span>])  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 假设的总体均值已知  </span>
+</span></span><span style="display:flex;"><span>mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本均值  </span>
+</span></span><span style="display:flex;"><span>sample_mean <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>mean()  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算样本标准差  </span>
+</span></span><span style="display:flex;"><span>std <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>std()  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算 t统计量  </span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> (sample_mean <span style="color:#f92672">-</span> mean) <span style="color:#f92672">/</span> ( std <span style="color:#f92672">/</span> np<span style="color:#f92672">.</span>sqrt(len(a)))  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;t统计量:&#39;</span>, t)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 计算 P值, df 是自由度: 样本变量可自由取值的个数  </span>
+</span></span><span style="display:flex;"><span>P <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> stats<span style="color:#f92672">.</span>t<span style="color:#f92672">.</span>sf(abs(t), df<span style="color:#f92672">=</span>len(a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;P值:&#39;</span>, P)  
+</span></span></code></pre></div><pre><code>t统计量: 3.802382179137283
+P值: 0.005218925008708613
+</code></pre>
+<p>P &lt; α, 拒绝原假设, 接受备择假设: 该车间袋装糖净重均值不为 0.5kg</p>
+<p>还可以通过 scipy 提供的方法 <code>ttest_1samp</code> 来进行 t检验计算:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy <span style="color:#f92672">import</span> stats
+</span></span><span style="display:flex;"><span>stats<span style="color:#f92672">.</span>ttest_1samp(a, <span style="color:#ae81ff">0.5</span>)  
+</span></span></code></pre></div><pre><code>Ttest_1sampResult(statistic=3.584920298041139, pvalue=0.007137006417828698)
+</code></pre>
+<p><strong>左边检验</strong> :<br>
+检验说法(3): 该车间袋装糖净重均值不少于 0.5kg</p>
+<p>原假设, 该车间袋装糖净重均值不少于 0.5kg: 
+<span class="math align-center">$H_{0}: \mu \geq \mu_{0}$</span><br>
+备择假设, 该车间袋装糖净重均值少于 0.5kg: 
+<span class="math align-center">$H_{1}: \mu<\mu_{0}$</span><br>
+设置显著性水平: α = 0.05</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># t统计量上述已经计算, 只需计算 P值: t统计量与其左边曲线围成的面积  </span>
+</span></span><span style="display:flex;"><span>P <span style="color:#f92672">=</span> stats<span style="color:#f92672">.</span>t<span style="color:#f92672">.</span>cdf(t, df<span style="color:#f92672">=</span>len(a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;P值:&#39;</span>, P)  
+</span></span></code></pre></div><pre><code>P值: 0.9973905374956458
+</code></pre>
+<p>P &gt; α, 接受原假设, 该车间袋装糖净重均值不少于 0.5kg</p>
+<p><strong>右边检验</strong> :<br>
+检验说法(4): 该车间袋装糖净重均值不多于 0.5kg</p>
+<p>原假设, 该车间袋装糖净重均值不多于 0.5kg: 
+<span class="math align-center">$H_{0}: \mu \leq \mu_{0}$</span><br>
+备择假设, 该车间袋装糖净重均值多于 0.5kg: 
+<span class="math align-center">$H_{1}: \mu>\mu_{0}$</span><br>
+设置显著性水平: α = 0.05</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 计算 P值: t统计量与其右边曲线围成的面积  </span>
+</span></span><span style="display:flex;"><span>P <span style="color:#f92672">=</span> stats<span style="color:#f92672">.</span>t<span style="color:#f92672">.</span>sf(t, df<span style="color:#f92672">=</span>len(a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;P值:&#39;</span>, P)  
+</span></span></code></pre></div><pre><code>P值: 0.0026094625043543065
+</code></pre>
+<p>P &lt; α, 拒绝原假设, 接受备择假设, 该车间袋装糖净重均值多于 0.5kg</p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <a id="logo" href="/">
+            <br><font face="serif" size="6" color="#17202A"><b>🏠Jupyter.fun</b></font>
+          </a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1661054444" defer></script>
+        <script src="/js/lunr.min.js?1661054444" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661054444" defer></script>
+        <script src="/js/lunr.multi.min.js?1661054444" defer></script>
+        <script src="/js/lunr.en.min.js?1661054444" defer></script>
+        <script src="/js/search.js?1661054444" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/python/" title="Python 语法基础知识详解和查询手册" class="dd-item"><input type="checkbox" id="section-c8861a2651b27ee3930a98ce392020d1" class="toggle"/><label for="section-c8861a2651b27ee3930a98ce392020d1" ></label><a href="/python/">Python<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/" title="数字类型概述" class="dd-item"><input type="checkbox" id="section-f26ae7da78c4758569d4b453b66b4231" class="toggle"/><label for="section-f26ae7da78c4758569d4b453b66b4231" ></label><a href="/python/01_numeric/">数字类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/02_int/" title="整数及其位运算" class="dd-item"><a href="/python/01_numeric/02_int/">整数及其位运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/03_bool/" title="布尔值及布尔运算" class="dd-item"><a href="/python/01_numeric/03_bool/">布尔值及布尔运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/04_float/" title="浮点数" class="dd-item"><a href="/python/01_numeric/04_float/">浮点数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/05_complex/" title="复数" class="dd-item"><a href="/python/01_numeric/05_complex/">复数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/06_number_operations/" title="数字运算" class="dd-item"><a href="/python/01_numeric/06_number_operations/">数字运算<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/02_string/" title="字符串概述" class="dd-item"><input type="checkbox" id="section-0a8894164d573ed7362e26196efabc7a" class="toggle"/><label for="section-0a8894164d573ed7362e26196efabc7a" ></label><a href="/python/02_string/">字符串<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/02_string/02_concatenated_string/" title="字符串拼接" class="dd-item"><a href="/python/02_string/02_concatenated_string/">字符串拼接<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/03_escape_character/" title="转义字符" class="dd-item"><a href="/python/02_string/03_escape_character/">转义字符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/04_str.count/" title="str.count 统计" class="dd-item"><a href="/python/02_string/04_str.count/">str.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/05_str.replace/" title="str.replace 替换" class="dd-item"><a href="/python/02_string/05_str.replace/">str.replace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/06_str.expandtabs/" title="str.expandtabs 替换制表符" class="dd-item"><a href="/python/02_string/06_str.expandtabs/">str.expandtabs<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/07_str.split/" title="str.split 拆分" class="dd-item"><a href="/python/02_string/07_str.split/">str.split<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/08_str.rsplit/" title="str.rsplit 拆分" class="dd-item"><a href="/python/02_string/08_str.rsplit/">str.rsplit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/09_str.partition/" title="str.partition 拆分" class="dd-item"><a href="/python/02_string/09_str.partition/">str.partition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/10_str.rpartition/" title="str.rpartition 拆分" class="dd-item"><a href="/python/02_string/10_str.rpartition/">str.rpartition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/11_str.splitlines/" title="str.splitlines 按行拆分" class="dd-item"><a href="/python/02_string/11_str.splitlines/">str.splitlines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/12_str.strip/" title="str.strip 移除两边字符" class="dd-item"><a href="/python/02_string/12_str.strip/">str.strip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/13_str.lstrip/" title="str.lstrip 移除左边字符" class="dd-item"><a href="/python/02_string/13_str.lstrip/">str.lstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/14_str.rstrip/" title="str.rstrip 移除右边字符" class="dd-item"><a href="/python/02_string/14_str.rstrip/">str.rstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/15_str.find/" title="str.find 查找最小索引" class="dd-item"><a href="/python/02_string/15_str.find/">str.find<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/16_str.rfind/" title="str.rfind 查找最大索引" class="dd-item"><a href="/python/02_string/16_str.rfind/">str.rfind<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/17_str.index/" title="str.index 查找最小索引" class="dd-item"><a href="/python/02_string/17_str.index/">str.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/18_str.rindex/" title="str.rindex 查找最大索引" class="dd-item"><a href="/python/02_string/18_str.rindex/">str.rindex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/19_str.join/" title="str.join 拼接字符串" class="dd-item"><a href="/python/02_string/19_str.join/">str.join<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/20_str.startswith/" title="str.startswith 指定字符串开头？" class="dd-item"><a href="/python/02_string/20_str.startswith/">str.startswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/21_str.endswith/" title="str.endswith 指定字符串结尾？" class="dd-item"><a href="/python/02_string/21_str.endswith/">str.endswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/22_str.ljust/" title="str.ljust 左对齐" class="dd-item"><a href="/python/02_string/22_str.ljust/">str.ljust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/23_str.center/" title="str.center 居中" class="dd-item"><a href="/python/02_string/23_str.center/">str.center<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/24_str.rjust/" title="str.rjust 右对齐" class="dd-item"><a href="/python/02_string/24_str.rjust/">str.rjust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/25_str.format/" title="str.format 格式化" class="dd-item"><a href="/python/02_string/25_str.format/">str.format<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/26_str.format_map/" title="str.format_map 格式化" class="dd-item"><a href="/python/02_string/26_str.format_map/">str.format_map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/27_f-string/" title="f-string 格式化字符串" class="dd-item"><a href="/python/02_string/27_f-string/">f-string 格式化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/28_string_operators/" title="字符串操作符" class="dd-item"><a href="/python/02_string/28_string_operators/">字符串操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/29_str.encode/" title="str.encode 编码为字节串" class="dd-item"><a href="/python/02_string/29_str.encode/">str.encode<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/30_str.capitalize/" title="str.capitalize 首字符大写" class="dd-item"><a href="/python/02_string/30_str.capitalize/">str.capitalize<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/31_str.casefold/" title="str.casefold 消除大小写" class="dd-item"><a href="/python/02_string/31_str.casefold/">str.casefold<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/32_str.lower/" title="str.lower 转小写" class="dd-item"><a href="/python/02_string/32_str.lower/">str.lower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/33_str.title/" title="str.title 单词首字母大写" class="dd-item"><a href="/python/02_string/33_str.title/">str.title<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/34_str.upper/" title="str.upper 转大写" class="dd-item"><a href="/python/02_string/34_str.upper/">str.upper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/35_str.swapcase/" title="str.swapcase 大小写互转" class="dd-item"><a href="/python/02_string/35_str.swapcase/">str.swapcase<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/36_str.zfill/" title="str.zfill 填充 0" class="dd-item"><a href="/python/02_string/36_str.zfill/">str.zfill<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/37_str.translate/" title="str.translate 按表转换" class="dd-item"><a href="/python/02_string/37_str.translate/">str.translate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/38_str.maketrans/" title="str.maketrans 生成转换表" class="dd-item"><a href="/python/02_string/38_str.maketrans/">str.maketrans<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/39_str.isalnum/" title="str.isalnum 是字母或数字？" class="dd-item"><a href="/python/02_string/39_str.isalnum/">str.isalnum<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/40_str.isalpha/" title="str.isalpha 是字母（包括汉字等）？" class="dd-item"><a href="/python/02_string/40_str.isalpha/">str.isalpha<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/41_str.isdecimal/" title="str.isdecimal 是十进制字符？" class="dd-item"><a href="/python/02_string/41_str.isdecimal/">str.isdecimal<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/42_str.isdigit/" title="str.isdigit 是数字？" class="dd-item"><a href="/python/02_string/42_str.isdigit/">str.isdigit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/43_str.isnumeric/" title="str.isnumeric 是数值字符？" class="dd-item"><a href="/python/02_string/43_str.isnumeric/">str.isnumeric<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/44_str.islower/" title="str.islower 是小写？" class="dd-item"><a href="/python/02_string/44_str.islower/">str.islower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/45_str.isupper/" title="str.isupper 是大写？" class="dd-item"><a href="/python/02_string/45_str.isupper/">str.isupper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/46_str.istitle/" title="str.istitle 是标题字符串？" class="dd-item"><a href="/python/02_string/46_str.istitle/">str.istitle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/47_str.isascii/" title="str.isascii 是 ASCII 字符？" class="dd-item"><a href="/python/02_string/47_str.isascii/">str.isascii<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/48_str.isidentifier/" title="str.isidentifier 是有效标识符？" class="dd-item"><a href="/python/02_string/48_str.isidentifier/">str.isidentifier<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/49_str.isprintable/" title="str.isprintable 是可打印字符？" class="dd-item"><a href="/python/02_string/49_str.isprintable/">str.isprintable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/50_str.isspace/" title="str.isspace 是空白字符？" class="dd-item"><a href="/python/02_string/50_str.isspace/">str.isspace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/51_str.removeprefix/" title="str.removeprefix  移除前缀" class="dd-item"><a href="/python/02_string/51_str.removeprefix/">str.removeprefix<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/52_str.removesuffix/" title="str.removesuffix 移除后缀" class="dd-item"><a href="/python/02_string/52_str.removesuffix/">str.removesuffix<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/03_list/" title="列表" class="dd-item"><input type="checkbox" id="section-9dce683949d5d69d823966a12cca5136" class="toggle"/><label for="section-9dce683949d5d69d823966a12cca5136" ></label><a href="/python/03_list/">列表概述<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/03_list/02_list_comprehension/" title="列表推导式" class="dd-item"><a href="/python/03_list/02_list_comprehension/">列表推导式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/03_list_indexes_and_slices/" title="列表的索引和切片" class="dd-item"><a href="/python/03_list/03_list_indexes_and_slices/">列表的索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/15_list.clear/" title="list.clear 删除所有元素" class="dd-item"><a href="/python/03_list/15_list.clear/">list.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/04_list_operator/" title="列表操作符" class="dd-item"><a href="/python/03_list/04_list_operator/">列表操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/05_list.append/" title="list.append 添加一个元素" class="dd-item"><a href="/python/03_list/05_list.append/">list.append<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/06_list.extend/" title="list.extend 加入可迭代对象中元素" class="dd-item"><a href="/python/03_list/06_list.extend/">list.extend<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/07_list.insert/" title="list.insert 插入一个元素" class="dd-item"><a href="/python/03_list/07_list.insert/">list.insert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/08_list.sort/" title="list.sort 对列表原地排序" class="dd-item"><a href="/python/03_list/08_list.sort/">list.sort<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/09_list.reverse/" title="list.reverse 反转列表中元素" class="dd-item"><a href="/python/03_list/09_list.reverse/">list.reverse<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/10_list.pop/" title="list.pop 删除元素并返回" class="dd-item"><a href="/python/03_list/10_list.pop/">list.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/11_list.remove/" title="list.remove 移除一个元素" class="dd-item"><a href="/python/03_list/11_list.remove/">list.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/12_list.count/" title="list.count 统计元素出现次数" class="dd-item"><a href="/python/03_list/12_list.count/">list.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/13_list.index/" title="list.index 查找最小索引" class="dd-item"><a href="/python/03_list/13_list.index/">list.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/14_list.copy/" title="list.copy 列表的一个浅拷贝" class="dd-item"><a href="/python/03_list/14_list.copy/">list.copy<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/04_tuple/" title="元组概述" class="dd-item"><input type="checkbox" id="section-dc7ea79191f25dfd309c92b5e4905cab" class="toggle"/><label for="section-dc7ea79191f25dfd309c92b5e4905cab" ></label><a href="/python/04_tuple/">元组<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/04_tuple/02_tuple.count/" title="tuple.count 统计元素出现次数" class="dd-item"><a href="/python/04_tuple/02_tuple.count/">tuple.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/03_tuple.index/" title="tuple.index 查找元素索引" class="dd-item"><a href="/python/04_tuple/03_tuple.index/">tuple.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/04_operator/" title="元组操作符" class="dd-item"><a href="/python/04_tuple/04_operator/">元组操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/05_sequence/" title="序列类型概述" class="dd-item"><input type="checkbox" id="section-b631793e0b67cf3997ee6b6ccb5a1018" class="toggle"/><label for="section-b631793e0b67cf3997ee6b6ccb5a1018" ></label><a href="/python/05_sequence/">序列<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/05_sequence/02_range/" title="range 对象" class="dd-item"><a href="/python/05_sequence/02_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/03_index_slice/" title="序列索引和切片" class="dd-item"><a href="/python/05_sequence/03_index_slice/">序列索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/04_common_operations/" title="序列通用操作" class="dd-item"><a href="/python/05_sequence/04_common_operations/">序列通用操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/06_set/" title="集合概述" class="dd-item"><input type="checkbox" id="section-c643fef3f2d56a8ad628665722912338" class="toggle"/><label for="section-c643fef3f2d56a8ad628665722912338" ></label><a href="/python/06_set/">集合<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/06_set/02_set.isdisjoint/" title="set.isdisjoint 交集为空吗？" class="dd-item"><a href="/python/06_set/02_set.isdisjoint/">set.isdisjoint<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/03_set.issubset/" title="set.issubset 是子集吗？" class="dd-item"><a href="/python/06_set/03_set.issubset/">set.issubset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/04_set.issuperset/" title="set.issuperset 是超集吗？" class="dd-item"><a href="/python/06_set/04_set.issuperset/">set.issuperset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/05_set.union/" title="set.union 并集" class="dd-item"><a href="/python/06_set/05_set.union/">set.union<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/06_set.intersection/" title="set.intersection 交集" class="dd-item"><a href="/python/06_set/06_set.intersection/">set.intersection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/07_set.difference/" title="set.difference 差集" class="dd-item"><a href="/python/06_set/07_set.difference/">set.difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/08_set.symmetric_difference/" title="set.symmetric_difference 对称差" class="dd-item"><a href="/python/06_set/08_set.symmetric_difference/">set.symmetric_difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/09_set.copy/" title="set.copy 浅拷贝" class="dd-item"><a href="/python/06_set/09_set.copy/">set.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/10_set.update/" title="set.update 合并更新" class="dd-item"><a href="/python/06_set/10_set.update/">set.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/11_set.intersection_update/" title="set.intersection_update 交集更新" class="dd-item"><a href="/python/06_set/11_set.intersection_update/">set.intersection_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/12_set.difference_update/" title="set.difference_update 差集更新" class="dd-item"><a href="/python/06_set/12_set.difference_update/">set.difference_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/13_set.symmetric_difference_update/" title="set ^= other 对称差集更新" class="dd-item"><a href="/python/06_set/13_set.symmetric_difference_update/">set ^= other<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/14_set.add/" title="set.add 添加元素" class="dd-item"><a href="/python/06_set/14_set.add/">set.add<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/15_set.remove/" title="set.remove 删除元素" class="dd-item"><a href="/python/06_set/15_set.remove/">set.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/16_set.discard/" title="set.discard 删除元素" class="dd-item"><a href="/python/06_set/16_set.discard/">set.discard<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/17_set.pop/" title="set.pop 删除元素并返回" class="dd-item"><a href="/python/06_set/17_set.pop/">set.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/18_set.clear/" title="set.clear 清空集合元素" class="dd-item"><a href="/python/06_set/18_set.clear/">set.clear<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/07_dictionary/" title="字典概述" class="dd-item"><input type="checkbox" id="section-6edd912ea63088ea7d421ba4a9a6b0c9" class="toggle"/><label for="section-6edd912ea63088ea7d421ba4a9a6b0c9" ></label><a href="/python/07_dictionary/">字典<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/07_dictionary/02_dict.keys/" title="dict.keys 键视图" class="dd-item"><a href="/python/07_dictionary/02_dict.keys/">dict.keys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/03_dict.values/" title="dict.values 值视图" class="dd-item"><a href="/python/07_dictionary/03_dict.values/">dict.values<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/04_dict.items/" title="dict.items 键值对视图" class="dd-item"><a href="/python/07_dictionary/04_dict.items/">dict.items<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/05_dict.get/" title="dict.get 获取某个键的值" class="dd-item"><a href="/python/07_dictionary/05_dict.get/">dict.get<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/06_dict.copy/" title="dict.copy 浅拷贝" class="dd-item"><a href="/python/07_dictionary/06_dict.copy/">dict.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/07_dict.pop/" title="dict.pop 删除元素并返回值" class="dd-item"><a href="/python/07_dictionary/07_dict.pop/">dict.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/08_dict.popitem/" title="dict.popitem 删除元素并返回键值对" class="dd-item"><a href="/python/07_dictionary/08_dict.popitem/">dict.popitem<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/09_dict.fromkeys/" title="dict.fromkeys 创建字典" class="dd-item"><a href="/python/07_dictionary/09_dict.fromkeys/">dict.fromkeys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/10_dict.clear/" title="dict.clear 清空字典元素" class="dd-item"><a href="/python/07_dictionary/10_dict.clear/">dict.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/11_dict.setdefault/" title="dict.setdefault 获取或插入元素" class="dd-item"><a href="/python/07_dictionary/11_dict.setdefault/">dict.setdefault<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/12_dict.update/" title="dict.update 更新字典" class="dd-item"><a href="/python/07_dictionary/12_dict.update/">dict.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/13_loop_through/" title="字典遍历" class="dd-item"><a href="/python/07_dictionary/13_loop_through/">字典遍历<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/14_operator/" title="字典操作符" class="dd-item"><a href="/python/07_dictionary/14_operator/">字典操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/08_other_types/" title="生成器表达式和推导式" class="dd-item"><input type="checkbox" id="section-6dcb28ff486050e64e8c2098986ff9d6" class="toggle"/><label for="section-6dcb28ff486050e64e8c2098986ff9d6" ></label><a href="/python/08_other_types/">其他类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/08_other_types/01_none/" title="空值 None" class="dd-item"><a href="/python/08_other_types/01_none/">None<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/08_other_types/03_other_types/" title="其他内置类型" class="dd-item"><a href="/python/08_other_types/03_other_types/">其他内置类型<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/09_operator/" title="操作符概述" class="dd-item"><input type="checkbox" id="section-bf0c286771bede167ff18be220caecff" class="toggle"/><label for="section-bf0c286771bede167ff18be220caecff" ></label><a href="/python/09_operator/">操作符<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/09_operator/02_compare/" title="比较运算符" class="dd-item"><a href="/python/09_operator/02_compare/">比较运算符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/03_precedence/" title="操作符优先级" class="dd-item"><a href="/python/09_operator/03_precedence/">操作符优先级<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/04_special/" title="操作符特殊用法" class="dd-item"><a href="/python/09_operator/04_special/">操作符特殊用法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/10_statement/" title="表达式语句" class="dd-item"><input type="checkbox" id="section-64a5f0f51786f2cfc0f1a295e3568242" class="toggle"/><label for="section-64a5f0f51786f2cfc0f1a295e3568242" ></label><a href="/python/10_statement/">语句<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/10_statement/02_assignment/" title="赋值语句" class="dd-item"><a href="/python/10_statement/02_assignment/">赋值语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/03_if/" title="if" class="dd-item"><a href="/python/10_statement/03_if/">if<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/04_for/" title="for" class="dd-item"><a href="/python/10_statement/04_for/">for<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/05_while/" title="while" class="dd-item"><a href="/python/10_statement/05_while/">while<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/06_break/" title="break" class="dd-item"><a href="/python/10_statement/06_break/">break<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/07_continue/" title="continue" class="dd-item"><a href="/python/10_statement/07_continue/">continue<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/08_del/" title="del" class="dd-item"><a href="/python/10_statement/08_del/">del<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/09_pass/" title="pass" class="dd-item"><a href="/python/10_statement/09_pass/">pass<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/10_def/" title="def" class="dd-item"><a href="/python/10_statement/10_def/">def<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/11_return/" title="return" class="dd-item"><a href="/python/10_statement/11_return/">return<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/12_yield/" title="yield" class="dd-item"><a href="/python/10_statement/12_yield/">yield<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/13_class/" title="class 语句" class="dd-item"><a href="/python/10_statement/13_class/">class 语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/14_try/" title="try" class="dd-item"><a href="/python/10_statement/14_try/">try<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/15_raise/" title="raise" class="dd-item"><a href="/python/10_statement/15_raise/">raise<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/16_with/" title="with" class="dd-item"><a href="/python/10_statement/16_with/">with<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/17_assert/" title="assert" class="dd-item"><a href="/python/10_statement/17_assert/">assert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/18_import/" title="import" class="dd-item"><a href="/python/10_statement/18_import/">import<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/19_global/" title="global" class="dd-item"><a href="/python/10_statement/19_global/">global<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/20_nonlocal/" title="nonlocal" class="dd-item"><a href="/python/10_statement/20_nonlocal/">nonlocal<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/11_built-in_function/" title="abs() 数字取绝对值" class="dd-item"><input type="checkbox" id="section-c688daa3d748f201265692938123fc94" class="toggle"/><label for="section-c688daa3d748f201265692938123fc94" ></label><a href="/python/11_built-in_function/">内置函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/11_built-in_function/02_all/" title="all() 所有元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/02_all/">all()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/03_any/" title="any() 有一个元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/03_any/">any()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/04_ascii/" title="ascii() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/04_ascii/">ascii()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/05_bin/" title="bin() 整数的二进制形式" class="dd-item"><a href="/python/11_built-in_function/05_bin/">bin()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/06_bool/" title="bool 返回对象的布尔值" class="dd-item"><a href="/python/11_built-in_function/06_bool/">bool<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/07_bytes/" title="bytes 创建 bytes 对象" class="dd-item"><a href="/python/11_built-in_function/07_bytes/">bytes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/08_callable/" title="callable() 是可调用对象？" class="dd-item"><a href="/python/11_built-in_function/08_callable/">callable()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/09_chr/" title="chr() 返回 Unicode 码位值对应字符" class="dd-item"><a href="/python/11_built-in_function/09_chr/">chr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/10_classmethod/" title="classmethod 封装函数为类方法" class="dd-item"><a href="/python/11_built-in_function/10_classmethod/">classmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/11_compile/" title="compile() 创建代码对象" class="dd-item"><a href="/python/11_built-in_function/11_compile/">compile()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/12_complex/" title="complex 创建复数" class="dd-item"><a href="/python/11_built-in_function/12_complex/">complex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/13_delattr/" title="delattr() 删除对象属性" class="dd-item"><a href="/python/11_built-in_function/13_delattr/">delattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/14_dict/" title="dict 创建字典" class="dd-item"><a href="/python/11_built-in_function/14_dict/">dict<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/15_dir/" title="dir() 返回对象属性列表" class="dd-item"><a href="/python/11_built-in_function/15_dir/">dir()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/16_divmod/" title="divmod() 求两个数的商和余" class="dd-item"><a href="/python/11_built-in_function/16_divmod/">divmod()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/17_enumerate/" title="enumerate 枚举" class="dd-item"><a href="/python/11_built-in_function/17_enumerate/">enumerate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/18_eval/" title="eval() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/18_eval/">eval()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/19_exec/" title="exec() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/19_exec/">exec()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/20_filter/" title="filter 真值元素筛选" class="dd-item"><a href="/python/11_built-in_function/20_filter/">filter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/21_float/" title="float 创建浮点数" class="dd-item"><a href="/python/11_built-in_function/21_float/">float<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/22_format/" title="format() 格式化" class="dd-item"><a href="/python/11_built-in_function/22_format/">format()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/23_frozenset/" title="frozenset 创建不可变集合" class="dd-item"><a href="/python/11_built-in_function/23_frozenset/">frozenset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/24_getattr/" title="getattr() 获取对象的属性" class="dd-item"><a href="/python/11_built-in_function/24_getattr/">getattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/25_globals/" title="globals() 返回全局变量字典" class="dd-item"><a href="/python/11_built-in_function/25_globals/">globals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/26_hasattr/" title="hasattr() 是对象的属性吗？" class="dd-item"><a href="/python/11_built-in_function/26_hasattr/">hasattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/27_hash/" title="hash() 返回对象的哈希值" class="dd-item"><a href="/python/11_built-in_function/27_hash/">hash()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/28_help/" title="help 启动帮助系统" class="dd-item"><a href="/python/11_built-in_function/28_help/">help<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/29_hex/" title="hex() 整数的十六进制形式" class="dd-item"><a href="/python/11_built-in_function/29_hex/">hex()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/30_id/" title="id() 返回对象的唯一标识" class="dd-item"><a href="/python/11_built-in_function/30_id/">id()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/31_input/" title="input() 接受输入返回字符串" class="dd-item"><a href="/python/11_built-in_function/31_input/">input()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/32_int/" title="int 创建整数" class="dd-item"><a href="/python/11_built-in_function/32_int/">int<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/33_isinstance/" title="isinstance() 是给定类的实例？" class="dd-item"><a href="/python/11_built-in_function/33_isinstance/">isinstance()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/34_issubclass/" title="issubclass() 是给定类的子类吗？" class="dd-item"><a href="/python/11_built-in_function/34_issubclass/">issubclass()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/35_iter/" title="iter() 转迭代器" class="dd-item"><a href="/python/11_built-in_function/35_iter/">iter()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/36_len/" title="len() 返回元素个数" class="dd-item"><a href="/python/11_built-in_function/36_len/">len()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/37_list/" title="list 创建列表" class="dd-item"><a href="/python/11_built-in_function/37_list/">list<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/38_locals/" title="locals() 返回局部变量的字典" class="dd-item"><a href="/python/11_built-in_function/38_locals/">locals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/39_map/" title="map 以给定函数转换元素" class="dd-item"><a href="/python/11_built-in_function/39_map/">map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/40_max/" title="max() 求最大项" class="dd-item"><a href="/python/11_built-in_function/40_max/">max()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/41_min/" title="min() 求最小项" class="dd-item"><a href="/python/11_built-in_function/41_min/">min()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/42_next/" title="next() 返回迭代器下一个元素" class="dd-item"><a href="/python/11_built-in_function/42_next/">next()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/43_object/" title="object 所有类的基类" class="dd-item"><a href="/python/11_built-in_function/43_object/">object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/44_oct/" title="oct() 整数的八进制形式" class="dd-item"><a href="/python/11_built-in_function/44_oct/">oct()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/45_open/" title="open() 打开文件" class="dd-item"><a href="/python/11_built-in_function/45_open/">open()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/46_ord/" title="ord() 返回单个字符 Unicode 码位值" class="dd-item"><a href="/python/11_built-in_function/46_ord/">ord()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/47_pow/" title="pow() 幂运算并取余" class="dd-item"><a href="/python/11_built-in_function/47_pow/">pow()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/48_print/" title="print()" class="dd-item"><a href="/python/11_built-in_function/48_print/">print()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/49_property/" title="property 返回 property 属性" class="dd-item"><a href="/python/11_built-in_function/49_property/">property<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/50_range/" title="range 创建 range 序列" class="dd-item"><a href="/python/11_built-in_function/50_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/51_repr/" title="repr() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/51_repr/">repr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/52_reversed/" title="reversed 序列逆置" class="dd-item"><a href="/python/11_built-in_function/52_reversed/">reversed<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/53_round/" title="round() 数字舍入" class="dd-item"><a href="/python/11_built-in_function/53_round/">round()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/54_set/" title="set 创建集合" class="dd-item"><a href="/python/11_built-in_function/54_set/">set<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/55_setattr/" title="setattr() 设置或新增属性" class="dd-item"><a href="/python/11_built-in_function/55_setattr/">setattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/56_slice/" title="slice 创建切片对象" class="dd-item"><a href="/python/11_built-in_function/56_slice/">slice<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/57_sorted/" title="sorted() 返回排序列表" class="dd-item"><a href="/python/11_built-in_function/57_sorted/">sorted()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/58_staticmethod/" title="staticmethod 封装函数为静态方法" class="dd-item"><a href="/python/11_built-in_function/58_staticmethod/">staticmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/59_str/" title="str 创建字符串" class="dd-item"><a href="/python/11_built-in_function/59_str/">str<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/60_sum/" title="sum() 数字求和或序列拼接" class="dd-item"><a href="/python/11_built-in_function/60_sum/">sum()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/61_super/" title="super 调用委托给父类或兄弟类" class="dd-item"><a href="/python/11_built-in_function/61_super/">super<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/62_tuple/" title="tuple 创建元组" class="dd-item"><a href="/python/11_built-in_function/62_tuple/">tuple<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/63_type/" title="type 判断类型或创建类" class="dd-item"><a href="/python/11_built-in_function/63_type/">type<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/64_vars/" title="vars() 返回对象的变量字典" class="dd-item"><a href="/python/11_built-in_function/64_vars/">vars()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/65_zip/" title="zip 重组可迭代对象" class="dd-item"><a href="/python/11_built-in_function/65_zip/">zip<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/12_function/" title="函数概述" class="dd-item"><input type="checkbox" id="section-e6b48a8a67c6f7ff797a323f6568f234" class="toggle"/><label for="section-e6b48a8a67c6f7ff797a323f6568f234" ></label><a href="/python/12_function/">函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/12_function/02_function_definition/" title="函数定义" class="dd-item"><a href="/python/12_function/02_function_definition/">函数定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/03_formal_parameter/" title="函数形参" class="dd-item"><a href="/python/12_function/03_formal_parameter/">函数形参<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/04_return_value/" title="函数返回值" class="dd-item"><a href="/python/12_function/04_return_value/">函数返回值<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/05_recursion/" title="递归函数" class="dd-item"><a href="/python/12_function/05_recursion/">递归函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/06_doc/" title="函数文档" class="dd-item"><a href="/python/12_function/06_doc/">函数文档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/07_function_call/" title="函数调用" class="dd-item"><a href="/python/12_function/07_function_call/">函数调用<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/08_lambda/" title="lambda 函数" class="dd-item"><a href="/python/12_function/08_lambda/">lambda 函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/09_generator/" title="生成器函数" class="dd-item"><a href="/python/12_function/09_generator/">生成器函数<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/13_exception/" title="错误和异常" class="dd-item"><input type="checkbox" id="section-bc4f4d42c44eaf0579ed86ae2d0d51db" class="toggle"/><label for="section-bc4f4d42c44eaf0579ed86ae2d0d51db" ></label><a href="/python/13_exception/">错误和异常<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/13_exception/02_handling/" title="处理异常" class="dd-item"><a href="/python/13_exception/02_handling/">处理异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/03_raising/" title="抛出异常" class="dd-item"><a href="/python/13_exception/03_raising/">抛出异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/04_user_defined/" title="自定义异常" class="dd-item"><a href="/python/13_exception/04_user_defined/">自定义异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/05_finally/" title="finally 清理操作" class="dd-item"><a href="/python/13_exception/05_finally/">finally<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/14_file/" title="文件对象概述" class="dd-item"><input type="checkbox" id="section-e195820c7e4bf396e327bfb0a46a50f9" class="toggle"/><label for="section-e195820c7e4bf396e327bfb0a46a50f9" ></label><a href="/python/14_file/">文件<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/14_file/02_read/" title="读取文件内容" class="dd-item"><a href="/python/14_file/02_read/">读取文件内容<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/14_file/03_write/" title="文件写入内容" class="dd-item"><a href="/python/14_file/03_write/">文件写入内容<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/15_module/" title="模块概述" class="dd-item"><input type="checkbox" id="section-4385ec01f3a88bacfccd61dd3520ad8b" class="toggle"/><label for="section-4385ec01f3a88bacfccd61dd3520ad8b" ></label><a href="/python/15_module/">模块<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/15_module/02_create_module/" title="创建模块" class="dd-item"><a href="/python/15_module/02_create_module/">创建模块<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/04_executable_file/" title="可执行文件" class="dd-item"><a href="/python/15_module/04_executable_file/">可执行文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/05_import_code/" title="导入操作" class="dd-item"><a href="/python/15_module/05_import_code/">导入操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/16_class/" title="面向对象概述" class="dd-item"><input type="checkbox" id="section-1462fcc8311b5f31727642b5a438fc6d" class="toggle"/><label for="section-1462fcc8311b5f31727642b5a438fc6d" ></label><a href="/python/16_class/">面向对象<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/16_class/02_class_definition/" title="类定义" class="dd-item"><a href="/python/16_class/02_class_definition/">类定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/03_instance/" title="实例" class="dd-item"><a href="/python/16_class/03_instance/">实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/04_object/" title="对象" class="dd-item"><a href="/python/16_class/04_object/">对象<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/05_name/" title="名称" class="dd-item"><a href="/python/16_class/05_name/">名称<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/06_variable/" title="变量" class="dd-item"><a href="/python/16_class/06_variable/">变量<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/07_attribute/" title="属性" class="dd-item"><a href="/python/16_class/07_attribute/">属性<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/08_method/" title="方法" class="dd-item"><a href="/python/16_class/08_method/">方法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/09_namespace/" title="命名空间" class="dd-item"><a href="/python/16_class/09_namespace/">命名空间<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/10_scope/" title="作用域" class="dd-item"><a href="/python/16_class/10_scope/">作用域<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/11_create_instance/" title="创建实例" class="dd-item"><a href="/python/16_class/11_create_instance/">创建实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/12_attribute_operation/" title="属性操作" class="dd-item"><a href="/python/16_class/12_attribute_operation/">属性操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/13_method_operation/" title="方法操作" class="dd-item"><a href="/python/16_class/13_method_operation/">方法操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/14_inheritance/" title="类继承" class="dd-item"><a href="/python/16_class/14_inheritance/">类继承<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/regex/" title="通俗易懂 Python 正则表达式" class="dd-item"><a href="/regex/">正则表达式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/numpy/" title="Numpy 基础快速了解和查询" class="dd-item"><a href="/numpy/">Numpy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pandas/" title="Pandas 基础快速了解和查询" class="dd-item"><a href="/pandas/">Pandas<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/matplotlib/" title="Matpotlib 快速入门" class="dd-item"><a href="/matplotlib/">Matpotlib<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/" title="数理统计、机器学习入门" class="dd-item parent"><input type="checkbox" id="section-7311b56f8e68ee915dd2e657bac269ed" class="toggle" checked/><label for="section-7311b56f8e68ee915dd2e657bac269ed" ></label><a href="/statistics/">机器学习入门<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/statistics/statistics1/" title="描述统计" class="dd-item"><a href="/statistics/statistics1/">描述统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics2/" title="推断统计" class="dd-item active"><a href="/statistics/statistics2/">推断统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics3/" title="线性回归" class="dd-item"><a href="/statistics/statistics3/">线性回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics4/" title="逻辑回归" class="dd-item"><a href="/statistics/statistics4/">逻辑回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics5/" title="分类模型评估" class="dd-item"><a href="/statistics/statistics5/">分类模型评估<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics6/" title="KNN 算法" class="dd-item"><a href="/statistics/statistics6/">KNN 算法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics7/" title="朴素贝叶斯" class="dd-item"><a href="/statistics/statistics7/">朴素贝叶斯<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics8/" title="决策树" class="dd-item"><a href="/statistics/statistics8/">决策树<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
+            <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
+            <li><a class="padding" href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="blue" value="blue" selected>Blue</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+      <p>©2022 吴明文</p>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1661054444" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661054444" defer></script>
+    <script src="/js/featherlight.min.js?1661054444" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661054444" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="https://unpkg.com/rapidoc/dist/rapidoc-min.js" defer></script>
+    <script>
+      window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
+    </script>
+    <script src="/js/theme.js?1661054444" defer></script>
+  </body>
+</html>

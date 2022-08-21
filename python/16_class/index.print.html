@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.101.0">
+    <meta name="generator" content="Relearn 5.2.1+tip">
+    <meta name="description" content="">
+    <meta name="author" content="吴明文">
+    <title>面向对象概述 - jupyter.fun</title>
+    <link href="/python/16_class/" rel="canonical" type="text/html" title="jupyter.fun">
+    <link href="/python/16_class/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661054444" rel="stylesheet">
+    <link href="/css/nucleus.css?1661054444" rel="stylesheet">
+    <link href="/css/fonts.css?1661054444" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661054444" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661054444" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661054444" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661054444" rel="stylesheet">
+    <link href="/css/variant.css?1661054444" rel="stylesheet">
+    <link href="/css/print.css?1661054444" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661054444" rel="stylesheet">
+    <script src="/js/variant.js?1661054444"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='/';
+      window.variants && variants.init( [ 'blue' ] );
+    </script>
+    <script src="/js/jquery.min.js?1661054444" defer></script>
+  </head>
+  <body class="mobile-support print" data-url="/python/16_class/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div id="top-print-link">
+            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/python/16_class/index.print.html">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='本章节目录 (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="/"><span itemprop="name">主页</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/python/"><span itemprop="name">Python 语法基础知识详解和查询手册</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/python/16_class/" aria-disabled="true"><span itemprop="name">面向对象概述</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#面向对象概述">面向对象概述</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article class="default">
+<h1>面向对象概述</h1>
+
+<h2 id="面向对象概述">面向对象概述</h2>
+<p>面向对象是一种对现实世界理解和抽象的方法，是计算机编程技术发展到一定阶段后的产物。它把相关的数据和方法组织为一个整体来看待，从更高的层次来进行系统建模，更贴近事物的自然运行模式。</p>
+<p>例如生活中我们会遇到各种数字及其运算，于是计算机科学家们就把数字抽象出来，成为一类对象。它们有别于其他事物（例如文字，图像）的特征，有自己的一套运算、操作方法。</p>
+<p>Python 中的数字当然非常类似数学中的数字，但也受限于计算机中的数字表示方法。</p>
+<p>为了方便，又把数字这一类对象，基本分成了整数，浮点数，复数三类对象。这对应 Python 中的 int，float，comlex 三种数字类型，三种数字类型下具体的整数，浮点数，复数也是对象。它们有共同的特征和计算方法，也有各自特有的特征和方法。例如都可以进行加减乘除，只有整数有按位运算。</p>
+<p>整数中，0 和 1 的特殊性，又使得可以将整数类中再分出一类对象，布尔类型对象。布尔类型的对象，只有两个对象，True 和 False。</p>
+<p>从数字类对象，到三类数字对象，到布尔类对象，到具体的数字对象以及 True 和 False 对象，层层细分，最终是具体的一个个对象，它们都是对象。这也是为什么称 Python 一切皆对象的原因。</p>
+<p>类似地，对数据，因为要实现的目的不同，将装数据的 “容器” 分为字符串，列表，元组，集合，字典等类型的对象。</p>
+<p>函数抽象出函数对象，模块又抽象出模块对象…… 甚至连空都是对象（None）。</p>
+<p>具体的对象，称为实例，它归属于某个类。而所有的类，又都是 object 对象的子类。各种类（类型），又统一归为类型对象（type)。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(<span style="color:#ae81ff">1</span>), isinstance(<span style="color:#ae81ff">1</span>,int) <span style="color:#75715e"># 1 是 int 类的实例</span>
+</span></span></code></pre></div><pre><code>(int, True)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>issubclass(int,object) <span style="color:#75715e"># int 类是 object 的子类</span>
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(int), isinstance(int,type) <span style="color:#75715e"># int 是 type 的实例</span>
+</span></span></code></pre></div><pre><code>(type, True)
+</code></pre>
+<p>按照面向对象的思想，我们可以定义一个 “人” 类对象，然后很方便地给这个 “人” 加上现有的各种函数，类，以及模块的功能，造出更多更多有各种特异功能的 “人”。这是不是非常伟大的设计思想呢？</p>
+
+<div class="box attachments cstyle blue">
+  <div class="box-label"><i class="fa-fw fas fa-paperclip"></i> jupyter附件</div>
+  <ul class="box-content attachments-files">
+    <li><a href="/python/16_class/_index.files/01_class_summary.ipynb">01_class_summary.ipynb</a> (3 KB)</li>
+    <li><a href="/python/16_class/_index.files/02_class_definition.ipynb">02_class_definition.ipynb</a> (5 KB)</li>
+    <li><a href="/python/16_class/_index.files/03_instance.ipynb">03_instance.ipynb</a> (5 KB)</li>
+    <li><a href="/python/16_class/_index.files/04_object.ipynb">04_object.ipynb</a> (7 KB)</li>
+    <li><a href="/python/16_class/_index.files/05_name.ipynb">05_name.ipynb</a> (12 KB)</li>
+    <li><a href="/python/16_class/_index.files/06_variable.ipynb">06_variable.ipynb</a> (5 KB)</li>
+    <li><a href="/python/16_class/_index.files/07_attribute.ipynb">07_attribute.ipynb</a> (8 KB)</li>
+    <li><a href="/python/16_class/_index.files/08_method.ipynb">08_method.ipynb</a> (6 KB)</li>
+    <li><a href="/python/16_class/_index.files/09_namespace.ipynb">09_namespace.ipynb</a> (5 KB)</li>
+    <li><a href="/python/16_class/_index.files/10_scope.ipynb">10_scope.ipynb</a> (9 KB)</li>
+    <li><a href="/python/16_class/_index.files/11_create_instance.ipynb">11_create_instance.ipynb</a> (4 KB)</li>
+    <li><a href="/python/16_class/_index.files/12_attribute_operation.ipynb">12_attribute_operation.ipynb</a> (10 KB)</li>
+    <li><a href="/python/16_class/_index.files/13_method_operation.ipynb">13_method_operation.ipynb</a> (5 KB)</li>
+    <li><a href="/python/16_class/_index.files/14_inheritance.ipynb">14_inheritance.ipynb</a> (5 KB)</li>
+  </ul>
+</div>
+
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <section>
+          <article class="default">
+<h1>类定义</h1>
+
+<p>类是用来创建用户定义对象的模板，是抽象的对象（类对象）。例如我们说鱼类，指的就是一类抽象的对象，而具体到武昌鱼，鲈鱼，鲫鱼…… 就是具体的对象。</p>
+<p>定义了一个类，就可以用这个模块来创建它的具体对象（实例）。类定义的详细语法规则见 <a href="../10_statement/13_class">class 定义类</a>。</p>
+<p>创建一个类，需要继承另一个类。新创建的类是子类，继承的类是基类。如不指定，创建类默认继承自所有类的基类 object。</p>
+<p>下面是一个没有任何自定义属性的简单类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A
+</span></span></code></pre></div><pre><code>__main__.A
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(A)
+</span></span></code></pre></div><pre><code>type
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>__bases__ <span style="color:#75715e"># 查看基类</span>
+</span></span></code></pre></div><pre><code>(object,)
+</code></pre>
+<p>继承一个指定的类，可以对它进行定制化开发。需要注意参数 self, 它是约定名称（可自定义但不推荐），它就代表类创建的实例对象自身。</p>
+<p>例如创建一个自定义的列表类，增加 add() 方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mylist</span>(list):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self,value):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>append(value)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>lst <span style="color:#f92672">=</span> Mylist(<span style="color:#e6db74">&#39;123&#39;</span>) <span style="color:#75715e"># 创建实例赋值给 lst</span>
+</span></span><span style="display:flex;"><span>lst<span style="color:#f92672">.</span>add(<span style="color:#ae81ff">4</span>) <span style="color:#75715e"># lst 调用 add 方法，self 参数就是 lst</span>
+</span></span><span style="display:flex;"><span>lst
+</span></span></code></pre></div><pre><code>['1', '2', '3', 4]
+</code></pre>
+<p>或者自定义一个字典，当访问的键不存在时，不报错，而是返回 None（<code>__missing__()</code> 是用来定义字典子类时找不到键如何处理的魔法方法）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mydict</span>(dict):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __missing__(self, key):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> Mydict(a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,b<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>d, d[<span style="color:#e6db74">&#39;c&#39;</span>]
+</span></span></code></pre></div><pre><code>({'a': 1, 'b': 2}, None)
+</code></pre>
+<p>我们也可以自定义任意的类，其中 <code>__init__()</code> 方法是创建实例时用来初始化实例对象的魔法方法，可以用它来增加一些自定义属性。没有该方法，创建实例时，将自动调用基类的该方法完成初始化。</p>
+<p>例如定义一个 “人” 类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;这是人类&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义人的属性</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ears <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;耳朵&#39;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>brain <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;大脑&#39;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>hands <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;双手&#39;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 人有生活</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">live</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">用</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>ears<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#39;听着音乐，&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#39;享受美好生活。&#39;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 还有工作</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">work</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">用</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>brain<span style="color:#e6db74">}</span><span style="color:#e6db74">和&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>hands<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#39;勤劳致富。&#39;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 造人</span>
+</span></span><span style="display:flex;"><span>xm <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;小明&#39;</span>)
+</span></span><span style="display:flex;"><span>xz <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;小张&#39;</span>)
+</span></span><span style="display:flex;"><span>xm<span style="color:#f92672">.</span>live() <span style="color:#75715e"># 小明在享受生活</span>
+</span></span><span style="display:flex;"><span>xz<span style="color:#f92672">.</span>work() <span style="color:#75715e"># 小张在努力工作</span>
+</span></span></code></pre></div><pre><code>小明用耳朵听着音乐，享受美好生活。
+小张用大脑和双手勤劳致富。
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>实例</h1>
+
+<p>实例是调用类对象创建的具体对象。例如调用内置类型 int，创建的所有整数，都是 int 类的实例。可通过内置函数 isinstance() 进行实例检查。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int(<span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span></code></pre></div><pre><code>1
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(<span style="color:#ae81ff">1</span>,int)
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<p>Python 中所有的实例对象，都是 object 的实例。所有的类都是 object 的子类，也被视为 object 的实例；所有的类也被视为默认的元类（创建类的类）type 的实例。</p>
+<p>如果一个实例对象应该视为某个类的实例，可以通过魔法方法 <code>__instancecheck__()</code> 来重载 isinstance() 函数，自定义实例检查行为。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(<span style="color:#ae81ff">1</span>,object), isinstance([],object)
+</span></span></code></pre></div><pre><code>(True, True)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(int,object)
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(int,type)
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<p>下面定义一个 “人” 类，来对实例进行说明：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;这是人类&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义人的属性</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ears <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;耳朵&#39;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>brain <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;大脑&#39;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>hands <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;双手&#39;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 人有生活</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">live</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">用</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>ears<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#39;听着音乐，&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#39;享受美好生活。&#39;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 还有工作</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">work</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">用</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>brain<span style="color:#e6db74">}</span><span style="color:#e6db74">和&#39;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>hands<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#39;勤劳致富。&#39;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 造人</span>
+</span></span><span style="display:flex;"><span>xm <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;小明&#39;</span>)
+</span></span><span style="display:flex;"><span>xz <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;小张&#39;</span>)
+</span></span></code></pre></div><p>上述 “人” 类对象 Person 是类对象，调用类对象创建的 xm 和 xz，是两个具体的 “人”，是实例对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Person
+</span></span></code></pre></div><pre><code>__main__.Person
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>xm
+</span></span></code></pre></div><pre><code>&lt;__main__.Person at 0x24cf9ef6d68&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>xz
+</span></span></code></pre></div><pre><code>&lt;__main__.Person at 0x24cf9ef6d30&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(xm, Person), isinstance(xz, Person)
+</span></span></code></pre></div><pre><code>(True, True)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>isinstance(Person, object), isinstance(Person, type)
+</span></span></code></pre></div><pre><code>(True, True)
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>对象</h1>
+
+<p>对象是 Python 中对数据的抽象。Python 程序中的所有数据都是由对象或对象间关系来表示的。</p>
+<p>例如计算 <code>x + y</code> 就有对象 <code>x</code> 和 <code>y</code>，<code>+</code> 其实是调用了 <code>__add__</code> 方法对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
+</span></span></code></pre></div><pre><code>[1, 2, 3, 4]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>list<span style="color:#f92672">.</span>__add__
+</span></span></code></pre></div><pre><code>&lt;slot wrapper '__add__' of 'list' objects&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>__add__([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>])
+</span></span></code></pre></div><pre><code>[1, 2, 3, 4]
+</code></pre>
+<p>每个对象都有各自的编号、类型和值。一个对象被创建后，它的编号就绝不会改变，可以将其理解为该对象在内存中的地址。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>id([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]), type([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]) <span style="color:#75715e"># 实例对象 [1,2] 的编号 和 类型</span>
+</span></span></code></pre></div><pre><code>(2229938322504, list)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>id(list), type(list) <span style="color:#75715e"># 类对象 list 的编号 和 类型</span>
+</span></span></code></pre></div><pre><code>(140736641645872, type)
+</code></pre>
+<p>对象的值在 Python 中是一个相当抽象的概念：</p>
+<ul>
+<li>对象的值并没有一个规范的访问方法；</li>
+<li>对象的值并不要求具有特定的构建方式，例如由其全部数据属性组成等；</li>
+<li>比较运算符实现了一个特定的对象的值概念，可以认为正是通过实现对象比较，间接地定义了对象的值。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 列表对象 [1,2] 和类对象 list </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 是两个不同对象，值是不相等的</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> list 
+</span></span></code></pre></div><pre><code>False
+</code></pre>
+<p>具有固定值的对象为不可变对象，例如数字，字符串，元组（包含的对象集不可变），相等的两个值，可能会也可能不会指向同一个对象，看具体实现。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 元组的对象集固定不可变</span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> ([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>print(id(t[<span style="color:#ae81ff">0</span>]),id(t[<span style="color:#ae81ff">1</span>]),t)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> t[<span style="color:#ae81ff">0</span>][:]
+</span></span><span style="display:flex;"><span>print(id(t[<span style="color:#ae81ff">0</span>]),id(t[<span style="color:#ae81ff">1</span>]),t)
+</span></span></code></pre></div><pre><code>2229937078536 2229937013960 ([1, 2], (3, 4))
+2229937078536 2229937013960 ([], (3, 4))
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 同一个对象 1</span>
+</span></span><span style="display:flex;"><span>print(id(<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>print(id(<span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div><pre><code>140736642126656
+140736642126656
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 两个不同对象 1000</span>
+</span></span><span style="display:flex;"><span>print(id(<span style="color:#ae81ff">1000</span>))
+</span></span><span style="display:flex;"><span>print(id(<span style="color:#ae81ff">1000</span>))
+</span></span></code></pre></div><pre><code>2229938479344
+2229938479248
+</code></pre>
+<p>对象的编号保持不变，可以改变值的对象为可变对象。对于可变对象，分别创建两个相等的值，一定是不同对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 可变对象 a，值改变了还是 a</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>print(id(a), a)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> a[:]
+</span></span><span style="display:flex;"><span>print(id(a), a)
+</span></span></code></pre></div><pre><code>2229937082056 [1, 2]
+2229937082056 []
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 类对象 A，增加属性 a 还是 A</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:<span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>print(id(A), A)
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>print(id(A), A)
+</span></span></code></pre></div><pre><code>2229917928424 &lt;class '__main__.A'&gt;
+2229917928424 &lt;class '__main__.A'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>print(id(a))
+</span></span><span style="display:flex;"><span>print(id(b))
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">==</span> b
+</span></span></code></pre></div><pre><code>2229937416840
+2229937416648
+
+
+True
+</code></pre>
+<p>类或函数对象的哈希值基于其 id，创建两个看起来完全一样的类或函数，id 是不一样的，而可哈希对象必须具有相同的哈希值，比较结果才会相同。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():<span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>print(id(f))
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():<span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>print(id(f))
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> f
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">==</span> b
+</span></span></code></pre></div><pre><code>2229938263992
+2229938264128
+
+
+False
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>名称</h1>
+
+<p>名称（标识符）用于指代对象。当名称被绑定到一个对象时，对该名称求值将返回相应对象。当名称未被绑定时，尝试对其求值将引发 NameError 异常。Python 的保留字或称关键字是特殊的名称，不可被用作普通名称，例如不可用做变量名，函数名，模块名。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将 1 绑定名称 a</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>1
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将自定义类对象绑定到名称 A</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>A
+</span></span></code></pre></div><pre><code>__main__.A
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将模块 random 绑定到名称 r</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random <span style="color:#66d9ef">as</span> r
+</span></span><span style="display:flex;"><span>r
+</span></span></code></pre></div><pre><code>&lt;module 'random' from 'F:\\anaconda\\lib\\random.py'&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 迭代的每一项循环绑定到名称 i</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;xue&#39;</span>:
+</span></span><span style="display:flex;"><span>    display(i)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>i
+</span></span></code></pre></div><pre><code>'x'
+
+'u'
+
+'e'
+
+'e'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 未绑定的名称 m</span>
+</span></span><span style="display:flex;"><span>m
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-4-2469ef96c490&gt; in &lt;module&gt;
+      1 # 未绑定的名称 m
+----&gt; 2 m
+
+
+NameError: name 'm' is not defined
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>help(<span style="color:#e6db74">&#39;keywords&#39;</span>) <span style="color:#75715e"># 保留字</span>
+</span></span></code></pre></div><pre><code>Here is a list of the Python keywords.  Enter any keyword to get more help.
+
+False               class               from                or
+None                continue            global              pass
+True                def                 if                  raise
+and                 del                 import              return
+as                  elif                in                  try
+assert              else                is                  while
+async               except              lambda              with
+await               finally             nonlocal            yield
+break               for                 not                 
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">False</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><pre><code>  File &quot;&lt;ipython-input-9-223dbc74e028&gt;&quot;, line 1
+    False = 0
+    ^
+SyntaxError: cannot assign to False
+</code></pre>
+<p>检查一个名称是否有效可用字符串方法 str.isidentifier()：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#39;for&#39;</span><span style="color:#f92672">.</span>isidentifier()
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#39;my_name&#39;</span><span style="color:#f92672">.</span>isidentifier()
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#39;函数&#39;</span><span style="color:#f92672">.</span>isidentifier()
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<p>普通名称命名规则：</p>
+<ul>
+<li>可以使用大部分非标点符号的 Unicode 字符，但请使用 ASCII 范围内 (U+0001..U+007F) 的字符；</li>
+<li>习惯使用大写和小写字母 A 至 Z，下划线 _ 以及数字 0 至 9，但不可以数字打头；</li>
+<li>长度没有限制，对大小写敏感。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>数字一 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>数字一
+</span></span></code></pre></div><pre><code>1
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">函数</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>函数
+</span></span></code></pre></div><pre><code>&lt;function __main__.函数()&gt;
+</code></pre>
+<p>命名模式以下划线字符打头和结尾，有特殊含义的名称（<code>*</code> 代表任意数量可用名称字符）:</p>
+<ul>
+<li>
+<p><code>_*</code> 不会被 <code>from module import *</code> 导入。特殊标识符 <code>_</code> 在交互式解释器中被用来存放最近一次求值结果；它保存在 builtins 模块中。当不处于交互模式时，<code>_</code> 无特殊含义也没有预定义。</p>
+</li>
+<li>
+<p><code>__*__</code> 系统定义的名称，这些名称是由解释器及其实现（包括标准库）定义的特殊属性和方法名称。未来的 Python 版本中还将定义更多此类名称。任何情况下任何不遵循文档所显式指明的 <code>__*__</code> 名称使用方式都可能导致无警告的错误。</p>
+</li>
+<li>
+<p><code>__*</code> 类的私有名称。这种名称在类定义中使用时，会以一种混合形式重写以避免在基类及派生类的 “私有” 属性之间出现名称冲突。例如，出现在一个名为 <code>Ham</code> 的类中的名称 <code>__spam</code> 会被转换为 <code>_Ham__spam</code>。如果类名仅由下划线组成，则不会进行转换。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>b
+</span></span></code></pre></div><pre><code>100
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>_
+</span></span></code></pre></div><pre><code>100
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>dir(object)
+</span></span></code></pre></div><pre><code>['__class__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>:
+</span></span><span style="display:flex;"><span>    __b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>dir(B)
+</span></span></code></pre></div><pre><code>['_B__b',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__']
+</code></pre>
+<p>del 语句可删除名称绑定：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;c=</span><span style="color:#e6db74">{</span>c<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> c
+</span></span><span style="display:flex;"><span>c
+</span></span></code></pre></div><pre><code>c=3
+
+
+---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-23-5ba97d2f3254&gt; in &lt;module&gt;
+      2 print(f'c={c}')
+      3 del c
+----&gt; 4 c
+
+
+NameError: name 'c' is not defined
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>变量</h1>
+
+<p>Python 中绑定对象的名称即为变量。</p>
+<p>人们称呼模块、类、函数和方法对象的名称时，习惯直接指代对象本身，而不是把它们当作变量，例如 random，int，print 等，当将它们绑定到另外的名称时，才称新名称为变量（或化名）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 函数名称 f 绑定自定义函数对象</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x, func): 
+</span></span><span style="display:flex;"><span>    print(func(x))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1231&#39;</span> <span style="color:#75715e"># 变量 a</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> [int,list,set] <span style="color:#75715e"># 变量 b</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> f <span style="color:#75715e"># 名称 f 起别名 c</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> b: <span style="color:#75715e"># 变量 b 中的项循环赋值给变量 i</span>
+</span></span><span style="display:flex;"><span>    c(a,i)
+</span></span></code></pre></div><pre><code>1231
+['1', '2', '3', '1']
+{'3', '1', '2'}
+</code></pre>
+<p>如果名称绑定在一个代码块中，则为该代码块的局部变量，除非声明为 nonlocal 或 global。</p>
+<p>如果名称绑定在模块层级，则为全局变量。(模块代码块的变量既为局部变量又为全局变量。)</p>
+<p>如果变量在一个代码块中被使用但不是在其中定义，则为自由变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 第一个代码块中全局变量 n</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 第二个代码块</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># random 模块中的全局变量 randint，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在此为局部变量，引用后赋值给全局变量 r</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 第三个代码块中 x 为局部变量</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># n 和 r 不在该代码块中定义，在该代码块为自由变量</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+</span></span><span style="display:flex;"><span>    print(r(x,n))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>f(<span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><pre><code>22
+</code></pre>
+<p>如果代码块中定义了一个局部变量，则其作用域包含该代码块。如果定义发生于函数代码块中，则其作用域会扩展到该函数所包含的任何代码块，除非有某个被包含代码块引入了对该名称的不同绑定。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>m <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 全局变量 n</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># 局部变量 n</span>
+</span></span><span style="display:flex;"><span>    print(m,n)
+</span></span><span style="display:flex;"><span>f()
+</span></span></code></pre></div><pre><code>0 2
+</code></pre>
+<p>改变变量作用域，详见 <a href="../10_statement/19_global">global 语句</a> 和 <a href="../10_statement/20_nonlocal">nonlocal 语句</a>。</p>
+<p>类变量和实例变量：</p>
+<ul>
+<li>在类中定义，仅在类层级修改的变量为类变量，实例也可访问类变量；</li>
+<li>以 <code>self.name</code> 命名的变量为实例变量，类不能访问。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 类变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#75715e"># 实例变量</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>a, a<span style="color:#f92672">.</span>a, a<span style="color:#f92672">.</span>b
+</span></span></code></pre></div><pre><code>(1, 100, 2)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>b <span style="color:#75715e"># 类 A 不能访问它的实例的变量 b</span>
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-11-f92f3bcfde9d&gt; in &lt;module&gt;
+----&gt; 1 A.b # 类 A 不能访问它的实例的变量 b
+
+
+AttributeError: type object 'A' has no attribute 'b'
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>属性</h1>
+
+<p>属性指关联到一个对象的值，可以使用点号表达式通过其名称来引用。</p>
+<p>可以使用  dir() 函数查看任意对象的属性。</p>
+<p>如果属性是可调用对象（例如类，函数，方法等），引用之后可直接调用，也可先赋值给变量再调用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 查看 list 对象的属性</span>
+</span></span><span style="display:flex;"><span>dir(list)
+</span></span></code></pre></div><pre><code>['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+ '__delitem__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__gt__',
+ '__hash__',
+ '__iadd__',
+ '__imul__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__reversed__',
+ '__rmul__',
+ '__setattr__',
+ '__setitem__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'append',
+ 'clear',
+ 'copy',
+ 'count',
+ 'extend',
+ 'index',
+ 'insert',
+ 'pop',
+ 'remove',
+ 'reverse',
+ 'sort']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 通过名称 __add__ 引用属性</span>
+</span></span><span style="display:flex;"><span>list<span style="color:#f92672">.</span>__add__ 
+</span></span></code></pre></div><pre><code>&lt;slot wrapper '__add__' of 'list' objects&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 直接调用属性</span>
+</span></span><span style="display:flex;"><span>list<span style="color:#f92672">.</span>__add__([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>])
+</span></span></code></pre></div><pre><code>[1, 2, 3, 4]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 赋值给变量再调用</span>
+</span></span><span style="display:flex;"><span>la <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span>__add__
+</span></span><span style="display:flex;"><span>la([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>])
+</span></span></code></pre></div><pre><code>[1, 2, 3, 4]
+</code></pre>
+<p>有时也只将具体的值称为属性从而与抽象的值（类，函数，方法等对象的值）区分开来。犹如将一个人有身体和四肢的属性和这个人会唱歌跳舞的属性区分开来。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>pd<span style="color:#f92672">.</span>Series <span style="color:#75715e"># pandas 模块的属性 Series 类</span>
+</span></span></code></pre></div><pre><code>pandas.core.series.Series
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>math<span style="color:#f92672">.</span>pi <span style="color:#75715e"># math 模块的属性圆周率</span>
+</span></span></code></pre></div><pre><code>3.141592653589793
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>        print(self)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>a, a<span style="color:#f92672">.</span>a <span style="color:#75715e"># 类 A 及其实例的数据属性 a</span>
+</span></span></code></pre></div><pre><code>(1, 1)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f, a<span style="color:#f92672">.</span>f <span style="color:#75715e"># 类 A 及其实例的方法属性 f</span>
+</span></span></code></pre></div><pre><code>(&lt;function __main__.A.f(self)&gt;,
+ &lt;bound method A.f of &lt;__main__.A object at 0x000001B569DC0860&gt;&gt;)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 方法属性的等价调用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 实例直接调用，第一个参数 self 就是它自身</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>f()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 类直接调用，则需要传入实例作为参数</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f(a)
+</span></span></code></pre></div><pre><code>&lt;__main__.A object at 0x000001B569DC0860&gt;
+&lt;__main__.A object at 0x000001B569DC0860&gt;
+</code></pre>
+<p>属性名以一个下划线开头的属性应该视为 “私有” 属性，但可以直接访问。</p>
+<p>属性名以两个下划线开头，非两个下划线结尾的属性，在模块中视为 “私有” 属性，但可以直接访问；在类中属于私有属性，这种名称在类定义中使用时，会以一种混合形式重写以避免在基类及派生类的 “私有” 属性之间出现名称冲突。类的私有属性并非不可访问（使用重写名称可访问），全靠自觉。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    _a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__f</span>():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>dir(A)
+</span></span></code></pre></div><pre><code>['_A__f',
+ '__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__',
+ '_a']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>_a
+</span></span></code></pre></div><pre><code>1
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>_A__f
+</span></span></code></pre></div><pre><code>&lt;function __main__.A.__f()&gt;
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>方法</h1>
+
+<p>方法指在类内部定义的函数。但并不严格要求一定要在类内部定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> f
+</span></span><span style="display:flex;"><span>A()<span style="color:#f92672">.</span>f
+</span></span></code></pre></div><pre><code>&lt;bound method f of &lt;__main__.A object at 0x00000290DC56E198&gt;&gt;
+</code></pre>
+<p>下列方法看起来是模块中的函数，其实是模块中，类实例方法重新赋值的名称：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+</span></span><span style="display:flex;"><span>type(randint)
+</span></span></code></pre></div><pre><code>method
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># randint 完整路径</span>
+</span></span><span style="display:flex;"><span>random<span style="color:#f92672">.</span>Random<span style="color:#f92672">.</span>randint
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 例如重新赋值后即可直接调用</span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>Random()
+</span></span><span style="display:flex;"><span>randint <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span>randint
+</span></span><span style="display:flex;"><span>randint(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><pre><code>2
+</code></pre>
+<p>普通方法（第一个参数通常命名为 self）如果作为该类的实例的一个属性来调用，方法将会获取实例对象作为其第一个参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># list 类的方法 append</span>
+</span></span><span style="display:flex;"><span>help(<span style="color:#e6db74">&#39;list.append&#39;</span>)
+</span></span></code></pre></div><pre><code>Help on method_descriptor in list:
+
+list.append = append(self, object, /)
+    Append object to the end of the list.
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># list 的实例 [] 调用，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 方法将会获取实例对象 [] 作为其第一个参数</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>[1]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 等价于</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>list<span style="color:#f92672">.</span>append(a,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>[1]
+</code></pre>
+<p>类方法（第一个参数通常命名为 cls）则无论是类或是实例调用，方法都将获取类对象作为其第一个参数。类方法定义详见 <a href="../11_built-in_function/10_classmethod">classmethod 封装函数为类方法</a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(cls,x):
+</span></span><span style="display:flex;"><span>        print(cls,x)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;A = </span><span style="color:#e6db74">{</span>A<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)        
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f(<span style="color:#e6db74">&#39;类方法&#39;</span>)
+</span></span><span style="display:flex;"><span>A()<span style="color:#f92672">.</span>f(<span style="color:#e6db74">&#39;类方法&#39;</span>)
+</span></span></code></pre></div><pre><code>A = &lt;class '__main__.A'&gt;
+&lt;class '__main__.A'&gt; 类方法
+&lt;class '__main__.A'&gt; 类方法
+</code></pre>
+<p>静态方法则不会接收隐式的第一个参数。调用它需要正常传递参数。静态方法详见 <a href="../11_built-in_function/58_staticmethod">staticmethod 封装函数为静态方法</a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">in_print</span>(value):
+</span></span><span style="display:flex;"><span>        print(value)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>in_print(<span style="color:#e6db74">&#39;静态方法&#39;</span>)
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>in_print(<span style="color:#e6db74">&#39;静态方法&#39;</span>)
+</span></span></code></pre></div><pre><code>静态方法
+静态方法
+</code></pre>
+<p>特殊方法（也称魔术方法）：一种由 Python 隐式调用的方法，用来对某个类型执行特定操作例如相加等等。这种方法的名称的首尾都为双下划线。可以通过方法重载，对某个类型定义特定操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 1 + 2 操作其实是隐式调用了 __add__</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><pre><code>3
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>__add__(<span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><pre><code>3
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 列表没有 “-” 操作符，自定义一个</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mlist</span>(list):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __sub__(self, other):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> list(set(self) <span style="color:#f92672">-</span> set(other))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> Mlist(<span style="color:#e6db74">&#39;123&#39;</span>)
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> Mlist(<span style="color:#e6db74">&#39;13&#39;</span>)
+</span></span><span style="display:flex;"><span>a, b, a <span style="color:#f92672">-</span> b
+</span></span></code></pre></div><pre><code>(['1', '2', '3'], ['1', '3'], ['2'])
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>命名空间</h1>
+
+<p>命名空间是存放变量的场所。命名空间有局部、全局和内置的，还有对象中的嵌套命名空间。不同命名空间中的变量没有关系。</p>
+<p>命名空间通过防止命名冲突来支持模块化。例如，函数 builtins.open 与 os.open 可通过各自的命名空间来区分。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 函数的局部命名空间，在函数调用时创建</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;函数 f 命名空间中的变量 x&#39;</span>
+</span></span><span style="display:flex;"><span>    print(x)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 全局命名空间</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;全局命名空间中的变量 x&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 调用函数 f，与全局命名空间中的 x 无关</span>
+</span></span><span style="display:flex;"><span>f()
+</span></span></code></pre></div><pre><code>函数 f 命名空间中的变量 x
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 模块 random 导入创建它自己的局部命名空间</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义一个全局变量 randint</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">randint</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;全局 randint&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># random 局部命名空间中的 randint </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 与全局变量 randint 无关</span>
+</span></span><span style="display:flex;"><span>randint()
+</span></span><span style="display:flex;"><span>random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><pre><code>全局 randint
+
+
+1
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 上述定义的变量 f, x, randint，导入的变量 random，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 都存放在了当前全局命名空间中</span>
+</span></span><span style="display:flex;"><span>f, x, random, randint
+</span></span></code></pre></div><pre><code>(&lt;function __main__.f()&gt;,
+ '全局命名空间中的变量 x',
+ &lt;module 'random' from 'C:\\ProgramData\\Anaconda3\\lib\\random.py'&gt;,
+ &lt;function __main__.randint()&gt;)
+</code></pre>
+<p>内置命名空间是在 Python 解释器启动时创建，存放的变量包括内置函数、异常等。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 全局命名空间中定义变量 str，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将屏蔽内置命名空间中的 str</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">str</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;x = </span><span style="color:#e6db74">{</span>x<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>str(<span style="color:#ae81ff">123</span>)
+</span></span></code></pre></div><pre><code>'x = 123'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 但可以在 builtins 中继续调用</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> builtins
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builtins<span style="color:#f92672">.</span>str(<span style="color:#ae81ff">123</span>)
+</span></span></code></pre></div><pre><code>'123'
+</code></pre>
+<p>递归函数，每次递归调用，都会有一个新的命名空间。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;x=</span><span style="color:#e6db74">{</span>x<span style="color:#e6db74">}</span><span style="color:#e6db74">调用，x-1=</span><span style="color:#e6db74">{</span>x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">继续调用&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;x=</span><span style="color:#e6db74">{</span>x<span style="color:#e6db74">}</span><span style="color:#e6db74">,调用结束&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 以 x-1 作为参数调用函数 f</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> f(x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>f(<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><pre><code>x=3调用，x-1=2继续调用
+x=2调用，x-1=1继续调用
+x=1调用，x-1=0继续调用
+x=0,调用结束
+</code></pre>
+<p>嵌套的命名空间：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;全局变量 a&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;类变量 a&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;函数局部变量 a&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(a)
+</span></span><span style="display:flex;"><span>print(A<span style="color:#f92672">.</span>a)
+</span></span><span style="display:flex;"><span>print(A()<span style="color:#f92672">.</span>f())
+</span></span></code></pre></div><pre><code>全局变量 a
+类变量 a
+函数局部变量 a
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>作用域</h1>
+
+<p>作用域定义了一个代码块中名称的可见性。如果代码块中定义了一个局部变量，则其作用域包含该代码块。如果定义发生于函数代码块中，则其作用域会扩展到该函数所包含的任何代码块，除非有某个被包含代码块引入了对该名称的不同绑定。</p>
+<p>当一个名称在代码块中被使用时，会由包含它的最近作用域来解析。对一个代码块可见的所有这种作用域的集合称为该代码块的环境。</p>
+<p>一个作用域是一个 <a href="../16_class/09_namespace">命名空间</a> 可直接访问的 Python 程序的文本区域。这里的 “可直接访问” 意味着对名称的非限定引用（限定引用指点号表达式例如 math.pi）会尝试在命名空间中查找名称。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 全局变量作用域为当前模块</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;全局变量&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print 内置名称作用域包含全局</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;print 函数的命名空间可以访问：</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;f 的命名空间可以访问：</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(a)
+</span></span><span style="display:flex;"><span>print(f())
+</span></span></code></pre></div><pre><code>全局变量
+print 函数的命名空间可以访问：全局变量
+f 的命名空间可以访问：全局变量
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 全局变量作用域为当前模块</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 但被包含命名空间引入了同名的局部变量</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;全局变量&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># f 中定义的局部变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用域为函数内部</span>
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;局部变量&#39;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;print 函数的命名空间可以访问：</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;f 的命名空间可以访问：</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(a)
+</span></span><span style="display:flex;"><span>print(f())
+</span></span></code></pre></div><pre><code>全局变量
+print 函数的命名空间可以访问：局部变量
+f 的命名空间可以访问：局部变量
+</code></pre>
+<p>虽然作用域是静态地确定的，但它们会被动态地使用。嵌套作用域的搜索顺序:</p>
+<ul>
+<li>最先搜索最内部作用域包含的局部名称</li>
+<li>从最近的封闭作用域开始搜索作用域包含的名称</li>
+<li>倒数第二个作用域包含当前模块的全局名称</li>
+<li>最外面的作用域（最后搜索）是包含内置名称的命名空间</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 搜索最内部作用域名称 str</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 屏蔽上层作用域</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    str <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f1</span>():
+</span></span><span style="display:flex;"><span>        str <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f1()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f(), str
+</span></span></code></pre></div><pre><code>(1, str)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 搜索最近封闭作用域名称 str</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 屏蔽上层作用域</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    str <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f1</span>():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f1()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f(), str
+</span></span></code></pre></div><pre><code>(0, str)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 搜索当前模块作用域名称 str</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 屏蔽上层作用域</span>
+</span></span><span style="display:flex;"><span>str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;当前模块str&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f1</span>():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f1()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f()
+</span></span></code></pre></div><pre><code>'当前模块str'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 搜索最外面作用域名称 str</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除前面对 str 的绑定</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> str
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 注意，运行多次会将内置名称 str 都删除</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f1</span>():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f1()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f()
+</span></span></code></pre></div><pre><code>str
+</code></pre>
+<p>可见，当前模块中的全局名称，最好不要和内置名称相同，它会屏蔽掉内置名称，从而不可以直接使用内置功能。内置名称如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> builtins
+</span></span><span style="display:flex;"><span>dir(builtins)
+</span></span></code></pre></div><pre><code>['ArithmeticError',
+ 'AssertionError',
+ 'AttributeError',
+ 'BaseException',
+ 'BlockingIOError',
+ 'BrokenPipeError',
+ 'BufferError',
+ 'BytesWarning',
+ 'ChildProcessError',
+ 'ConnectionAbortedError',
+ 'ConnectionError',
+ 'ConnectionRefusedError',
+ 'ConnectionResetError',
+ 'DeprecationWarning',
+ 'EOFError',
+ 'Ellipsis',
+ 'EnvironmentError',
+ 'Exception',
+ 'False',
+ 'FileExistsError',
+ 'FileNotFoundError',
+ 'FloatingPointError',
+ 'FutureWarning',
+ 'GeneratorExit',
+ 'IOError',
+ 'ImportError',
+ 'ImportWarning',
+ 'IndentationError',
+ 'IndexError',
+ 'InterruptedError',
+ 'IsADirectoryError',
+ 'KeyError',
+ 'KeyboardInterrupt',
+ 'LookupError',
+ 'MemoryError',
+ 'ModuleNotFoundError',
+ 'NameError',
+ 'None',
+ 'NotADirectoryError',
+ 'NotImplemented',
+ 'NotImplementedError',
+ 'OSError',
+ 'OverflowError',
+ 'PendingDeprecationWarning',
+ 'PermissionError',
+ 'ProcessLookupError',
+ 'RecursionError',
+ 'ReferenceError',
+ 'ResourceWarning',
+ 'RuntimeError',
+ 'RuntimeWarning',
+ 'StopAsyncIteration',
+ 'StopIteration',
+ 'SyntaxError',
+ 'SyntaxWarning',
+ 'SystemError',
+ 'SystemExit',
+ 'TabError',
+ 'TimeoutError',
+ 'True',
+ 'TypeError',
+ 'UnboundLocalError',
+ 'UnicodeDecodeError',
+ 'UnicodeEncodeError',
+ 'UnicodeError',
+ 'UnicodeTranslateError',
+ 'UnicodeWarning',
+ 'UserWarning',
+ 'ValueError',
+ 'Warning',
+ 'WindowsError',
+ 'ZeroDivisionError',
+ '__IPYTHON__',
+ '__build_class__',
+ '__debug__',
+ '__doc__',
+ '__import__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__spec__',
+ 'abs',
+ 'all',
+ 'any',
+ 'ascii',
+ 'bin',
+ 'bool',
+ 'breakpoint',
+ 'bytearray',
+ 'bytes',
+ 'callable',
+ 'chr',
+ 'classmethod',
+ 'compile',
+ 'complex',
+ 'copyright',
+ 'credits',
+ 'delattr',
+ 'dict',
+ 'dir',
+ 'display',
+ 'divmod',
+ 'enumerate',
+ 'eval',
+ 'exec',
+ 'filter',
+ 'float',
+ 'format',
+ 'frozenset',
+ 'get_ipython',
+ 'getattr',
+ 'globals',
+ 'hasattr',
+ 'hash',
+ 'help',
+ 'hex',
+ 'id',
+ 'input',
+ 'int',
+ 'isinstance',
+ 'issubclass',
+ 'iter',
+ 'len',
+ 'license',
+ 'list',
+ 'locals',
+ 'map',
+ 'max',
+ 'memoryview',
+ 'min',
+ 'next',
+ 'object',
+ 'oct',
+ 'open',
+ 'ord',
+ 'pow',
+ 'print',
+ 'property',
+ 'range',
+ 'repr',
+ 'reversed',
+ 'round',
+ 'set',
+ 'setattr',
+ 'slice',
+ 'sorted',
+ 'staticmethod',
+ 'str',
+ 'sum',
+ 'super',
+ 'tuple',
+ 'type',
+ 'vars',
+ 'zip']
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>创建实例</h1>
+
+<p>直接调用类对象，即可创建该类的实例对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>int() <span style="color:#75715e"># 调用 int 类</span>
+</span></span></code></pre></div><pre><code>0
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>list(<span style="color:#e6db74">&#39;123&#39;</span>) <span style="color:#75715e"># 传参调用 list 类</span>
+</span></span></code></pre></div><pre><code>['1', '2', '3']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __repr__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>name
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>A(<span style="color:#e6db74">&#39;实例1&#39;</span>), A(<span style="color:#e6db74">&#39;实例2&#39;</span>) <span style="color:#75715e"># 调用自定义类</span>
+</span></span></code></pre></div><pre><code>(实例1, 实例2)
+</code></pre>
+<p>实例对象是由特殊方法 <code>__new__()</code> 创建，<code>__init__()</code> 定制完成。两个方法是隐式地完成创建和定制的，当然也可以显式地创建并定制。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;实例&#39;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>A <span style="color:#75715e"># 类对象 A</span>
+</span></span></code></pre></div><pre><code>__main__.A
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 显式地创建类 A 的一个实例 a</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> object<span style="color:#f92672">.</span>__new__(A)
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>&lt;__main__.A at 0x20d23e95d30&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 未初始化，无属性</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>name
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-36-b3a4d04d98fc&gt; in &lt;module&gt;
+      1 # 未初始化，无属性
+----&gt; 2 a.name
+
+
+AttributeError: 'A' object has no attribute 'name'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 也可以使用 a.__init__(), </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 它会自动将实例作为第一个参数完成初始化</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>__init__(a)
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>&lt;__main__.A at 0x20d23e95d30&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a<span style="color:#f92672">.</span>name
+</span></span></code></pre></div><pre><code>'实例'
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>属性操作</h1>
+
+<p>Python 是动态语言，对象的属性不仅可以查看、访问、调用，还可以动态地增、删、改。</p>
+<p>下面定义一个没有自定义属性的类 A 举例：</p>
+<p>dir() 函数查看属性，双下划线 <code>__</code> 包围的属性是继承自 object 的特殊属性：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 定义一个类，查看属性</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dir(A)
+</span></span></code></pre></div><pre><code>['__class__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__le__',
+ '__lt__',
+ '__module__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '__weakref__']
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 访问属性 __class__ 相当于调用 type() 函数</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>__class__, A()<span style="color:#f92672">.</span>__class__
+</span></span></code></pre></div><pre><code>(type, __main__.A)
+</code></pre>
+<p>给类 A 及其实例动态添加属性，属性可以是数据属性和方法。类层级添加的属性，将作为所有实例的属性；实例添加的属性，只有对应的实例能访问。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 添加数据属性</span>
+</span></span><span style="display:flex;"><span>a1 <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>a2 <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;类变量&#39;</span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a1 的属性&#39;</span>
+</span></span><span style="display:flex;"><span>a2<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a2 的属性&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 类层级添加方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>    print(self<span style="color:#f92672">.</span>a)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f <span style="color:#f92672">=</span> f
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 类 A 调用刚添加的属性</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f(a1)
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f(a2)
+</span></span></code></pre></div><pre><code>类变量
+类变量
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实例调用刚添加的属性</span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>f()
+</span></span><span style="display:flex;"><span>a2<span style="color:#f92672">.</span>f()
+</span></span></code></pre></div><pre><code>类变量
+类变量
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 实例 a1 没有 y 属性</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 同理，a2 没有 x 属性</span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>y 
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-44-178a7ac627a0&gt; in &lt;module&gt;
+      1 # 实例 a1 没有 y 属性
+      2 # 同理，a2 没有 x 属性
+----&gt; 3 a1.y
+
+
+AttributeError: 'A' object has no attribute 'y'
+</code></pre>
+<p>实例直接添加一个函数作为属性，将不会隐式地将自身作为第一个参数，而是和正常函数一样使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">p</span>(self):
+</span></span><span style="display:flex;"><span>    print(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p <span style="color:#f92672">=</span> p
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p(<span style="color:#e6db74">&#39;正常传参&#39;</span>)
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p()
+</span></span></code></pre></div><pre><code>正常传参
+
+
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-45-4ebdece61250&gt; in &lt;module&gt;
+      4 a1.p = p
+      5 a1.p('正常传参')
+----&gt; 6 a1.p()
+
+
+TypeError: p() missing 1 required positional argument: 'self'
+</code></pre>
+<p>如果要通过实例添加实例方法（第一个参数 self 即是自身的方法），可以通过 types 模块添加。添加的属性，类不可访问，只有对应的实例可访问：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> types <span style="color:#f92672">import</span> MethodType
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 改变了 a1 的上述 p 属性</span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p <span style="color:#f92672">=</span> MethodType(p, a1)
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p()
+</span></span></code></pre></div><pre><code>&lt;__main__.A object at 0x000001D40578D730&gt;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>p
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-47-94cb580acfb0&gt; in &lt;module&gt;
+----&gt; 1 A.p
+
+
+AttributeError: type object 'A' has no attribute 'p'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a2<span style="color:#f92672">.</span>p
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-48-29321b2aa581&gt; in &lt;module&gt;
+----&gt; 1 a2.p
+
+
+AttributeError: 'A' object has no attribute 'p'
+</code></pre>
+<p>删除属性使用 del 语句：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">del</span> a1<span style="color:#f92672">.</span>p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a1<span style="color:#f92672">.</span>p()
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-49-9cf9b7e7dc86&gt; in &lt;module&gt;
+      1 del a1.p
+      2 
+----&gt; 3 a1.p()
+
+
+AttributeError: 'A' object has no attribute 'p'
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>方法操作</h1>
+
+<p>一个从父类继承过来的方法，如果不满足子类的需求，可以进行重写，重写的方法将屏蔽父类的方法，但可以显示地调用，或使用 super() 委托给父类调用，实现父类、子类的方法都可调用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self,x):
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> x
+</span></span><span style="display:flex;"><span>        print(y)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self,x):
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> (x <span style="color:#f92672">+</span> x)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> 
+</span></span><span style="display:flex;"><span>        print(y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> B()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>f(<span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><pre><code>16
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 显示地调用</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">.</span>f(b, <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><pre><code>4
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self,x):
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> x
+</span></span><span style="display:flex;"><span>        print(y)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self,x):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>f(x)
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> (x <span style="color:#f92672">+</span> x)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> 
+</span></span><span style="display:flex;"><span>        print(y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> B()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>f(<span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><pre><code>4
+16
+</code></pre>
+<p>还可使用装饰器修改方法，或添加丰富功能等。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将方法定义为静态方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(value):
+</span></span><span style="display:flex;"><span>        print(value)
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C()
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>f(<span style="color:#e6db74">&#39;必须传参调用&#39;</span>)
+</span></span></code></pre></div><pre><code>必须传参调用
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将私有属性定义为只读，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 直接用不带下划线的名称访问</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>__name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;私有属性&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>__name
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> C()
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>name
+</span></span></code></pre></div><pre><code>'私有属性'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 尝试修改不被允许</span>
+</span></span><span style="display:flex;"><span>c<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-11-c0f354f546f5&gt; in &lt;module&gt;
+      1 # 尝试修改不被允许
+----&gt; 2 c.name = 0
+
+
+AttributeError: can't set attribute
+</code></pre>
+<p>用特殊方法定制类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> D()
+</span></span><span style="display:flex;"><span>bool(d)
+</span></span></code></pre></div><pre><code>True
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 上述类的实例逻辑值检查为 True</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义为 False</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __bool__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> D()
+</span></span><span style="display:flex;"><span>bool(d)
+</span></span></code></pre></div><pre><code>False
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 让数字字符串也可以相减</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mystr</span>(str):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __sub__(self, other):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str(float(self) <span style="color:#f92672">-</span> float(other))
+</span></span><span style="display:flex;"><span>m <span style="color:#f92672">=</span> Mystr(<span style="color:#e6db74">&#39;123&#39;</span>)
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> Mystr(<span style="color:#e6db74">&#39;3.14&#39;</span>)
+</span></span><span style="display:flex;"><span>m, n, m <span style="color:#f92672">-</span> n
+</span></span></code></pre></div><pre><code>('123', '3.14', '119.86')
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          <article class="default">
+<h1>类继承</h1>
+
+<p>所有的类都继承自 object。被继承的类称为基类（或父类，超类），继承者称为子类。</p>
+<p>对于多数应用来说，在最简单的情况下，你可以认为搜索从父类所继承属性的操作是<strong>深度优先、从左至右</strong>的，当层次结构中存在重叠时不会在同一个类中搜索两次。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;A&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;D&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">E</span>(C, B, D):  <span style="color:#75715e"># C -&gt; B -&gt; A -&gt; D</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>e <span style="color:#f92672">=</span> E()
+</span></span><span style="display:flex;"><span>e<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>A
+</code></pre>
+<p>真实情况比这个更复杂一些；方法解析顺序会动态改变以支持对 super() 的协同调用。这种方式在某些其他多重继承型语言中被称为 后续方法调用，它比单继承型语言中的 super 调用更强大。</p>
+<p>动态改变顺序是有必要的，因为所有多重继承的情况都会显示出一个或更多的菱形关联（即至少有一个父类可通过多条路径被最底层类所访问）。例如，所有类都是继承自 object，因此任何多重继承的情况都提供了一条以上的路径可以通向 object。为了确保基类不会被访问一次以上，动态算法会用一种特殊方式将搜索顺序线性化，保留每个类所指定的从左至右的顺序，只调用每个父类一次，并且保持单调（即一个类可以被子类化而不影响其父类的优先顺序）。</p>
+<p>总而言之，这些特性使得设计具有多重继承的可靠且可扩展的类成为可能。</p>
+<p>一个基类如果有 <code>__init__()</code> 方法，则其所派生的类如果也有 <code>__init__()</code> 方法，就必须显式地调用它以确保实例基类部分的正确初始化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>a)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> B()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>f() <span style="color:#75715e"># 基类未初始化，属性 a 不可调用</span>
+</span></span></code></pre></div><pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-5-cda60db4451f&gt; in &lt;module&gt;
+     11 
+     12 b = B()
+---&gt; 13 b.f()
+
+
+&lt;ipython-input-5-cda60db4451f&gt; in f(self)
+      4 
+      5     def f(self):
+----&gt; 6         print(self.a)
+      7 
+      8 class B(A):
+
+
+AttributeError: 'B' object has no attribute 'a'
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>__init__(b) <span style="color:#75715e"># 将实例 b 传给 A 初始化</span>
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>f()
+</span></span></code></pre></div><pre><code>A
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 或者直接用 super()</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(self):
+</span></span><span style="display:flex;"><span>        print(self<span style="color:#f92672">.</span>a)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>(A):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> B()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>f()
+</span></span></code></pre></div><pre><code>A
+</code></pre>
+
+            <footer class="footline">
+            </footer>
+          </article>
+
+          </section>        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <a id="logo" href="/">
+            <br><font face="serif" size="6" color="#17202A"><b>🏠Jupyter.fun</b></font>
+          </a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1661054444" defer></script>
+        <script src="/js/lunr.min.js?1661054444" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661054444" defer></script>
+        <script src="/js/lunr.multi.min.js?1661054444" defer></script>
+        <script src="/js/lunr.en.min.js?1661054444" defer></script>
+        <script src="/js/search.js?1661054444" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/python/" title="Python 语法基础知识详解和查询手册" class="dd-item parent"><input type="checkbox" id="section-c8861a2651b27ee3930a98ce392020d1" class="toggle" checked/><label for="section-c8861a2651b27ee3930a98ce392020d1" ></label><a href="/python/">Python<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/" title="数字类型概述" class="dd-item"><input type="checkbox" id="section-f26ae7da78c4758569d4b453b66b4231" class="toggle"/><label for="section-f26ae7da78c4758569d4b453b66b4231" ></label><a href="/python/01_numeric/">数字类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/01_numeric/02_int/" title="整数及其位运算" class="dd-item"><a href="/python/01_numeric/02_int/">整数及其位运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/03_bool/" title="布尔值及布尔运算" class="dd-item"><a href="/python/01_numeric/03_bool/">布尔值及布尔运算<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/04_float/" title="浮点数" class="dd-item"><a href="/python/01_numeric/04_float/">浮点数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/05_complex/" title="复数" class="dd-item"><a href="/python/01_numeric/05_complex/">复数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/01_numeric/06_number_operations/" title="数字运算" class="dd-item"><a href="/python/01_numeric/06_number_operations/">数字运算<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/02_string/" title="字符串概述" class="dd-item"><input type="checkbox" id="section-0a8894164d573ed7362e26196efabc7a" class="toggle"/><label for="section-0a8894164d573ed7362e26196efabc7a" ></label><a href="/python/02_string/">字符串<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/02_string/02_concatenated_string/" title="字符串拼接" class="dd-item"><a href="/python/02_string/02_concatenated_string/">字符串拼接<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/03_escape_character/" title="转义字符" class="dd-item"><a href="/python/02_string/03_escape_character/">转义字符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/04_str.count/" title="str.count 统计" class="dd-item"><a href="/python/02_string/04_str.count/">str.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/05_str.replace/" title="str.replace 替换" class="dd-item"><a href="/python/02_string/05_str.replace/">str.replace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/06_str.expandtabs/" title="str.expandtabs 替换制表符" class="dd-item"><a href="/python/02_string/06_str.expandtabs/">str.expandtabs<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/07_str.split/" title="str.split 拆分" class="dd-item"><a href="/python/02_string/07_str.split/">str.split<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/08_str.rsplit/" title="str.rsplit 拆分" class="dd-item"><a href="/python/02_string/08_str.rsplit/">str.rsplit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/09_str.partition/" title="str.partition 拆分" class="dd-item"><a href="/python/02_string/09_str.partition/">str.partition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/10_str.rpartition/" title="str.rpartition 拆分" class="dd-item"><a href="/python/02_string/10_str.rpartition/">str.rpartition<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/11_str.splitlines/" title="str.splitlines 按行拆分" class="dd-item"><a href="/python/02_string/11_str.splitlines/">str.splitlines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/12_str.strip/" title="str.strip 移除两边字符" class="dd-item"><a href="/python/02_string/12_str.strip/">str.strip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/13_str.lstrip/" title="str.lstrip 移除左边字符" class="dd-item"><a href="/python/02_string/13_str.lstrip/">str.lstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/14_str.rstrip/" title="str.rstrip 移除右边字符" class="dd-item"><a href="/python/02_string/14_str.rstrip/">str.rstrip<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/15_str.find/" title="str.find 查找最小索引" class="dd-item"><a href="/python/02_string/15_str.find/">str.find<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/16_str.rfind/" title="str.rfind 查找最大索引" class="dd-item"><a href="/python/02_string/16_str.rfind/">str.rfind<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/17_str.index/" title="str.index 查找最小索引" class="dd-item"><a href="/python/02_string/17_str.index/">str.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/18_str.rindex/" title="str.rindex 查找最大索引" class="dd-item"><a href="/python/02_string/18_str.rindex/">str.rindex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/19_str.join/" title="str.join 拼接字符串" class="dd-item"><a href="/python/02_string/19_str.join/">str.join<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/20_str.startswith/" title="str.startswith 指定字符串开头？" class="dd-item"><a href="/python/02_string/20_str.startswith/">str.startswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/21_str.endswith/" title="str.endswith 指定字符串结尾？" class="dd-item"><a href="/python/02_string/21_str.endswith/">str.endswith<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/22_str.ljust/" title="str.ljust 左对齐" class="dd-item"><a href="/python/02_string/22_str.ljust/">str.ljust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/23_str.center/" title="str.center 居中" class="dd-item"><a href="/python/02_string/23_str.center/">str.center<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/24_str.rjust/" title="str.rjust 右对齐" class="dd-item"><a href="/python/02_string/24_str.rjust/">str.rjust<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/25_str.format/" title="str.format 格式化" class="dd-item"><a href="/python/02_string/25_str.format/">str.format<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/26_str.format_map/" title="str.format_map 格式化" class="dd-item"><a href="/python/02_string/26_str.format_map/">str.format_map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/27_f-string/" title="f-string 格式化字符串" class="dd-item"><a href="/python/02_string/27_f-string/">f-string 格式化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/28_string_operators/" title="字符串操作符" class="dd-item"><a href="/python/02_string/28_string_operators/">字符串操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/29_str.encode/" title="str.encode 编码为字节串" class="dd-item"><a href="/python/02_string/29_str.encode/">str.encode<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/30_str.capitalize/" title="str.capitalize 首字符大写" class="dd-item"><a href="/python/02_string/30_str.capitalize/">str.capitalize<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/31_str.casefold/" title="str.casefold 消除大小写" class="dd-item"><a href="/python/02_string/31_str.casefold/">str.casefold<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/32_str.lower/" title="str.lower 转小写" class="dd-item"><a href="/python/02_string/32_str.lower/">str.lower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/33_str.title/" title="str.title 单词首字母大写" class="dd-item"><a href="/python/02_string/33_str.title/">str.title<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/34_str.upper/" title="str.upper 转大写" class="dd-item"><a href="/python/02_string/34_str.upper/">str.upper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/35_str.swapcase/" title="str.swapcase 大小写互转" class="dd-item"><a href="/python/02_string/35_str.swapcase/">str.swapcase<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/36_str.zfill/" title="str.zfill 填充 0" class="dd-item"><a href="/python/02_string/36_str.zfill/">str.zfill<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/37_str.translate/" title="str.translate 按表转换" class="dd-item"><a href="/python/02_string/37_str.translate/">str.translate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/38_str.maketrans/" title="str.maketrans 生成转换表" class="dd-item"><a href="/python/02_string/38_str.maketrans/">str.maketrans<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/39_str.isalnum/" title="str.isalnum 是字母或数字？" class="dd-item"><a href="/python/02_string/39_str.isalnum/">str.isalnum<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/40_str.isalpha/" title="str.isalpha 是字母（包括汉字等）？" class="dd-item"><a href="/python/02_string/40_str.isalpha/">str.isalpha<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/41_str.isdecimal/" title="str.isdecimal 是十进制字符？" class="dd-item"><a href="/python/02_string/41_str.isdecimal/">str.isdecimal<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/42_str.isdigit/" title="str.isdigit 是数字？" class="dd-item"><a href="/python/02_string/42_str.isdigit/">str.isdigit<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/43_str.isnumeric/" title="str.isnumeric 是数值字符？" class="dd-item"><a href="/python/02_string/43_str.isnumeric/">str.isnumeric<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/44_str.islower/" title="str.islower 是小写？" class="dd-item"><a href="/python/02_string/44_str.islower/">str.islower<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/45_str.isupper/" title="str.isupper 是大写？" class="dd-item"><a href="/python/02_string/45_str.isupper/">str.isupper<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/46_str.istitle/" title="str.istitle 是标题字符串？" class="dd-item"><a href="/python/02_string/46_str.istitle/">str.istitle<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/47_str.isascii/" title="str.isascii 是 ASCII 字符？" class="dd-item"><a href="/python/02_string/47_str.isascii/">str.isascii<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/48_str.isidentifier/" title="str.isidentifier 是有效标识符？" class="dd-item"><a href="/python/02_string/48_str.isidentifier/">str.isidentifier<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/49_str.isprintable/" title="str.isprintable 是可打印字符？" class="dd-item"><a href="/python/02_string/49_str.isprintable/">str.isprintable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/50_str.isspace/" title="str.isspace 是空白字符？" class="dd-item"><a href="/python/02_string/50_str.isspace/">str.isspace<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/51_str.removeprefix/" title="str.removeprefix  移除前缀" class="dd-item"><a href="/python/02_string/51_str.removeprefix/">str.removeprefix<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/02_string/52_str.removesuffix/" title="str.removesuffix 移除后缀" class="dd-item"><a href="/python/02_string/52_str.removesuffix/">str.removesuffix<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/03_list/" title="列表" class="dd-item"><input type="checkbox" id="section-9dce683949d5d69d823966a12cca5136" class="toggle"/><label for="section-9dce683949d5d69d823966a12cca5136" ></label><a href="/python/03_list/">列表概述<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/03_list/02_list_comprehension/" title="列表推导式" class="dd-item"><a href="/python/03_list/02_list_comprehension/">列表推导式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/03_list_indexes_and_slices/" title="列表的索引和切片" class="dd-item"><a href="/python/03_list/03_list_indexes_and_slices/">列表的索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/15_list.clear/" title="list.clear 删除所有元素" class="dd-item"><a href="/python/03_list/15_list.clear/">list.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/04_list_operator/" title="列表操作符" class="dd-item"><a href="/python/03_list/04_list_operator/">列表操作符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/05_list.append/" title="list.append 添加一个元素" class="dd-item"><a href="/python/03_list/05_list.append/">list.append<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/06_list.extend/" title="list.extend 加入可迭代对象中元素" class="dd-item"><a href="/python/03_list/06_list.extend/">list.extend<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/07_list.insert/" title="list.insert 插入一个元素" class="dd-item"><a href="/python/03_list/07_list.insert/">list.insert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/08_list.sort/" title="list.sort 对列表原地排序" class="dd-item"><a href="/python/03_list/08_list.sort/">list.sort<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/09_list.reverse/" title="list.reverse 反转列表中元素" class="dd-item"><a href="/python/03_list/09_list.reverse/">list.reverse<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/10_list.pop/" title="list.pop 删除元素并返回" class="dd-item"><a href="/python/03_list/10_list.pop/">list.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/11_list.remove/" title="list.remove 移除一个元素" class="dd-item"><a href="/python/03_list/11_list.remove/">list.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/12_list.count/" title="list.count 统计元素出现次数" class="dd-item"><a href="/python/03_list/12_list.count/">list.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/13_list.index/" title="list.index 查找最小索引" class="dd-item"><a href="/python/03_list/13_list.index/">list.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/03_list/14_list.copy/" title="list.copy 列表的一个浅拷贝" class="dd-item"><a href="/python/03_list/14_list.copy/">list.copy<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/04_tuple/" title="元组概述" class="dd-item"><input type="checkbox" id="section-dc7ea79191f25dfd309c92b5e4905cab" class="toggle"/><label for="section-dc7ea79191f25dfd309c92b5e4905cab" ></label><a href="/python/04_tuple/">元组<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/04_tuple/02_tuple.count/" title="tuple.count 统计元素出现次数" class="dd-item"><a href="/python/04_tuple/02_tuple.count/">tuple.count<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/03_tuple.index/" title="tuple.index 查找元素索引" class="dd-item"><a href="/python/04_tuple/03_tuple.index/">tuple.index<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/04_tuple/04_operator/" title="元组操作符" class="dd-item"><a href="/python/04_tuple/04_operator/">元组操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/05_sequence/" title="序列类型概述" class="dd-item"><input type="checkbox" id="section-b631793e0b67cf3997ee6b6ccb5a1018" class="toggle"/><label for="section-b631793e0b67cf3997ee6b6ccb5a1018" ></label><a href="/python/05_sequence/">序列<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/05_sequence/02_range/" title="range 对象" class="dd-item"><a href="/python/05_sequence/02_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/03_index_slice/" title="序列索引和切片" class="dd-item"><a href="/python/05_sequence/03_index_slice/">序列索引和切片<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/05_sequence/04_common_operations/" title="序列通用操作" class="dd-item"><a href="/python/05_sequence/04_common_operations/">序列通用操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/06_set/" title="集合概述" class="dd-item"><input type="checkbox" id="section-c643fef3f2d56a8ad628665722912338" class="toggle"/><label for="section-c643fef3f2d56a8ad628665722912338" ></label><a href="/python/06_set/">集合<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/06_set/02_set.isdisjoint/" title="set.isdisjoint 交集为空吗？" class="dd-item"><a href="/python/06_set/02_set.isdisjoint/">set.isdisjoint<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/03_set.issubset/" title="set.issubset 是子集吗？" class="dd-item"><a href="/python/06_set/03_set.issubset/">set.issubset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/04_set.issuperset/" title="set.issuperset 是超集吗？" class="dd-item"><a href="/python/06_set/04_set.issuperset/">set.issuperset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/05_set.union/" title="set.union 并集" class="dd-item"><a href="/python/06_set/05_set.union/">set.union<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/06_set.intersection/" title="set.intersection 交集" class="dd-item"><a href="/python/06_set/06_set.intersection/">set.intersection<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/07_set.difference/" title="set.difference 差集" class="dd-item"><a href="/python/06_set/07_set.difference/">set.difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/08_set.symmetric_difference/" title="set.symmetric_difference 对称差" class="dd-item"><a href="/python/06_set/08_set.symmetric_difference/">set.symmetric_difference<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/09_set.copy/" title="set.copy 浅拷贝" class="dd-item"><a href="/python/06_set/09_set.copy/">set.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/10_set.update/" title="set.update 合并更新" class="dd-item"><a href="/python/06_set/10_set.update/">set.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/11_set.intersection_update/" title="set.intersection_update 交集更新" class="dd-item"><a href="/python/06_set/11_set.intersection_update/">set.intersection_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/12_set.difference_update/" title="set.difference_update 差集更新" class="dd-item"><a href="/python/06_set/12_set.difference_update/">set.difference_update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/13_set.symmetric_difference_update/" title="set ^= other 对称差集更新" class="dd-item"><a href="/python/06_set/13_set.symmetric_difference_update/">set ^= other<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/14_set.add/" title="set.add 添加元素" class="dd-item"><a href="/python/06_set/14_set.add/">set.add<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/15_set.remove/" title="set.remove 删除元素" class="dd-item"><a href="/python/06_set/15_set.remove/">set.remove<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/16_set.discard/" title="set.discard 删除元素" class="dd-item"><a href="/python/06_set/16_set.discard/">set.discard<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/17_set.pop/" title="set.pop 删除元素并返回" class="dd-item"><a href="/python/06_set/17_set.pop/">set.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/06_set/18_set.clear/" title="set.clear 清空集合元素" class="dd-item"><a href="/python/06_set/18_set.clear/">set.clear<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/07_dictionary/" title="字典概述" class="dd-item"><input type="checkbox" id="section-6edd912ea63088ea7d421ba4a9a6b0c9" class="toggle"/><label for="section-6edd912ea63088ea7d421ba4a9a6b0c9" ></label><a href="/python/07_dictionary/">字典<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/07_dictionary/02_dict.keys/" title="dict.keys 键视图" class="dd-item"><a href="/python/07_dictionary/02_dict.keys/">dict.keys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/03_dict.values/" title="dict.values 值视图" class="dd-item"><a href="/python/07_dictionary/03_dict.values/">dict.values<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/04_dict.items/" title="dict.items 键值对视图" class="dd-item"><a href="/python/07_dictionary/04_dict.items/">dict.items<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/05_dict.get/" title="dict.get 获取某个键的值" class="dd-item"><a href="/python/07_dictionary/05_dict.get/">dict.get<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/06_dict.copy/" title="dict.copy 浅拷贝" class="dd-item"><a href="/python/07_dictionary/06_dict.copy/">dict.copy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/07_dict.pop/" title="dict.pop 删除元素并返回值" class="dd-item"><a href="/python/07_dictionary/07_dict.pop/">dict.pop<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/08_dict.popitem/" title="dict.popitem 删除元素并返回键值对" class="dd-item"><a href="/python/07_dictionary/08_dict.popitem/">dict.popitem<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/09_dict.fromkeys/" title="dict.fromkeys 创建字典" class="dd-item"><a href="/python/07_dictionary/09_dict.fromkeys/">dict.fromkeys<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/10_dict.clear/" title="dict.clear 清空字典元素" class="dd-item"><a href="/python/07_dictionary/10_dict.clear/">dict.clear<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/11_dict.setdefault/" title="dict.setdefault 获取或插入元素" class="dd-item"><a href="/python/07_dictionary/11_dict.setdefault/">dict.setdefault<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/12_dict.update/" title="dict.update 更新字典" class="dd-item"><a href="/python/07_dictionary/12_dict.update/">dict.update<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/13_loop_through/" title="字典遍历" class="dd-item"><a href="/python/07_dictionary/13_loop_through/">字典遍历<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/07_dictionary/14_operator/" title="字典操作符" class="dd-item"><a href="/python/07_dictionary/14_operator/">字典操作符<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/08_other_types/" title="生成器表达式和推导式" class="dd-item"><input type="checkbox" id="section-6dcb28ff486050e64e8c2098986ff9d6" class="toggle"/><label for="section-6dcb28ff486050e64e8c2098986ff9d6" ></label><a href="/python/08_other_types/">其他类型<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/08_other_types/01_none/" title="空值 None" class="dd-item"><a href="/python/08_other_types/01_none/">None<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/08_other_types/03_other_types/" title="其他内置类型" class="dd-item"><a href="/python/08_other_types/03_other_types/">其他内置类型<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/09_operator/" title="操作符概述" class="dd-item"><input type="checkbox" id="section-bf0c286771bede167ff18be220caecff" class="toggle"/><label for="section-bf0c286771bede167ff18be220caecff" ></label><a href="/python/09_operator/">操作符<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/09_operator/02_compare/" title="比较运算符" class="dd-item"><a href="/python/09_operator/02_compare/">比较运算符<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/03_precedence/" title="操作符优先级" class="dd-item"><a href="/python/09_operator/03_precedence/">操作符优先级<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/09_operator/04_special/" title="操作符特殊用法" class="dd-item"><a href="/python/09_operator/04_special/">操作符特殊用法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/10_statement/" title="表达式语句" class="dd-item"><input type="checkbox" id="section-64a5f0f51786f2cfc0f1a295e3568242" class="toggle"/><label for="section-64a5f0f51786f2cfc0f1a295e3568242" ></label><a href="/python/10_statement/">语句<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/10_statement/02_assignment/" title="赋值语句" class="dd-item"><a href="/python/10_statement/02_assignment/">赋值语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/03_if/" title="if" class="dd-item"><a href="/python/10_statement/03_if/">if<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/04_for/" title="for" class="dd-item"><a href="/python/10_statement/04_for/">for<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/05_while/" title="while" class="dd-item"><a href="/python/10_statement/05_while/">while<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/06_break/" title="break" class="dd-item"><a href="/python/10_statement/06_break/">break<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/07_continue/" title="continue" class="dd-item"><a href="/python/10_statement/07_continue/">continue<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/08_del/" title="del" class="dd-item"><a href="/python/10_statement/08_del/">del<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/09_pass/" title="pass" class="dd-item"><a href="/python/10_statement/09_pass/">pass<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/10_def/" title="def" class="dd-item"><a href="/python/10_statement/10_def/">def<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/11_return/" title="return" class="dd-item"><a href="/python/10_statement/11_return/">return<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/12_yield/" title="yield" class="dd-item"><a href="/python/10_statement/12_yield/">yield<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/13_class/" title="class 语句" class="dd-item"><a href="/python/10_statement/13_class/">class 语句<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/14_try/" title="try" class="dd-item"><a href="/python/10_statement/14_try/">try<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/15_raise/" title="raise" class="dd-item"><a href="/python/10_statement/15_raise/">raise<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/16_with/" title="with" class="dd-item"><a href="/python/10_statement/16_with/">with<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/17_assert/" title="assert" class="dd-item"><a href="/python/10_statement/17_assert/">assert<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/18_import/" title="import" class="dd-item"><a href="/python/10_statement/18_import/">import<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/19_global/" title="global" class="dd-item"><a href="/python/10_statement/19_global/">global<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/10_statement/20_nonlocal/" title="nonlocal" class="dd-item"><a href="/python/10_statement/20_nonlocal/">nonlocal<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/11_built-in_function/" title="abs() 数字取绝对值" class="dd-item"><input type="checkbox" id="section-c688daa3d748f201265692938123fc94" class="toggle"/><label for="section-c688daa3d748f201265692938123fc94" ></label><a href="/python/11_built-in_function/">内置函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/11_built-in_function/02_all/" title="all() 所有元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/02_all/">all()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/03_any/" title="any() 有一个元素布尔值为真？" class="dd-item"><a href="/python/11_built-in_function/03_any/">any()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/04_ascii/" title="ascii() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/04_ascii/">ascii()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/05_bin/" title="bin() 整数的二进制形式" class="dd-item"><a href="/python/11_built-in_function/05_bin/">bin()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/06_bool/" title="bool 返回对象的布尔值" class="dd-item"><a href="/python/11_built-in_function/06_bool/">bool<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/07_bytes/" title="bytes 创建 bytes 对象" class="dd-item"><a href="/python/11_built-in_function/07_bytes/">bytes<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/08_callable/" title="callable() 是可调用对象？" class="dd-item"><a href="/python/11_built-in_function/08_callable/">callable()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/09_chr/" title="chr() 返回 Unicode 码位值对应字符" class="dd-item"><a href="/python/11_built-in_function/09_chr/">chr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/10_classmethod/" title="classmethod 封装函数为类方法" class="dd-item"><a href="/python/11_built-in_function/10_classmethod/">classmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/11_compile/" title="compile() 创建代码对象" class="dd-item"><a href="/python/11_built-in_function/11_compile/">compile()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/12_complex/" title="complex 创建复数" class="dd-item"><a href="/python/11_built-in_function/12_complex/">complex<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/13_delattr/" title="delattr() 删除对象属性" class="dd-item"><a href="/python/11_built-in_function/13_delattr/">delattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/14_dict/" title="dict 创建字典" class="dd-item"><a href="/python/11_built-in_function/14_dict/">dict<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/15_dir/" title="dir() 返回对象属性列表" class="dd-item"><a href="/python/11_built-in_function/15_dir/">dir()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/16_divmod/" title="divmod() 求两个数的商和余" class="dd-item"><a href="/python/11_built-in_function/16_divmod/">divmod()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/17_enumerate/" title="enumerate 枚举" class="dd-item"><a href="/python/11_built-in_function/17_enumerate/">enumerate<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/18_eval/" title="eval() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/18_eval/">eval()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/19_exec/" title="exec() 解析字符串或代码并求值" class="dd-item"><a href="/python/11_built-in_function/19_exec/">exec()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/20_filter/" title="filter 真值元素筛选" class="dd-item"><a href="/python/11_built-in_function/20_filter/">filter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/21_float/" title="float 创建浮点数" class="dd-item"><a href="/python/11_built-in_function/21_float/">float<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/22_format/" title="format() 格式化" class="dd-item"><a href="/python/11_built-in_function/22_format/">format()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/23_frozenset/" title="frozenset 创建不可变集合" class="dd-item"><a href="/python/11_built-in_function/23_frozenset/">frozenset<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/24_getattr/" title="getattr() 获取对象的属性" class="dd-item"><a href="/python/11_built-in_function/24_getattr/">getattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/25_globals/" title="globals() 返回全局变量字典" class="dd-item"><a href="/python/11_built-in_function/25_globals/">globals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/26_hasattr/" title="hasattr() 是对象的属性吗？" class="dd-item"><a href="/python/11_built-in_function/26_hasattr/">hasattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/27_hash/" title="hash() 返回对象的哈希值" class="dd-item"><a href="/python/11_built-in_function/27_hash/">hash()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/28_help/" title="help 启动帮助系统" class="dd-item"><a href="/python/11_built-in_function/28_help/">help<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/29_hex/" title="hex() 整数的十六进制形式" class="dd-item"><a href="/python/11_built-in_function/29_hex/">hex()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/30_id/" title="id() 返回对象的唯一标识" class="dd-item"><a href="/python/11_built-in_function/30_id/">id()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/31_input/" title="input() 接受输入返回字符串" class="dd-item"><a href="/python/11_built-in_function/31_input/">input()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/32_int/" title="int 创建整数" class="dd-item"><a href="/python/11_built-in_function/32_int/">int<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/33_isinstance/" title="isinstance() 是给定类的实例？" class="dd-item"><a href="/python/11_built-in_function/33_isinstance/">isinstance()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/34_issubclass/" title="issubclass() 是给定类的子类吗？" class="dd-item"><a href="/python/11_built-in_function/34_issubclass/">issubclass()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/35_iter/" title="iter() 转迭代器" class="dd-item"><a href="/python/11_built-in_function/35_iter/">iter()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/36_len/" title="len() 返回元素个数" class="dd-item"><a href="/python/11_built-in_function/36_len/">len()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/37_list/" title="list 创建列表" class="dd-item"><a href="/python/11_built-in_function/37_list/">list<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/38_locals/" title="locals() 返回局部变量的字典" class="dd-item"><a href="/python/11_built-in_function/38_locals/">locals()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/39_map/" title="map 以给定函数转换元素" class="dd-item"><a href="/python/11_built-in_function/39_map/">map<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/40_max/" title="max() 求最大项" class="dd-item"><a href="/python/11_built-in_function/40_max/">max()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/41_min/" title="min() 求最小项" class="dd-item"><a href="/python/11_built-in_function/41_min/">min()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/42_next/" title="next() 返回迭代器下一个元素" class="dd-item"><a href="/python/11_built-in_function/42_next/">next()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/43_object/" title="object 所有类的基类" class="dd-item"><a href="/python/11_built-in_function/43_object/">object<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/44_oct/" title="oct() 整数的八进制形式" class="dd-item"><a href="/python/11_built-in_function/44_oct/">oct()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/45_open/" title="open() 打开文件" class="dd-item"><a href="/python/11_built-in_function/45_open/">open()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/46_ord/" title="ord() 返回单个字符 Unicode 码位值" class="dd-item"><a href="/python/11_built-in_function/46_ord/">ord()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/47_pow/" title="pow() 幂运算并取余" class="dd-item"><a href="/python/11_built-in_function/47_pow/">pow()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/48_print/" title="print()" class="dd-item"><a href="/python/11_built-in_function/48_print/">print()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/49_property/" title="property 返回 property 属性" class="dd-item"><a href="/python/11_built-in_function/49_property/">property<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/50_range/" title="range 创建 range 序列" class="dd-item"><a href="/python/11_built-in_function/50_range/">range<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/51_repr/" title="repr() 返回对象的可打印字符串" class="dd-item"><a href="/python/11_built-in_function/51_repr/">repr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/52_reversed/" title="reversed 序列逆置" class="dd-item"><a href="/python/11_built-in_function/52_reversed/">reversed<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/53_round/" title="round() 数字舍入" class="dd-item"><a href="/python/11_built-in_function/53_round/">round()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/54_set/" title="set 创建集合" class="dd-item"><a href="/python/11_built-in_function/54_set/">set<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/55_setattr/" title="setattr() 设置或新增属性" class="dd-item"><a href="/python/11_built-in_function/55_setattr/">setattr()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/56_slice/" title="slice 创建切片对象" class="dd-item"><a href="/python/11_built-in_function/56_slice/">slice<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/57_sorted/" title="sorted() 返回排序列表" class="dd-item"><a href="/python/11_built-in_function/57_sorted/">sorted()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/58_staticmethod/" title="staticmethod 封装函数为静态方法" class="dd-item"><a href="/python/11_built-in_function/58_staticmethod/">staticmethod<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/59_str/" title="str 创建字符串" class="dd-item"><a href="/python/11_built-in_function/59_str/">str<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/60_sum/" title="sum() 数字求和或序列拼接" class="dd-item"><a href="/python/11_built-in_function/60_sum/">sum()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/61_super/" title="super 调用委托给父类或兄弟类" class="dd-item"><a href="/python/11_built-in_function/61_super/">super<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/62_tuple/" title="tuple 创建元组" class="dd-item"><a href="/python/11_built-in_function/62_tuple/">tuple<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/63_type/" title="type 判断类型或创建类" class="dd-item"><a href="/python/11_built-in_function/63_type/">type<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/64_vars/" title="vars() 返回对象的变量字典" class="dd-item"><a href="/python/11_built-in_function/64_vars/">vars()<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/11_built-in_function/65_zip/" title="zip 重组可迭代对象" class="dd-item"><a href="/python/11_built-in_function/65_zip/">zip<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/12_function/" title="函数概述" class="dd-item"><input type="checkbox" id="section-e6b48a8a67c6f7ff797a323f6568f234" class="toggle"/><label for="section-e6b48a8a67c6f7ff797a323f6568f234" ></label><a href="/python/12_function/">函数<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/12_function/02_function_definition/" title="函数定义" class="dd-item"><a href="/python/12_function/02_function_definition/">函数定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/03_formal_parameter/" title="函数形参" class="dd-item"><a href="/python/12_function/03_formal_parameter/">函数形参<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/04_return_value/" title="函数返回值" class="dd-item"><a href="/python/12_function/04_return_value/">函数返回值<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/05_recursion/" title="递归函数" class="dd-item"><a href="/python/12_function/05_recursion/">递归函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/06_doc/" title="函数文档" class="dd-item"><a href="/python/12_function/06_doc/">函数文档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/07_function_call/" title="函数调用" class="dd-item"><a href="/python/12_function/07_function_call/">函数调用<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/08_lambda/" title="lambda 函数" class="dd-item"><a href="/python/12_function/08_lambda/">lambda 函数<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/12_function/09_generator/" title="生成器函数" class="dd-item"><a href="/python/12_function/09_generator/">生成器函数<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/13_exception/" title="错误和异常" class="dd-item"><input type="checkbox" id="section-bc4f4d42c44eaf0579ed86ae2d0d51db" class="toggle"/><label for="section-bc4f4d42c44eaf0579ed86ae2d0d51db" ></label><a href="/python/13_exception/">错误和异常<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/13_exception/02_handling/" title="处理异常" class="dd-item"><a href="/python/13_exception/02_handling/">处理异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/03_raising/" title="抛出异常" class="dd-item"><a href="/python/13_exception/03_raising/">抛出异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/04_user_defined/" title="自定义异常" class="dd-item"><a href="/python/13_exception/04_user_defined/">自定义异常<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/13_exception/05_finally/" title="finally 清理操作" class="dd-item"><a href="/python/13_exception/05_finally/">finally<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/14_file/" title="文件对象概述" class="dd-item"><input type="checkbox" id="section-e195820c7e4bf396e327bfb0a46a50f9" class="toggle"/><label for="section-e195820c7e4bf396e327bfb0a46a50f9" ></label><a href="/python/14_file/">文件<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/14_file/02_read/" title="读取文件内容" class="dd-item"><a href="/python/14_file/02_read/">读取文件内容<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/14_file/03_write/" title="文件写入内容" class="dd-item"><a href="/python/14_file/03_write/">文件写入内容<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/15_module/" title="模块概述" class="dd-item"><input type="checkbox" id="section-4385ec01f3a88bacfccd61dd3520ad8b" class="toggle"/><label for="section-4385ec01f3a88bacfccd61dd3520ad8b" ></label><a href="/python/15_module/">模块<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/15_module/02_create_module/" title="创建模块" class="dd-item"><a href="/python/15_module/02_create_module/">创建模块<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/04_executable_file/" title="可执行文件" class="dd-item"><a href="/python/15_module/04_executable_file/">可执行文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/15_module/05_import_code/" title="导入操作" class="dd-item"><a href="/python/15_module/05_import_code/">导入操作<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/python/16_class/" title="面向对象概述" class="dd-item active parent"><input type="checkbox" id="section-1462fcc8311b5f31727642b5a438fc6d" class="toggle" checked/><label for="section-1462fcc8311b5f31727642b5a438fc6d" ></label><a href="/python/16_class/">面向对象<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/python/16_class/02_class_definition/" title="类定义" class="dd-item"><a href="/python/16_class/02_class_definition/">类定义<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/03_instance/" title="实例" class="dd-item"><a href="/python/16_class/03_instance/">实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/04_object/" title="对象" class="dd-item"><a href="/python/16_class/04_object/">对象<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/05_name/" title="名称" class="dd-item"><a href="/python/16_class/05_name/">名称<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/06_variable/" title="变量" class="dd-item"><a href="/python/16_class/06_variable/">变量<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/07_attribute/" title="属性" class="dd-item"><a href="/python/16_class/07_attribute/">属性<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/08_method/" title="方法" class="dd-item"><a href="/python/16_class/08_method/">方法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/09_namespace/" title="命名空间" class="dd-item"><a href="/python/16_class/09_namespace/">命名空间<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/10_scope/" title="作用域" class="dd-item"><a href="/python/16_class/10_scope/">作用域<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/11_create_instance/" title="创建实例" class="dd-item"><a href="/python/16_class/11_create_instance/">创建实例<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/12_attribute_operation/" title="属性操作" class="dd-item"><a href="/python/16_class/12_attribute_operation/">属性操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/13_method_operation/" title="方法操作" class="dd-item"><a href="/python/16_class/13_method_operation/">方法操作<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/python/16_class/14_inheritance/" title="类继承" class="dd-item"><a href="/python/16_class/14_inheritance/">类继承<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/regex/" title="通俗易懂 Python 正则表达式" class="dd-item"><a href="/regex/">正则表达式<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/numpy/" title="Numpy 基础快速了解和查询" class="dd-item"><a href="/numpy/">Numpy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/pandas/" title="Pandas 基础快速了解和查询" class="dd-item"><a href="/pandas/">Pandas<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/matplotlib/" title="Matpotlib 快速入门" class="dd-item"><a href="/matplotlib/">Matpotlib<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/" title="数理统计、机器学习入门" class="dd-item"><input type="checkbox" id="section-7311b56f8e68ee915dd2e657bac269ed" class="toggle"/><label for="section-7311b56f8e68ee915dd2e657bac269ed" ></label><a href="/statistics/">机器学习入门<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/statistics/statistics1/" title="描述统计" class="dd-item"><a href="/statistics/statistics1/">描述统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics2/" title="推断统计" class="dd-item"><a href="/statistics/statistics2/">推断统计<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics3/" title="线性回归" class="dd-item"><a href="/statistics/statistics3/">线性回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics4/" title="逻辑回归" class="dd-item"><a href="/statistics/statistics4/">逻辑回归<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics5/" title="分类模型评估" class="dd-item"><a href="/statistics/statistics5/">分类模型评估<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics6/" title="KNN 算法" class="dd-item"><a href="/statistics/statistics6/">KNN 算法<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics7/" title="朴素贝叶斯" class="dd-item"><a href="/statistics/statistics7/">朴素贝叶斯<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics8/" title="决策树" class="dd-item"><a href="/statistics/statistics8/">决策树<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div id="shortcuts">
+          <div class="nav-title">More</div>
+          <ul>
+            <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
+            <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
+            <li><a class="padding" href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="blue" value="blue" selected>Blue</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+      <p>©2022 吴明文</p>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1661054444" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661054444" defer></script>
+    <script src="/js/featherlight.min.js?1661054444" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661054444" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script src="https://unpkg.com/rapidoc/dist/rapidoc-min.js" defer></script>
+    <script>
+      window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
+    </script>
+    <script src="/js/theme.js?1661054444" defer></script>
+  </body>
+</html>

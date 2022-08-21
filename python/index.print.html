@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -11,19 +11,19 @@
     <link href="/python/" rel="canonical" type="text/html" title="jupyter.fun">
     <link href="/python/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076171" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076171" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076171" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661076171" rel="stylesheet">
-    <link href="/css/nucleus.css?1661076171" rel="stylesheet">
-    <link href="/css/fonts.css?1661076171" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076171" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661076171" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661076171" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661076171" rel="stylesheet">
-    <link href="/css/variant.css?1661076171" rel="stylesheet">
-    <link href="/css/print.css?1661076171" rel="stylesheet" media="print">
-    <link href="/css/format-print.css?1661076171" rel="stylesheet">
-    <script src="/js/variant.js?1661076171"></script>
+    <link href="/css/fontawesome-all.min.css?1661091376" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661091376" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661091376" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661091376" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661091376" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661091376" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661091376" rel="stylesheet">
+    <link href="/css/nucleus.css?1661091376" rel="stylesheet">
+    <link href="/css/fonts.css?1661091376" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661091376" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661091376" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661091376" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661091376" rel="stylesheet">
+    <link href="/css/variant.css?1661091376" rel="stylesheet">
+    <link href="/css/print.css?1661091376" rel="stylesheet" media="print">
+    <link href="/css/format-print.css?1661091376" rel="stylesheet">
+    <script src="/js/variant.js?1661091376"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -31,15 +31,15 @@
       var root_url="/";
       var baseUri=root_url.replace(/\/$/, '');
       // translations
-      window.T_Copy_to_clipboard = 'Copy to clipboard';
-      window.T_Copied_to_clipboard = 'Copied to clipboard!';
-      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
-      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_Copy_to_clipboard = '复制到剪贴板';
+      window.T_Copied_to_clipboard = '复制到剪贴板！';
+      window.T_Copy_link_to_clipboard = '将链接复制到剪贴板';
+      window.T_Link_copied_to_clipboard = '链接复制到剪贴板！';
       // some further base stuff
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661076171" defer></script>
+    <script src="/js/jquery.min.js?1661091376" defer></script>
   </head>
   <body class="mobile-support print" data-url="/python/">
     <div id="body" class="default-animation">
@@ -48,13 +48,13 @@
       <nav id="topbar" class="highlightable">
         <div>
           <div id="top-print-link">
-            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/python/index.print.html">
+            <a class="print-link" title='打印整章 (CTRL+ALT+p)' href="/python/index.print.html">
               <i class="fas fa-print fa-fw"></i>
             </a>
           </div>
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+              <a href="#" id="sidebar-toggle" title='导航 (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
@@ -79,7 +79,7 @@
 <p>分清对象，找对对象，Python 就是你最好的对象。“人生苦短，我用 Python”，是程序猿们对 Python 易学易用的夸赞，我觉得它还是对任何非程序猿的劝导：花点时间学会 Python，你真的能发现你想象不到的，编程带来的便捷高效，尤其是深度使用电脑办公、生活者，节约时间，就是节约生命，就是珍惜苦短的人生。</p>
 <p>Python 不需要你造轮子，已经有非常多的真程序猿大神们创建了各种各样的 跑车，高铁，火箭……，你只要会找对象，拿来就会开。</p>
 <p>这个手册是为你找对对象打基础的。也可以随时查阅。但是强烈建议多查阅 <a href="https://docs.python.org/zh-cn/3/index.html">官方文档</a>。</p>
-<p><strong>安装 <a href="https://www.anaconda.com/products/distribution">Anaconda</a>，将正文末尾的 jupyter附件 下载到本地，启动 jupyter，直接运行更棒。</strong></p>
+<p>安装 <a href="https://www.anaconda.com/products/distribution">Anaconda</a>，将正文末尾的 <code>jupyter附件</code> 下载到本地（或到 <a href="https://github.com/jupyterfun">jupyterfun</a> 下载源码，jupyter 的 <code>.ipynb</code> 文件都在里面），启动 jupyter，直接运行更棒。</p>
 
             <footer class="footline">
             </footer>
@@ -1704,7 +1704,7 @@ format_map(...)
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>foo <span style="color:#e6db74">= !s}</span><span style="color:#e6db74">&#34;</span>
 </span></span></code></pre></div><pre><code>'foo = bar'
 </code></pre>
-<p>还可带一个以冒号 &lsquo;:&rsquo; 标示的格式说明符，“格式化迷你语言” 与 str.format() 方法所使用的微语言一致，详见 <a href="">str.format</a> 方法。</p>
+<p>还可带一个以冒号 &lsquo;:&rsquo; 标示的格式说明符，“格式化迷你语言” 与 str.format() 方法所使用的微语言一致，详见 str.format 方法。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>foo <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.14</span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>foo<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span></code></pre></div><pre><code>'3.1400'
@@ -5458,7 +5458,7 @@ TypeError: '&lt;=' not supported between instances of 'dict' and 'dict'
 <p>操作符 <code>&gt;</code>，<code>&lt;</code>，<code>&gt;=</code>，<code>&lt;=</code> 可对集合进行子集或超集比较；<code>|</code>，<code>&amp;</code>，<code>-</code>，<code>^</code> 可求集合的并集，交集，差集，对称差集；<code>|=</code>，<code>&amp;=</code>，<code>-=</code>，<code>^=</code> 可用来更新集合。具体详见集合知识点。</p>
 </li>
 <li>
-<p>操作符 <code>%</code> 可以用来格式化字符串，而在<strong>格式化迷你语言</strong>中，定义了非常多的有特殊意义操作符。具体详见 <a href="">str.format 格式化</a> 和 <a href="/python/02_string/28_string_operators/">字符串操作符</a>。</p>
+<p>操作符 <code>%</code> 可以用来格式化字符串，而在<strong>格式化迷你语言</strong>中，定义了非常多的有特殊意义操作符。具体详见 str.format 格式化 和 <a href="/python/02_string/28_string_operators/">字符串操作符</a>。</p>
 </li>
 </ul>
 
@@ -5563,7 +5563,7 @@ True
 <h1>赋值语句</h1>
 
 <p>赋值语句用于将名称绑定或重新绑定到特定值，以及修改属性或可变对象的成员项。</p>
-<p>赋值语句使用赋值操作符和增强赋值操作符。详见 <a href="">操作符概述</a>。</p>
+<p>赋值语句使用赋值操作符和增强赋值操作符。详见 操作符概述。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 将值 1 绑定到变量 a</span>
 </span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;a =&#39;</span>, a)
@@ -7335,232 +7335,6 @@ class bool(int)
  |      int
  |      object
  |  
- |  Methods defined here:
- |  
- |  __and__(self, value, /)
- |      Return self&amp;value.
- |  
- |  __or__(self, value, /)
- |      Return self|value.
- |  
- |  __rand__(self, value, /)
- |      Return value&amp;self.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __ror__(self, value, /)
- |      Return value|self.
- |  
- |  __rxor__(self, value, /)
- |      Return value^self.
- |  
- |  __str__(self, /)
- |      Return str(self).
- |  
- |  __xor__(self, value, /)
- |      Return self^value.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Methods inherited from int:
- |  
- |  __abs__(self, /)
- |      abs(self)
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __bool__(self, /)
- |      self != 0
- |  
- |  __ceil__(...)
- |      Ceiling of an Integral returns itself.
- |  
- |  __divmod__(self, value, /)
- |      Return divmod(self, value).
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __float__(self, /)
- |      float(self)
- |  
- |  __floor__(...)
- |      Flooring an Integral returns itself.
- |  
- |  __floordiv__(self, value, /)
- |      Return self//value.
- |  
- |  __format__(self, format_spec, /)
- |      Default object formatter.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getnewargs__(self, /)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __index__(self, /)
- |      Return self converted to an integer, if self is suitable for use as an index into a list.
- |  
- |  __int__(self, /)
- |      int(self)
- |  
- |  __invert__(self, /)
- |      ~self
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __lshift__(self, value, /)
- |      Return self&lt;&lt;value.
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mod__(self, value, /)
- |      Return self%value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __neg__(self, /)
- |      -self
- |  
- |  __pos__(self, /)
- |      +self
- |  
- |  __pow__(self, value, mod=None, /)
- |      Return pow(self, value, mod).
- |  
- |  __radd__(self, value, /)
- |      Return value+self.
- |  
- |  __rdivmod__(self, value, /)
- |      Return divmod(value, self).
- |  
- |  __rfloordiv__(self, value, /)
- |      Return value//self.
- |  
- |  __rlshift__(self, value, /)
- |      Return value&lt;&lt;self.
- |  
- |  __rmod__(self, value, /)
- |      Return value%self.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __round__(...)
- |      Rounding an Integral returns itself.
- |      Rounding with an ndigits argument also returns an integer.
- |  
- |  __rpow__(self, value, mod=None, /)
- |      Return pow(value, self, mod).
- |  
- |  __rrshift__(self, value, /)
- |      Return value&gt;&gt;self.
- |  
- |  __rshift__(self, value, /)
- |      Return self&gt;&gt;value.
- |  
- |  __rsub__(self, value, /)
- |      Return value-self.
- |  
- |  __rtruediv__(self, value, /)
- |      Return value/self.
- |  
- |  __sizeof__(self, /)
- |      Returns size in memory, in bytes.
- |  
- |  __sub__(self, value, /)
- |      Return self-value.
- |  
- |  __truediv__(self, value, /)
- |      Return self/value.
- |  
- |  __trunc__(...)
- |      Truncating an Integral returns itself.
- |  
- |  bit_length(self, /)
- |      Number of bits necessary to represent self in binary.
- |      
- |      &gt;&gt;&gt; bin(37)
- |      '0b100101'
- |      &gt;&gt;&gt; (37).bit_length()
- |      6
- |  
- |  conjugate(...)
- |      Returns self, the complex conjugate of any int.
- |  
- |  to_bytes(self, /, length, byteorder, *, signed=False)
- |      Return an array of bytes representing an integer.
- |      
- |      length
- |        Length of bytes object to use.  An OverflowError is raised if the
- |        integer is not representable with the given number of bytes.
- |      byteorder
- |        The byte order used to represent the integer.  If byteorder is 'big',
- |        the most significant byte is at the beginning of the byte array.  If
- |        byteorder is 'little', the most significant byte is at the end of the
- |        byte array.  To request the native byte order of the host system, use
- |        `sys.byteorder' as the byte order value.
- |      signed
- |        Determines whether two's complement is used to represent the integer.
- |        If signed is False and a negative integer is given, an OverflowError
- |        is raised.
- |  
- |  ----------------------------------------------------------------------
- |  Class methods inherited from int:
- |  
- |  from_bytes(bytes, byteorder, *, signed=False) from builtins.type
- |      Return the integer represented by the given array of bytes.
- |      
- |      bytes
- |        Holds the array of bytes to convert.  The argument must either
- |        support the buffer protocol or be an iterable object producing bytes.
- |        Bytes and bytearray are examples of built-in objects that support the
- |        buffer protocol.
- |      byteorder
- |        The byte order used to represent the integer.  If byteorder is 'big',
- |        the most significant byte is at the beginning of the byte array.  If
- |        byteorder is 'little', the most significant byte is at the end of the
- |        byte array.  To request the native byte order of the host system, use
- |        `sys.byteorder' as the byte order value.
- |      signed
- |        Indicates whether two's complement is used to represent the integer.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from int:
- |  
- |  denominator
- |      the denominator of a rational number in lowest terms
- |  
- |  imag
- |      the imaginary part of a complex number
- |  
- |  numerator
- |      the numerator of a rational number in lowest terms
- |  
- |  real
- |      the real part of a complex number
 </code></pre>
 <p>返回对象 x 的布尔值。省略 x 则返回 False。对象的真值、假值规则如下：</p>
 <p>一个对象在默认情况下均被视为真值，除非当该对象被调用时其所属类定义了 <code>__bool__()</code> 方法且返回 False 或是定义了 <code>__len__()</code> 方法且返回零。</p>
@@ -7612,365 +7386,6 @@ class bytes(object)
  |  
  |  Methods defined here:
  |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __contains__(self, key, /)
- |      Return key in self.
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getitem__(self, key, /)
- |      Return self[key].
- |  
- |  __getnewargs__(...)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mod__(self, value, /)
- |      Return self%value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __rmod__(self, value, /)
- |      Return value%self.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __str__(self, /)
- |      Return str(self).
- |  
- |  capitalize(...)
- |      B.capitalize() -&gt; copy of B
- |      
- |      Return a copy of B with only its first character capitalized (ASCII)
- |      and the rest lower-cased.
- |  
- |  center(...)
- |      B.center(width[, fillchar]) -&gt; copy of B
- |      
- |      Return B centered in a string of length width.  Padding is
- |      done using the specified fill character (default is a space).
- |  
- |  count(...)
- |      B.count(sub[, start[, end]]) -&gt; int
- |      
- |      Return the number of non-overlapping occurrences of subsection sub in
- |      bytes B[start:end].  Optional arguments start and end are interpreted
- |      as in slice notation.
- |  
- |  decode(self, /, encoding='utf-8', errors='strict')
- |      Decode the bytes using the codec registered for encoding.
- |      
- |      encoding
- |        The encoding with which to decode the bytes.
- |      errors
- |        The error handling scheme to use for the handling of decoding errors.
- |        The default is 'strict' meaning that decoding errors raise a
- |        UnicodeDecodeError. Other possible values are 'ignore' and 'replace'
- |        as well as any other name registered with codecs.register_error that
- |        can handle UnicodeDecodeErrors.
- |  
- |  endswith(...)
- |      B.endswith(suffix[, start[, end]]) -&gt; bool
- |      
- |      Return True if B ends with the specified suffix, False otherwise.
- |      With optional start, test B beginning at that position.
- |      With optional end, stop comparing B at that position.
- |      suffix can also be a tuple of bytes to try.
- |  
- |  expandtabs(...)
- |      B.expandtabs(tabsize=8) -&gt; copy of B
- |      
- |      Return a copy of B where all tab characters are expanded using spaces.
- |      If tabsize is not given, a tab size of 8 characters is assumed.
- |  
- |  find(...)
- |      B.find(sub[, start[, end]]) -&gt; int
- |      
- |      Return the lowest index in B where subsection sub is found,
- |      such that sub is contained within B[start,end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Return -1 on failure.
- |  
- |  hex(...)
- |      B.hex() -&gt; string
- |      
- |      Create a string of hexadecimal numbers from a bytes object.
- |      Example: b'\xb9\x01\xef'.hex() -&gt; 'b901ef'.
- |  
- |  index(...)
- |      B.index(sub[, start[, end]]) -&gt; int
- |      
- |      Return the lowest index in B where subsection sub is found,
- |      such that sub is contained within B[start,end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Raises ValueError when the subsection is not found.
- |  
- |  isalnum(...)
- |      B.isalnum() -&gt; bool
- |      
- |      Return True if all characters in B are alphanumeric
- |      and there is at least one character in B, False otherwise.
- |  
- |  isalpha(...)
- |      B.isalpha() -&gt; bool
- |      
- |      Return True if all characters in B are alphabetic
- |      and there is at least one character in B, False otherwise.
- |  
- |  isascii(...)
- |      B.isascii() -&gt; bool
- |      
- |      Return True if B is empty or all characters in B are ASCII,
- |      False otherwise.
- |  
- |  isdigit(...)
- |      B.isdigit() -&gt; bool
- |      
- |      Return True if all characters in B are digits
- |      and there is at least one character in B, False otherwise.
- |  
- |  islower(...)
- |      B.islower() -&gt; bool
- |      
- |      Return True if all cased characters in B are lowercase and there is
- |      at least one cased character in B, False otherwise.
- |  
- |  isspace(...)
- |      B.isspace() -&gt; bool
- |      
- |      Return True if all characters in B are whitespace
- |      and there is at least one character in B, False otherwise.
- |  
- |  istitle(...)
- |      B.istitle() -&gt; bool
- |      
- |      Return True if B is a titlecased string and there is at least one
- |      character in B, i.e. uppercase characters may only follow uncased
- |      characters and lowercase characters only cased ones. Return False
- |      otherwise.
- |  
- |  isupper(...)
- |      B.isupper() -&gt; bool
- |      
- |      Return True if all cased characters in B are uppercase and there is
- |      at least one cased character in B, False otherwise.
- |  
- |  join(self, iterable_of_bytes, /)
- |      Concatenate any number of bytes objects.
- |      
- |      The bytes whose method is called is inserted in between each pair.
- |      
- |      The result is returned as a new bytes object.
- |      
- |      Example: b'.'.join([b'ab', b'pq', b'rs']) -&gt; b'ab.pq.rs'.
- |  
- |  ljust(...)
- |      B.ljust(width[, fillchar]) -&gt; copy of B
- |      
- |      Return B left justified in a string of length width. Padding is
- |      done using the specified fill character (default is a space).
- |  
- |  lower(...)
- |      B.lower() -&gt; copy of B
- |      
- |      Return a copy of B with all ASCII characters converted to lowercase.
- |  
- |  lstrip(self, bytes=None, /)
- |      Strip leading bytes contained in the argument.
- |      
- |      If the argument is omitted or None, strip leading  ASCII whitespace.
- |  
- |  partition(self, sep, /)
- |      Partition the bytes into three parts using the given separator.
- |      
- |      This will search for the separator sep in the bytes. If the separator is found,
- |      returns a 3-tuple containing the part before the separator, the separator
- |      itself, and the part after it.
- |      
- |      If the separator is not found, returns a 3-tuple containing the original bytes
- |      object and two empty bytes objects.
- |  
- |  replace(self, old, new, count=-1, /)
- |      Return a copy with all occurrences of substring old replaced by new.
- |      
- |        count
- |          Maximum number of occurrences to replace.
- |          -1 (the default value) means replace all occurrences.
- |      
- |      If the optional argument count is given, only the first count occurrences are
- |      replaced.
- |  
- |  rfind(...)
- |      B.rfind(sub[, start[, end]]) -&gt; int
- |      
- |      Return the highest index in B where subsection sub is found,
- |      such that sub is contained within B[start,end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Return -1 on failure.
- |  
- |  rindex(...)
- |      B.rindex(sub[, start[, end]]) -&gt; int
- |      
- |      Return the highest index in B where subsection sub is found,
- |      such that sub is contained within B[start,end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Raise ValueError when the subsection is not found.
- |  
- |  rjust(...)
- |      B.rjust(width[, fillchar]) -&gt; copy of B
- |      
- |      Return B right justified in a string of length width. Padding is
- |      done using the specified fill character (default is a space)
- |  
- |  rpartition(self, sep, /)
- |      Partition the bytes into three parts using the given separator.
- |      
- |      This will search for the separator sep in the bytes, starting at the end. If
- |      the separator is found, returns a 3-tuple containing the part before the
- |      separator, the separator itself, and the part after it.
- |      
- |      If the separator is not found, returns a 3-tuple containing two empty bytes
- |      objects and the original bytes object.
- |  
- |  rsplit(self, /, sep=None, maxsplit=-1)
- |      Return a list of the sections in the bytes, using sep as the delimiter.
- |      
- |        sep
- |          The delimiter according which to split the bytes.
- |          None (the default value) means split on ASCII whitespace characters
- |          (space, tab, return, newline, formfeed, vertical tab).
- |        maxsplit
- |          Maximum number of splits to do.
- |          -1 (the default value) means no limit.
- |      
- |      Splitting is done starting at the end of the bytes and working to the front.
- |  
- |  rstrip(self, bytes=None, /)
- |      Strip trailing bytes contained in the argument.
- |      
- |      If the argument is omitted or None, strip trailing ASCII whitespace.
- |  
- |  split(self, /, sep=None, maxsplit=-1)
- |      Return a list of the sections in the bytes, using sep as the delimiter.
- |      
- |      sep
- |        The delimiter according which to split the bytes.
- |        None (the default value) means split on ASCII whitespace characters
- |        (space, tab, return, newline, formfeed, vertical tab).
- |      maxsplit
- |        Maximum number of splits to do.
- |        -1 (the default value) means no limit.
- |  
- |  splitlines(self, /, keepends=False)
- |      Return a list of the lines in the bytes, breaking at line boundaries.
- |      
- |      Line breaks are not included in the resulting list unless keepends is given and
- |      true.
- |  
- |  startswith(...)
- |      B.startswith(prefix[, start[, end]]) -&gt; bool
- |      
- |      Return True if B starts with the specified prefix, False otherwise.
- |      With optional start, test B beginning at that position.
- |      With optional end, stop comparing B at that position.
- |      prefix can also be a tuple of bytes to try.
- |  
- |  strip(self, bytes=None, /)
- |      Strip leading and trailing bytes contained in the argument.
- |      
- |      If the argument is omitted or None, strip leading and trailing ASCII whitespace.
- |  
- |  swapcase(...)
- |      B.swapcase() -&gt; copy of B
- |      
- |      Return a copy of B with uppercase ASCII characters converted
- |      to lowercase ASCII and vice versa.
- |  
- |  title(...)
- |      B.title() -&gt; copy of B
- |      
- |      Return a titlecased version of B, i.e. ASCII words start with uppercase
- |      characters, all remaining cased characters have lowercase.
- |  
- |  translate(self, table, /, delete=b'')
- |      Return a copy with each character mapped by the given translation table.
- |      
- |        table
- |          Translation table, which must be a bytes object of length 256.
- |      
- |      All characters occurring in the optional argument delete are removed.
- |      The remaining characters are mapped through the given translation table.
- |  
- |  upper(...)
- |      B.upper() -&gt; copy of B
- |      
- |      Return a copy of B with all ASCII characters converted to uppercase.
- |  
- |  zfill(...)
- |      B.zfill(width) -&gt; copy of B
- |      
- |      Pad a numeric string B with zeros on the left, to fill a field
- |      of the specified width.  B is never truncated.
- |  
- |  ----------------------------------------------------------------------
- |  Class methods defined here:
- |  
- |  fromhex(string, /) from builtins.type
- |      Create a bytes object from a string of hexadecimal numbers.
- |      
- |      Spaces between two numbers are accepted.
- |      Example: bytes.fromhex('B9 01EF') -&gt; b'\\xb9\\x01\\xef'.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  maketrans(frm, to, /)
- |      Return a translation table useable for the bytes or bytearray translate method.
- |      
- |      The returned table will be one where each byte in frm is mapped to the byte at
- |      the same position in to.
- |      
- |      The bytes objects frm and to must be of the same length.
 </code></pre>
 <p>返回一个新的二进制序列 bytes 对象。参数可以是：</p>
 <ul>
@@ -8096,36 +7511,6 @@ class classmethod(object)
  |        def f(cls, arg1, arg2, ...):
  |            ...
  |  
- |  It can be called either on the class (e.g. C.f()) or on an instance
- |  (e.g. C().f()).  The instance is ignored except for its class.
- |  If a class method is called for a derived class, the derived class
- |  object is passed as the implied first argument.
- |  
- |  Class methods are different than C++ or Java static methods.
- |  If you want those, see the staticmethod builtin.
- |  
- |  Methods defined here:
- |  
- |  __get__(self, instance, owner, /)
- |      Return an attribute of instance, which is of type owner.
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __dict__
- |  
- |  __func__
- |  
- |  __isabstractmethod__
 </code></pre>
 <p>把一个函数封装成类方法。一个类方法把类自己作为第一个实参，就像一个实例方法把实例自己作为第一个实参。</p>
 <p>可将函数作为参数来声明类方法，但请用习惯的装饰器形式（@classmethod）来声明类方法。</p>
@@ -8435,109 +7820,6 @@ class dict(object)
  |  dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
  |      in the keyword argument list.  For example:  dict(one=1, two=2)
  |  
- |  Methods defined here:
- |  
- |  __contains__(self, key, /)
- |      True if the dictionary has the specified key, else False.
- |  
- |  __delitem__(self, key, /)
- |      Delete self[key].
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getitem__(...)
- |      x.__getitem__(y) &lt;==&gt; x[y]
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __setitem__(self, key, value, /)
- |      Set self[key] to value.
- |  
- |  __sizeof__(...)
- |      D.__sizeof__() -&gt; size of D in memory, in bytes
- |  
- |  clear(...)
- |      D.clear() -&gt; None.  Remove all items from D.
- |  
- |  copy(...)
- |      D.copy() -&gt; a shallow copy of D
- |  
- |  get(self, key, default=None, /)
- |      Return the value for key if key is in the dictionary, else default.
- |  
- |  items(...)
- |      D.items() -&gt; a set-like object providing a view on D's items
- |  
- |  keys(...)
- |      D.keys() -&gt; a set-like object providing a view on D's keys
- |  
- |  pop(...)
- |      D.pop(k[,d]) -&gt; v, remove specified key and return the corresponding value.
- |      If key is not found, d is returned if given, otherwise KeyError is raised
- |  
- |  popitem(...)
- |      D.popitem() -&gt; (k, v), remove and return some (key, value) pair as a
- |      2-tuple; but raise KeyError if D is empty.
- |  
- |  setdefault(self, key, default=None, /)
- |      Insert key with a value of default if key is not in the dictionary.
- |      
- |      Return the value for key if key is in the dictionary, else default.
- |  
- |  update(...)
- |      D.update([E, ]**F) -&gt; None.  Update D from dict/iterable E and F.
- |      If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
- |      If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
- |      In either case, this is followed by: for k in F:  D[k] = F[k]
- |  
- |  values(...)
- |      D.values() -&gt; an object providing a view on D's values
- |  
- |  ----------------------------------------------------------------------
- |  Class methods defined here:
- |  
- |  fromkeys(iterable, value=None, /) from builtins.type
- |      Create a new dictionary with keys from iterable and values set to value.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes defined here:
- |  
- |  __hash__ = None
 </code></pre>
 <p>创建一个新字典。参数说明：</p>
 <ul>
@@ -8851,25 +8133,6 @@ class enumerate(object)
  |  enumerate is useful for obtaining an indexed list:
  |      (0, seq[0]), (1, seq[1]), (2, seq[2]), ...
  |  
- |  Methods defined here:
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __next__(self, /)
- |      Implement next(self).
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
 </code></pre>
 <p>返回一个可迭代对象（iterable）的枚举对象。枚举对象是一个迭代器，迭代出来是一个个元组，里面包含一个计数值（从 start 开始，默认为 0）和通过迭代 iterable 获得的值。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(enumerate)
@@ -9042,25 +8305,6 @@ class filter(object)
  |  Return an iterator yielding those items of iterable for which function(item)
  |  is true. If function is None, return the items that are true.
  |  
- |  Methods defined here:
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __next__(self, /)
- |      Implement next(self).
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
 </code></pre>
 <p>返回可迭代对象（iterable）中那些传递给函数 function 计算之后，布尔值仍然为真的元素组成的迭代器。</p>
 <p>如果 function 是 None，则会假设它是一个身份函数，即 iterable
@@ -9099,198 +8343,6 @@ class float(object)
  |  
  |  Convert a string or number to a floating point number, if possible.
  |  
- |  Methods defined here:
- |  
- |  __abs__(self, /)
- |      abs(self)
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __bool__(self, /)
- |      self != 0
- |  
- |  __divmod__(self, value, /)
- |      Return divmod(self, value).
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __float__(self, /)
- |      float(self)
- |  
- |  __floordiv__(self, value, /)
- |      Return self//value.
- |  
- |  __format__(self, format_spec, /)
- |      Formats the float according to format_spec.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getnewargs__(self, /)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __int__(self, /)
- |      int(self)
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mod__(self, value, /)
- |      Return self%value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __neg__(self, /)
- |      -self
- |  
- |  __pos__(self, /)
- |      +self
- |  
- |  __pow__(self, value, mod=None, /)
- |      Return pow(self, value, mod).
- |  
- |  __radd__(self, value, /)
- |      Return value+self.
- |  
- |  __rdivmod__(self, value, /)
- |      Return divmod(value, self).
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __rfloordiv__(self, value, /)
- |      Return value//self.
- |  
- |  __rmod__(self, value, /)
- |      Return value%self.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __round__(self, ndigits=None, /)
- |      Return the Integral closest to x, rounding half toward even.
- |      
- |      When an argument is passed, work like built-in round(x, ndigits).
- |  
- |  __rpow__(self, value, mod=None, /)
- |      Return pow(value, self, mod).
- |  
- |  __rsub__(self, value, /)
- |      Return value-self.
- |  
- |  __rtruediv__(self, value, /)
- |      Return value/self.
- |  
- |  __str__(self, /)
- |      Return str(self).
- |  
- |  __sub__(self, value, /)
- |      Return self-value.
- |  
- |  __truediv__(self, value, /)
- |      Return self/value.
- |  
- |  __trunc__(self, /)
- |      Return the Integral closest to x between 0 and x.
- |  
- |  as_integer_ratio(self, /)
- |      Return integer ratio.
- |      
- |      Return a pair of integers, whose ratio is exactly equal to the original float
- |      and with a positive denominator.
- |      
- |      Raise OverflowError on infinities and a ValueError on NaNs.
- |      
- |      &gt;&gt;&gt; (10.0).as_integer_ratio()
- |      (10, 1)
- |      &gt;&gt;&gt; (0.0).as_integer_ratio()
- |      (0, 1)
- |      &gt;&gt;&gt; (-.25).as_integer_ratio()
- |      (-1, 4)
- |  
- |  conjugate(self, /)
- |      Return self, the complex conjugate of any float.
- |  
- |  hex(self, /)
- |      Return a hexadecimal representation of a floating-point number.
- |      
- |      &gt;&gt;&gt; (-0.1).hex()
- |      '-0x1.999999999999ap-4'
- |      &gt;&gt;&gt; 3.14159.hex()
- |      '0x1.921f9f01b866ep+1'
- |  
- |  is_integer(self, /)
- |      Return True if the float is an integer.
- |  
- |  ----------------------------------------------------------------------
- |  Class methods defined here:
- |  
- |  __getformat__(typestr, /) from builtins.type
- |      You probably don't want to use this function.
- |      
- |        typestr
- |          Must be 'double' or 'float'.
- |      
- |      It exists mainly to be used in Python's test suite.
- |      
- |      This function returns whichever of 'unknown', 'IEEE, big-endian' or 'IEEE,
- |      little-endian' best describes the format of floating point numbers used by the
- |      C type named by typestr.
- |  
- |  __set_format__(typestr, fmt, /) from builtins.type
- |      You probably don't want to use this function.
- |      
- |        typestr
- |          Must be 'double' or 'float'.
- |        fmt
- |          Must be one of 'unknown', 'IEEE, big-endian' or 'IEEE, little-endian',
- |          and in addition can only be one of the latter two if it appears to
- |          match the underlying C reality.
- |      
- |      It exists mainly to be used in Python's test suite.
- |      
- |      Override the automatic determination of C-level floating point type.
- |      This affects how floats are converted to and from binary strings.
- |  
- |  fromhex(string, /) from builtins.type
- |      Create a floating-point number from a hexadecimal string.
- |      
- |      &gt;&gt;&gt; float.fromhex('0x1.ffffp10')
- |      2047.984375
- |      &gt;&gt;&gt; float.fromhex('-0x1p-1074')
- |      -5e-324
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  imag
- |      the imaginary part of a complex number
- |  
- |  real
- |      the real part of a complex number
 </code></pre>
 <p>返回从数字或字符串 x 生成的浮点数。</p>
 <p>如果实参是字符串:</p>
@@ -9351,7 +8403,7 @@ format(value, format_spec='', /)
     See the Format Specification Mini-Language section of help('FORMATTING') for
     details.
 </code></pre>
-<p>将 value 转换为 format_spec 控制的 “格式化” 表示。format_spec 的解释取决于 value 实参的类型，但是大多数内置类型使用标准格式化语法：格式化迷你语言。详见 <a href="">str.format 格式化</a>。</p>
+<p>将 value 转换为 format_spec 控制的 “格式化” 表示。format_spec 的解释取决于 value 实参的类型，但是大多数内置类型使用标准格式化语法：格式化迷你语言。详见 str.format 格式化。</p>
 <p>默认的 format_spec 是一个空字符串，它通常和调用 str(value) 的结果相同。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>format(<span style="color:#e6db74">&#39;嗨&#39;</span>,<span style="color:#e6db74">&#39;&gt;10&#39;</span>)
 </span></span></code></pre></div><pre><code>'         嗨'
@@ -9392,111 +8444,6 @@ class frozenset(object)
  |  
  |  Build an immutable unordered collection of unique elements.
  |  
- |  Methods defined here:
- |  
- |  __and__(self, value, /)
- |      Return self&amp;value.
- |  
- |  __contains__(...)
- |      x.__contains__(y) &lt;==&gt; y in x.
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __or__(self, value, /)
- |      Return self|value.
- |  
- |  __rand__(self, value, /)
- |      Return value&amp;self.
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __ror__(self, value, /)
- |      Return value|self.
- |  
- |  __rsub__(self, value, /)
- |      Return value-self.
- |  
- |  __rxor__(self, value, /)
- |      Return value^self.
- |  
- |  __sizeof__(...)
- |      S.__sizeof__() -&gt; size of S in memory, in bytes
- |  
- |  __sub__(self, value, /)
- |      Return self-value.
- |  
- |  __xor__(self, value, /)
- |      Return self^value.
- |  
- |  copy(...)
- |      Return a shallow copy of a set.
- |  
- |  difference(...)
- |      Return the difference of two or more sets as a new set.
- |      
- |      (i.e. all elements that are in this set but not the others.)
- |  
- |  intersection(...)
- |      Return the intersection of two sets as a new set.
- |      
- |      (i.e. all elements that are in both sets.)
- |  
- |  isdisjoint(...)
- |      Return True if two sets have a null intersection.
- |  
- |  issubset(...)
- |      Report whether another set contains this set.
- |  
- |  issuperset(...)
- |      Report whether this set contains another set.
- |  
- |  symmetric_difference(...)
- |      Return the symmetric difference of two sets as a new set.
- |      
- |      (i.e. all elements that are in exactly one of the sets.)
- |  
- |  union(...)
- |      Return the union of sets as a new set.
- |      
- |      (i.e. all elements that are in either set.)
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
 </code></pre>
 <p>将可迭代对象转换为集合，返回一个新的 frozenset 集合对象。可迭代对象为空，或不传参数，得到一个空集合。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(frozenset)
@@ -9911,239 +8858,6 @@ class int(object)
  |  Built-in subclasses:
  |      bool
  |  
- |  Methods defined here:
- |  
- |  __abs__(self, /)
- |      abs(self)
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __and__(self, value, /)
- |      Return self&amp;value.
- |  
- |  __bool__(self, /)
- |      self != 0
- |  
- |  __ceil__(...)
- |      Ceiling of an Integral returns itself.
- |  
- |  __divmod__(self, value, /)
- |      Return divmod(self, value).
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __float__(self, /)
- |      float(self)
- |  
- |  __floor__(...)
- |      Flooring an Integral returns itself.
- |  
- |  __floordiv__(self, value, /)
- |      Return self//value.
- |  
- |  __format__(self, format_spec, /)
- |      Default object formatter.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getnewargs__(self, /)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __index__(self, /)
- |      Return self converted to an integer, if self is suitable for use as an index into a list.
- |  
- |  __int__(self, /)
- |      int(self)
- |  
- |  __invert__(self, /)
- |      ~self
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __lshift__(self, value, /)
- |      Return self&lt;&lt;value.
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mod__(self, value, /)
- |      Return self%value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __neg__(self, /)
- |      -self
- |  
- |  __or__(self, value, /)
- |      Return self|value.
- |  
- |  __pos__(self, /)
- |      +self
- |  
- |  __pow__(self, value, mod=None, /)
- |      Return pow(self, value, mod).
- |  
- |  __radd__(self, value, /)
- |      Return value+self.
- |  
- |  __rand__(self, value, /)
- |      Return value&amp;self.
- |  
- |  __rdivmod__(self, value, /)
- |      Return divmod(value, self).
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __rfloordiv__(self, value, /)
- |      Return value//self.
- |  
- |  __rlshift__(self, value, /)
- |      Return value&lt;&lt;self.
- |  
- |  __rmod__(self, value, /)
- |      Return value%self.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __ror__(self, value, /)
- |      Return value|self.
- |  
- |  __round__(...)
- |      Rounding an Integral returns itself.
- |      Rounding with an ndigits argument also returns an integer.
- |  
- |  __rpow__(self, value, mod=None, /)
- |      Return pow(value, self, mod).
- |  
- |  __rrshift__(self, value, /)
- |      Return value&gt;&gt;self.
- |  
- |  __rshift__(self, value, /)
- |      Return self&gt;&gt;value.
- |  
- |  __rsub__(self, value, /)
- |      Return value-self.
- |  
- |  __rtruediv__(self, value, /)
- |      Return value/self.
- |  
- |  __rxor__(self, value, /)
- |      Return value^self.
- |  
- |  __sizeof__(self, /)
- |      Returns size in memory, in bytes.
- |  
- |  __sub__(self, value, /)
- |      Return self-value.
- |  
- |  __truediv__(self, value, /)
- |      Return self/value.
- |  
- |  __trunc__(...)
- |      Truncating an Integral returns itself.
- |  
- |  __xor__(self, value, /)
- |      Return self^value.
- |  
- |  as_integer_ratio(self, /)
- |      Return integer ratio.
- |      
- |      Return a pair of integers, whose ratio is exactly equal to the original int
- |      and with a positive denominator.
- |      
- |      &gt;&gt;&gt; (10).as_integer_ratio()
- |      (10, 1)
- |      &gt;&gt;&gt; (-10).as_integer_ratio()
- |      (-10, 1)
- |      &gt;&gt;&gt; (0).as_integer_ratio()
- |      (0, 1)
- |  
- |  bit_length(self, /)
- |      Number of bits necessary to represent self in binary.
- |      
- |      &gt;&gt;&gt; bin(37)
- |      '0b100101'
- |      &gt;&gt;&gt; (37).bit_length()
- |      6
- |  
- |  conjugate(...)
- |      Returns self, the complex conjugate of any int.
- |  
- |  to_bytes(self, /, length, byteorder, *, signed=False)
- |      Return an array of bytes representing an integer.
- |      
- |      length
- |        Length of bytes object to use.  An OverflowError is raised if the
- |        integer is not representable with the given number of bytes.
- |      byteorder
- |        The byte order used to represent the integer.  If byteorder is 'big',
- |        the most significant byte is at the beginning of the byte array.  If
- |        byteorder is 'little', the most significant byte is at the end of the
- |        byte array.  To request the native byte order of the host system, use
- |        `sys.byteorder' as the byte order value.
- |      signed
- |        Determines whether two's complement is used to represent the integer.
- |        If signed is False and a negative integer is given, an OverflowError
- |        is raised.
- |  
- |  ----------------------------------------------------------------------
- |  Class methods defined here:
- |  
- |  from_bytes(bytes, byteorder, *, signed=False) from builtins.type
- |      Return the integer represented by the given array of bytes.
- |      
- |      bytes
- |        Holds the array of bytes to convert.  The argument must either
- |        support the buffer protocol or be an iterable object producing bytes.
- |        Bytes and bytearray are examples of built-in objects that support the
- |        buffer protocol.
- |      byteorder
- |        The byte order used to represent the integer.  If byteorder is 'big',
- |        the most significant byte is at the beginning of the byte array.  If
- |        byteorder is 'little', the most significant byte is at the end of the
- |        byte array.  To request the native byte order of the host system, use
- |        `sys.byteorder' as the byte order value.
- |      signed
- |        Indicates whether two's complement is used to represent the integer.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  denominator
- |      the denominator of a rational number in lowest terms
- |  
- |  imag
- |      the imaginary part of a complex number
- |  
- |  numerator
- |      the numerator of a rational number in lowest terms
- |  
- |  real
- |      the real part of a complex number
 </code></pre>
 <p>将一个数字，字符串或字节串转换为整数。参数说明：</p>
 <ul>
@@ -10406,123 +9120,6 @@ class list(object)
  |  If no argument is given, the constructor creates a new empty list.
  |  The argument must be an iterable if specified.
  |  
- |  Methods defined here:
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __contains__(self, key, /)
- |      Return key in self.
- |  
- |  __delitem__(self, key, /)
- |      Delete self[key].
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getitem__(...)
- |      x.__getitem__(y) &lt;==&gt; x[y]
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __iadd__(self, value, /)
- |      Implement self+=value.
- |  
- |  __imul__(self, value, /)
- |      Implement self*=value.
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __reversed__(self, /)
- |      Return a reverse iterator over the list.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __setitem__(self, key, value, /)
- |      Set self[key] to value.
- |  
- |  __sizeof__(self, /)
- |      Return the size of the list in memory, in bytes.
- |  
- |  append(self, object, /)
- |      Append object to the end of the list.
- |  
- |  clear(self, /)
- |      Remove all items from list.
- |  
- |  copy(self, /)
- |      Return a shallow copy of the list.
- |  
- |  count(self, value, /)
- |      Return number of occurrences of value.
- |  
- |  extend(self, iterable, /)
- |      Extend list by appending elements from the iterable.
- |  
- |  index(self, value, start=0, stop=9223372036854775807, /)
- |      Return first index of value.
- |      
- |      Raises ValueError if the value is not present.
- |  
- |  insert(self, index, object, /)
- |      Insert object before index.
- |  
- |  pop(self, index=-1, /)
- |      Remove and return item at index (default last).
- |      
- |      Raises IndexError if list is empty or index is out of range.
- |  
- |  remove(self, value, /)
- |      Remove first occurrence of value.
- |      
- |      Raises ValueError if the value is not present.
- |  
- |  reverse(self, /)
- |      Reverse *IN PLACE*.
- |  
- |  sort(self, /, *, key=None, reverse=False)
- |      Stable sort *IN PLACE*.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes defined here:
- |  
- |  __hash__ = None
 </code></pre>
 <p>将一个可迭代对象转为列表。不传参数将得到空列表。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(list)
@@ -11176,48 +9773,6 @@ class property(object)
  |      def x(self):
  |          del self._x
  |  
- |  Methods defined here:
- |  
- |  __delete__(self, instance, /)
- |      Delete an attribute of instance.
- |  
- |  __get__(self, instance, owner, /)
- |      Return an attribute of instance, which is of type owner.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __set__(self, instance, value, /)
- |      Set an attribute of instance to value.
- |  
- |  deleter(...)
- |      Descriptor to change the deleter on a property.
- |  
- |  getter(...)
- |      Descriptor to change the getter on a property.
- |  
- |  setter(...)
- |      Descriptor to change the setter on a property.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __isabstractmethod__
- |  
- |  fdel
- |  
- |  fget
- |  
- |  fset
 </code></pre>
 <p>返回 property 属性。</p>
 <p>fget 是获取属性值的函数。fset 是用于设置属性值的函数。fdel 是用于删除属性值的函数，doc 为属性对象创建文档字符串。</p>
@@ -11637,162 +10192,6 @@ class set(object)
  |  
  |  Build an unordered collection of unique elements.
  |  
- |  Methods defined here:
- |  
- |  __and__(self, value, /)
- |      Return self&amp;value.
- |  
- |  __contains__(...)
- |      x.__contains__(y) &lt;==&gt; y in x.
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __iand__(self, value, /)
- |      Return self&amp;=value.
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __ior__(self, value, /)
- |      Return self|=value.
- |  
- |  __isub__(self, value, /)
- |      Return self-=value.
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __ixor__(self, value, /)
- |      Return self^=value.
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __or__(self, value, /)
- |      Return self|value.
- |  
- |  __rand__(self, value, /)
- |      Return value&amp;self.
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __ror__(self, value, /)
- |      Return value|self.
- |  
- |  __rsub__(self, value, /)
- |      Return value-self.
- |  
- |  __rxor__(self, value, /)
- |      Return value^self.
- |  
- |  __sizeof__(...)
- |      S.__sizeof__() -&gt; size of S in memory, in bytes
- |  
- |  __sub__(self, value, /)
- |      Return self-value.
- |  
- |  __xor__(self, value, /)
- |      Return self^value.
- |  
- |  add(...)
- |      Add an element to a set.
- |      
- |      This has no effect if the element is already present.
- |  
- |  clear(...)
- |      Remove all elements from this set.
- |  
- |  copy(...)
- |      Return a shallow copy of a set.
- |  
- |  difference(...)
- |      Return the difference of two or more sets as a new set.
- |      
- |      (i.e. all elements that are in this set but not the others.)
- |  
- |  difference_update(...)
- |      Remove all elements of another set from this set.
- |  
- |  discard(...)
- |      Remove an element from a set if it is a member.
- |      
- |      If the element is not a member, do nothing.
- |  
- |  intersection(...)
- |      Return the intersection of two sets as a new set.
- |      
- |      (i.e. all elements that are in both sets.)
- |  
- |  intersection_update(...)
- |      Update a set with the intersection of itself and another.
- |  
- |  isdisjoint(...)
- |      Return True if two sets have a null intersection.
- |  
- |  issubset(...)
- |      Report whether another set contains this set.
- |  
- |  issuperset(...)
- |      Report whether this set contains another set.
- |  
- |  pop(...)
- |      Remove and return an arbitrary set element.
- |      Raises KeyError if the set is empty.
- |  
- |  remove(...)
- |      Remove an element from a set; it must be a member.
- |      
- |      If the element is not a member, raise a KeyError.
- |  
- |  symmetric_difference(...)
- |      Return the symmetric difference of two sets as a new set.
- |      
- |      (i.e. all elements that are in exactly one of the sets.)
- |  
- |  symmetric_difference_update(...)
- |      Update a set with the symmetric difference of itself and another.
- |  
- |  union(...)
- |      Return the union of sets as a new set.
- |      
- |      (i.e. all elements that are in either set.)
- |  
- |  update(...)
- |      Update a set with the union of itself and others.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes defined here:
- |  
- |  __hash__ = None
 </code></pre>
 <p>将一个可迭代对象转换为集合。可迭代对象为空，或不传参数，将得到空集合。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(set)
@@ -11868,62 +10267,6 @@ class slice(object)
  |  
  |  Create a slice object.  This is used for extended slicing (e.g. a[0:10:2]).
  |  
- |  Methods defined here:
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  indices(...)
- |      S.indices(len) -&gt; (start, stop, stride)
- |      
- |      Assuming a sequence of length len, calculate the start and stop
- |      indices, and the stride length of the extended slice described by
- |      S. Out of bounds indices are clipped in a manner consistent with the
- |      handling of normal slices.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  start
- |  
- |  step
- |  
- |  stop
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes defined here:
- |  
- |  __hash__ = None
 </code></pre>
 <p>返回一个表示由 range(start, stop, step) 指定索引集的 slice 对象。其中 start 和 step 参数默认为 None。</p>
 <p>切片对象具有仅会返回对应参数值（或其默认值）的只读数据属性 start, stop 和 step。它们没有其他的显式功能。</p>
@@ -12011,28 +10354,6 @@ class staticmethod(object)
  |  Static methods in Python are similar to those found in Java or C++.
  |  For a more advanced concept, see the classmethod builtin.
  |  
- |  Methods defined here:
- |  
- |  __get__(self, instance, owner, /)
- |      Return an attribute of instance, which is of type owner.
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __dict__
- |  
- |  __func__
- |  
- |  __isabstractmethod__
 </code></pre>
 <p>将函数转换为静态方法。</p>
 <p>静态方法不会接收隐式的第一个参数。可以传递一个函数作为参数定义为静态方法，也可以使用装饰器的形式将一个自定义函数定义为静态方法。</p>
@@ -12077,387 +10398,6 @@ class str(object)
  |  encoding defaults to sys.getdefaultencoding().
  |  errors defaults to 'strict'.
  |  
- |  Methods defined here:
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __contains__(self, key, /)
- |      Return key in self.
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __format__(self, format_spec, /)
- |      Return a formatted version of the string as described by format_spec.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getitem__(self, key, /)
- |      Return self[key].
- |  
- |  __getnewargs__(...)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mod__(self, value, /)
- |      Return self%value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __rmod__(self, value, /)
- |      Return value%self.
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  __sizeof__(self, /)
- |      Return the size of the string in memory, in bytes.
- |  
- |  __str__(self, /)
- |      Return str(self).
- |  
- |  capitalize(self, /)
- |      Return a capitalized version of the string.
- |      
- |      More specifically, make the first character have upper case and the rest lower
- |      case.
- |  
- |  casefold(self, /)
- |      Return a version of the string suitable for caseless comparisons.
- |  
- |  center(self, width, fillchar=' ', /)
- |      Return a centered string of length width.
- |      
- |      Padding is done using the specified fill character (default is a space).
- |  
- |  count(...)
- |      S.count(sub[, start[, end]]) -&gt; int
- |      
- |      Return the number of non-overlapping occurrences of substring sub in
- |      string S[start:end].  Optional arguments start and end are
- |      interpreted as in slice notation.
- |  
- |  encode(self, /, encoding='utf-8', errors='strict')
- |      Encode the string using the codec registered for encoding.
- |      
- |      encoding
- |        The encoding in which to encode the string.
- |      errors
- |        The error handling scheme to use for encoding errors.
- |        The default is 'strict' meaning that encoding errors raise a
- |        UnicodeEncodeError.  Other possible values are 'ignore', 'replace' and
- |        'xmlcharrefreplace' as well as any other name registered with
- |        codecs.register_error that can handle UnicodeEncodeErrors.
- |  
- |  endswith(...)
- |      S.endswith(suffix[, start[, end]]) -&gt; bool
- |      
- |      Return True if S ends with the specified suffix, False otherwise.
- |      With optional start, test S beginning at that position.
- |      With optional end, stop comparing S at that position.
- |      suffix can also be a tuple of strings to try.
- |  
- |  expandtabs(self, /, tabsize=8)
- |      Return a copy where all tab characters are expanded using spaces.
- |      
- |      If tabsize is not given, a tab size of 8 characters is assumed.
- |  
- |  find(...)
- |      S.find(sub[, start[, end]]) -&gt; int
- |      
- |      Return the lowest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Return -1 on failure.
- |  
- |  format(...)
- |      S.format(*args, **kwargs) -&gt; str
- |      
- |      Return a formatted version of S, using substitutions from args and kwargs.
- |      The substitutions are identified by braces ('{' and '}').
- |  
- |  format_map(...)
- |      S.format_map(mapping) -&gt; str
- |      
- |      Return a formatted version of S, using substitutions from mapping.
- |      The substitutions are identified by braces ('{' and '}').
- |  
- |  index(...)
- |      S.index(sub[, start[, end]]) -&gt; int
- |      
- |      Return the lowest index in S where substring sub is found, 
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Raises ValueError when the substring is not found.
- |  
- |  isalnum(self, /)
- |      Return True if the string is an alpha-numeric string, False otherwise.
- |      
- |      A string is alpha-numeric if all characters in the string are alpha-numeric and
- |      there is at least one character in the string.
- |  
- |  isalpha(self, /)
- |      Return True if the string is an alphabetic string, False otherwise.
- |      
- |      A string is alphabetic if all characters in the string are alphabetic and there
- |      is at least one character in the string.
- |  
- |  isascii(self, /)
- |      Return True if all characters in the string are ASCII, False otherwise.
- |      
- |      ASCII characters have code points in the range U+0000-U+007F.
- |      Empty string is ASCII too.
- |  
- |  isdecimal(self, /)
- |      Return True if the string is a decimal string, False otherwise.
- |      
- |      A string is a decimal string if all characters in the string are decimal and
- |      there is at least one character in the string.
- |  
- |  isdigit(self, /)
- |      Return True if the string is a digit string, False otherwise.
- |      
- |      A string is a digit string if all characters in the string are digits and there
- |      is at least one character in the string.
- |  
- |  isidentifier(self, /)
- |      Return True if the string is a valid Python identifier, False otherwise.
- |      
- |      Use keyword.iskeyword() to test for reserved identifiers such as &quot;def&quot; and
- |      &quot;class&quot;.
- |  
- |  islower(self, /)
- |      Return True if the string is a lowercase string, False otherwise.
- |      
- |      A string is lowercase if all cased characters in the string are lowercase and
- |      there is at least one cased character in the string.
- |  
- |  isnumeric(self, /)
- |      Return True if the string is a numeric string, False otherwise.
- |      
- |      A string is numeric if all characters in the string are numeric and there is at
- |      least one character in the string.
- |  
- |  isprintable(self, /)
- |      Return True if the string is printable, False otherwise.
- |      
- |      A string is printable if all of its characters are considered printable in
- |      repr() or if it is empty.
- |  
- |  isspace(self, /)
- |      Return True if the string is a whitespace string, False otherwise.
- |      
- |      A string is whitespace if all characters in the string are whitespace and there
- |      is at least one character in the string.
- |  
- |  istitle(self, /)
- |      Return True if the string is a title-cased string, False otherwise.
- |      
- |      In a title-cased string, upper- and title-case characters may only
- |      follow uncased characters and lowercase characters only cased ones.
- |  
- |  isupper(self, /)
- |      Return True if the string is an uppercase string, False otherwise.
- |      
- |      A string is uppercase if all cased characters in the string are uppercase and
- |      there is at least one cased character in the string.
- |  
- |  join(self, iterable, /)
- |      Concatenate any number of strings.
- |      
- |      The string whose method is called is inserted in between each given string.
- |      The result is returned as a new string.
- |      
- |      Example: '.'.join(['ab', 'pq', 'rs']) -&gt; 'ab.pq.rs'
- |  
- |  ljust(self, width, fillchar=' ', /)
- |      Return a left-justified string of length width.
- |      
- |      Padding is done using the specified fill character (default is a space).
- |  
- |  lower(self, /)
- |      Return a copy of the string converted to lowercase.
- |  
- |  lstrip(self, chars=None, /)
- |      Return a copy of the string with leading whitespace removed.
- |      
- |      If chars is given and not None, remove characters in chars instead.
- |  
- |  partition(self, sep, /)
- |      Partition the string into three parts using the given separator.
- |      
- |      This will search for the separator in the string.  If the separator is found,
- |      returns a 3-tuple containing the part before the separator, the separator
- |      itself, and the part after it.
- |      
- |      If the separator is not found, returns a 3-tuple containing the original string
- |      and two empty strings.
- |  
- |  replace(self, old, new, count=-1, /)
- |      Return a copy with all occurrences of substring old replaced by new.
- |      
- |        count
- |          Maximum number of occurrences to replace.
- |          -1 (the default value) means replace all occurrences.
- |      
- |      If the optional argument count is given, only the first count occurrences are
- |      replaced.
- |  
- |  rfind(...)
- |      S.rfind(sub[, start[, end]]) -&gt; int
- |      
- |      Return the highest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Return -1 on failure.
- |  
- |  rindex(...)
- |      S.rindex(sub[, start[, end]]) -&gt; int
- |      
- |      Return the highest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |      
- |      Raises ValueError when the substring is not found.
- |  
- |  rjust(self, width, fillchar=' ', /)
- |      Return a right-justified string of length width.
- |      
- |      Padding is done using the specified fill character (default is a space).
- |  
- |  rpartition(self, sep, /)
- |      Partition the string into three parts using the given separator.
- |      
- |      This will search for the separator in the string, starting at the end. If
- |      the separator is found, returns a 3-tuple containing the part before the
- |      separator, the separator itself, and the part after it.
- |      
- |      If the separator is not found, returns a 3-tuple containing two empty strings
- |      and the original string.
- |  
- |  rsplit(self, /, sep=None, maxsplit=-1)
- |      Return a list of the words in the string, using sep as the delimiter string.
- |      
- |        sep
- |          The delimiter according which to split the string.
- |          None (the default value) means split according to any whitespace,
- |          and discard empty strings from the result.
- |        maxsplit
- |          Maximum number of splits to do.
- |          -1 (the default value) means no limit.
- |      
- |      Splits are done starting at the end of the string and working to the front.
- |  
- |  rstrip(self, chars=None, /)
- |      Return a copy of the string with trailing whitespace removed.
- |      
- |      If chars is given and not None, remove characters in chars instead.
- |  
- |  split(self, /, sep=None, maxsplit=-1)
- |      Return a list of the words in the string, using sep as the delimiter string.
- |      
- |      sep
- |        The delimiter according which to split the string.
- |        None (the default value) means split according to any whitespace,
- |        and discard empty strings from the result.
- |      maxsplit
- |        Maximum number of splits to do.
- |        -1 (the default value) means no limit.
- |  
- |  splitlines(self, /, keepends=False)
- |      Return a list of the lines in the string, breaking at line boundaries.
- |      
- |      Line breaks are not included in the resulting list unless keepends is given and
- |      true.
- |  
- |  startswith(...)
- |      S.startswith(prefix[, start[, end]]) -&gt; bool
- |      
- |      Return True if S starts with the specified prefix, False otherwise.
- |      With optional start, test S beginning at that position.
- |      With optional end, stop comparing S at that position.
- |      prefix can also be a tuple of strings to try.
- |  
- |  strip(self, chars=None, /)
- |      Return a copy of the string with leading and trailing whitespace remove.
- |      
- |      If chars is given and not None, remove characters in chars instead.
- |  
- |  swapcase(self, /)
- |      Convert uppercase characters to lowercase and lowercase characters to uppercase.
- |  
- |  title(self, /)
- |      Return a version of the string where each word is titlecased.
- |      
- |      More specifically, words start with uppercased characters and all remaining
- |      cased characters have lower case.
- |  
- |  translate(self, table, /)
- |      Replace each character in the string using the given translation table.
- |      
- |        table
- |          Translation table, which must be a mapping of Unicode ordinals to
- |          Unicode ordinals, strings, or None.
- |      
- |      The table must implement lookup/indexing via __getitem__, for instance a
- |      dictionary or list.  If this operation raises LookupError, the character is
- |      left untouched.  Characters mapped to None are deleted.
- |  
- |  upper(self, /)
- |      Return a copy of the string converted to uppercase.
- |  
- |  zfill(self, width, /)
- |      Pad a numeric string with zeros on the left, to fill a field of the given width.
- |      
- |      The string is never truncated.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  maketrans(x, y=None, z=None, /)
- |      Return a translation table usable for str.translate().
- |      
- |      If there is only one argument, it must be a dictionary mapping Unicode
- |      ordinals (integers) or characters to Unicode ordinals, strings or None.
- |      Character keys will be then converted to ordinals.
- |      If there are two arguments, they must be strings of equal length, and
- |      in the resulting dictionary, each character in x will be mapped to the
- |      character at the same position in y. If there is a third argument, it
- |      must be a string, whose characters will be mapped to None in the result.
 </code></pre>
 <p>返回对象 object 的字符串形式。如果未提供 object 则返回空字符串。</p>
 <p>如果 encoding 或 errors 至少给出其中之一，则 bytes_or_buffer 应该是一个 bytes-like object (例如字节串或字节数组)。在此情况下，如果是一个字节串 (或字节数组) 对象，则 <code>str(bytes, encoding, errors)</code> 等价于 <code>bytes.decode(encoding, errors)</code>。否则的话，会在调用 <code>bytes.decode()</code> 之前获取缓冲区对象下层的 bytes 对象。</p>
@@ -12544,37 +10484,6 @@ class super(object)
  |      def cmeth(cls, arg):
  |          super().cmeth(arg)
  |  
- |  Methods defined here:
- |  
- |  __get__(self, instance, owner, /)
- |      Return an attribute of instance, which is of type owner.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __self__
- |      the instance invoking super(); may be None
- |  
- |  __self_class__
- |      the type of the instance invoking super(); may be None
- |  
- |  __thisclass__
- |      the class invoking super()
 </code></pre>
 <p>返回一个代理对象，它会将方法调用委托给类 type 的父类或兄弟类。这对于访问已在类中被重载的继承方法很有用。</p>
 <ul>
@@ -12659,71 +10568,6 @@ class tuple(object)
  |  
  |  If the argument is a tuple, the return value is the same object.
  |  
- |  Methods defined here:
- |  
- |  __add__(self, value, /)
- |      Return self+value.
- |  
- |  __contains__(self, key, /)
- |      Return key in self.
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __ge__(self, value, /)
- |      Return self&gt;=value.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __getitem__(self, key, /)
- |      Return self[key].
- |  
- |  __getnewargs__(self, /)
- |  
- |  __gt__(self, value, /)
- |      Return self&gt;value.
- |  
- |  __hash__(self, /)
- |      Return hash(self).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __le__(self, value, /)
- |      Return self&lt;=value.
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __lt__(self, value, /)
- |      Return self&lt;value.
- |  
- |  __mul__(self, value, /)
- |      Return self*value.
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __rmul__(self, value, /)
- |      Return value*self.
- |  
- |  count(self, value, /)
- |      Return number of occurrences of value.
- |  
- |  index(self, value, start=0, stop=9223372036854775807, /)
- |      Return first index of value.
- |      
- |      Raises ValueError if the value is not present.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
 </code></pre>
 <p>将可迭代对象转换为元组。可迭代对象为空或不传参数，返回空元组。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(tuple)
@@ -12752,85 +10596,6 @@ class type(object)
  |  type(object) -&gt; the object's type
  |  type(name, bases, dict) -&gt; a new type
  |  
- |  Methods defined here:
- |  
- |  __call__(self, /, *args, **kwargs)
- |      Call self as a function.
- |  
- |  __delattr__(self, name, /)
- |      Implement delattr(self, name).
- |  
- |  __dir__(self, /)
- |      Specialized __dir__ implementation for types.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __init__(self, /, *args, **kwargs)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  __instancecheck__(self, instance, /)
- |      Check if an object is an instance.
- |  
- |  __repr__(self, /)
- |      Return repr(self).
- |  
- |  __setattr__(self, name, value, /)
- |      Implement setattr(self, name, value).
- |  
- |  __sizeof__(self, /)
- |      Return memory consumption of the type object.
- |  
- |  __subclasscheck__(self, subclass, /)
- |      Check if a class is a subclass.
- |  
- |  __subclasses__(self, /)
- |      Return a list of immediate subclasses.
- |  
- |  mro(self, /)
- |      Return a type's method resolution order.
- |  
- |  ----------------------------------------------------------------------
- |  Class methods defined here:
- |  
- |  __prepare__(...)
- |      __prepare__() -&gt; dict
- |      used to create the namespace for the class statement
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs)
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __abstractmethods__
- |  
- |  __dict__
- |  
- |  __text_signature__
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes defined here:
- |  
- |  __base__ = &lt;class 'object'&gt;
- |      The most base type
- |  
- |  __bases__ = (&lt;class 'object'&gt;,)
- |  
- |  __basicsize__ = 864
- |  
- |  __dictoffset__ = 264
- |  
- |  __flags__ = -2146675712
- |  
- |  __itemsize__ = 40
- |  
- |  __mro__ = (&lt;class 'type'&gt;, &lt;class 'object'&gt;)
- |  
- |  __weakrefoffset__ = 368
 </code></pre>
 <p>传入一个参数时，返回对象的类型。推荐使用 isinstance() 内置函数来检测对象的类型，因为它会考虑子类的情况。</p>
 <p>传入三个参数时，返回一个新的 type 对象。这在本质上是 class 语句的一种动态形式。name 参数是字符串即类名并且会成为 <code>__name__</code> 属性；bases 元组列出基类并且会成为 <code>__bases__</code> 属性；而 dict 字典为包含类主体定义的命名空间并且会被复制到一个标准字典成为 <code>__dict__</code> 属性。</p>
@@ -16316,18 +14081,18 @@ AttributeError: 'B' object has no attribute 'a'
         </div>
         <div class="searchbox default-animation">
           <label for="search-by"><i class="fas fa-search"></i></label>
-          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <input data-search-input id="search-by" type="search" placeholder="搜索...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
         <script>
-          var contentLangs=['en'];
+          var contentLangs=['zh'];
         </script>
-        <script src="/js/auto-complete.js?1661076171" defer></script>
-        <script src="/js/lunr.min.js?1661076171" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661076171" defer></script>
-        <script src="/js/lunr.multi.min.js?1661076171" defer></script>
-        <script src="/js/lunr.en.min.js?1661076171" defer></script>
-        <script src="/js/search.js?1661076171" defer></script>
+        <script src="/js/auto-complete.js?1661091376" defer></script>
+        <script src="/js/lunr.min.js?1661091376" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661091376" defer></script>
+        <script src="/js/lunr.multi.min.js?1661091376" defer></script>
+        <script src="/js/lunr.zh.min.js?1661091376" defer></script>
+        <script src="/js/search.js?1661091376" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -16588,7 +14353,7 @@ AttributeError: 'B' object has no attribute 'a'
           <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
         </ul>
         <div id="shortcuts">
-          <div class="nav-title">More</div>
+          <div class="nav-title">更多</div>
           <ul>
             <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
             <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
@@ -16623,7 +14388,7 @@ AttributeError: 'B' object has no attribute 'a'
               </a>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> 清理历史记录</a></li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
@@ -16631,9 +14396,9 @@ AttributeError: 'B' object has no attribute 'a'
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661076172" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661076172" defer></script>
-    <script src="/js/featherlight.min.js?1661076172" defer></script>
+    <script src="/js/clipboard.min.js?1661091376" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661091376" defer></script>
+    <script src="/js/featherlight.min.js?1661091376" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -16663,7 +14428,7 @@ AttributeError: 'B' object has no attribute 'a'
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661076172" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661091376" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -16672,6 +14437,6 @@ AttributeError: 'B' object has no attribute 'a'
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661076172" defer></script>
+    <script src="/js/theme.js?1661091376" defer></script>
   </body>
 </html>

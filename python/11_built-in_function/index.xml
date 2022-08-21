@@ -5,7 +5,6 @@
     <link>/python/11_built-in_function/</link>
     <description>Recent content in abs() 数字取绝对值 on jupyter.fun</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-ch</language>
     <lastBuildDate>Sun, 07 Aug 2022 16:07:59 +0800</lastBuildDate><atom:link href="/python/11_built-in_function/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>all() 所有元素布尔值为真？</title>
@@ -48,7 +47,7 @@ bin(123) &#39;0b1111011&#39;0b1111011 123</description>
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/06_bool/</guid>
       <description>内置函数（类） bool，Python 官方文档描述如下：
-help(bool) Help on class bool in module builtins:class bool(int)| bool(x) -&amp;gt; bool| | Returns True when the argument x is true, False otherwise.| The builtins True and False are the only two instances of the class bool.| The class bool is a subclass of the class int, and cannot be subclassed.| | Method resolution order:| bool| int| object| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.</description>
+help(bool) Help on class bool in module builtins:class bool(int)| bool(x) -&amp;gt; bool| | Returns True when the argument x is true, False otherwise.| The builtins True and False are the only two instances of the class bool.| The class bool is a subclass of the class int, and cannot be subclassed.| | Method resolution order:| bool| int| object| 返回对象 x 的布尔值。省略 x 则返回 False。对象的真值、假值规则如下：</description>
     </item>
     <item>
       <title>bytes 创建 bytes 对象</title>
@@ -83,7 +82,7 @@ chr(97) &#39;a&#39;ord(&amp;#39;a&amp;#39;) 97chr(1114111) &#39;\U0010ffff&#39
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/10_classmethod/</guid>
       <description>内置函数（类）classmethod，Python 官方文档描述如下：
-help(classmethod) Help on class classmethod in module builtins:class classmethod(object)| classmethod(function) -&amp;gt; method| | Convert a function to be a class method.| | A class method receives the class as implicit first argument,| just like an instance method receives the instance.| To declare a class method, use this idiom:| | class C:| @classmethod| def f(cls, arg1, arg2, ...):| ...| | It can be called either on the class (e.</description>
+help(classmethod) Help on class classmethod in module builtins:class classmethod(object)| classmethod(function) -&amp;gt; method| | Convert a function to be a class method.| | A class method receives the class as implicit first argument,| just like an instance method receives the instance.| To declare a class method, use this idiom:| | class C:| @classmethod| def f(cls, arg1, arg2, ...):| ...| 把一个函数封装成类方法。一个类方法把类自己作为第一个实参，就像一个实例方法把实例自己作为第一个实参。</description>
     </item>
     <item>
       <title>compile() 创建代码对象</title>
@@ -165,7 +164,9 @@ help(exec) Help on built-in function exec in module builtins:exec(source, globa
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/20_filter/</guid>
       <description>内置函数（类）filter，Python 官方文档描述如下：
-help(filter) Help on class filter in module builtins:class filter(object)| filter(function or None, iterable) --&amp;gt; filter object| | Return an iterator yielding those items of iterable for which function(item)| is true. If function is None, return the items that are true.| | Methods defined here:| | __getattribute__(self, name, /)| Return getattr(self, name).| | __iter__(self, /)| Implement iter(self).| | __next__(self, /)| Implement next(self).</description>
+help(filter) Help on class filter in module builtins:class filter(object)| filter(function or None, iterable) --&amp;gt; filter object| | Return an iterator yielding those items of iterable for which function(item)| is true. If function is None, return the items that are true.| 返回可迭代对象（iterable）中那些传递给函数 function 计算之后，布尔值仍然为真的元素组成的迭代器。
+如果 function 是 None，则会假设它是一个身份函数，即 iterable 中所有布尔值为假的元素会被移除。
+type(filter) typef = filter(None,[0,1,2,1]) list(f) [1, 2, 1]f = filter(lambda x: x-1, [0,1,2,1]) list(f) [0, 2]list(filter(None,&amp;#39;0120&amp;#39;)) [&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;0&#39;]list(filter(int,&amp;#39;0120&amp;#39;)) [&#39;1&#39;, &#39;2&#39;]</description>
     </item>
     <item>
       <title>float 创建浮点数</title>
@@ -173,7 +174,11 @@ help(filter) Help on class filter in module builtins:class filter(object)| fil
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/21_float/</guid>
       <description>内置函数（类）float，Python 官方文档描述如下：
-help(float) Help on class float in module builtins:class float(object)| float(x=0, /)| | Convert a string or number to a floating point number, if possible.| | Methods defined here:| | __abs__(self, /)| abs(self)| | __add__(self, value, /)| Return self+value.| | __bool__(self, /)| self != 0| | __divmod__(self, value, /)| Return divmod(self, value).| | __eq__(self, value, /)| Return self==value.</description>
+help(float) Help on class float in module builtins:class float(object)| float(x=0, /)| | Convert a string or number to a floating point number, if possible.| 返回从数字或字符串 x 生成的浮点数。
+如果实参是字符串:
+它必须是包含十进制数字的字符串; 通常是 Python 整数或浮点数的字符串形式； 也可以是 &amp;lsquo;NaN&amp;rsquo;（非数字）、表示正负无穷大的字符串（&amp;ldquo;Infinity&amp;rdquo; 或 &amp;ldquo;inf&amp;rdquo;）。字母大小写随意； 字符串前后可以有空白字符。 如果实参是整数或浮点数，则返回具有相同值（在 Python 浮点精度范围内）的浮点数。如果实参在 Python 浮点精度范围外，则会触发OverflowError。
+如果没有实参，则返回 0.0 。
+type(float) typefloat() 0.0float(1) 1.0float(- 1.0) -1.0float(&amp;#39; -1.0 \n&amp;#39;) -1.0float(&amp;#39; 01_2.1_4 &amp;#39;) 12.14float(&amp;#39;0001&amp;#39;) 1.0float(&amp;#39;3.</description>
     </item>
     <item>
       <title>format() 格式化</title>
@@ -191,7 +196,8 @@ format(&amp;#39;嗨&amp;#39;,&amp;#39;&amp;gt;10&amp;#39;) &#39; 嗨&#39;format
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/23_frozenset/</guid>
       <description>内置函数（类）frozenset，Python 官方文档描述如下：
-help(frozenset) Help on class frozenset in module builtins:class frozenset(object)| frozenset() -&amp;gt; empty frozenset object| frozenset(iterable) -&amp;gt; frozenset object| | Build an immutable unordered collection of unique elements.| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.| | __contains__(...)| x.__contains__(y) &amp;lt;==&amp;gt; y in x.| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.</description>
+help(frozenset) Help on class frozenset in module builtins:class frozenset(object)| frozenset() -&amp;gt; empty frozenset object| frozenset(iterable) -&amp;gt; frozenset object| | Build an immutable unordered collection of unique elements.| 将可迭代对象转换为集合，返回一个新的 frozenset 集合对象。可迭代对象为空，或不传参数，得到一个空集合。
+type(frozenset) typefrozenset() frozenset()frozenset([]) frozenset()frozenset(&amp;#39;0123&amp;#39;) frozenset({&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;})frozenset({&amp;#39;a&amp;#39;:1,&amp;#39;b&amp;#39;:2}) frozenset({&#39;a&#39;, &#39;b&#39;})</description>
     </item>
     <item>
       <title>getattr() 获取对象的属性</title>
@@ -319,7 +325,8 @@ len(&amp;#39;123&amp;#39;) 3len(&amp;#39;嗨&amp;#39;) 1len(&amp;#39;嗨&amp;#
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/37_list/</guid>
       <description>内置函数（类）list，Python 官方文档描述如下：
-help(list) Help on class list in module builtins:class list(object)| list(iterable=(), /)| | Built-in mutable sequence.| | If no argument is given, the constructor creates a new empty list.| The argument must be an iterable if specified.| | Methods defined here:| | __add__(self, value, /)| Return self+value.| | __contains__(self, key, /)| Return key in self.| | __delitem__(self, key, /)| Delete self[key].</description>
+help(list) Help on class list in module builtins:class list(object)| list(iterable=(), /)| | Built-in mutable sequence.| | If no argument is given, the constructor creates a new empty list.| The argument must be an iterable if specified.| 将一个可迭代对象转为列表。不传参数将得到空列表。
+type(list) typelist() []list(&amp;#39;123&amp;#39;) [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]list({&amp;#39;a&amp;#39;:1,&amp;#39;b&amp;#39;:2}) [&#39;a&#39;, &#39;b&#39;]</description>
     </item>
     <item>
       <title>locals() 返回局部变量的字典</title>
@@ -469,7 +476,8 @@ help(round) Help on built-in function round in module builtins:round(number, nd
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/54_set/</guid>
       <description>内置函数（类）set，Python 官方文档描述如下：
-help(set) Help on class set in module builtins:class set(object)| set() -&amp;gt; new empty set object| set(iterable) -&amp;gt; new set object| | Build an unordered collection of unique elements.| | Methods defined here:| | __and__(self, value, /)| Return self&amp;amp;value.| | __contains__(...)| x.__contains__(y) &amp;lt;==&amp;gt; y in x.| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.</description>
+help(set) Help on class set in module builtins:class set(object)| set() -&amp;gt; new empty set object| set(iterable) -&amp;gt; new set object| | Build an unordered collection of unique elements.| 将一个可迭代对象转换为集合。可迭代对象为空，或不传参数，将得到空集合。
+type(set) typeset([]) set()set() set()set(&amp;#39;1231&amp;#39;) {&#39;1&#39;, &#39;2&#39;, &#39;3&#39;}set({&amp;#39;1&amp;#39;:1, &amp;#39;2&amp;#39;:2, &amp;#39;3&amp;#39;:3}) {&#39;1&#39;, &#39;2&#39;, &#39;3&#39;}</description>
     </item>
     <item>
       <title>setattr() 设置或新增属性</title>
@@ -486,7 +494,9 @@ class A: y = 1 x = A() x.y 1# 为实例 x 新增属性 setattr(x, &amp;#39;y&am
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/56_slice/</guid>
       <description>内置函数（类）slice，Python 官方文档描述如下：
-help(slice) Help on class slice in module builtins:class slice(object)| slice(stop)| slice(start, stop[, step])| | Create a slice object. This is used for extended slicing (e.g. a[0:10:2]).| | Methods defined here:| | __eq__(self, value, /)| Return self==value.| | __ge__(self, value, /)| Return self&amp;gt;=value.| | __getattribute__(self, name, /)| Return getattr(self, name).| | __gt__(self, value, /)| Return self&amp;gt;value.| | __le__(self, value, /)| Return self&amp;lt;=value.</description>
+help(slice) Help on class slice in module builtins:class slice(object)| slice(stop)| slice(start, stop[, step])| | Create a slice object. This is used for extended slicing (e.g. a[0:10:2]).| 返回一个表示由 range(start, stop, step) 指定索引集的 slice 对象。其中 start 和 step 参数默认为 None。
+切片对象具有仅会返回对应参数值（或其默认值）的只读数据属性 start, stop 和 step。它们没有其他的显式功能。
+type(slice) types = slice(3) s slice(None, 3, None)a = list(range(5)) a[s] [0, 1, 2]slice(2,8,2) slice(2, 8, 2)list(range(10)[slice(2,8,2)]) [2, 4, 6]</description>
     </item>
     <item>
       <title>sorted() 返回排序列表</title>
@@ -540,7 +550,8 @@ help(super) Help on class super in module builtins:class super(object)| super(
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/62_tuple/</guid>
       <description>内置函数（类）tuple，Python 官方文档描述如下：
-help(tuple) Help on class tuple in module builtins:class tuple(object)| tuple(iterable=(), /)| | Built-in immutable sequence.| | If no argument is given, the constructor returns an empty tuple.| If iterable is specified the tuple is initialized from iterable&#39;s items.| | If the argument is a tuple, the return value is the same object.| | Methods defined here:| | __add__(self, value, /)| Return self+value.</description>
+help(tuple) Help on class tuple in module builtins:class tuple(object)| tuple(iterable=(), /)| | Built-in immutable sequence.| | If no argument is given, the constructor returns an empty tuple.| If iterable is specified the tuple is initialized from iterable&#39;s items.| | If the argument is a tuple, the return value is the same object.| 将可迭代对象转换为元组。可迭代对象为空或不传参数，返回空元组。
+type(tuple) typetuple(&amp;#39;&amp;#39;) ()tuple(&amp;#39;123&amp;#39;) (&#39;1&#39;, &#39;2&#39;, &#39;3&#39;)</description>
     </item>
     <item>
       <title>type 判断类型或创建类</title>
@@ -548,7 +559,9 @@ help(tuple) Help on class tuple in module builtins:class tuple(object)| tuple(
       <pubDate>Sun, 07 Aug 2022 16:07:59 +0800</pubDate>
       <guid>/python/11_built-in_function/63_type/</guid>
       <description>内置函数（类）type，Python 官方文档描述如下：
-help(type) Help on class type in module builtins:class type(object)| type(object_or_name, bases, dict)| type(object) -&amp;gt; the object&#39;s type| type(name, bases, dict) -&amp;gt; a new type| | Methods defined here:| | __call__(self, /, *args, **kwargs)| Call self as a function.| | __delattr__(self, name, /)| Implement delattr(self, name).| | __dir__(self, /)| Specialized __dir__ implementation for types.| | __getattribute__(self, name, /)| Return getattr(self, name).</description>
+help(type) Help on class type in module builtins:class type(object)| type(object_or_name, bases, dict)| type(object) -&amp;gt; the object&#39;s type| type(name, bases, dict) -&amp;gt; a new type| 传入一个参数时，返回对象的类型。推荐使用 isinstance() 内置函数来检测对象的类型，因为它会考虑子类的情况。
+传入三个参数时，返回一个新的 type 对象。这在本质上是 class 语句的一种动态形式。name 参数是字符串即类名并且会成为 __name__ 属性；bases 元组列出基类并且会成为 __bases__ 属性；而 dict 字典为包含类主体定义的命名空间并且会被复制到一个标准字典成为 __dict__ 属性。
+type(type) typetype(int), type(object) (type, type)isinstance(int, object) Trueclass A: a = 1 A.__name__, A.__bases__, A.__dict__ (&#39;A&#39;,(object,),mappingproxy({&#39;__module__&#39;: &#39;__main__&#39;,&#39;a&#39;: 1,&#39;__dict__&#39;: &amp;lt;attribute &#39;__dict__&#39; of &#39;A&#39; objects&amp;gt;,&#39;__weakref__&#39;: &amp;lt;attribute &#39;__weakref__&#39; of &#39;A&#39; objects&amp;gt;,&#39;__doc__&#39;: None}))A = type(&amp;#39;A&amp;#39;, (object,), dict(a=1)) A.</description>
     </item>
     <item>
       <title>vars() 返回对象的变量字典</title>

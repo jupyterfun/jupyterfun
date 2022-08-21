@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -11,18 +11,18 @@
     <link href="/python/11_built-in_function/17_enumerate/index.xml" rel="alternate" type="application/rss+xml" title="jupyter.fun">
     <link href="/python/11_built-in_function/17_enumerate/index.print.html" rel="alternate" type="text/html" title="jupyter.fun"><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1661076167" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661076167" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1661076167" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661076167" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1661076167" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661076167" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1661076167" rel="stylesheet">
-    <link href="/css/nucleus.css?1661076167" rel="stylesheet">
-    <link href="/css/fonts.css?1661076167" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661076167" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1661076167" rel="stylesheet">
-    <link href="/css/theme-blue.css?1661076167" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1661076167" rel="stylesheet">
-    <link href="/css/variant.css?1661076167" rel="stylesheet">
-    <link href="/css/print.css?1661076167" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1661076167"></script>
+    <link href="/css/fontawesome-all.min.css?1661091372" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1661091372" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1661091372" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1661091372" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1661091372" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1661091372" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1661091372" rel="stylesheet">
+    <link href="/css/nucleus.css?1661091372" rel="stylesheet">
+    <link href="/css/fonts.css?1661091372" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1661091372" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1661091372" rel="stylesheet">
+    <link href="/css/theme-blue.css?1661091372" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1661091372" rel="stylesheet">
+    <link href="/css/variant.css?1661091372" rel="stylesheet">
+    <link href="/css/print.css?1661091372" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1661091372"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -30,15 +30,15 @@
       var root_url="/";
       var baseUri=root_url.replace(/\/$/, '');
       // translations
-      window.T_Copy_to_clipboard = 'Copy to clipboard';
-      window.T_Copied_to_clipboard = 'Copied to clipboard!';
-      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
-      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_Copy_to_clipboard = '复制到剪贴板';
+      window.T_Copied_to_clipboard = '复制到剪贴板！';
+      window.T_Copy_link_to_clipboard = '将链接复制到剪贴板';
+      window.T_Link_copied_to_clipboard = '链接复制到剪贴板！';
       // some further base stuff
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1661076167" defer></script>
+    <script src="/js/jquery.min.js?1661091372" defer></script>
   </head>
   <body class="mobile-support html" data-url="/python/11_built-in_function/17_enumerate/">
     <div id="body" class="default-animation">
@@ -47,13 +47,13 @@
       <nav id="topbar" class="highlightable">
         <div>
           <div id="top-print-link">
-            <a class="print-link" title='打印预览 (CTRL+ALT+p)' href="/python/11_built-in_function/17_enumerate/index.print.html">
+            <a class="print-link" title='打印整章 (CTRL+ALT+p)' href="/python/11_built-in_function/17_enumerate/index.print.html">
               <i class="fas fa-print fa-fw"></i>
             </a>
           </div>
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+              <a href="#" id="sidebar-toggle" title='导航 (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
             </span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
@@ -90,25 +90,6 @@ class enumerate(object)
  |  enumerate is useful for obtaining an indexed list:
  |      (0, seq[0]), (1, seq[1]), (2, seq[2]), ...
  |  
- |  Methods defined here:
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __next__(self, /)
- |      Implement next(self).
- |  
- |  __reduce__(...)
- |      Return state information for pickling.
- |  
- |  ----------------------------------------------------------------------
- |  Static methods defined here:
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
 </code></pre>
 <p>返回一个可迭代对象（iterable）的枚举对象。枚举对象是一个迭代器，迭代出来是一个个元组，里面包含一个计数值（从 start 开始，默认为 0）和通过迭代 iterable 获得的值。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type(enumerate)
@@ -146,18 +127,18 @@ class enumerate(object)
         </div>
         <div class="searchbox default-animation">
           <label for="search-by"><i class="fas fa-search"></i></label>
-          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <input data-search-input id="search-by" type="search" placeholder="搜索...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
         <script>
-          var contentLangs=['en'];
+          var contentLangs=['zh'];
         </script>
-        <script src="/js/auto-complete.js?1661076167" defer></script>
-        <script src="/js/lunr.min.js?1661076167" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1661076167" defer></script>
-        <script src="/js/lunr.multi.min.js?1661076167" defer></script>
-        <script src="/js/lunr.en.min.js?1661076167" defer></script>
-        <script src="/js/search.js?1661076167" defer></script>
+        <script src="/js/auto-complete.js?1661091372" defer></script>
+        <script src="/js/lunr.min.js?1661091372" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1661091372" defer></script>
+        <script src="/js/lunr.multi.min.js?1661091372" defer></script>
+        <script src="/js/lunr.zh.min.js?1661091372" defer></script>
+        <script src="/js/search.js?1661091372" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -418,7 +399,7 @@ class enumerate(object)
           <li data-nav-id="/statistics/statistics9/" title="K-Means 算法" class="dd-item"><a href="/statistics/statistics9/">K-Means 算法<i class="fas fa-check read-icon"></i></a></li></ul></li>
         </ul>
         <div id="shortcuts">
-          <div class="nav-title">More</div>
+          <div class="nav-title">更多</div>
           <ul>
             <li><a class="padding" href="/https:/billwuhao.com">@billwuhao.com</a></li>
             <li><a class="padding" href="/https:/github.com/jupyterfun"><i class='fab fa-fw fa-github'></i> Jupyterfun</a></li>
@@ -453,7 +434,7 @@ class enumerate(object)
               </a>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i> 清理历史记录</a></li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
@@ -461,9 +442,9 @@ class enumerate(object)
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1661076167" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1661076167" defer></script>
-    <script src="/js/featherlight.min.js?1661076167" defer></script>
+    <script src="/js/clipboard.min.js?1661091372" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1661091372" defer></script>
+    <script src="/js/featherlight.min.js?1661091372" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -493,7 +474,7 @@ class enumerate(object)
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1661076167" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1661091372" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -502,6 +483,6 @@ class enumerate(object)
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1661076167" defer></script>
+    <script src="/js/theme.js?1661091372" defer></script>
   </body>
 </html>

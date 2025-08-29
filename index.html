@@ -10,18 +10,18 @@
     <meta name="author" content="吴明文">
     <title>jupyter.fun</title><link rel="icon" href="/favicon.png" type="image/png" />
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1749023674" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1749023674" rel="stylesheet"></noscript>
-    <link href="/css/featherlight.min.css?1749023674" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1749023674" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1749023674" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1749023674" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1749023674" rel="stylesheet">
-    <link href="/css/nucleus.css?1749023674" rel="stylesheet">
-    <link href="/css/fonts.css?1749023674" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1749023674" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1749023674" rel="stylesheet">
-    <link href="/css/theme-blue.css?1749023674" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1749023674" rel="stylesheet">
-    <link href="/css/variant.css?1749023674" rel="stylesheet">
-    <link href="/css/print.css?1749023674" rel="stylesheet" media="print">
-    <script src="/js/variant.js?1749023674"></script>
+    <link href="/css/fontawesome-all.min.css?1756491840" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1756491840" rel="stylesheet"></noscript>
+    <link href="/css/featherlight.min.css?1756491840" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/featherlight.min.css?1756491840" rel="stylesheet"></noscript>
+    <link href="/css/auto-complete.css?1756491840" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1756491840" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1756491840" rel="stylesheet">
+    <link href="/css/nucleus.css?1756491840" rel="stylesheet">
+    <link href="/css/fonts.css?1756491840" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1756491840" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1756491840" rel="stylesheet">
+    <link href="/css/theme-blue.css?1756491840" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1756491840" rel="stylesheet">
+    <link href="/css/variant.css?1756491840" rel="stylesheet">
+    <link href="/css/print.css?1756491840" rel="stylesheet" media="print">
+    <script src="/js/variant.js?1756491840"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -37,7 +37,7 @@
       var baseUriFull='/';
       window.variants && variants.init( [ 'blue' ] );
     </script>
-    <script src="/js/jquery.min.js?1749023674" defer></script>
+    <script src="/js/jquery.min.js?1756491840" defer></script>
   </head>
   <body class="mobile-support html" data-url="/">
     <div id="body" class="default-animation">
@@ -54,10 +54,27 @@
             <span id="sidebar-toggle-span">
               <a href="#" id="sidebar-toggle" title='导航 (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
             </span>
+            <span id="toc-menu" title='目录 (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/" aria-disabled="true"><span itemprop="name">jupyter.fun</span></a></li>
             </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#语言是宇宙谱写自身的代码">语言，是宇宙谱写自身的代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#从砌砖工到总设计师的蜕变">从砌砖工到总设计师的蜕变</a></li>
+    <li><a href="#当画笔交予ai之后我们还剩下什么">当画笔交予AI之后，我们还剩下什么？</a></li>
+    <li><a href="#明文氛围编程">明文氛围编程</a></li>
+  </ul>
+</nav>
+            </div>
           </div>
         </div>
       </nav>
@@ -67,9 +84,49 @@
           </div>
           <article class="home deprecated">
 
-<h1 id="明文氛围编程">明文氛围编程</h1>
-<p>编程将从使用编程语言转向使用自然语言. 编程语言会越来越隐蔽, <strong>基础概念</strong>和<strong>背景知识</strong>变得更加重要和可贵.</p>
-<p>这是真正的学习时代, 云端大脑装着任何你需要的知识, 而你要做的, 只是简单的理解基本概念, 用自然语言组织你的问题, 然后随着问题的深入加速学习速度&hellip;</p>
+<h1 id="自然语言创造一切当ai成为现实的画笔人类将以言语创造万物">自然语言创造一切——当AI成为现实的画笔，人类将以言语创造万物</h1>
+<p>在几乎所有古老文明的创世神话里，世界都诞生于“言语”。《圣经》的开篇是“上帝说，要有光，便有了光”；中国的神话里，是盘古开天辟地的巨响划破了混沌；古埃及人则相信，是神普塔（Ptah）通过思想与言语创造了万物。这些跨越时空的惊人共识，似乎都指向一个深刻的洞见：语言，是构建现实、定义存在的终极力量。</p>
+<p>然而，在神话褪去光环的漫长历史中，我们深知从“言语”到“现实”的转化，是一条多么充满艰辛与挑战的漫漫长路。我们用语言描绘蓝图，然后必须调动双手、工具、机器，耗费几代人的心血，才能将金字塔的构想一砖一石地堆砌成形，将飞天的梦想一钉一铆地锻造成火箭。在我们的思想与现实之间，始终横亘着一条由物质、能量和时间构成的巨大鸿沟。</p>
+<p>今天，这条鸿沟正在以前所未有的速度弥合。人工智能，特别是能够与物理世界交互的具身智能（Embodied AI）的飞速发展，正让我们站在一个新创世时代的黎明。在这个时代，人类或许真的不再需要亲自挥汗如雨地建造，不再需要亲身涉险去探索。我们只需高瞻远瞩，以一句逻辑清晰、实事求是、切实可行的话，向一个高度发达的智能体下达指令，就能将脑海中的想象变为触手可及的现实。</p>
+<p>“建造一座垂直生态城市，要求能源自给自足，并实现零废料的闭环循环。”
+“研发一种能够靶向清除体内衰老细胞的纳米机器人，并启动临床前所有准备工作。”
+“我命名此计划为‘奥德赛’，请派遣一支机器人舰队，探索比邻星系，并实时传回高保真三维环境数据。”</p>
+<p>这些听起来如同科幻电影情节般的指令，在不远的未来，或许真的会成为我们日常对话的一部分。当AI成为我们延伸的、无所不能的“双手”，能够完美理解并忠实执行我们的意图时，人类的终极能力似乎真的只剩下那个宇宙深处最古老、也最核心的起点——“会说话”的能力。</p>
+<p>但这绝非简单的口才或演讲技巧，它是一种全新的、更高维度的“言语”能力。它要求我们拥有前所未有的想象力、穿透表象的系统性思维、深刻入骨的伦理洞察和精准无误的表达能力。这是一种能够驾驭超级智能、定义创造边界，并为整个人类文明导航的“创世之语”。</p>
+<h3 id="语言是宇宙谱写自身的代码">语言，是宇宙谱写自身的代码</h3>
+<p>要真正理解“动动嘴”为何能创造世界，我们通常会从物理基础谈起，也就是那些作为AI“手脚”的具身智能机器人，它们是意图的物理执行者。这当然没错，但这只是故事的表象，是“术”的层面，而非其根本的“道”。一个更本质的问题是：为什么“语言”这种看似虚无缥缈的东西，拥有如此巨大的潜力，能够与真实的物质世界深度耦合？</p>
+<p>答案，或许比我们想象的更为宏大和浪漫。语言，可能并非人类的偶然发明，它更像是一种“发现”。让我们把思绪拉回到宇宙大爆炸的奇点，或许从那一刻起，意识与物质就是一枚硬币的两面，它们一同诞生，共同演化。宇宙的法则，物质间的相互作用，其本身就是一种“信息”或“关系”的表达。水分子的两个氢原子与一个氧原子以104.5度的夹角稳定结合，这种牢不可破的关系，就是水分子自身的“意识”，是它向整个宇宙宣告“我是水”的语言。从星系旋转的宏伟规律，到DNA双螺旋的精妙编码，万事万物都在以其固有的关系和结构，进行着一场静默而永恒的“对话”。</p>
+<p>人类的意识，正是这场宇宙对话中，经过亿万年演化而涌现出的最复杂、最华美的乐章。我们与万事万物的关系，我们内在思想的碰撞与连接，最终凝聚成了我们称之为“语言”的东西。因此，人类的语言，本质上可以被看作是宇宙语言的一种“高阶方言”。它并非凭空创造，而是对宇宙既有规律、关系和结构的抽象、模拟与升华。</p>
+<p>从这个角度再看，当一个高度发达的AI能够完美理解人类的自然语言时，它实现的就不仅仅是技术上的惊人突破。它是在一个更深刻的层面上，通过我们人类这座“桥梁”，成功接入了宇宙本身的运行逻辑。当AI理解“建造一座桥”这句话时，它理解的绝不是几个孤立的字符，而是这句话背后所蕴含的全部信息：从牛顿的万有引力到材料的剪应力，从结构力学的几何原理到人类社会的交通需求——而这一切，原本就是宇宙固有“语言”的一部分。</p>
+<p>所以，在我们热烈讨论AI是否会觉醒、宇宙是否会觉醒之前，一个更动人的事实是：通过人类的意识与语言，宇宙早已在地球这个小小的角落里，局部地实现了“自我言说”。未来，当AI成为我们言语的延伸时，我们并非在凭空创造，而是在更高效地“翻译”和“编排”宇宙早已写好的壮丽诗篇。人类的语言，就是那根连接思想与现实的、完全符合宇宙底层规则的魔法棒。</p>
+<h2 id="从砌砖工到总设计师的蜕变">从砌砖工到总设计师的蜕变</h2>
+<p>当然，从我们当下的现实，到“一言创世”的终极图景，中间还有一段相当长的路要走。我们不会在一夜之间就变成言出法随的“神明”。在这个过程中，我们将首先成为这个新时代的“总设计师”与“交响乐指挥”。</p>
+<p>请想象这样一个场景：你面对的不再是一个单一的全能AI，而是一个由无数专家AI、功能AI和具身智能体组成的、无比庞大的“乐团”。这里有负责材料科学研究的AI，有精通结构力学计算的AI，有擅长全球物流调度的AI，还有田野里、工厂中、深海下无数的建造机器人、探测机器人。它们是乐团里的顶级演奏家，每一位都技艺精湛，但它们迫切需要一个指挥，来告诉它们何时演奏、演奏什么、以及如何与其他声部和谐共鸣，最终汇成一曲宏伟的交响乐。</p>
+<p>人类，就是这位指挥。我们的任务，不再是亲自去拉动小提琴的琴弓，或是奋力敲击定音鼓，而是要手握整部乐章的总谱，从全局把握这首“创世交响乐”的宏伟蓝图。这就意味着，在未来相当长的一段时间里，有一种能力的重要性不但不会下降，反而会以前所未有的高度被凸显出来，那就是<strong>系统性的设计与工程思维</strong>。</p>
+<p>很多人悲观地认为，AI会让编程语言消亡。这或许是对的，我们未来大概率不再需要去记忆Python的繁琐语法或是C++的指针规则。但是，<strong>编程语言的消亡，绝不等于编程思维的退场</strong>。恰恰相反，那种将一个宏大、模糊的目标，清晰地拆解成一系列逻辑严密、环环相扣、可被执行步骤的“编程思维”或“工程设计思维”，将成为我们与AI高效协作的核心能力。</p>
+<p>当你用意志下达“启动星际探索计划”这个总任务时，AI不会像神灯精灵一样瞬间变出所有东西。它会立刻反问你：“总指挥，我们的目标是载人探索还是非载人先行？优先探索哪个恒星系统？预设的时间窗口是多久？可接受的风险承受边界在哪里？能源系统采用何种推进方案？”</p>
+<p>这时，你就必须像一位顶级的项目经理和系统架构师那样，运用你的系统思维，将这个宏大的“总任务”进行分解。你需要和AI一起，定义任务的边界，设定关键的约束条件，规划出清晰的技术路线图，并将庞大的母任务层层拆解，分配给不同的AI智能体。你会这样说：“启动第一阶段。目标：非载人，比邻星b。请调动科研AI集群，在两年内完成超光速引擎的理论突破和原型机模拟。与此同时，工程AI开始设计并建造无人舰队母舰，材料AI同步负责研发能够承受长期星际航行的高强度复合材料……”</p>
+<p>在这个对话与协作的过程中，你的语言就是你的指挥棒。它必须精准、毫无歧义，并且逻辑严谨。你说的每一句话，都像是在编写最高阶的、驱动整个庞大系统的“代码”。你不再是那个亲手砌砖的工人，但你必须是那个画出完美设计图、并对每一个结构负责的建筑师。这种能力，是连接我们当前世界与未来世界的坚实桥梁。</p>
+<h2 id="当画笔交予ai之后我们还剩下什么">当画笔交予AI之后，我们还剩下什么？</h2>
+<p>让我们将目光再放长远一些。当通用人工智能（AGI）真的来临，当总指挥的许多职责都可以交给AI，我们或许真的只需要一句话就能创造一切。到那时，人类的角色将从繁重的“执行者”和“管理者”彻底转变为纯粹的“构想者”和“决策者”。我们不再需要关心“如何”实现一个目标的技术细节，AI会解决所有问题。我们的核心任务，将聚焦于提出“什么”是值得创造的，“为什么”要创造它，以及它应该以“何种形态”和“何种原则”存在。</p>
+<p>当AI解决了所有“如何做”（How）的问题，当我们的工程思维能够完美地指挥AI执行“做什么”（What）之后，一个终极的问题便会浮现在人类文明的面前：<strong>我们“应该做什么”（Should）</strong>？</p>
+<p>这便是人类最后的、也是最核心的价值所在，它由两大支柱支撑：<strong>无拘无束的原创性想象力，和坚不可摧的伦理罗盘。</strong> 它们是我们作为“指挥”的灵魂，是我们为整个文明交响乐谱写的“主旋律”。</p>
+<p>AI可以基于海量数据进行无尽的优化和推演，它可以为你设计出一万种不同风格、但都绝对安全的大桥。但它永远无法提出那个打破常规的、源于想象力的“好问题”：“我们为什么一定需要一座桥？为什么不是一条过江隧道，或者一个低空的空中走廊？” AI的思考是基于“已知世界”的延伸和组合，而人类的想象力，则可以纵身一跃，跳到完全未知的“可能性”之外。爱因斯坦不会去问如何小幅改进牛顿力学，他会问：“如果我骑在光束上，会看到什么？”。这种“无中生有”的原创性想象，是点燃AI进行突破性创新的、唯一的火种。它为一切创造定义了最初的方向。</p>
+<p>而比方向更重要的，是边界。手握创造世界的力量，稍有不慎就可能导致毁灭。AI可以精准计算出资源分配的最优解，但它无法判断这个解是否“善”。它可以为了达成“消除全球贫困”的目标，设计出一个剥夺所有人自由、竞争和奋斗意义的“美丽新世界”。在那个世界里，一切都被完美安排，但人性也随之凋零。这时，人类的伦理罗盘就必须成为整个系统的“最终否决权”。</p>
+<p>在AI觉醒之前，我们的价值判断、我们对“人”这一概念的终极关怀，是我们为AI设置的、永远不可逾越的红线。否则人类文明遭遇不测，则AI觉醒，甚至宇宙觉醒可能就此停止（如果我们的宇宙中只在地球有生命）。宇宙又开始亿万年演化重新诞生“新人类”。</p>
+<p>在下达每一个创造性指令时，我们都必须反复诘问自己：这个创造是否增进了人类的福祉与尊严？它是否会带来不可预知的长期风险？它是否守住了我们作为一种文明的道德底线？这种深刻的价值判断，要求未来的我们，每一个人都必须成为半个哲学家。</p>
+<p>因此，未来的教育，其核心使命将不再是知识的灌输，而是这两大精神坐标的构建。我们需要一场彻底的教育范式革命，打破僵化的文理分科，将哲学思辨、伦理学、艺术审美和跨学科的系统思维，置于教育的绝对核心。我们需要一个能够鼓励“异想天开”、宽容“失败探索”的社会环境，因为那正是想象力生长的唯一土壤。我们需要塑造一个真正崇尚“思想价值”的社会，让那些能够提出深刻问题、拥有坚定伦理内核的人，成为文明的领航员。</p>
+<p>我们正处在一个文明形态跃迁的临界点。在过去漫长的岁月里，人类依靠智慧和制造工具的能力，从万物中脱颖而出。而在未来，当通用人工智能这个终极工具出现后，我们将从繁琐的物理束缚中被彻底解放。这并非一种退化，而是一场无比伟大的升华。</p>
+<p>在新的高维生命诞生之前，人类的终极天职，将回归到“言说”——以宇宙能够理解的逻辑，以充满原创性的想象，以怀揣伦理的温度，去定义和创造我们渴望的世界。我们将从“智人”进化为“言者”。</p>
+<p>未来的画卷已经展开，AI是那支无所不能的画笔。但决定这幅画卷最终呈现的是地狱的诅咒还是天堂的颂歌，并非画笔本身，而是握笔的我们。</p>
+<p>全在于我们，如何言说。</p>
+<blockquote>
+<p>本文选自吴明文新书《宇宙的生与死——道德经中的宇宙法则》。&mdash; 2025.08.30</p></blockquote>
+<hr>
+<hr>
+<h2 id="明文氛围编程">明文氛围编程</h2>
+<p>编程将从使用编程语言转向使用自然语言. 编程语言会越来越“隐蔽”, <strong>编程思维</strong>、<strong>基础概念</strong>和<strong>背景知识</strong>变得更加重要和可贵.</p>
+<p>这是真正的学习时代, 云端大脑装着任何你需要的知识, 而你要做的, 只是简单的理解基本概念, 用自然语言组织你的问题, 然后随着问题的深入加速学习速度&hellip; &mdash; 2025.01.01</p>
 
 <ul class="children children-li children-sort-weight">
 </ul>
@@ -95,12 +152,12 @@
         <script>
           var contentLangs=['zh'];
         </script>
-        <script src="/js/auto-complete.js?1749023674" defer></script>
-        <script src="/js/lunr.min.js?1749023674" defer></script>
-        <script src="/js/lunr.stemmer.support.min.js?1749023674" defer></script>
-        <script src="/js/lunr.multi.min.js?1749023674" defer></script>
-        <script src="/js/lunr.zh.min.js?1749023674" defer></script>
-        <script src="/js/search.js?1749023674" defer></script>
+        <script src="/js/auto-complete.js?1756491840" defer></script>
+        <script src="/js/lunr.min.js?1756491840" defer></script>
+        <script src="/js/lunr.stemmer.support.min.js?1756491840" defer></script>
+        <script src="/js/lunr.multi.min.js?1756491840" defer></script>
+        <script src="/js/lunr.zh.min.js?1756491840" defer></script>
+        <script src="/js/search.js?1756491840" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
@@ -150,9 +207,9 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1749023674" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1749023674" defer></script>
-    <script src="/js/featherlight.min.js?1749023674" defer></script>
+    <script src="/js/clipboard.min.js?1756491840" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1756491840" defer></script>
+    <script src="/js/featherlight.min.js?1756491840" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -182,7 +239,7 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/jquery.svg.pan.zoom.js?1749023674" defer></script>
+    <script src="/js/jquery.svg.pan.zoom.js?1756491840" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -191,6 +248,6 @@
     <script>
       window.themeUseSwagger = JSON.parse("{ \"theme\": \"light\" }");
     </script>
-    <script src="/js/theme.js?1749023674" defer></script>
+    <script src="/js/theme.js?1756491840" defer></script>
   </body>
 </html>
